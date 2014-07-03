@@ -1,0 +1,75 @@
+body,html {
+	height: 100%;
+	font-family: verdana;
+	font-size: 12px;
+	font-family: verdana;
+	max-width: 2000px;
+	min-width: 1200px;
+}
+
+
+
+.header {
+	background-color: maroon;
+	color: white;
+	font-family: verdana;
+	font-size: 12px;
+	height: 120px;
+	border-radius: 4px;
+	box-shadow: 4px 4px 4px maroon;
+}
+
+.header .title {
+	color: white;
+	font-family: verdana;
+	font-size: 13px;
+	width: 50%;
+	height: 120px;
+	float: left;
+}
+
+.title .contentTitle {
+	float: left; padding-left : 45px;
+	padding-top: 20px;
+
+	padding-left: 45px;
+}
+
+.title .message_welcome {
+	float: right;
+
+
+	padding-top: 20px;
+}
+
+.header .information {
+	float: right;
+	width: 50%;
+	height: 120px;
+}
+
+.information a {
+	float: right;
+	padding-right: 20px;
+	padding-top: 20px;
+}
+
+.information .btnLogOut {
+	float: right;
+	margin-right: 20px;
+	margin-top: 20px;
+	border: none;
+	height: 20px;
+	width:100px;
+	color: white;
+	background-color: maroon;
+	border: 2px solid white;
+	height: 22px;
+}
+
+.information .btnLogOut:HOVER {
+	color: maroon;
+	background-color: white;
+	font-weight: bold;
+	height: 20px;
+}
