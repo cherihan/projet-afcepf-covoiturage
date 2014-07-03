@@ -4,6 +4,7 @@ public class TestFouad {
 
 	public static void main(String[] args) {
 		System.out.println("Hello Maven Fouad");
+		System.out.println("Hello Maven Hichem");
 	}
 
 }
