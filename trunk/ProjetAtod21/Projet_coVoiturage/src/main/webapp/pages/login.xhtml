@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/commonLayout.xhtml">
+
+	<ui:define name="title">
+	
+	
+
+Login
+
+</ui:define>
+
+
+	<ui:define name="css">
+
+		<link rel="stylesheet" href="../resources/css/common-style.css" />
+		<link rel="stylesheet" href="../resources/css/login.css" />
+
+
+	</ui:define>
+
+	<ui:define name="javascript">
+
+		<script type="text/javascript" src="../resources/js/login.js" />
+
+	</ui:define>
+
+
+
+	<ui:define name="content">
+		<span class="message_accueil">Bienvenue sur votre application
+			de co voiturage</span>
+		<div class="formLogin">
+
+
+
+
+			<h:form>
+
+				<fieldset>
+
+					<legend>Formulaire de connexion</legend>
+
+					<br />
+
+					<h:outputLabel for="login" value="Login" />
+					<h:inputText id="login" value="#{userBean.login}" />
+					<br /> <br />
+					<h:outputLabel for="password" value="Password" />
+					<h:inputText id="password" value="#{userBean.password}" />
+					<br /> <br />
+					<h:commandButton action="#{userBean.login()}" value="Login"
+						styleClass="btnLogin" />
+
+				</fieldset>
+
+
+
+			</h:form>
+
+
+
+
+		</div>
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+
+</html>
