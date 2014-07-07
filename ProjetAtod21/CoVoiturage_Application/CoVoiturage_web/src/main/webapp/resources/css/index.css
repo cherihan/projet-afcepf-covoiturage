@@ -1,0 +1,33 @@
+.formRechercherTrajet {
+	margin-top: 20px;
+}
+
+.formRechercherTrajet fieldset {
+	font-size: 11px;
+	color: maroon;
+	border-radius: 3px;
+	border-color: maroon;
+	width: 70%;
+}
+
+.formRechercherTrajet legend {
+	
+}
+
+.formRechercherTrajet fieldset label {
+	margin-left: 10px;
+	width: 100px;
+	float: left;
+}
+
+.formRechercherTrajet fieldset .champs {
+	float: left;
+	width: 90px;
+}
+
+.formRechercherTrajet fieldset .classBtnSubmit {
+	width: 75px;
+	margin-left:110px;
+	color: maroon;
+
+}

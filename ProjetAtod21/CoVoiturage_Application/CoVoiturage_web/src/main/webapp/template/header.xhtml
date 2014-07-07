@@ -5,66 +5,119 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<link rel="stylesheet" href="../resources/css/common-style.css" />
+
+	<title>Header</title>
+
+
+	<link type="text/css" rel="stylesheet"
+		href="../resources/css/header.css"></link>
+
+
 </h:head>
-
-
-
-
-
 <body>
-	<ui:composition>
 
-		<div class="header">
+	<div class="header">
 
-			<h:form>
-
-				<div class="title">
-
-					<p class="contentTitle">
-						Smart&nbsp;CO.<br />
-					</p>
+		<h:form>
 
 
-					<p class="message_welcome">Bienvenue ......</p>
+			<div class="classTrajetEtCompte">
 
 
-				</div>
+				<p class="classTitle">
+					Smart&nbsp;CO.<br />
+				</p>
 
 
-				<div class="information">
 
+				<h:commandButton value="Rechercher un trajet"
+					styleClass="linkResearch" />
+
+				<h:commandButton value="Creer un compte" styleClass="linkCreate" />
 
 
 
 
-					<h:commandLink>
 
-						<h:graphicImage library="image" name="drapeau_anglais.png" />
+			</div>
+
+			<div class="classConnexion">
+
+				<fieldset>
+					<legend>Formulaire de connexion</legend>
+
+					<h:outputLabel value="Login" />
+					<h:inputText />
+					<br />
+					<h:outputLabel value="Password" />
+					<h:inputText />
+					<br />
+					<h:commandButton styleClass="classBtnLogin" value="Se connecter" />
+					<br /> <br />
+					<h:outputLink styleClass="classLink">
+						<f:verbatim>Mot de passe oublie ?</f:verbatim>
+					</h:outputLink>
+
+				</fieldset>
 
 
-					</h:commandLink>
-					<h:commandLink>
-
-						<h:graphicImage library="image" name="drapeau-francais.png" />
-
-
-					</h:commandLink>
-					<h:commandButton value="Deconnexion" styleClass="btnLogOut" />
-
-					<h:commandButton value="Connexion" styleClass="btnLogOut" />
-
-					<h:commandButton value="Voir mon profil" styleClass="btnLogOut" />
-					<h:commandButton value="Créer un compte" styleClass="btnLogOut" />
 
 
 
-				</div>
-			</h:form>
+			</div>
 
-		</div>
 
-	</ui:composition>
+
+			<div class="classDeconnexionEtProfil">
+
+
+				<h:commandLink value="Se deconnecter" styleClass="classLinkLogOut" />
+
+
+
+
+
+				<ul id="menu-accordeon">
+
+					<li><h:outputLink>
+							<f:verbatim>Mon profil</f:verbatim>
+
+
+						</h:outputLink>
+
+						<ul>
+
+							<li><h:outputLink>
+									<f:verbatim>Mes infos personnelles</f:verbatim>
+
+
+								</h:outputLink></li>
+							<li><h:outputLink>
+									<f:verbatim>Mes trajets</f:verbatim>
+
+
+								</h:outputLink></li>
+							<li><h:outputLink>
+									<f:verbatim>Mes avis</f:verbatim>
+
+
+								</h:outputLink></li>
+
+						</ul></li>
+
+				</ul>
+
+
+
+
+			</div>
+
+		</h:form>
+
+	</div>
+
+
+
 
 </body>
 </html>

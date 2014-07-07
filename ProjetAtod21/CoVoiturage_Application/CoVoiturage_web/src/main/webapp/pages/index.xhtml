@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="/templates/commonLayout.xhtml">
+<ui:composition template="/template/commonLayout.xhtml">
 
 	<ui:define name="title">
 	
@@ -18,14 +18,26 @@ Index
 	<ui:define name="css">
 
 		<link rel="stylesheet" href="../resources/css/common-style.css" />
+		<link rel="stylesheet"
+			href="../resources/css/jquery-ui-1.10.4.custom.css" />
+
 		<link rel="stylesheet" href="../resources/css/index.css" />
+
 
 
 	</ui:define>
 
 	<ui:define name="javascript">
 
-	
+
+
+		<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script>
+
+		<script type="text/javascript"
+			src="../resources/js/jquery-ui-1.10.4.custom.js"></script>
+		<script type="text/javascript"
+			src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script type="text/javascript" src="../resources/js/index.js"></script>
 
 	</ui:define>
 
@@ -33,7 +45,38 @@ Index
 
 	<ui:define name="content">
 
-		<span class="test">Bienvenue sur votre application de co voiturage</span>
+
+		<div class="formRechercherTrajet">
+
+			<h:form>
+
+
+
+
+
+				<fieldset>
+					<legend>Votre recherche d'un trajet</legend>
+					<br />
+					<h:outputLabel value="Ville de depart" for="villeDepart" />
+
+					<h:inputText id="villeDepart" required="true" styleClass="champs" />
+
+					<h:outputLabel value="Ville d'arrivee" />
+
+					<h:inputText id="villeArrivee" required="true" styleClass="champs" />
+					<h:outputLabel value="Date de depart" />
+
+					<h:inputText styleClass="datePickerDeparture" required="true"
+						style="width: 90px;" />
+					<br /> <br />
+					<h:commandButton value="Valider" styleClass="classBtnSubmit" />
+				</fieldset>
+
+			</h:form>
+
+		</div>
+
+
 
 	</ui:define>
 
