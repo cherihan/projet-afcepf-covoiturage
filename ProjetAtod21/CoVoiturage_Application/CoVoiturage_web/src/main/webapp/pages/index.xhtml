@@ -69,7 +69,9 @@ Index
 					<h:inputText styleClass="datePickerDeparture" required="true"
 						style="width: 90px;" />
 					<br /> <br />
-					<h:commandButton value="Valider" styleClass="classBtnSubmit" />
+					<h:commandButton value="Valider"
+									 styleClass="classBtnSubmit"
+									 action="#{utilisateurMBean.valider()}"/>
 				</fieldset>
 
 			</h:form>
