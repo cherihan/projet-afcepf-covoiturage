@@ -51,8 +51,19 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 
 	@Override
 	public Utilisateur seConnecter(String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Utilisateur user = null;
+		try {
+			String requete = "SELECT user FROM Utilisateur user WHERE user.email = :emailUser and user.password = :passwordUser";
+			user = em.createQuery(requete, Utilisateur.class)
+										.setParameter("emailUser", email)
+										.setParameter("passwordUser", password).getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
+
 	}
 
 	@Override

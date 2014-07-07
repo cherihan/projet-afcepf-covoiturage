@@ -48,8 +48,8 @@ public class UtilisateurMBean {
 		return "afficher ok";
 	}
 
-	public String seConnecter() {
-		return "";
+	public Utilisateur seConnecter() {
+		return businessUtilisateur.seConnecter(email, password);
 	}
 
 	public String creerCompte() {

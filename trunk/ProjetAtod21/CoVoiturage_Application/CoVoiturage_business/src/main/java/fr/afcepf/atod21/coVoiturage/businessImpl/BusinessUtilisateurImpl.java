@@ -50,8 +50,7 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 
 	@Override
 	public Utilisateur seConnecter(String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		return daoUtilisateur.seConnecter(email, password);
 	}
 
 	@Override
