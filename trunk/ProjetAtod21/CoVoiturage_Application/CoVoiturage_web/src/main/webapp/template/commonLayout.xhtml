@@ -5,73 +5,40 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-
-
-
-
-
-
 	<title><ui:insert name="title">Smart Co</ui:insert></title>
 
 	<ui:insert name="css">
-
 	</ui:insert>
 	
 	<ui:insert name="javascript">
 	</ui:insert>
-
-
 </h:head>
+
 <body>
-
-
 	<div id="page">
-
 		<div id="header">
-
-
 			<ui:insert name="header">
-
-
 				<ui:include src="/template/header.xhtml" />
-
 			</ui:insert>
+		</div>
 
-
-
+		<div class="message">
+			<ui:insert name="messages">
+				
+			</ui:insert>
 		</div>
 
 		<div id="content">
-
-
 			<ui:insert name="content">
-
-
 				<span>content par defaut</span>
-
 			</ui:insert>
-
-
-
 		</div>
-
-
-
 	</div>
 	
-	
 	<div id="footer">
-
-
 		<ui:insert name="footer">
-
-
 			<ui:include src="/template/footer.xhtml" />
-
 		</ui:insert>
-
-
-
 	</div>
 
 </body>
