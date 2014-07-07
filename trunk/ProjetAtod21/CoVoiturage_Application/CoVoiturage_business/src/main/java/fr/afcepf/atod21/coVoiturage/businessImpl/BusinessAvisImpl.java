@@ -11,7 +11,7 @@ import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 
 @Service
 @Transactional
-public class BusinessAvis implements IBusinessAvis {
+public class BusinessAvisImpl implements IBusinessAvis {
 
 	@Autowired
 	private IDaoAvis daoAvis;
