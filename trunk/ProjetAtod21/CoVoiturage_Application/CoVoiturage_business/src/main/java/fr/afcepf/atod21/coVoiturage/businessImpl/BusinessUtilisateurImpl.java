@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
 import fr.afcepf.atod21.coVoiturage.dao.IDaoUtilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
+import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 
 @Service
 @Transactional
@@ -43,6 +44,30 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 	@Override
 	public Trajet rechercherTrajet(Date date, String villeDepart,
 			String villeArrivee) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Utilisateur seConnecter(String email, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void seDeconnecter(Utilisateur utilisateur) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void changerPassword(Utilisateur utilisateur) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Utilisateur creerCompte() {
 		// TODO Auto-generated method stub
 		return null;
 	}
