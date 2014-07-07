@@ -36,4 +36,8 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 		
 	}
 
+	public void setDaoTrajet(IDaoTrajet daoTrajet) {
+		this.daoTrajet = daoTrajet;
+	}
+
 }
