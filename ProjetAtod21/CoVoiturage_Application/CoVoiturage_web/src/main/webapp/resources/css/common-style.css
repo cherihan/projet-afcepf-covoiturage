@@ -233,45 +233,21 @@ body,html {
 	max-height: 15em;
 
 }
-#nav {
-	background-color: #E2B68E;
-	height: 70px;
-	margin-bottom: 15px;
-	color: maroon;
-	box-shadow: 5px 5px 5px #E2B68E;
-	border-radius: 3px;
+
+/*********************** DIV MESSAGE ************************/
+.message {
+	height: auto;
 }
 
-#nav ul li{
-	list-style-type: none;
-	text-decoration: none;
-	float: left;
-	margin-right: 100px;
-
+.messageError {
+	color : red;
 }
 
-#nav ul li:HOVER{
-	border-bottom: 3px solid maroon;
+.messageSucces {
+	color : green;
 }
 
-
-#nav ul li img{
-	padding-top: 5px;
-}
-
-#nav ul li a{
-	cursor: pointer;
-	text-decoration: none;
-	color:maroon;
-	
-}
-
-#nav ul li a:ACTIVE{
-	color:maroon;
-}
-#nav ul li a:VISITED{
-	color:maroon;
-}
+/*********************** DIV CONTENT ************************/
 #content {
 /* 	background-color: #E2B68E; */
 	
