@@ -24,10 +24,12 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 	}
 
 	@Override
-	public Trajet creerTrajet(int idUser, String villeDepart,
-			String villeArrivee, Date date, int tarif, int nbPassagers) {
-		// TODO Auto-generated method stub
-		return null;
+	public void creerTrajet(Trajet trajet) {
+
+		
+		daoTrajet.creerTrajet(trajet);
+		
+	
 	}
 
 	@Override
