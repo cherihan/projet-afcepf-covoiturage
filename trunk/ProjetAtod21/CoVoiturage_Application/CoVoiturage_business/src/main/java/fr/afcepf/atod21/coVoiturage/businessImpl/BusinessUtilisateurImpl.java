@@ -1,6 +1,7 @@
 package fr.afcepf.atod21.coVoiturage.businessImpl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,12 +42,6 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 		
 	}
 
-	@Override
-	public Trajet rechercherTrajet(Date date, String villeDepart,
-			String villeArrivee) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Utilisateur seConnecter(String email, String password) {
@@ -70,6 +65,25 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart,
+			String villeArrivee, String statut) {
+		
+		
+		
+		
+		return daoUtilisateur.rechercherTrajet(dateDepart, villeDepart, villeArrivee, statut);
+	}
+
+	@Override
+	public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart,
+			String villeDepart, String statut) {
+		
+	return daoUtilisateur.rechercherTrajetParVilleDepart(dateDepart, villeDepart, statut);
+	}
+
+
 
 
 
