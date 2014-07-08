@@ -13,7 +13,9 @@ $(document).ready(function(){
 		dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
 		dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
 		dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+		minDate: 'Aujourd\'hui',
 		weekHeader: 'Sem.',
-		dateFormat: 'dd-mm-yy'
+		dateFormat: 'dd-mm-yy',
+		
 		});
 });
