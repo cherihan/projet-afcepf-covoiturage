@@ -31,11 +31,11 @@ public class Ville implements Serializable {
 	private List<Adresse> adresses;
 
 	//bi-directional many-to-one association to Trajet
-	@OneToMany(mappedBy="ville1")
+	@OneToMany(mappedBy="villeDepart")
 	private List<Trajet> trajets1;
 
 	//bi-directional many-to-one association to Trajet
-	@OneToMany(mappedBy="ville2")
+	@OneToMany(mappedBy="villeArrivee")
 	private List<Trajet> trajets2;
 
 	public Ville() {
@@ -105,14 +105,14 @@ public class Ville implements Serializable {
 
 	public Trajet addTrajets1(Trajet trajets1) {
 		getTrajets1().add(trajets1);
-		trajets1.setVille1(this);
+		trajets1.setVilleDepart(this);
 
 		return trajets1;
 	}
 
 	public Trajet removeTrajets1(Trajet trajets1) {
 		getTrajets1().remove(trajets1);
-		trajets1.setVille1(null);
+		trajets1.setVilleDepart(null);
 
 		return trajets1;
 	}
@@ -127,14 +127,14 @@ public class Ville implements Serializable {
 
 	public Trajet addTrajets2(Trajet trajets2) {
 		getTrajets2().add(trajets2);
-		trajets2.setVille2(this);
+		trajets2.setVilleArrivee(this);
 
 		return trajets2;
 	}
 
 	public Trajet removeTrajets2(Trajet trajets2) {
 		getTrajets2().remove(trajets2);
-		trajets2.setVille2(null);
+		trajets2.setVilleArrivee(null);
 
 		return trajets2;
 	}
