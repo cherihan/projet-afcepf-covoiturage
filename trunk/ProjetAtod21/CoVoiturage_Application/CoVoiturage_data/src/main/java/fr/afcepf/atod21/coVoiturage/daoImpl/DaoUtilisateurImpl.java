@@ -1,6 +1,7 @@
 package fr.afcepf.atod21.coVoiturage.daoImpl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,7 +22,8 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 	
 	@Override
 	public void afficher() {
-			System.out.println("Dans DaoUtilisateurImpl.afficher()");		
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -52,18 +54,15 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 	@Override
 	public Utilisateur seConnecter(String email, String password) {
 
-		Utilisateur user = null;
-		try {
-			String requete = "SELECT user FROM Utilisateur user WHERE user.email = :emailUser and user.password = :passwordUser";
-			user = em.createQuery(requete, Utilisateur.class)
-										.setParameter("emailUser", email)
-										.setParameter("passwordUser", password).getSingleResult();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return user;
+		String requete = "SELECT user FROM Utilisateur user WHERE user.email = :emailUser and user.password = :passwordUser";
 
+		List<Utilisateur> liste = em.createQuery(requete, Utilisateur.class)
+										.setParameter("emailUser", email)
+										.setParameter("passwordUser", password).getResultList();
+		if (liste.size() != 0)
+			return liste.get(0);
+		
+		return null;
 	}
 
 	@Override
