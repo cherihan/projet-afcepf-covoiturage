@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/commonLayout.xhtml">
+
+	<ui:define name="title">
+	
+	
+
+Index
+
+</ui:define>
+
+
+	<ui:define name="css">
+
+		<link rel="stylesheet" href="../resources/css/common-style.css" />
+		<link rel="stylesheet"
+			href="../resources/css/jquery-ui-1.10.4.custom.css" />
+
+		<link rel="stylesheet" href="../resources/css/listerTrajets.css" />
+
+
+
+	</ui:define>
+
+	<ui:define name="javascript">
+
+
+
+	</ui:define>
+
+
+
+	<ui:define name="content">
+
+
+		<div>
+			<h4 style="titleTableTrajets">Voici la liste des trajets disponibles</h4>
+			
+				
+
+			<h:form class="formListerTrajets">
+
+
+				<h:dataTable value="#{utilisateurMBean.listResults}" var="trajet"
+					cellpadding="13" cellspacing="13" styleClass="tableResultsTrajets"
+					rowClasses="rowPair, rowInpair"
+					headerClass="styleHeaderTableResultsTrajets"
+					columnClasses="column1, column2, column3"
+					rendered="#{utilisateurMBean.displayTableResultsTrajets}">
+
+					<h:column>
+
+						<f:facet name="header">Conducteur pour ce trajet</f:facet>
+
+						<ui:repeat value="#{trajet.utilisateurs}" var="user">
+							<h:outputText value="#{user.nom}" />
+							<br />
+						</ui:repeat>
+
+
+					</h:column>
+
+
+					<h:column>
+
+						<f:facet name="header">Date et heure de depart</f:facet>
+						<h:outputText value="#{trajet.dateDepart}">
+							<f:convertDateTime pattern="dd/MM/yy hh:mm" timeZone="Europe/Paris"/>
+						</h:outputText>
+
+
+
+					</h:column>
+
+
+
+					<h:column>
+
+						<f:facet name="header">Ville de depart</f:facet>
+						<h:outputText value="#{trajet.villeDepart.nom  }" />
+
+					</h:column>
+
+					<h:column>
+
+						<f:facet name="header">Ville d'arrivee </f:facet>
+						<h:outputText value="#{trajet.villeArrivee.nom   }" />
+
+					</h:column>
+
+					<h:column>
+
+						<f:facet name="header">Nombre de places pour ce trajet</f:facet>
+
+						<h:outputText value="#{trajet.nbPassagers}" />
+
+
+					</h:column>
+
+					<h:column>
+
+						<f:facet name="header">Tarif</f:facet>
+
+						<h:outputText value="#{trajet.tarif  }" />
+
+
+					</h:column>
+
+					<h:column>
+
+						<f:facet name="header">Type de vehicule</f:facet>
+
+						<ui:repeat value="#{trajet.utilisateurs}" var="user">
+							<h:outputText value="#{user.typeVehicule}" />
+							<br />
+						</ui:repeat>
+
+
+					</h:column>
+					<h:column>
+
+						<f:facet name="header">Voir le trajet</f:facet>
+
+
+
+
+					</h:column>
+
+
+
+
+
+
+				</h:dataTable>
+
+			</h:form>
+
+		</div>
+
+
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+
+</html>
