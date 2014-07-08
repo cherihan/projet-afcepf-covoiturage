@@ -50,7 +50,7 @@ Index
 
 			<h:form>
 
-
+				<h:messages globalOnly="true" />
 
 
 
@@ -59,20 +59,26 @@ Index
 					<br />
 					<h:outputLabel value="Ville de depart" for="villeDepart" />
 
-					<h:inputText id="villeDepart" required="true" styleClass="champs" />
+					<h:inputText id="villeDepart"
+						value="#{utilisateurMBean.villeDepart}" required="true"
+						styleClass="champs" />
 
 					<h:outputLabel value="Ville d'arrivee" />
 
-					<h:inputText id="villeArrivee" required="true" styleClass="champs" />
+					<h:inputText id="villeArrivee"
+						value="#{utilisateurMBean.villeArrivee}" styleClass="champs" />
 					<h:outputLabel value="Date de depart" />
 
-					<h:inputText styleClass="datePickerDeparture" required="true"
+					<h:inputText value="#{utilisateurMBean.dateDepart}"
+						styleClass="datePickerDeparture" required="true"
 						style="width: 90px;" />
 					<br /> <br />
-					<h:commandButton value="Valider"
-									 styleClass="classBtnSubmit"
-									 action="#{utilisateurMBean.valider()}"/>
+					<h:commandButton value="Valider" styleClass="classBtnSubmit"
+						action="#{utilisateurMBean.rechercherTrajet()   }"/>
 				</fieldset>
+
+
+
 
 			</h:form>
 
