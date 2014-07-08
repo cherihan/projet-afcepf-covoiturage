@@ -28,11 +28,9 @@ public class ConnectionMBean {
 	}
 
 	public String seConnecter() {
-		System.out.println("--> ConnectionMBean:seConnecter()");
 		this.user = this.businessUtilisateur.seConnecter(email, password);
 		if (this.user != null) {
 			this.userConnected = true;
-			System.out.println("--> Utilisateur '" + user.getNom() + "' est connecté");
 		}
 		else {
 			this.userExists = false;

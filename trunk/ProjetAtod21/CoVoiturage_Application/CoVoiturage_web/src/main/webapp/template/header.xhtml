@@ -72,31 +72,33 @@
 				</fieldset>
 			</div>
 
-			<div class="classProfil">
-				<ul id="menu-accordeon">
-					<li>
-						<h:outputLink>
-							<f:verbatim>Mon profil</f:verbatim>
-						</h:outputLink>
-						<ul>
-							<li>
-								<h:outputLink>
-									<f:verbatim>Mes infos</f:verbatim>
-								</h:outputLink>
-							</li>
-							<li>
-								<h:outputLink>
-									<f:verbatim>Mes trajets</f:verbatim>
-								</h:outputLink>
-							</li>
-							<li>
-								<h:outputLink>
-									<f:verbatim>Mes avis</f:verbatim>
-								</h:outputLink>
-							</li>
-						</ul>
-					</li>
-				</ul>
+			<div class="classDeconnexionEtProfil">
+				<h:panelGroup rendered="#{connectionMBean.userConnected}">
+					<ul id="menu-accordeon">
+						<li>
+							<h:outputLink>
+								<f:verbatim>Mon profil</f:verbatim>
+							</h:outputLink>
+							<ul>
+								<li>
+									<h:outputLink>
+										<f:verbatim>Mes infos</f:verbatim>
+									</h:outputLink>
+								</li>
+								<li>
+									<h:outputLink>
+										<f:verbatim>Mes trajets</f:verbatim>
+									</h:outputLink>
+								</li>
+								<li>
+									<h:outputLink>
+										<f:verbatim>Mes avis</f:verbatim>
+									</h:outputLink>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</h:panelGroup>
 			</div>
 		</h:form>
 
