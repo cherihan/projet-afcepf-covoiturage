@@ -1,6 +1,7 @@
 package fr.afcepf.atod21.coVoiturage.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
@@ -23,5 +24,10 @@ public interface IDaoUtilisateur {
 
 	void annulerInscriptionTrajet(Integer idTrajet, Integer idUser);
 
-	Trajet rechercherTrajet(Date date, String villeDepart, String villeArrivee);
+	List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart,
+			String villeArrivee, String statut);
+
+	List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart, String villeDepart, String statut);
+
+	
 }
