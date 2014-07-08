@@ -10,4 +10,7 @@ public interface IDaoTrajet {
 	//Trajet creerTrajet(int idUser, String villeDepart, String villeArrivee, Date date, int tarif, int nbPassagers);
 	void creerTrajet(Trajet trajet);
 	void supprimerTrajet(int idTrajet, int idUser);
+	
+	
+	
 }
