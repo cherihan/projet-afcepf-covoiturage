@@ -7,8 +7,7 @@
 <h:head>
 	<title>Header</title>
 	<link type="text/css" rel="stylesheet"
-		href="../resources/css/header.css">
-	</link>
+		href="../resources/css/header.css"></link>
 </h:head>
 
 <body>
@@ -19,7 +18,11 @@
 					Smart&nbsp;CO.<br />
 				</p>
 
-				<h:commandButton value="Rechercher un trajet" styleClass="linkResearch" />
+				<h:commandButton value="Rechercher un trajet"
+					styleClass="linkResearch" action="../pages/index.xhtml" />
+
+
+
 				<h:commandButton value="Creer un compte" styleClass="linkCreate" />
 			</div>
 
@@ -27,25 +30,30 @@
 
 				<fieldset>
 					<div>
-						<h:panelGroup rendered="#{!connectionMBean.userConnected and !connectionMBean.userExists}">
-							<span class="messageErrHeader">L'identifiant et/ou le mot de passe sont incorrects ! Réessayez.</span>
+						<h:panelGroup
+							rendered="#{!connectionMBean.userConnected and !connectionMBean.userExists}">
+							<span class="messageErrHeader">L'identifiant et/ou le mot
+								de passe sont incorrects ! Réessayez.</span>
 						</h:panelGroup>
 					</div>
 					<div>
 						<h:panelGroup rendered="#{!connectionMBean.userConnected}">
 							<h:outputLabel value="Login" />
 							<h:inputText value="#{connectionMBean.email}" />
-							
-							<h:selectBooleanCheckbox value="#{connectionMBean.userRemembered}" />
+
+							<h:selectBooleanCheckbox
+								value="#{connectionMBean.userRemembered}" />
 							<h:outputText value="Se souvenir de moi" />
 							<br />
 							<h:outputLabel value="Password" />
-	
+
 							<h:inputSecret value="#{connectionMBean.password}" />
-							<h:commandButton styleClass="classBtnLogin" value="Se connecter" action="#{connectionMBean.seConnecter()}">
-								<f:ajax render="@form" execute="@form"/>
+							<h:commandButton styleClass="classBtnLogin" value="Se connecter"
+								action="#{connectionMBean.seConnecter()}">
+								<f:ajax render="@form" execute="@form" />
 							</h:commandButton>
-							<br /> <br />
+							<br />
+							<br />
 							<h:outputLink styleClass="classLink">
 								<f:verbatim>Mot de passe oublié ?</f:verbatim>
 							</h:outputLink>
@@ -54,19 +62,19 @@
 								<f:verbatim>Pas encore membre ? Inscrivez-vous gratuitement</f:verbatim>
 							</h:outputLink>
 						</h:panelGroup>
-												
+
 						<h:panelGroup rendered="#{connectionMBean.userConnected}">
 							<br />
 							<span>Bonjour </span>
-							<b>
-								<h:outputText value="#{connectionMBean.user.civilite.toUpperCase()}" />
-								<span> </span>
-								<h:outputText value="#{connectionMBean.user.nom}" />
-								<span> </span>
-								<h:outputText value="#{connectionMBean.user.prenom}" />
+							<b> <h:outputText
+									value="#{connectionMBean.user.civilite.toUpperCase()}" /> <span>
+							</span> <h:outputText value="#{connectionMBean.user.nom}" /> <span>
+							</span> <h:outputText value="#{connectionMBean.user.prenom}" />
 							</b>
-							<br /> <br />
-							<h:commandLink value="Se deconnecter" action="#{connectionMBean.seDeconnecter()}"/>
+							<br />
+							<br />
+							<h:commandLink value="Se deconnecter"
+								action="#{connectionMBean.seDeconnecter()}" />
 						</h:panelGroup>
 					</div>
 				</fieldset>
@@ -75,28 +83,20 @@
 			<div class="classDeconnexionEtProfil">
 				<h:panelGroup rendered="#{connectionMBean.userConnected}">
 					<ul id="menu-accordeon">
-						<li>
-							<h:outputLink>
+						<li><h:outputLink>
 								<f:verbatim>Mon profil</f:verbatim>
 							</h:outputLink>
 							<ul>
-								<li>
-									<h:outputLink>
+								<li><h:outputLink>
 										<f:verbatim>Mes infos</f:verbatim>
-									</h:outputLink>
-								</li>
-								<li>
-									<h:outputLink>
+									</h:outputLink></li>
+								<li><h:outputLink>
 										<f:verbatim>Mes trajets</f:verbatim>
-									</h:outputLink>
-								</li>
-								<li>
-									<h:outputLink>
+									</h:outputLink></li>
+								<li><h:outputLink>
 										<f:verbatim>Mes avis</f:verbatim>
-									</h:outputLink>
-								</li>
-							</ul>
-						</li>
+									</h:outputLink></li>
+							</ul></li>
 					</ul>
 				</h:panelGroup>
 			</div>
