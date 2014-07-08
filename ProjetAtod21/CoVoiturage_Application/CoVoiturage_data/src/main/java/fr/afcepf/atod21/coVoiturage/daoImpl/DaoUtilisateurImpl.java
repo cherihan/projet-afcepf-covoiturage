@@ -44,12 +44,7 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 		
 	}
 
-	@Override
-	public Trajet rechercherTrajet(Date date, String villeDepart,
-			String villeArrivee) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public Utilisateur seConnecter(String email, String password) {
@@ -81,6 +76,49 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 	public Utilisateur creerCompte() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart,
+			String villeArrivee, String statut) {
+		System.out.println(" ----------- DAO --------------- rechercherAvecVilleArrivee");
+
+		String requete = "SELECT t FROM Trajet t INNER JOIN fetch t.utilisateurs WHERE t.villeDepart.nom=:villeDepart "
+				+ "AND t.villeArrivee.nom=:villeArrivee AND t.dateDepart=:dateDepart AND t.statut=:statut ";
+
+		javax.persistence.Query query = em.createQuery(requete);
+		query.setParameter("dateDepart", dateDepart);
+		query.setParameter("villeDepart", villeDepart);
+		query.setParameter("villeArrivee", villeArrivee);
+		query.setParameter("statut", statut);
+
+		List<Trajet> listResults = query.getResultList();
+		System.out.println("----- DAO Size ----- " + listResults.size());
+
+		return listResults;
+	}
+
+	@Override
+	public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart,
+			String villeDepart, String statut) {
+
+		
+
+		String requete = "SELECT t FROM Trajet t INNER JOIN fetch t.utilisateurs  "
+				+ "WHERE t.villeDepart.nom=:villeDepart "
+				+ "AND t.dateDepart=:dateDepart "
+				+ "AND t.statut=:statut ";
+
+		javax.persistence.Query query = em.createQuery(requete);
+		query.setParameter("dateDepart", dateDepart);
+		query.setParameter("villeDepart", villeDepart);
+		query.setParameter("statut", statut);
+
+		List<Trajet> listResults = query.getResultList();
+
+		System.out.println("----- DAO Size ----- " + listResults.size());
+
+		return listResults;
 	}
 
 	
