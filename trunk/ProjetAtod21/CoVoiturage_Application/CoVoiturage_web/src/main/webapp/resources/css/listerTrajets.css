@@ -1,0 +1,45 @@
+.formListerTrajets {
+	margin: 90px auto auto;
+	text-align: center;
+	width: 50%;
+	text-align: center;
+}
+
+.titleTableTrajets{
+	color:maroon;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.tableResultsTrajets {
+	border-collapse: collapse;
+}
+
+.titleTableResultsTrajets {
+	color: maroon;
+}
+
+.tableResultsTrajets th {
+	font-size: 11px;
+	color: black;
+	border: 2px solid maroon;
+	background-color: #F2DEA2;
+}
+
+.tableResultsTrajets tr {
+	border-collapse: collapse;
+	border-radius: 4px;
+}
+
+.tableResultsTrajets td {
+	border: 2px solid maroon;
+	font-style: bold;
+}
+
+.tableResultsTrajets .rowPair {
+	background-color: white;
+}
+
+.tableResultsTrajets .rowInpair {
+	background-color: #F7DAB4;
+}
