@@ -15,7 +15,7 @@ body,html {
 	color: white;
 	font-family: verdana;
 	font-size: 12px;
-	height: 140px;
+	height: 150px;
 	border-radius: 4px;
 	box-shadow: 4px 4px 4px maroon;
 }
@@ -64,14 +64,22 @@ body,html {
 
 /*********************** DIV MON PROFIL ************************/
 
-.header .classProfil {
-	height: 140px;
+.header .classDeconnexionEtProfil {
+	height: 100px;
 	float: left;
-	width: 22%;
+	width: 23%;
 }
 
-/*********************** ************************/
-
+.classDeconnexionEtProfil .classLinkLogOut {
+	padding-top: 40px;
+	text-decoration: none;
+	line-height: 95px;
+	color:white;
+	
+}
+.classDeconnexionEtProfil .classLinkLogOut:HOVER{
+	border-bottom: 3px solid white;
+}
 .classTrajetEtCompte .classTitle {
 	float: left;
 	padding-left: 45px;
@@ -150,8 +158,9 @@ body,html {
 	padding-right: 5px;
 	padding-top:3px;
 	padding-bottom:3px;
-	display: inline-block;
 	border: 1px solid ;
+	display: inline-block;
+	margin-bottom: 5px;
 }
 
 classCheckbox
@@ -173,9 +182,10 @@ classCheckbox
 	margin: 0;
 	list-style: none;
 	text-align: center;
-	width: 130px;
+	width: 120px;
 	float: right;
 	margin-top: 10px;
+	margin-right: 10px;
 }
 
 #menu-accordeon ul {
@@ -191,7 +201,7 @@ classCheckbox
 	background-image: linear-gradient(to bottom, marron 0%, #333A40 100%);
 	border-radius: 6px;
 	margin-bottom: 2px;
-/* 	box-shadow: 3px 3px 3px #999; */
+ 	box-shadow: 3px 3px 3px #999;
 	border: solid 1px white;
 }
 
@@ -212,7 +222,7 @@ classCheckbox
 	color: #fff;
 	padding: 8px 0;
 	font-family: verdana;
-	font-size: 10px;
+	font-size: 12px;
 }
 
 #menu-accordeon ul li a,#menu-accordeon li:hover li a {
