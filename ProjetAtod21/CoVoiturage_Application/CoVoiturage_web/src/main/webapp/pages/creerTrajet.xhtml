@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/commonLayout.xhtml">
+
+	<ui:define name="title">
+	
+	
+
+Creer un Trajet
+
+</ui:define>
+
+
+	<ui:define name="css">
+
+				<link rel="stylesheet" href="../resources/css/common-style.css" />
+				
+				<link rel="stylesheet"
+			href="../resources/css/jquery-ui-1.10.4.custom.css" />
+		
+
+	</ui:define>
+
+	<ui:define name="javascript">
+
+		<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script>
+
+		<script type="text/javascript"
+			src="../resources/js/jquery-ui-1.10.4.custom.js"></script>
+		<script type="text/javascript"
+			src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script type="text/javascript" src="../resources/js/index.js"></script>
+
+	</ui:define>
+
+
+
+	<ui:define name="content">
+
+
+		<div class="formCreerTrajet">
+
+			<h:form>
+
+
+
+
+
+				<fieldset>
+					<legend>Votre creation d'un trajet</legend>
+					
+					
+					
+					
+					<h:outputLabel value="Ville de depart" for="villeDepart" />
+					<h:inputText id="villeDepart" required="true" styleClass="champs" value="#{trajetMBean.villeDepart.nom  }"  /> <br/>
+					
+					<h:outputLabel value="Ville d'arrivee" for="villeArrivee" />
+					<h:inputText id="villeArrivee" required="true" styleClass="champs"  value="#{trajetMBean.villeArrivee.nom}"/> <br/>
+					
+					<h:outputLabel value="Date de depart" />
+					<h:inputText styleClass="datePickerDeparture" required="true"
+						style="width: 90px;"  value="#{trajetMBean.date}"/> <br/>
+						
+					
+						
+					<h:outputLabel value="heure de depart" for="heureDepart" />
+					<h:inputText id="heureDepart" required="true" styleClass="champs" /> <br/>
+					
+					<h:outputLabel value="Nombre de places" for="nbPlaces" />
+					<h:inputText id="nbPlaces" required="true" styleClass="champs"  value="#{trajetMBean.trajet.nbPassagers}" /> <br/>
+					
+					<h:outputLabel value="type de voiture" for="typeVoiture" />
+					<h:inputText id="typeVoiture" required="true" styleClass="champs"   /> <br/>
+									
+					
+					<h:outputLabel value="tarif" for="Tarif" />
+					<h:inputText id="Tarif" required="true" styleClass="champs"  value="#{trajetMBean.trajet.tarif}"/> <br/>
+					
+					
+					
+					<span>type de valises</span>
+				      <select name="typeValise">
+				         <option value="petit">petit</option>
+				         <option value="moyen">moyen</option>
+				         <option value="grand">grand</option>
+				      </select>
+				      <br />
+					
+					<h:outputLabel value="commentaire" for="commentaire" />
+					<h:inputTextarea id="commentaire" required="true" styleClass="champs" /> <br/>
+					
+					
+					
+					<h:commandButton value="Valider" action="#{trajetMBean.creerTrajet()}" />
+					
+				</fieldset>
+
+			</h:form>
+
+		</div>
+
+
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+
+</html>
