@@ -1,8 +1,9 @@
 package fr.afcepf.atod21.coVoiturage.dao;
 
-import java.util.Date;
+import java.util.List;
 
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
+import fr.afcepf.atod21.coVoiturage.entity.Ville;
 
 public interface IDaoTrajet {
 
@@ -10,6 +11,7 @@ public interface IDaoTrajet {
 	//Trajet creerTrajet(int idUser, String villeDepart, String villeArrivee, Date date, int tarif, int nbPassagers);
 	void creerTrajet(Trajet trajet);
 	void supprimerTrajet(int idTrajet, int idUser);
+	List<Ville> getAllVilles();
 	
 	
 	
