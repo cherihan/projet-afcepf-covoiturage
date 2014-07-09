@@ -11,6 +11,8 @@
 </h:head>
 
 <body>
+
+
 	<div class="header">
 		<h:form id="connexionForm">
 			<div class="classTrajetEtCompte">
@@ -18,12 +20,13 @@
 					Smart&nbsp;CO.<br />
 				</p>
 
-				<h:commandButton value="Rechercher un trajet"
-					styleClass="linkResearch" action="../pages/index.xhtml" />
 
-
-
-				<h:commandButton value="Creer un compte" styleClass="linkCreate" />
+				<ul>
+					<li><h:outputLink styleClass="linkResearch"
+							value="../pages/index.xhtml">Rechercher un trajet</h:outputLink></li>
+					<li><h:outputLink styleClass="linkCreate"
+							value="../pages/inscription.xhtml">Creer un compte</h:outputLink></li>
+				</ul> 
 			</div>
 
 			<div class="classConnexion">
