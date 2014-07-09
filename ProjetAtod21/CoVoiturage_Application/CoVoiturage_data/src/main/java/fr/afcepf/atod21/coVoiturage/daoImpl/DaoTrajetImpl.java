@@ -1,6 +1,7 @@
 package fr.afcepf.atod21.coVoiturage.daoImpl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,27 +24,35 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	@Override
 	public void ajouterCommentaireTrajet(int idTrajet, int idUser) {
 		// TODO Auto-generated method stub
-		
-	}
 
-	
+	}
 
 	@Override
 	public void supprimerTrajet(int idTrajet, int idUser) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
+	public void creerTrajet(Trajet trajet) {
 
+		System.out.println(" ---------------- DAO -------------------- "
+				+ trajet);
+
+		trajet.setVilleDepart(em.find(Ville.class, trajet.getVilleDepart()
+				.getIdVille()));
+		trajet.setVilleArrivee(em.find(Ville.class, trajet.getVilleArrivee()
+				.getIdVille()));
+
+		em.persist(trajet);
+		// em.flush();
+		// return trajet.getIdTrajet();
+	}
 
 	@Override
-	public void creerTrajet(Trajet t) {
-		t.setVilleDepart(em.find(Ville.class, t.getVilleDepart().getIdVille()));
-		t.setVilleArrivee(em.find(Ville.class, t.getVilleArrivee().getIdVille()));
-		em.persist(t);
-		
-      
-	
+	public List<Ville> getAllVilles() {
+
+		return em.createQuery("SELECT v FROM Ville v").getResultList();
 	}
 
 }
