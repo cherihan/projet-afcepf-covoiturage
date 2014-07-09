@@ -1,0 +1,25 @@
+
+.classCreerTrajet {
+	margin-top: 30px;
+}
+
+.classCreerTrajet fieldset {
+	border-color: maroon;
+}
+
+.classCreerTrajet legend {
+	color: maroon;
+}
+
+.classCreerTrajet label {
+	float: left;
+	width: 120px;
+}
+
+.classCreerTrajet .classBtnSubmit {
+	margin-top: 20px;
+}
+
+.errorClass {
+	color: red;
+}
