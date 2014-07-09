@@ -94,6 +94,9 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 
 		List<Trajet> listResults = query.getResultList();
 		System.out.println("----- DAO Size ----- " + listResults.size());
+		
+		
+		
 
 		return listResults;
 	}
