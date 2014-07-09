@@ -1,14 +1,20 @@
 package fr.afcepf.atod21.coVoiturage.managedBean;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
+import fr.afcepf.atod21.coVoiturage.common.Common;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Ville;
@@ -18,63 +24,90 @@ import fr.afcepf.atod21.coVoiturage.entity.Ville;
 public class TrajetMBean {
 
 	private Trajet trajet = new Trajet();
-	private Utilisateur utilisateur;
+
+	private String dateDepart;
+	private String nbPassagersSelected;
+
 	private Ville villeDepart = new Ville();
 	private Ville villeArrivee = new Ville();
-	
-	private String date;
-	
-	
 
-	@ManagedProperty (value="#{businessTrajetImpl}")
+	private List<Ville> listVilles = new ArrayList<Ville>();
+	private List<String> listNomVilles = new ArrayList<String>();
+
+	private Map<String, Ville> mapVilles = new HashMap<String, Ville>();
+
+	@ManagedProperty(value = "#{businessTrajetImpl}")
 	private IBusinessTrajet businessTrajet;
-	
-	
 
-	public void creerTrajet(){
-		 
-		 System.out.println("11111111111111111");
-		 
-		 villeDepart.setIdVille(1);
-		 villeArrivee.setIdVille(2);
-		 
-		 System.out.println("Ville de depart ===> " + this.villeDepart);
-		 
-		 System.out.println(" Date initiale ===> " + date);
-		 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	@PostConstruct
+	public void init() {
 
-			Date dateDepartConvert = new Date();
-			try {
-				dateDepartConvert = sdf.parse(date);
-				
-				System.out.println(" Date convertie ===> " + dateDepartConvert);
+		System.out.println("---------- init Trajet Bean -------------");
 
-			} catch (ParseException e) {
+		this.listVilles = businessTrajet.getAllVilles();
 
-				e.printStackTrace();
-			}
-		 
-		 
-			
-		 Trajet trajetToInsert = new Trajet(dateDepartConvert, trajet.getNbPassagers(),"en cours",
-				 trajet.getTarif(), villeDepart, villeArrivee);
-			
-			 
-		 
-		 
-		 System.out.println("333333333333333333333"+trajetToInsert);
-		   businessTrajet.creerTrajet(trajetToInsert);
+		for (Ville v : this.listVilles) {
+
+			System.out.println("Ville ===> " + v.getNom());
+
+			mapVilles.put(v.getNom(), v);
+			this.listNomVilles.add(v.getNom());
+
+		}
+
+	}
+
+	public String creerTrajet() {
+		this.villeDepart = this.mapVilles.get(this.villeDepart.getNom());
+
+		this.villeArrivee = this.mapVilles.get(this.villeArrivee.getNom());
+
+		System.out.println("------ date selected ----- " + this.dateDepart);
+
+
+
+
+		 Date dateDepart = Common.convertDate(this.dateDepart);
 		
-		   ;
-	 }
-	 
-	 public String supprimerTrajet(){
-		 return "";
-	 }
-	 
-	 public String ajouterCommentaireTrajet(){
-		 return "";
-	 }
+
+		
+
+		System.out.println("------ date selected after conversion ----- "
+				+ dateDepart);
+
+		int nbPassagers = Integer.parseInt(this.nbPassagersSelected);
+
+		Trajet trajetToInsert = new Trajet(dateDepart, nbPassagers, "en cours",
+				trajet.getTarif(), villeDepart, villeArrivee);
+
+		List<Utilisateur> listUsers = new ArrayList<>();
+
+
+		trajetToInsert.setUtilisateurs(listUsers);
+
+		// this.trajet.setVilleDepart(villeDepart);
+		// this.trajet.setVilleArrivee(villeArrivee);
+		// this.trajet.setDateDepart(dateDepart);
+
+		// this.trajet.setStatut("en cours");
+
+		businessTrajet.creerTrajet(trajetToInsert);
+
+		return "";
+
+	}
+
+	public String annuler() {
+		return "";
+	}
+
+	public String supprimerTrajet() {
+		return "";
+	}
+
+	public String ajouterCommentaireTrajet() {
+		return "";
+	}
 
 	public IBusinessTrajet getBusinessTrajet() {
 		return businessTrajet;
@@ -92,14 +125,40 @@ public class TrajetMBean {
 		this.trajet = trajet;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
+
+
+	public String getDateDepart() {
+		return dateDepart;
 	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setDateDepart(String dateDepart) {
+		this.dateDepart = dateDepart;
 	}
-	
+
+	public String getNbPassagersSelected() {
+		return nbPassagersSelected;
+	}
+
+	public void setNbPassagersSelected(String nbPassagersSelected) {
+		this.nbPassagersSelected = nbPassagersSelected;
+	}
+
+	public List<Ville> getListVilles() {
+		return listVilles;
+	}
+
+	public void setListVilles(List<Ville> listVilles) {
+		this.listVilles = listVilles;
+	}
+
+	public Map<String, Ville> getMapVilles() {
+		return mapVilles;
+	}
+
+	public void setMapVilles(Map<String, Ville> mapVilles) {
+		this.mapVilles = mapVilles;
+	}
+
 	public Ville getVilleDepart() {
 		return villeDepart;
 	}
@@ -116,14 +175,12 @@ public class TrajetMBean {
 		this.villeArrivee = villeArrivee;
 	}
 
-	public String getDate() {
-		return date;
+	public List<String> getListNomVilles() {
+		return listNomVilles;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setListNomVilles(List<String> listNomVilles) {
+		this.listNomVilles = listNomVilles;
 	}
 
-	
-	
 }
