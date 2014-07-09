@@ -6,7 +6,8 @@ import java.util.Date;
 
 public class Common {
 
-	private static final String PATTERN_DATE = "dd-MM-yyyy";
+
+	private static final String PATTERN_DATE = "yyyy/MM/dd hh:mm";
 
 	public  static Date convertDate(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE);
