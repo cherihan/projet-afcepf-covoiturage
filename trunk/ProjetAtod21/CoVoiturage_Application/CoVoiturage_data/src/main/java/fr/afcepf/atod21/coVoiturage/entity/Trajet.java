@@ -178,4 +178,12 @@ public class Trajet implements Serializable {
 		this.utilisateurs = utilisateurs;
 	}
 
+	@Override
+	public String toString() {
+		return "Trajet [dateDepart=" + dateDepart + ", nbPassagers="
+				+ nbPassagers + ", statut=" + statut + ", tarif=" + tarif
+				+ ", villeDepart=" + villeDepart + ", villeArrivee="
+				+ villeArrivee + "]";
+	}
+
 }

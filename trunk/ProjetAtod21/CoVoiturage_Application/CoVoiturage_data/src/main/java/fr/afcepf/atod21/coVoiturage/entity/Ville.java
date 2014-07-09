@@ -139,4 +139,9 @@ public class Ville implements Serializable {
 		return trajets2;
 	}
 
+	@Override
+	public String toString() {
+		return "Ville [idVille=" + idVille + ", nom=" + nom + "]";
+	}
+
 }
