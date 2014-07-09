@@ -17,11 +17,14 @@ Creer un Trajet
 
 	<ui:define name="css">
 
-				<link rel="stylesheet" href="../resources/css/common-style.css" />
-				
-				<link rel="stylesheet"
+		<link rel="stylesheet" href="../resources/css/common-style.css" />
+
+		<link rel="stylesheet"
 			href="../resources/css/jquery-ui-1.10.4.custom.css" />
-		
+		<link rel="stylesheet" type="text/css"
+			href="../resources/css/jquery.datetimepicker.css" />
+		<link rel="stylesheet" href="../resources/css/creerTrajet.css" />
+
 
 	</ui:define>
 
@@ -33,6 +36,10 @@ Creer un Trajet
 			src="../resources/js/jquery-ui-1.10.4.custom.js"></script>
 		<script type="text/javascript"
 			src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+		<script src="../resources/js/jquery.js"></script>
+		<script src="../resources/js/jquery.datetimepicker.js"></script>
+
 		<script type="text/javascript" src="../resources/js/index.js"></script>
 
 	</ui:define>
@@ -42,7 +49,7 @@ Creer un Trajet
 	<ui:define name="content">
 
 
-		<div class="formCreerTrajet">
+		<div class="classCreerTrajet">
 
 			<h:form>
 
@@ -51,53 +58,87 @@ Creer un Trajet
 
 
 				<fieldset>
-					<legend>Votre creation d'un trajet</legend>
-					
-					
-					
-					
+					<legend>Formulaire de creation d'un trajet</legend>
+					<br />
+
+
 					<h:outputLabel value="Ville de depart" for="villeDepart" />
-					<h:inputText id="villeDepart" required="true" styleClass="champs" value="#{trajetMBean.villeDepart.nom  }"  /> <br/>
-					
-					<h:outputLabel value="Ville d'arrivee" for="villeArrivee" />
-					<h:inputText id="villeArrivee" required="true" styleClass="champs"  value="#{trajetMBean.villeArrivee.nom}"/> <br/>
-					
-					<h:outputLabel value="Date de depart" />
-					<h:inputText styleClass="datePickerDeparture" required="true"
-						style="width: 90px;"  value="#{trajetMBean.date}"/> <br/>
-						
-					
-						
-					<h:outputLabel value="heure de depart" for="heureDepart" />
-					<h:inputText id="heureDepart" required="true" styleClass="champs" /> <br/>
-					
-					<h:outputLabel value="Nombre de places" for="nbPlaces" />
-					<h:inputText id="nbPlaces" required="true" styleClass="champs"  value="#{trajetMBean.trajet.nbPassagers}" /> <br/>
-					
-					<h:outputLabel value="type de voiture" for="typeVoiture" />
-					<h:inputText id="typeVoiture" required="true" styleClass="champs"   /> <br/>
-									
-					
-					<h:outputLabel value="tarif" for="Tarif" />
-					<h:inputText id="Tarif" required="true" styleClass="champs"  value="#{trajetMBean.trajet.tarif}"/> <br/>
-					
-					
-					
-					<span>type de valises</span>
-				      <select name="typeValise">
-				         <option value="petit">petit</option>
-				         <option value="moyen">moyen</option>
-				         <option value="grand">grand</option>
-				      </select>
-				      <br />
-					
-					<h:outputLabel value="commentaire" for="commentaire" />
-					<h:inputTextarea id="commentaire" required="true" styleClass="champs" /> <br/>
-					
-					
-					
-					<h:commandButton value="Valider" action="#{trajetMBean.creerTrajet()}" />
-					
+
+					<h:selectOneMenu id="villeDepart"
+						value="#{trajetMBean.villeDepart.nom   }">
+
+						<f:selectItem itemValue="#{null}"
+							itemLabel="--------Choisir une ville--------" />
+						<f:selectItems value="#{trajetMBean.listNomVilles }" />
+
+					</h:selectOneMenu>
+
+					<h:message for="villeDepart" styleClass="errorClass" />
+
+					<br /> <br />
+					<h:outputLabel value="Ville d arrivee" />
+
+					<h:selectOneMenu id="villeArrivee"
+						value="#{trajetMBean.villeArrivee.nom   }">
+
+						<f:selectItem itemValue="#{null}"
+							itemLabel="--------Choisir une ville--------" />
+						<f:selectItems value="#{trajetMBean.listNomVilles  }" />
+
+					</h:selectOneMenu>
+
+					<h:message for="villeArrivee" styleClass="errorClass" />
+					<br /> <br />
+
+					<h:outputLabel value="Date de depart" for="dateDepart" />
+
+					<h:inputText id="dateDepart" required="true"
+						requiredMessage="Date de depart obligatoire"
+						value="#{trajetMBean.dateDepart}" style="width:90px;"
+						styleClass="datePickerDeparture">
+
+
+
+					</h:inputText>
+					<h:message for="dateDepart" styleClass="errorClass" />
+					<br /> <br />
+					<h:outputLabel value="Tarif (en €)" />
+
+					<h:inputText id="tarif" required="true"
+						requiredMessage="Tarif obligatoire"
+						validatorMessage="Le tarif ne peut etre egale a 0"
+						value="#{trajetMBean.trajet.tarif }">
+						<f:validateLongRange minimum="1" />
+						<f:ajax event="blur" render="tarifMessage"></f:ajax>
+
+					</h:inputText>
+					<h:message id="tarifMessage" for="tarif" styleClass="errorClass" />
+					<br /> <br />
+					<h:outputLabel value="Nombre de passagers" />
+
+					<h:selectOneMenu required="true"
+						requiredMessage="Nombre de passagers obligatoire" id="nbPassagers"
+						value="#{trajetMBean.nbPassagersSelected}">
+
+
+						<f:selectItem itemValue="#{null}" itemLabel="------------" />
+						<f:selectItem itemValue="1" itemLabel="1" />
+						<f:selectItem itemValue="2" itemLabel="2" />
+						<f:selectItem itemValue="3" itemLabel="3" />
+						<f:selectItem itemValue="4" itemLabel="4" />
+						<f:selectItem itemValue="5" itemLabel="5" />
+						<f:selectItem itemValue="6" itemLabel="6" />
+
+						<f:ajax event="blur" render="nbPassagersMessage"></f:ajax>
+					</h:selectOneMenu>
+					<h:message id="nbPassagersMessage" for="nbPassagers"
+						styleClass="errorClass" />
+					<br /> <br />
+
+					<h:commandButton value="Valider"
+						action="#{trajetMBean.creerTrajet() }" styleClass="classBtnSubmit" />
+					<h:commandButton value="Annuler" action="#{trajetMBean.annuler() }"
+						styleClass="classBtnSubmit" />
 				</fieldset>
 
 			</h:form>
