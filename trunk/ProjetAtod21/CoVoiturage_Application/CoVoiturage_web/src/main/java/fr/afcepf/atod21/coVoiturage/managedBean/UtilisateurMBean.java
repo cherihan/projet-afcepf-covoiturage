@@ -18,7 +18,8 @@ import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 
 @ManagedBean
 @SessionScoped
-public class UtilisateurMBean {
+public class UtilisateurMBean   {
+
 
 	@ManagedProperty(value = "#{businessUtilisateurImpl}")
 	private IBusinessUtilisateur businessUtilisateur;
@@ -63,6 +64,7 @@ public class UtilisateurMBean {
 		return "";
 	}
 
+	
 	public String rechercherTrajet() {
 
 		String statut = "en cours";
