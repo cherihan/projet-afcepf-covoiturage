@@ -3,31 +3,59 @@
 }
 
 .formRechercherTrajet fieldset {
-	font-size: 11px;
-	color: maroon;
+	font-size: 13px;
 	border-radius: 3px;
 	border-color: maroon;
 	width: 70%;
+	margin-top: 20px;
 }
 
 .formRechercherTrajet legend {
-	
+	color: maroon;
 }
 
 .formRechercherTrajet fieldset label {
 	margin-left: 10px;
-	width: 100px;
+	width: 135px;
 	float: left;
+	color: maroon;
 }
 
 .formRechercherTrajet fieldset .champs {
-	float: left;
-	width: 90px;
+	
 }
 
 .formRechercherTrajet fieldset .classBtnSubmit {
 	width: 75px;
-	margin-left:110px;
+	margin-left: 140px;
 	color: maroon;
+}
 
+.formRechercherTrajet .classError {
+	height: auto;
+	margin-top: 15px;
+}
+
+.formRechercherTrajet h3 {
+	text-align: center;
+	background-color: maroon;
+	color: white;
+	height: 50px;
+	border: none;
+	margin: 0;
+	line-height: 42px;
+	box-shadow: 4px 4px 4px maroon;
+}
+
+.formRechercherTrajet ul {
+	margin: 19px 0 0 10px;
+	padding: 0;
+	height: 30px;
+}
+
+.formRechercherTrajet ul li  {
+	display: inline;
+	list-style: none;
+	color:red;
+	
 }

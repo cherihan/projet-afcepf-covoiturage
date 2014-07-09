@@ -1,6 +1,4 @@
-
 /************************ BODY ***********************/
-
 body,html {
 	height: 100%;
 	font-family: verdana;
@@ -26,7 +24,6 @@ body,html {
 }
 
 /*********************** DIV RECHERCHER TRAJET ET CREER COMPTE  ************************/
-
 .header .classTrajetEtCompte {
 	color: white;
 	font-family: verdana;
@@ -37,22 +34,43 @@ body,html {
 	text-align: center;
 }
 
+.classTrajetEtCompte ul {
+	padding: 0;
+	margin: 0;
+	margin-top: 37px;
+}
+
+.classTrajetEtCompte li {
+	display: inline;
+	list-style: none;
+}
+
+.
+.classTrajetEtCompte li a {
+	display: inline-block;
+	margin: 0 30px;
+}
+
 .classTrajetEtCompte .linkResearch {
+	background-color: white;
+	border: 2px solid white;
 	color: maroon;
+	display: inline-block;
+	padding: 5px 10px 8px;
 	text-decoration: none;
-	margin-top: 50px;
-	border: none;
-	height: 23px;
-	width: 130px;
+	border-radius: 4px;
+	margin-right: 15px;
 }
 
 .classTrajetEtCompte .linkCreate {
 	background-color: white;
+	border: 2px solid white;
+	border-radius: 2px;
 	color: maroon;
-	border: none;
-	margin-left: 40px;
-	height: 23px;
-	width: 130px;
+	display: inline-block;
+	padding: 5px 10px 8px;
+	text-decoration: none;
+	
 }
 
 .classTrajetEtCompte .linkResearch:HOVER {
@@ -68,7 +86,6 @@ body,html {
 }
 
 /*********************** DIV DECONNEXION ET MON PROFIL ************************/
-
 .header .classDeconnexionEtProfil {
 	height: 140px;
 	float: left;
@@ -79,10 +96,10 @@ body,html {
 	padding-top: 40px;
 	text-decoration: none;
 	line-height: 95px;
-	color:white;
-	
+	color: white;
 }
-.classDeconnexionEtProfil .classLinkLogOut:HOVER{
+
+.classDeconnexionEtProfil .classLinkLogOut:HOVER {
 	border-bottom: 3px solid white;
 }
 
@@ -94,13 +111,11 @@ body,html {
 }
 
 /*********************** DIV CONNEXION ************************/
-
 .header .classConnexion {
 	float: left;
 	height: 140px;
 	width: 35%;
 }
-
 
 .classConnexion .classLink {
 	margin-right: 20px;
@@ -231,7 +246,6 @@ body,html {
 
 #menu-accordeon li:hover li {
 	max-height: 15em;
-
 }
 
 /*********************** DIV MESSAGE ************************/
@@ -240,23 +254,22 @@ body,html {
 }
 
 .messageError {
-	color : red;
+	color: red;
 }
 
 .messageSucces {
-	color : green;
+	color: green;
 }
 
 /*********************** DIV CONTENT ************************/
 #content {
-/* 	background-color: #E2B68E; */
-	
+	/* 	background-color: #E2B68E; */
 	overflow: auto;
 	padding-bottom: 200px;
 	margin: 0px;
 	height: auto;
 	overflow: auto;
-/* 	box-shadow: 5px 5px 5px #E2B68E; */
+	/* 	box-shadow: 5px 5px 5px #E2B68E; */
 	border-radius: 3px;
 }
 
@@ -271,24 +284,20 @@ body,html {
 	border-radius: 3px;
 }
 
-
-#footer ul{
+#footer ul {
 	list-style-type: none;
 }
 
-#footer ul li{
+#footer ul li {
 	list-style-type: none;
 	display: inline;
-	
 }
 
-#footer ul li a{
-	color:white;
+#footer ul li a {
+	color: white;
 	text-decoration: none;
-
 	padding: 5px;
 	margin-right: 150px;
-	
 }
 
 #footer ul li a:HOVER {
