@@ -10,6 +10,7 @@
 		<!-- <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver 
 			</variable-resolver> pour jsf 1.1 -->
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<message-bundle>messages</message-bundle>
 		<!-- a partir de jsf 1.2 -->
 	</application>
 
@@ -28,6 +29,13 @@
 			<to-view-id>pages/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
+	
+	<navigation-rule>
+		<from-view-id>pages/inscription.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>pages/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

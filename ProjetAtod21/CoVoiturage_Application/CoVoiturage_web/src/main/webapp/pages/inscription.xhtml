@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/commonLayout.xhtml">
+
+	<ui:define name="title"> Inscription à SmartCo ! </ui:define>
+	<ui:define name="css">
+		<link rel="stylesheet" href="../resources/css/common-style.css" />
+		<link rel="stylesheet" href="../resources/css/jquery-ui-1.10.4.custom.css" />
+		<link rel="stylesheet" href="../resources/css/inscription.css" />
+	</ui:define>
+	
+	<ui:define name="javascript">
+		<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script>
+		<script type="text/javascript"
+			src="../resources/js/jquery-ui-1.10.4.custom.js"></script>
+		<script type="text/javascript"
+			src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script type="text/javascript" src="../resources/js/Inscription.js"></script>
+	</ui:define>
+	
+	<ui:define name="content">
+		<div>
+			<h:form class="formCreerCompte">
+				<fieldset>
+					<legend>Inscription au site de covoiturage !</legend>
+					<br /><br /><br />
+					<h:outputLabel value="Prénom : "/>
+					<h:inputText value = "#{inscriptionMBean.user.prenom}" required="true" styleClass="champs" id="prenom" label="Prénom">
+						<f:ajax event="blur" render="messagePrenom"/>
+					</h:inputText> <h:message for="prenom" styleClass="messsages" id="messagePrenom"/> <br /><br />
+					
+					<h:outputLabel value="Nom : "/>
+					<h:inputText value = "#{inscriptionMBean.user.nom}" required="true" styleClass="champs" id="nom" label="Nom">
+						<f:ajax event="blur" render="messageNom"/>
+					</h:inputText><h:message for="nom" styleClass="messsages" id="messageNom"/> <br /><br />
+					
+					<h:outputLabel value="Téléphone : "/>
+					<h:inputText value = "#{inscriptionMBean.user.telephone}" required="true" styleClass="champs" id="telephone" label="Téléphone">
+						<f:ajax event="blur" render="messageTelephone"/>
+					</h:inputText><h:message for="telephone" styleClass="messsages" id="messageTelephone"/> <br /><br />
+					
+					<h:outputLabel value="Email : "/>
+					<h:inputText value = "#{inscriptionMBean.user.email}" required="true" styleClass="champs" id="mail" label="Email">
+						<f:ajax event="blur" render="messageEmail"/>
+					</h:inputText><h:message for="mail" styleClass="messsages" id="messageEmail"/> <br /><br />
+					
+					<h:outputLabel value="Choisissez un mot de passe : "/>
+					<h:inputSecret value = "#{inscriptionMBean.user.password}" required="true" styleClass="champs" id="password" label="Password">
+						<f:ajax event="blur" render="messagePassword"/>
+					</h:inputSecret><h:message for="password" styleClass="messsages" id="messagePassword"/> <br /><br />
+					
+					<h:outputLabel value="Confirmez votre mot de passe : "/>
+					<h:inputSecret value = "#{inscriptionMBean.confirmationPassword}" required="true" styleClass="champs" id="passwordConfirmation" label="Confirmation du password">
+						<f:ajax event="blur" render="messageConfirmationPassword"/>
+					</h:inputSecret><h:message for="passwordConfirmation" styleClass="messsages" id="messageConfirmationPassword"/>
+					<h:outputText value="#{inscriptionMBean.messageErrorPassword}" styleClass="messsages" /><br /><br />
+					
+					
+					<h:outputLabel value="Date de Naissance : "/>
+					<h:inputText value = "#{inscriptionMBean.dateNaissanceSaisie}" required="true" styleClass="birthDate" id="naissance" label="Date de naissance">
+						<f:ajax event="blur" render="messageBirthDate"/>
+					</h:inputText><h:message for="naissance" styleClass="messsages" id="messageBirthDate"/> <br /><br />
+					
+					<h:outputLabel value="Votre adresse : " >
+					</h:outputLabel> <br /><br />
+					
+					<h:outputLabel value="Numéro : " />
+					<h:inputText value = "#{inscriptionMBean.userAdress.numero}" required="true" styleClass="champs" id="adressNumber" label="Numéro de l'adresse">
+						<f:ajax event="blur" render="messageNumeroAdresse"/>
+					</h:inputText><h:message for="adressNumber" styleClass="messsages" id="messageNumeroAdresse"/> <br /><br />	
+					
+					<h:outputLabel value="Type de la voie : " />
+					<h:inputText value = "#{inscriptionMBean.userAdress.typeVoie}" required="true" styleClass="champs" id="adressWay" label="Type de voie">
+						<f:ajax event="blur" render="messageWayAdresse"/>
+					</h:inputText><h:message for="adressWay" styleClass="messsages" id="messageWayAdresse"/> <br /><br />					
+					
+					<h:outputLabel value="Nom de la voie : " />
+					<h:inputText value = "#{inscriptionMBean.userAdress.nomVoie}" required="true" styleClass="champs" id="adressName" label="Nom de la voie">
+						<f:ajax event="blur" render="messageNomAdresse"/>
+					</h:inputText><h:message for="adressName" styleClass="messsages" id="messageNomAdresse"/> <br /><br />	
+
+					<h:outputLabel value="Code Postal : " />
+					<h:inputText value = "#{inscriptionMBean.userCity.codePostal}" required="true" styleClass="champs" id="cityCP" label="Code postal">
+						<f:ajax event="blur" render="messageCodePostal"/>
+					</h:inputText><h:message for="cityCP" styleClass="messsages" id="messageCodePostal"/> <br /><br />	
+
+					<h:outputLabel value="Ville : " />
+					<h:inputText value = "#{inscriptionMBean.userCity.nom}" required="true" styleClass="champs" id="cityName" label="Ville">
+						<f:ajax event="blur" render="messageNomVille"/>
+					</h:inputText><h:message for="cityName" styleClass="messsages" id="messageNomVille"/> <br /><br />	
+
+					<h:outputLabel value="Pays : " />
+					<h:inputText value = "#{inscriptionMBean.userCity.pays}" required="true" styleClass="champs" id="countryName" label="Pays">
+						<f:ajax event="blur" render="messageNomPays"/>
+					</h:inputText><h:message for="countryName" styleClass="messsages" id="messageNomPays"/> <br /><br />										
+					
+					
+					<h:outputLabel value="Avez-vous votre permis de conduire : "/>
+				
+				    <h:selectOneMenu value = "#{inscriptionMBean.user.permisConduire}" required="#{not empty param[submit.permis]}" styleClass="champs" id="permis" label="Possédez-vous votre permis de conduire ?">
+				        <f:selectItem id="item0" itemLabel="Non" itemValue="0" />
+				        <f:selectItem id="item1" itemLabel="Oui" itemValue="1" />
+				        <f:ajax event="blur" render="messagePermis"/>
+				    </h:selectOneMenu><h:message for="permis" styleClass="messsages" id="messagePermis"/> <br /><br />
+				
+					<h:outputLabel value="Quel est votre véhicule : "/>
+					<h:inputText value = "#{inscriptionMBean.user.typeVehicule}" required="true" styleClass="champs" id="vehicule" label="Véhicule">
+						<f:ajax event="blur" render="messageVehicule"/>
+					</h:inputText><h:message for="vehicule" styleClass="messsages" id="messageVehicule"/> <br /><br />
+					
+					
+					<h:commandButton value="Valider" styleClass="classBtnSubmit" action="#{inscriptionMBean.creerCompte()}"/>
+				</fieldset>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

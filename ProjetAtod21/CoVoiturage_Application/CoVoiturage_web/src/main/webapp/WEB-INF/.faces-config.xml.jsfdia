@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PROCESS model-entity="JSFProcess"/>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:pages#index.xhtml" PATH="pages/index.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:pages#index.xhtml:0" NAME="item"
+   PATH="pages/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listerTrajets::pages#listerTrajets.xhtml"
+    NAME="output" PATH="pages/listerTrajets.xhtml"
+    TARGET="rules:pages#listerTrajets.xhtml" TITLE="listerTrajets" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:pages#index.xhtml:1" NAME="item1"
+   PATH="pages/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="error::pages#index.xhtml" NAME="output"
+    PATH="pages/index.xhtml" TARGET="rules:pages#index.xhtml"
+    TITLE="error" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:pages#listerTrajets.xhtml"
+  PATH="pages/listerTrajets.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#inscription.xhtml"
+  PATH="pages/inscription.xhtml" SHAPE="48,161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:pages#inscription.xhtml:0" NAME="item"
+   PATH="pages/inscription.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success::pages#index.xhtml" NAME="output"
+    PATH="pages/index.xhtml" TARGET="rules:pages#index.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

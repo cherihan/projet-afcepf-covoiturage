@@ -16,7 +16,7 @@ public interface IDaoUtilisateur {
 
 	void changerPassword(Utilisateur utilisateur);
 
-	Utilisateur creerCompte();
+	Integer creerCompte(Utilisateur user);
 
 	void sInscrireTrajet(Integer idTrajet, Integer idUser);
 
