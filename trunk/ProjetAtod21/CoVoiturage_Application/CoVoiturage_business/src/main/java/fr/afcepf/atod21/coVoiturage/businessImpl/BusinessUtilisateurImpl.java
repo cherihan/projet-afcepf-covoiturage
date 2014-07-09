@@ -42,7 +42,6 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 		
 	}
 
-
 	@Override
 	public Utilisateur seConnecter(String email, String password) {
 		return daoUtilisateur.seConnecter(email, password);
@@ -61,18 +60,10 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 	}
 
 	@Override
-	public Utilisateur creerCompte() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart,
 			String villeArrivee, String statut) {
 		
-		
-		
-		
+
 		return daoUtilisateur.rechercherTrajet(dateDepart, villeDepart, villeArrivee, statut);
 	}
 
@@ -81,6 +72,11 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 			String villeDepart, String statut) {
 		
 	return daoUtilisateur.rechercherTrajetParVilleDepart(dateDepart, villeDepart, statut);
+	}
+
+	@Override
+	public Integer creerCompte(Utilisateur user) {
+		return daoUtilisateur.creerCompte(user);
 	}
 
 

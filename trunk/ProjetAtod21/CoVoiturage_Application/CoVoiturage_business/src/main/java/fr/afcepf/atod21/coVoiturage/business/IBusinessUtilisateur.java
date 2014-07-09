@@ -12,7 +12,7 @@ public interface IBusinessUtilisateur {
 	Utilisateur seConnecter(String email, String password);
 	void seDeconnecter(Utilisateur utilisateur);
 	void changerPassword(Utilisateur utilisateur);
-	Utilisateur creerCompte();
+	Integer creerCompte(Utilisateur user);
 	void sInscrireTrajet(Integer idTrajet, Integer idUser);
 	void seDesinscrireTrajet(Integer idTrajet, Integer idUser);
 	void annulerInscriptionTrajet(Integer idTrajet, Integer idUser);

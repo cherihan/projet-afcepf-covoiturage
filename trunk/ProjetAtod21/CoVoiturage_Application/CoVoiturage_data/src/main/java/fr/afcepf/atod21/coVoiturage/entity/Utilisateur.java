@@ -210,4 +210,13 @@ public class Utilisateur implements Serializable {
 		this.trajets = trajets;
 	}
 
+	@Override
+	public String toString() {
+		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", civilite="
+				+ civilite + ", dateNaissance=" + dateNaissance + ", email="
+				+ email + ", nom=" + nom + ", password=" + password
+				+ ", permisConduire=" + permisConduire + ", prenom=" + prenom
+				+ ", telephone=" + telephone + ", typeVehicule=" + typeVehicule
+				+ "]";
+	}
 }

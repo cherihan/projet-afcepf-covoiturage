@@ -100,4 +100,10 @@ public class Adresse implements Serializable {
 		return utilisateur;
 	}
 
+	@Override
+	public String toString() {
+		return "Adresse [idAdresse=" + idAdresse + ", nomVoie=" + nomVoie
+				+ ", numero=" + numero + ", typeVoie=" + typeVoie + ", ville="
+				+ ville + "]";
+	}
 }

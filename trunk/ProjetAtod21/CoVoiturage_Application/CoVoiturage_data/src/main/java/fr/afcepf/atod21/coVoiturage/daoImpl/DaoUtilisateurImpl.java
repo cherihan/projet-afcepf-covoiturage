@@ -72,10 +72,21 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 		
 	}
 
+
 	@Override
-	public Utilisateur creerCompte() {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer creerCompte(Utilisateur user) {
+		System.out.println("Adresse de l'utilisateur : " + user.getAdresse());
+
+		System.out.println("Ville de l'utilisateur : " + user.getAdresse().getVille());
+
+		System.out.println("Utilisateur : " + user);
+		
+		em.persist(user.getAdresse().getVille());
+		em.persist(user.getAdresse());
+		em.persist(user);
+		em.flush();
+		
+		return user.getIdUtilisateur();
 	}
 
 	@Override
