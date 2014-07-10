@@ -1,6 +1,5 @@
 package fr.afcepf.atod21.coVoiturage.managedBean;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,7 +10,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.persistence.criteria.CriteriaBuilder.In;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
@@ -59,6 +57,8 @@ public class TrajetMBean {
 
 	public String creerTrajet(Utilisateur userEnSession) {
 
+		String redirection = "success";
+
 		this.villeDepart = this.mapVilles.get(this.villeDepart.getNom());
 
 		this.villeArrivee = this.mapVilles.get(this.villeArrivee.getNom());
@@ -70,17 +70,20 @@ public class TrajetMBean {
 		Trajet trajetToInsert = new Trajet(dateDepart, nbPassagers, "en cours",
 				trajet.getTarif(), villeDepart, villeArrivee);
 
-		System.out
-				.println(" ID TrajetToInsert " + trajetToInsert.getIdTrajet());
+		Integer idTrajet = businessTrajet.creerTrajet(trajetToInsert,
+				userEnSession);
 
-		businessTrajet.creerTrajet(trajetToInsert, userEnSession);
+		if (idTrajet == null) {
 
-		return "";
+			redirection = "error";
+		}
+
+		return redirection;
 
 	}
 
 	public String annuler() {
-		return "/index.xhtml";
+		return "cancel";
 	}
 
 	public String supprimerTrajet() {
