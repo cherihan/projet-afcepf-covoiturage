@@ -15,21 +15,21 @@
 	</application>
 
 	<navigation-rule>
-		<from-view-id>pages/index.xhtml</from-view-id>
+		<from-view-id>/pages/index.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>listerTrajets</from-outcome>
-			<to-view-id>pages/listerTrajets.xhtml</to-view-id>
+			<to-view-id>/pages/listerTrajets.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
 	<navigation-rule>
-		<from-view-id>pages/index.xhtml</from-view-id>
+		<from-view-id>/pages/index.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>error</from-outcome>
-			<to-view-id>pages/index.xhtml</to-view-id>
+			<to-view-id>/pages/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/pages/inscription.xhtml</from-view-id>
 		<navigation-case>
@@ -37,5 +37,25 @@
 			<to-view-id>/pages/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/pages/creerTrajet.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/index.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/pages/creerTrajet.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/pages/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
 
 </faces-config>
