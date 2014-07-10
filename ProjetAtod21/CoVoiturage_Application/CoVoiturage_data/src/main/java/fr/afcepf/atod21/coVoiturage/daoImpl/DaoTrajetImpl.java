@@ -69,17 +69,12 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	@Override
 	public List<Trajet> getTrajetsEnCoursById(int idUser) {
 		
-/*		
-		String req = "SELECT u.trajets FROM Utilisateur u WHERE u.idUtilisateur = :idUser";
-		Query query = em.createQuery(req);
-		query.setParameter("idUser", idUser);
-*/	
-		Utilisateur u = em.find(Utilisateur.class, idUser);
-		List<Trajet> listeTrajets = u.getTrajets();
+		String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
+		Utilisateur u = (Utilisateur) em.createQuery(query)
+				.setParameter("idUser",idUser)
+				.getSingleResult();
 		
-		if (listeTrajets != null)
-			return listeTrajets;
-		return null;
+		return u.getTrajets();
 	}
 
 
@@ -87,16 +82,12 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	@Override
 	public List<Trajet> getTrajetsEffectuesById(int idUser) {
 		
-		String req = "SELECT t FROM Trajet t";
-		Query query = em.createQuery(req);
-
-		List<Trajet> listeTrajets = query.getResultList();
-		System.out.println("==> taille : " + listeTrajets.size());
+		String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
+		Utilisateur u = (Utilisateur) em.createQuery(query)
+				.setParameter("idUser",idUser)
+				.getSingleResult();
 		
-		if (listeTrajets.size() != 0)
-			return listeTrajets;
-		
-		return null;
+		return u.getTrajets();
 	}
 
 
@@ -104,16 +95,12 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	@Override
 	public List<Trajet> getTrajetsProposesById(int idUser) {
 
-		String req = "SELECT t FROM Trajet t";
-		Query query = em.createQuery(req);
-
-		List<Trajet> listeTrajets = query.getResultList();
-		System.out.println("==> taille : " + listeTrajets.size());
+		String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
+		Utilisateur u = (Utilisateur) em.createQuery(query)
+				.setParameter("idUser",idUser)
+				.getSingleResult();
 		
-		if (listeTrajets.size() != 0)
-			return listeTrajets;
-		
-		return null;
+		return u.getTrajets();
 	}
 
 }

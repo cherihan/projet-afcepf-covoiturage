@@ -1,7 +1,9 @@
 package fr.afcepf.atod21.coVoiturage.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -55,7 +57,7 @@ public class Utilisateur implements Serializable {
 	private Adresse adresse;
 
 	//bi-directional many-to-many association to Trajet
-	@ManyToMany
+	@ManyToMany()
 	@JoinTable(
 		name="utilisateur_has_trajet"
 		, joinColumns={

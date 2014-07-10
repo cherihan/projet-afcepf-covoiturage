@@ -25,9 +25,7 @@ public class HistoTrajetMBean {
 
 	public String trajetsEnCours(Utilisateur user) {
 		
-		//System.out.println("===> Utilisateur : " + user.getNom());
-
-		listeTrajetsEffectues = businessTrajet.getTrajetsEnCoursById(user.getIdUtilisateur());
+		listeTrajetsEnCours = businessTrajet.getTrajetsEnCoursById(user.getIdUtilisateur());
 		this.typeHistoTrajet = "Trajets en cours";
 		this.afficheHistoTrajets = true;
 		return "";
@@ -35,14 +33,14 @@ public class HistoTrajetMBean {
 
 	public String trajetsEffectues(Utilisateur user) {
 
-		//this.setListeTrajetsEffectues(this.businessTrajet.getTrajetsEffectuesById(idUser));
+		listeTrajetsEffectues = businessTrajet.getTrajetsEffectuesById(user.getIdUtilisateur());
 		this.typeHistoTrajet = "Trajets effectués";
 		this.afficheHistoTrajets = true;
 		return "";
 	}
 		
 	public String trajetsProposes(Utilisateur user) {
-		//this.setListeTrajetsProposes(this.businessTrajet.getTrajetsProposesById(idUser));
+		listeTrajetsProposes = businessTrajet.getTrajetsProposesById(user.getIdUtilisateur());
 		this.typeHistoTrajet = "Trajets Proposés";
 		this.afficheHistoTrajets = true;
 		return "";
