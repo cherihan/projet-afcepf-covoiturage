@@ -56,14 +56,14 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 
 	@Override
 	public List<Trajet> getTrajetsEffectuesById(int idUser) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Trajet> listeTrajets = daoTrajet.getTrajetsEffectuesById(idUser);
+		return listeTrajets;
 	}
 
 	@Override
 	public List<Trajet> getTrajetsProposesById(int idUser) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Trajet> listeTrajets = daoTrajet.getTrajetsProposesById(idUser);
+		return listeTrajets;
 	}
 
 }
