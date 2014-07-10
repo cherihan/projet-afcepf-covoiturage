@@ -1,6 +1,5 @@
 package fr.afcepf.atod21.coVoiturage.business;
 
-import java.util.Date;
 import java.util.List;
 
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
@@ -13,4 +12,7 @@ public interface IBusinessTrajet {
 	Integer creerTrajet(Trajet trajet, Utilisateur user);
 	void supprimerTrajet(int idTrajet, int idUser);
 	List<Ville> getAllVilles();
+	List<Trajet> getTrajetsEffectuesById(int idUser);
+	List<Trajet> getTrajetsEnCoursById(int idUser);
+	List<Trajet> getTrajetsProposesById(int idUser);
 }
