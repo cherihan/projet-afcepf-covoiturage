@@ -31,30 +31,31 @@ public class InscriptionMBean {
 	private Adresse userAdress = new Adresse();
 	private Ville userCity = new Ville();
 	private String messageErrorPassword;
+
 	@PostConstruct
 	public void init() {
 	}
 
-	
 	public String creerCompte() {
 		String retour = "success";
 		messageErrorPassword = "";
-		if (user.getPassword().equals(confirmationPassword))
-		{
-			try
-			{
+		if (user.getPassword().equals(confirmationPassword)) {
+			try {
 				userAdress.setVille(userCity);
 				user.setAdresse(userAdress);
 				Date userNaissance = Common.convertDate(dateNaissanceSaisie);
 				user.setDateNaissance(userNaissance);
 				idUser = businessUtilisateur.creerCompte(user);
-				HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+				HttpServletRequest request = (HttpServletRequest) FacesContext
+						.getCurrentInstance().getExternalContext().getRequest();
 				HttpSession session = request.getSession();
-				
-				ConnectionMBean userConnectionMB = (ConnectionMBean)session.getAttribute("connectionMBean");
-				// On fait un test au cas ou l'utilisateur aurait essayé de se connecter avec un mauvais login / mot de passe :
+
+				ConnectionMBean userConnectionMB = (ConnectionMBean) session
+						.getAttribute("connectionMBean");
+				// On fait un test au cas ou l'utilisateur aurait essayé de se
+				// connecter avec un mauvais login / mot de passe :
 				// auquel cas JSF aurait déjà instancié le managedBean.
-				if(userConnectionMB == null) {
+				if (userConnectionMB == null) {
 					userConnectionMB = new ConnectionMBean();
 					session.setAttribute("connectionMBean", userConnectionMB);
 				}
@@ -63,28 +64,27 @@ public class InscriptionMBean {
 				userConnectionMB.setPassword(user.getPassword());
 				userConnectionMB.seConnecter();
 			}
-			
+
 			catch (Exception e) {
 				e.printStackTrace();
 				retour = "error";
-			}	
-		}
-		else
-		{
+			}
+		} else {
 			messageErrorPassword = "Attention, les deux passwords que vous avez saisis ne sont pas identiques !";
 			retour = "error";
 		}
-		
 
-		
+		FacesMessage message = new FacesMessage("Compte crée avec succès !");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
 		System.out.println(retour);
 		return retour;
 	}
 
-	
 	public IBusinessUtilisateur getBusinessUtilisateur() {
 		return businessUtilisateur;
 	}
+
 	public void setBusinessUtilisateur(IBusinessUtilisateur businessUtilisateur) {
 		this.businessUtilisateur = businessUtilisateur;
 	}
@@ -92,6 +92,7 @@ public class InscriptionMBean {
 	public Utilisateur getUser() {
 		return user;
 	}
+
 	public void setUser(Utilisateur utilisateur) {
 		this.user = utilisateur;
 	}
@@ -99,6 +100,7 @@ public class InscriptionMBean {
 	public Integer getIdUser() {
 		return idUser;
 	}
+
 	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
@@ -106,38 +108,39 @@ public class InscriptionMBean {
 	public String getDateNaissanceSaisie() {
 		return dateNaissanceSaisie;
 	}
+
 	public void setDateNaissanceSaisie(String dateNaissanceSaisie) {
 		this.dateNaissanceSaisie = dateNaissanceSaisie;
 	}
 
-
 	public String getConfirmationPassword() {
 		return confirmationPassword;
 	}
+
 	public void setConfirmationPassword(String confirmationPassword) {
 		this.confirmationPassword = confirmationPassword;
 	}
-	
-	
+
 	public String getMessageErrorPassword() {
 		return messageErrorPassword;
 	}
+
 	public void setMessageErrorPassword(String messageErrorPassword) {
 		this.messageErrorPassword = messageErrorPassword;
 	}
 
-
 	public Adresse getUserAdress() {
 		return userAdress;
 	}
+
 	public void setUserAdress(Adresse userAdress) {
 		this.userAdress = userAdress;
 	}
 
-
 	public Ville getUserCity() {
 		return userCity;
 	}
+
 	public void setUserCity(Ville userCity) {
 		this.userCity = userCity;
 	}
