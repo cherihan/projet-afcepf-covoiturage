@@ -54,23 +54,22 @@ body,html {
 .classTrajetEtCompte .linkResearch {
 	background-color: white;
 	border: 2px solid white;
+	border-radius: 3px;
 	color: maroon;
 	display: inline-block;
-	padding: 5px 10px 8px;
-	text-decoration: none;
-	border-radius: 4px;
 	margin-right: 15px;
+	padding: 5px 4px;
+	text-decoration: none;
 }
 
 .classTrajetEtCompte .linkCreate {
 	background-color: white;
 	border: 2px solid white;
-	border-radius: 2px;
+	border-radius: 3px;
 	color: maroon;
 	display: inline-block;
-	padding: 5px 10px 8px;
+	padding: 5px;
 	text-decoration: none;
-	
 }
 
 .classTrajetEtCompte .linkResearch:HOVER {
@@ -108,6 +107,7 @@ body,html {
 	padding-left: 45px;
 	padding-top: 20px;
 	padding-left: 45px;
+	font-size: 18px;
 }
 
 /*********************** DIV CONNEXION ************************/
@@ -144,9 +144,15 @@ body,html {
 .classConnexion fieldset {
 	margin-top: 6px;
 	width: 95%;
-	font-size: 11px;
+	font-size: 13px;
 	border: none;
 	border-left: 1px solid white;
+}
+
+h4 {
+	color: maroon;
+	margin: 64px auto auto;
+	width: 50%;
 }
 
 .classConnexion fieldset label {
@@ -155,7 +161,8 @@ body,html {
 	margin-top: 5px;
 }
 
-.classConnexion fieldset  input[type=text], .classConnexion fieldset  input[type=password] {
+.classConnexion fieldset  input[type=text],.classConnexion fieldset  input[type=password]
+	{
 	width: 100px;
 	margin-top: 5px;
 }
@@ -169,6 +176,12 @@ body,html {
 	width: 130px;
 	height: 20px;
 	margin-left: 20px;
+}
+
+.classConnexion fieldset input[type=submit]:HOVER {
+	background-color: maroon;
+	color: white;
+	border: 2px solid white;
 }
 
 .classConnexion fieldset .classBtnLogin {
@@ -235,7 +248,7 @@ body,html {
 	color: #fff;
 	padding: 8px 0;
 	font-family: verdana;
-	font-size: 10px;
+	font-size: 13px;
 }
 
 #menu-accordeon ul li a,#menu-accordeon li:hover li a {
