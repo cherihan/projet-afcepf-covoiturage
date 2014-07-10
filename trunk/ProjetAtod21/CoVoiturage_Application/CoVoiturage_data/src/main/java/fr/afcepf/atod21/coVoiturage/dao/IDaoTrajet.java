@@ -10,7 +10,7 @@ public interface IDaoTrajet {
 
 	void ajouterCommentaireTrajet(int idTrajet, int idUser);
 	//Trajet creerTrajet(int idUser, String villeDepart, String villeArrivee, Date date, int tarif, int nbPassagers);
-	void creerTrajet(Trajet trajet, Utilisateur user);
+	Integer creerTrajet(Trajet trajet, Utilisateur user);
 	void supprimerTrajet(int idTrajet, int idUser);
 	List<Ville> getAllVilles();
 	
