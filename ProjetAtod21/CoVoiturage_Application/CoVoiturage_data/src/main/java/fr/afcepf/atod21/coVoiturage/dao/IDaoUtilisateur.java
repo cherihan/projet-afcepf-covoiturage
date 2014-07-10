@@ -29,5 +29,6 @@ public interface IDaoUtilisateur {
 
 	List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart, String villeDepart, String statut);
 
+	Utilisateur getUserById(Integer idUser);
 	
 }
