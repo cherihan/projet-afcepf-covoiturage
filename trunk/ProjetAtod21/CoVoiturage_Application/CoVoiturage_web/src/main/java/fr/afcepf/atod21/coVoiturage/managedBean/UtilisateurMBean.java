@@ -41,15 +41,19 @@ public class UtilisateurMBean {
 
 	@PostConstruct
 	public void init() {
-		
-		System.out.println(" ---------------- init utilisateur bean ---------------------------");
-		
+
 	}
 
 	public String sInscireTrajet(Trajet trajet, Utilisateur user) {
 
+		try {
+			businessUtilisateur.sInscrireTrajet(trajet, user);
+			FacesMessage message = new FacesMessage(
+					"Votre demande d'inscription à ce trajet est enregistré !");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		} catch (Exception e) {
 
-		businessUtilisateur.sInscrireTrajet(trajet, user);
+		}
 
 		return "";
 	}
@@ -65,8 +69,6 @@ public class UtilisateurMBean {
 	}
 
 	public String rechercherTrajet() {
-		
-
 
 		String statut = "en cours";
 		String retour = "listerTrajets";
@@ -97,15 +99,10 @@ public class UtilisateurMBean {
 			this.displayTableResultsTrajets = false;
 			retour = "error";
 		}
-		
-
 
 		return retour;
 
 	}
-	
-
-
 
 	public String motDepasseOublie() {
 		// TODO
