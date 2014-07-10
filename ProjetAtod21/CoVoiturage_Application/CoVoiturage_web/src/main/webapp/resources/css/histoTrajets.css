@@ -1,0 +1,36 @@
+.formHistoTrajet {
+	margin-top: 20px;
+}
+
+.formHistoTrajet fieldset {
+	font-size: 11px;
+	color: maroon;
+	border-radius: 3px;
+	border-color: maroon;
+	width: 70%;
+}
+
+.formHistoTrajet fieldset .classDetailHisto {
+	margin-top: 10px;
+	margin-left: 15px;
+	margin-bottom: 5px;
+	width: 95%;
+}
+
+.formHistoTrajet fieldset .champs {
+	float: left;
+	width: 90px;
+}
+
+.formHistoTrajet fieldset .classLink {
+	margin-top: 10px;
+	color: maroon;
+	margin-left: 15px;
+	font-size: 11px;
+}
+
+.formHistoTrajet fieldset .classLink:HOVER {
+	border-bottom: 2px solid maroon;
+	font-size: 12px;
+}
+
