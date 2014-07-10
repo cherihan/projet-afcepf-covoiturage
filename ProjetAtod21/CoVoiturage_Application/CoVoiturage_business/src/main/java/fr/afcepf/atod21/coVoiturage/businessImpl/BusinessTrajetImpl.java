@@ -27,9 +27,9 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 	}
 
 	@Override
-	public void creerTrajet(Trajet trajet, Utilisateur user) {
+	public Integer creerTrajet(Trajet trajet, Utilisateur user) {
 
-		daoTrajet.creerTrajet(trajet, user);
+	return 	daoTrajet.creerTrajet(trajet, user);
 
 	}
 
