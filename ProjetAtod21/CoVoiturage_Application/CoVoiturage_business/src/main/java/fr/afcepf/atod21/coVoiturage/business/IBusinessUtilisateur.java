@@ -18,4 +18,5 @@ public interface IBusinessUtilisateur {
 	void annulerInscriptionTrajet(Integer idTrajet, Integer idUser);
 	List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart, String villeArrivee, String statut);
 	List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart, String villeDepart, String statut);
+	Utilisateur getUserById(Integer idUser);
 }
