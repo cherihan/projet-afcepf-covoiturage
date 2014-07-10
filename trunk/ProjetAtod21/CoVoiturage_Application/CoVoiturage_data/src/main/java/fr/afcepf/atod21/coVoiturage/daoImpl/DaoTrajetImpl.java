@@ -1,5 +1,6 @@
 package fr.afcepf.atod21.coVoiturage.daoImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.atod21.coVoiturage.dao.IDaoTrajet;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
+import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Ville;
 
 @Component
@@ -34,19 +36,25 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	}
 
 	@Override
-	public void creerTrajet(Trajet trajet) {
-
-		System.out.println(" ---------------- DAO -------------------- "
-				+ trajet);
+	public void creerTrajet(Trajet trajet, Utilisateur user) {
 
 		trajet.setVilleDepart(em.find(Ville.class, trajet.getVilleDepart()
 				.getIdVille()));
 		trajet.setVilleArrivee(em.find(Ville.class, trajet.getVilleArrivee()
 				.getIdVille()));
 
+		List<Trajet> listTrajetsHasTrajet = new ArrayList<Trajet>();
+		List<Utilisateur> listUsersHasTrajet = new ArrayList<Utilisateur>();
+		listUsersHasTrajet.add(user);
+
+		trajet.setUtilisateurs(listUsersHasTrajet);
+
 		em.persist(trajet);
-		// em.flush();
-		// return trajet.getIdTrajet();
+
+		user = em.find(Utilisateur.class, user.getIdUtilisateur());
+		user.getTrajets().add(trajet);
+		em.persist(user);
+
 	}
 
 	@Override
