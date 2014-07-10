@@ -65,37 +65,44 @@
 						<f:ajax event="blur" render="messageBirthDate"/>
 					</h:inputText><h:message for="naissance" styleClass="messsages" id="messageBirthDate"/> <br /><br />
 					
-					<h:outputLabel value="Votre adresse : " >
-					</h:outputLabel> <br /><br />
+					<h:outputLabel value="Votre adresse : "/>
+					<h:outputLabel value="#{inscriptionMBean.userAdress.numero}, 
+														#{inscriptionMBean.userAdress.typeVoie} 
+														#{inscriptionMBean.userAdress.nomVoie} 
+														#{inscriptionMBean.userCity.codePostal} 
+														#{inscriptionMBean.userCity.nom} 
+														#{inscriptionMBean.userCity.pays}" id="ajaxAdress" styleClass="adresse">
+					</h:outputLabel><br /><br /><br />
 					
 					<h:outputLabel value="Numéro : " />
 					<h:inputText value = "#{inscriptionMBean.userAdress.numero}" required="true" styleClass="champs" id="adressNumber" label="Numéro de l'adresse">
-						<f:ajax event="blur" render="messageNumeroAdresse"/>
+					<f:convertNumber integerOnly="true"/>
+						<f:ajax event="blur" render="messageNumeroAdresse ajaxAdress"/>
 					</h:inputText><h:message for="adressNumber" styleClass="messsages" id="messageNumeroAdresse"/> <br /><br />	
 					
 					<h:outputLabel value="Type de la voie : " />
 					<h:inputText value = "#{inscriptionMBean.userAdress.typeVoie}" required="true" styleClass="champs" id="adressWay" label="Type de voie">
-						<f:ajax event="blur" render="messageWayAdresse"/>
+						<f:ajax event="blur" render="messageWayAdresse ajaxAdress"/>
 					</h:inputText><h:message for="adressWay" styleClass="messsages" id="messageWayAdresse"/> <br /><br />					
 					
 					<h:outputLabel value="Nom de la voie : " />
 					<h:inputText value = "#{inscriptionMBean.userAdress.nomVoie}" required="true" styleClass="champs" id="adressName" label="Nom de la voie">
-						<f:ajax event="blur" render="messageNomAdresse"/>
+						<f:ajax event="blur" render="messageNomAdresse ajaxAdress"/>
 					</h:inputText><h:message for="adressName" styleClass="messsages" id="messageNomAdresse"/> <br /><br />	
 
 					<h:outputLabel value="Code Postal : " />
 					<h:inputText value = "#{inscriptionMBean.userCity.codePostal}" required="true" styleClass="champs" id="cityCP" label="Code postal">
-						<f:ajax event="blur" render="messageCodePostal"/>
+						<f:ajax event="blur" render="messageCodePostal ajaxAdress"/>
 					</h:inputText><h:message for="cityCP" styleClass="messsages" id="messageCodePostal"/> <br /><br />	
 
 					<h:outputLabel value="Ville : " />
 					<h:inputText value = "#{inscriptionMBean.userCity.nom}" required="true" styleClass="champs" id="cityName" label="Ville">
-						<f:ajax event="blur" render="messageNomVille"/>
+						<f:ajax event="blur" render="messageNomVille ajaxAdress"/>
 					</h:inputText><h:message for="cityName" styleClass="messsages" id="messageNomVille"/> <br /><br />	
 
 					<h:outputLabel value="Pays : " />
 					<h:inputText value = "#{inscriptionMBean.userCity.pays}" required="true" styleClass="champs" id="countryName" label="Pays">
-						<f:ajax event="blur" render="messageNomPays"/>
+						<f:ajax event="blur" render="messageNomPays ajaxAdress"/>
 					</h:inputText><h:message for="countryName" styleClass="messsages" id="messageNomPays"/> <br /><br />										
 					
 					
