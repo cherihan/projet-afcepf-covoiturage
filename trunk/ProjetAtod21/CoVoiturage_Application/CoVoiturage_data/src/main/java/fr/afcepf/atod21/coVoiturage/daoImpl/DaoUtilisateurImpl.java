@@ -135,6 +135,15 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 		return listResults;
 	}
 
+	@Override
+	public Utilisateur getUserById(Integer idUser) {
+		
+		Utilisateur user = em.find(Utilisateur.class, idUser);
+		
+		
+		return user;
+	}
+
 	
 
 
