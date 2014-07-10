@@ -2,13 +2,13 @@
 	margin-top: 50px;
 }
 
-.formCreerCompte fieldset label {
+.formCreerCompte label {
 	margin-left : 50px;
 	float : left;
 	width : 300px;
 }
 
-.formCreerCompte fieldset input {
+.formCreerCompte input {
 	width : 300px;
 }
 
@@ -17,15 +17,15 @@
 	margin-left : 350px;
 }
 
-.formCreerCompte fieldset legend {
+.formCreerCompte  legend {
 	position:absolute; left:50%;
 }
 
-.formCreerCompte fieldset input:required {
+.formCreerCompte  input:required {
   box-shadow: 4px 4px 20px rgba(200, 0, 0, 0.85);
 }
 
-.formCreerCompte fieldset error{
+.formCreerCompte  error{
   box-shadow: 4px 4px 20px rgba(200, 0, 0, 0.85);
 }
 .messsages{
