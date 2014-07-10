@@ -7,7 +7,7 @@
 <h:head>
 	<title>Header</title>
 	<link type="text/css" rel="stylesheet"
-		href="../resources/css/header.css"></link>
+		href="../resources/css/common-style.css"></link>
 </h:head>
 
 <body>
@@ -24,8 +24,8 @@
 				<ul>
 					<li><h:outputLink styleClass="linkResearch"
 							value="../pages/index.xhtml">Rechercher un trajet</h:outputLink></li>
-					<li><h:outputLink styleClass="linkCreate"
-							value="../pages/inscription.xhtml">Creer un compte</h:outputLink></li>
+					<li><h:outputLink rendered="#{!connectionMBean.userConnected}" styleClass="linkCreate"
+							value="../pages/inscription.xhtml">Créer un compte</h:outputLink></li>
 				</ul> 
 			</div>
 
@@ -58,11 +58,7 @@
 							<br />
 							<br />
 							<h:outputLink styleClass="classLink">
-								<f:verbatim>Mot de passe oublié ?</f:verbatim>
-							</h:outputLink>
-							<br />
-							<h:outputLink styleClass="classLink">
-								<f:verbatim>Pas encore membre ? Inscrivez-vous gratuitement</f:verbatim>
+								<f:verbatim>Mot de passe oublié ? Cliquez ici.</f:verbatim>
 							</h:outputLink>
 						</h:panelGroup>
 
