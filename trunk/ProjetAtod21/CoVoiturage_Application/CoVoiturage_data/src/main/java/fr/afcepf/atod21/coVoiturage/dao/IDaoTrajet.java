@@ -13,7 +13,8 @@ public interface IDaoTrajet {
 	Integer creerTrajet(Trajet trajet, Utilisateur user);
 	void supprimerTrajet(int idTrajet, int idUser);
 	List<Ville> getAllVilles();
-	
-	
+	List<Trajet> getTrajetsEnCoursById(int idUser);
+	List<Trajet> getTrajetsEffectuesById(int idUser);
+	List<Trajet> getTrajetsProposesById(int idUser);
 	
 }
