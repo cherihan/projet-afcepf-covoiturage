@@ -1,6 +1,5 @@
 package fr.afcepf.atod21.coVoiturage.managedBean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -24,13 +23,11 @@ public class HistoTrajetMBean {
 	@ManagedProperty (value="#{businessTrajetImpl}")
 	private IBusinessTrajet businessTrajet;
 
-	List<Trajet> listeTrajets = new ArrayList<Trajet>();
-
 	public String trajetsEnCours(Utilisateur user) {
 		
-		System.out.println("===> Utilisateur : " + user.getNom());
+		//System.out.println("===> Utilisateur : " + user.getNom());
 
-		listeTrajets = businessTrajet.getTrajetsEnCoursById(user.getIdUtilisateur());
+		listeTrajetsEffectues = businessTrajet.getTrajetsEnCoursById(user.getIdUtilisateur());
 		this.typeHistoTrajet = "Trajets en cours";
 		this.afficheHistoTrajets = true;
 		return "";
@@ -97,14 +94,6 @@ public class HistoTrajetMBean {
 
 	public void setAfficheHistoTrajets(boolean afficheHistoTrajets) {
 		this.afficheHistoTrajets = afficheHistoTrajets;
-	}
-
-	public List<Trajet> getListeTrajets() {
-		return listeTrajets;
-	}
-
-	public void setListeTrajets(List<Trajet> listeTrajets) {
-		this.listeTrajets = listeTrajets;
 	}
 
 }
