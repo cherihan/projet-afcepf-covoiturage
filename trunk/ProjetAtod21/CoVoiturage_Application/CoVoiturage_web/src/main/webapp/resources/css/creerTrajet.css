@@ -5,6 +5,9 @@
 
 .classCreerTrajet fieldset {
 	border-color: maroon;
+    margin: auto;
+    width: 50%;
+
 }
 
 .classCreerTrajet legend {
@@ -18,6 +21,18 @@
 
 .classCreerTrajet .classBtnSubmit {
 	margin-top: 20px;
+	background-color: white;
+	color:maroon;
+	border: 1px solid maroon;
+	padding: 4px;
+	border-radius:3px;
+
+	font-size: 14px;
+}
+
+.classCreerTrajet .classBtnSubmit:HOVER{
+	background-color: maroon;
+	color:white;
 }
 
 .errorClass {
