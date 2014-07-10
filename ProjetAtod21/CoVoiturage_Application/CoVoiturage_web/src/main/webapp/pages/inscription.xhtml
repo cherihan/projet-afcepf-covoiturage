@@ -121,9 +121,10 @@
 					
 					
 					<h:commandButton value="Valider" styleClass="classBtnSubmit" action="#{inscriptionMBean.creerCompte()}"/>
-					</h:form>
-					<h:form>
-					<h:commandButton value="Annuler et revenir à la page d'accueil" action="index.xhtml?faces-redirect=true" />
+				</h:form>
+				
+				<h:form class="formAnnulationCreerCompte">
+					<h:commandButton value="Annuler et revenir à la page d'accueil" styleClass="classBtnSubmitCancel" action="index.xhtml?faces-redirect=true" />
 				</h:form>
 			</fieldset>
 		</div>
