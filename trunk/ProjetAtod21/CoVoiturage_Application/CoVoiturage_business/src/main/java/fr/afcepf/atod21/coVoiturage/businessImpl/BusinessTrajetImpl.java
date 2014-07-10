@@ -1,6 +1,5 @@
 package fr.afcepf.atod21.coVoiturage.businessImpl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 	@Override
 	public void supprimerTrajet(int idTrajet, int idUser) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void setDaoTrajet(IDaoTrajet daoTrajet) {
@@ -47,6 +46,24 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 	public List<Ville> getAllVilles() {
 
 		return daoTrajet.getAllVilles();
+	}
+
+	@Override
+	public List<Trajet> getTrajetsEnCoursById(int idUser) {
+		List<Trajet> listeTrajets = daoTrajet.getTrajetsEnCoursById(idUser);
+		return listeTrajets;
+	}
+
+	@Override
+	public List<Trajet> getTrajetsEffectuesById(int idUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Trajet> getTrajetsProposesById(int idUser) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
