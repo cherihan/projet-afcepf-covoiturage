@@ -36,11 +36,11 @@
 						<f:verbatim>Mes trajets en cours</f:verbatim>
 					</h:commandLink>
 
-					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsEffectues()}" >
+					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsEffectues(connectionMBean.user)}" >
 						<f:verbatim>Mes trajets effectués</f:verbatim>
 					</h:commandLink>
 					
-					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsProposes()}">
+					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsProposes(connectionMBean.user)}">
 						<f:verbatim>Mes trajets proposés</f:verbatim>
 					</h:commandLink>
 					
@@ -48,49 +48,55 @@
 						<fieldset class="classDetailHisto" >
 							<legend><h:outputLabel value="#{histoTrajetMBean.typeHistoTrajet}" /></legend>
 							
-							<h:dataTable value="#{histoTrajetMBean.listeTrajets}" 
-										 var="trajet">
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Conducteur" />
-									</f:facet>
-									<h:outputLabel value="" />
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Date et heure de départ" />
-									</f:facet>
-									<h:outputLabel value="#{trajet.dateDepart}" />
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Ville de départ" />
-									</f:facet>
-									<h:outputLabel value="#{trajet.villeDepart}" />
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Ville d'arrivée" />
-									</f:facet>
-									<h:outputLabel value="#{trajet.villeArrivee}" />
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Type de véhicule" />
-									</f:facet>
-									<h:outputLabel value="" />
-								</h:column>
-								
-				<!-- 				
-								<h:column rendered="#{histoTrajetMBean.listeTrajets != null}">
-									<h:commandLink action="#{histoTrajetMBean.supprimer(trajet.id)}"
-												   value="delete" >
-									</h:commandLink>
-								</h:column>
-				 -->				
-								
-							</h:dataTable>
-							
+							<h:panelGroup rendered="#{histoTrajetMBean.listeTrajetsEffectues == null}">
+							Pas de trajets
+							</h:panelGroup>
+							<h:panelGroup rendered="#{histoTrajetMBean.listeTrajetsEffectues != null}">
+							<h:panelGroup rendered="#{!empty histoTrajetMBean.listeTrajetsEffectues}">
+								<h:dataTable value="#{histoTrajetMBean.listeTrajetsEffectues}" 
+											 var="trajet">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Conducteur" />
+										</f:facet>
+										<h:outputLabel value="" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Date et heure de départ" />
+										</f:facet>
+										<h:outputLabel value="#{trajet.dateDepart}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Ville de départ" />
+										</f:facet>
+										<h:outputLabel value="#{trajet.villeDepart}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Ville d'arrivée" />
+										</f:facet>
+										<h:outputLabel value="#{trajet.villeArrivee}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Type de véhicule" />
+										</f:facet>
+										<h:outputLabel value="" />
+									</h:column>
+									
+					<!-- 				
+									<h:column rendered="#{histoTrajetMBean.listeTrajets != null}">
+										<h:commandLink action="#{histoTrajetMBean.supprimer(trajet.id)}"
+													   value="delete" >
+										</h:commandLink>
+									</h:column>
+					 -->				
+									
+								</h:dataTable>
+							</h:panelGroup>
+							</h:panelGroup>
 						</fieldset>
 					</h:panelGroup>
 				</fieldset>
