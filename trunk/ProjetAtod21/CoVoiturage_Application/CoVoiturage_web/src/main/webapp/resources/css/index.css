@@ -3,15 +3,18 @@
 }
 
 .formRechercherTrajet fieldset {
-	font-size: 13px;
-	border-radius: 3px;
 	border-color: maroon;
-	width: 70%;
-	margin-top: 20px;
+	border-radius: 3px;
+	font-size: 13px;
+	margin: 67px auto auto;
+	width: 50%;
+	font-family: verdana;
+	box-shadow: 5px 5px 5px 0px maroon;
 }
 
 .formRechercherTrajet legend {
 	color: maroon;
+	font-weight: bold;
 }
 
 .formRechercherTrajet fieldset label {
@@ -25,22 +28,31 @@
 	
 }
 
-.formRechercherTrajet .classBtnSubmit {
-	width: 75px;
-	margin-left: 140px;
+.formRechercherTrajet fieldset .classBtnSubmit {
+	background-color: maroon;
+	border: 1px solid maroon;
+	border-radius: 3px;
+	color: white;
+	font-size: 14px;
+	margin: auto auto auto 146px;
+	padding: 4px;
+}
+
+.formRechercherTrajet fieldset .classBtnSubmit:HOVER {
+	background-color: white;
 	color: maroon;
 }
 
 .formRechercherTrajet .classError {
 	height: auto;
-	margin-top: 15px;
+	margin: 22px auto auto;
+	width: 250px;
 }
 
 .formRechercherTrajet h3 {
 	text-align: center;
 	background-color: maroon;
 	color: white;
-	height: 50px;
 	border: none;
 	margin: 0;
 	line-height: 42px;
@@ -48,14 +60,8 @@
 }
 
 .formRechercherTrajet ul {
-	margin: 19px 0 0 10px;
 	padding: 0;
-	height: 30px;
-}
-
-.formRechercherTrajet ul li  {
-	display: inline;
-	list-style: none;
-	color:red;
-	
-}
+	color: red;
+	font-weight: bold;
+	float: left;
+	font-style: italic;
