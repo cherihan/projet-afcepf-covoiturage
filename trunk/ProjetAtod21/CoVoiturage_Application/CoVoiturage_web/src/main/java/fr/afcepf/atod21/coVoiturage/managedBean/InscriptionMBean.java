@@ -1,16 +1,10 @@
 package fr.afcepf.atod21.coVoiturage.managedBean;
 
 import java.util.Date;
-
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-
-import org.omg.PortableInterceptor.SUCCESSFUL;
-
 import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
 import fr.afcepf.atod21.coVoiturage.common.Common;
 import fr.afcepf.atod21.coVoiturage.entity.Adresse;
@@ -60,6 +54,7 @@ public class InscriptionMBean {
 			messageErrorPassword = "Attention, les deux passwords que vous avez saisis ne sont pas identiques !";
 			retour = "error";
 		}
+		System.out.println(retour);
 		return retour;
 	}
 
