@@ -64,30 +64,34 @@ Creer un Trajet
 
 					<h:outputLabel value="Ville de depart" for="villeDepart" />
 
-					<h:selectOneMenu id="villeDepart"
+					<h:selectOneMenu id="villeDepart" required="true"
+						requiredMessage="Ville de depart obligatore"
 						value="#{trajetMBean.villeDepart.nom   }">
 
 						<f:selectItem itemValue="#{null}"
-							itemLabel="--------Choisir une ville--------" />
+							itemLabel="-------- Choisir une ville --------" />
 						<f:selectItems value="#{trajetMBean.listNomVilles }" />
 
 					</h:selectOneMenu>
 
-					<h:message for="villeDepart" styleClass="errorClass" />
+					<h:message for="villeDepart"
+						style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:16px;" />
 
 					<br /> <br />
 					<h:outputLabel value="Ville d arrivee" />
 
-					<h:selectOneMenu id="villeArrivee"
+					<h:selectOneMenu id="villeArrivee" required="true"
+						requiredMessage="Ville d'arrivee obligatoire"
 						value="#{trajetMBean.villeArrivee.nom   }">
 
 						<f:selectItem itemValue="#{null}"
-							itemLabel="--------Choisir une ville--------" />
+							itemLabel="-------- Choisir une ville --------" />
 						<f:selectItems value="#{trajetMBean.listNomVilles  }" />
 
 					</h:selectOneMenu>
 
-					<h:message for="villeArrivee" styleClass="errorClass" />
+					<h:message for="villeArrivee"
+						style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:15px;" />
 					<br /> <br />
 
 					<h:outputLabel value="Date de depart" for="dateDepart" />
@@ -100,7 +104,8 @@ Creer un Trajet
 
 
 					</h:inputText>
-					<h:message for="dateDepart" styleClass="errorClass" />
+					<h:message for="dateDepart"
+						style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:107px;" />
 					<br /> <br />
 					<h:outputLabel value="Tarif (en €)" />
 
@@ -112,7 +117,8 @@ Creer un Trajet
 						<f:ajax event="blur" render="tarifMessage"></f:ajax>
 
 					</h:inputText>
-					<h:message id="tarifMessage" for="tarif" styleClass="errorClass" />
+					<h:message id="tarifMessage" for="tarif"
+						style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:55px;" />
 					<br /> <br />
 					<h:outputLabel value="Nombre de passagers" />
 
@@ -132,13 +138,13 @@ Creer un Trajet
 						<f:ajax event="blur" render="nbPassagersMessage"></f:ajax>
 					</h:selectOneMenu>
 					<h:message id="nbPassagersMessage" for="nbPassagers"
-						styleClass="errorClass" />
+						style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:129px;" />
 					<br /> <br />
 
 					<h:commandButton value="Valider"
-						action="#{trajetMBean.creerTrajet(connectionMBean.user) }" styleClass="classBtnSubmit" />
-					<h:commandButton value="Annuler" action="#{trajetMBean.annuler() }"
-						styleClass="classBtnSubmit" />
+						action="#{trajetMBean.creerTrajet(connectionMBean.user)}" styleClass="classBtnSubmit" style="margin-left:35px;"  />
+					<h:commandButton  value="Annuler" action="#{trajetMBean.annuler() }"
+						styleClass="classBtnSubmit" style="margin-left:60px;" immediate="true"   />
 				</fieldset>
 
 			</h:form>
