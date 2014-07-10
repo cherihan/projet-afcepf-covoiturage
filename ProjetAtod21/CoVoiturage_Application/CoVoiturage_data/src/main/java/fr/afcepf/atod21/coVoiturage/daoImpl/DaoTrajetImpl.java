@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-import org.hibernate.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,6 +64,56 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	public List<Ville> getAllVilles() {
 
 		return em.createQuery("SELECT v FROM Ville v").getResultList();
+	}
+
+	@Override
+	public List<Trajet> getTrajetsEnCoursById(int idUser) {
+		
+/*		
+		String req = "SELECT u.trajets FROM Utilisateur u WHERE u.idUtilisateur = :idUser";
+		Query query = em.createQuery(req);
+		query.setParameter("idUser", idUser);
+*/	
+		Utilisateur u = em.find(Utilisateur.class, idUser);
+		List<Trajet> listeTrajets = u.getTrajets();
+		
+		if (listeTrajets != null)
+			return listeTrajets;
+		return null;
+	}
+
+
+
+	@Override
+	public List<Trajet> getTrajetsEffectuesById(int idUser) {
+		
+		String req = "SELECT t FROM Trajet t";
+		Query query = em.createQuery(req);
+
+		List<Trajet> listeTrajets = query.getResultList();
+		System.out.println("==> taille : " + listeTrajets.size());
+		
+		if (listeTrajets.size() != 0)
+			return listeTrajets;
+		
+		return null;
+	}
+
+
+
+	@Override
+	public List<Trajet> getTrajetsProposesById(int idUser) {
+
+		String req = "SELECT t FROM Trajet t";
+		Query query = em.createQuery(req);
+
+		List<Trajet> listeTrajets = query.getResultList();
+		System.out.println("==> taille : " + listeTrajets.size());
+		
+		if (listeTrajets.size() != 0)
+			return listeTrajets;
+		
+		return null;
 	}
 
 }
