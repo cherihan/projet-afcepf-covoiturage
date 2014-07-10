@@ -25,7 +25,7 @@
 	
 }
 
-.formRechercherTrajet fieldset .classBtnSubmit {
+.formRechercherTrajet .classBtnSubmit {
 	width: 75px;
 	margin-left: 140px;
 	color: maroon;
