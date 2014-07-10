@@ -27,8 +27,16 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 	}
 
 	@Override
-	public void sInscrireTrajet(Integer idTrajet, Integer idUser) {
-		// TODO Auto-generated method stub
+	public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
+		
+		
+		user = em.find(Utilisateur.class, user.getIdUtilisateur());
+
+		
+		user.getTrajets().add(trajet);
+			
+		
+		em.persist(user);
 		
 	}
 

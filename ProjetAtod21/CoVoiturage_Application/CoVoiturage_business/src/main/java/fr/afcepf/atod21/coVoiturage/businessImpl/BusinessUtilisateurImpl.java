@@ -18,28 +18,29 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 
 	@Autowired
 	private IDaoUtilisateur daoUtilisateur;
-	
+
 	@Override
 	public void afficher() {
 		daoUtilisateur.afficher();
 	}
 
 	@Override
-	public void sInscrireTrajet(Integer idTrajet, Integer idUser) {
-		// TODO Auto-generated method stub
-		
+	public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
+
+		daoUtilisateur.sInscrireTrajet(trajet, user);
+
 	}
 
 	@Override
 	public void seDesinscrireTrajet(Integer idTrajet, Integer idUser) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void annulerInscriptionTrajet(Integer idTrajet, Integer idUser) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -50,28 +51,29 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 	@Override
 	public void seDeconnecter(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void changerPassword(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart,
 			String villeArrivee, String statut) {
-		
 
-		return daoUtilisateur.rechercherTrajet(dateDepart, villeDepart, villeArrivee, statut);
+		return daoUtilisateur.rechercherTrajet(dateDepart, villeDepart,
+				villeArrivee, statut);
 	}
 
 	@Override
 	public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart,
 			String villeDepart, String statut) {
-		
-	return daoUtilisateur.rechercherTrajetParVilleDepart(dateDepart, villeDepart, statut);
+
+		return daoUtilisateur.rechercherTrajetParVilleDepart(dateDepart,
+				villeDepart, statut);
 	}
 
 	@Override
@@ -81,15 +83,8 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 
 	@Override
 	public Utilisateur getUserById(Integer idUser) {
-		
+
 		return daoUtilisateur.getUserById(idUser);
 	}
-
-
-
-
-
-	
-
 
 }

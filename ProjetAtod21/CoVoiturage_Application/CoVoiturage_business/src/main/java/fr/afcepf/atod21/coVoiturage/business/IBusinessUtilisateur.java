@@ -13,7 +13,7 @@ public interface IBusinessUtilisateur {
 	void seDeconnecter(Utilisateur utilisateur);
 	void changerPassword(Utilisateur utilisateur);
 	Integer creerCompte(Utilisateur user);
-	void sInscrireTrajet(Integer idTrajet, Integer idUser);
+	void sInscrireTrajet(Trajet trajet, Utilisateur user);
 	void seDesinscrireTrajet(Integer idTrajet, Integer idUser);
 	void annulerInscriptionTrajet(Integer idTrajet, Integer idUser);
 	List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart, String villeArrivee, String statut);

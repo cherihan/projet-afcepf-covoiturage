@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
@@ -53,6 +57,9 @@ public class TrajetMBean {
 
 		}
 
+		System.out.println(" ---------------- init trajet bean ---------------------------");
+	
+
 	}
 
 	public String creerTrajet(Utilisateur userEnSession) {
@@ -73,18 +80,43 @@ public class TrajetMBean {
 		Integer idTrajet = businessTrajet.creerTrajet(trajetToInsert,
 				userEnSession);
 
+		FacesMessage message = new FacesMessage(
+				"Votre trajet a été crée avec succès !");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
 		if (idTrajet == null) {
 
 			redirection = "error";
 		}
+
+		clearFormUtilisateur();
 
 		return redirection;
 
 	}
 
 	public String annuler() {
+
+		clearFormUtilisateur();
+
+
 		return "cancel";
 	}
+
+	private void clearFormUtilisateur() {
+		HttpSession session = ((HttpServletRequest) FacesContext
+				.getCurrentInstance().getExternalContext().getRequest())
+				.getSession();
+		UtilisateurMBean utilisateurBean = (UtilisateurMBean) session
+				.getAttribute("utilisateurMBean");
+
+		utilisateurBean.setDateDepart("");
+		utilisateurBean.setVilleDepart(null);
+		utilisateurBean.setVilleArrivee(null);
+
+	}
+
+
 
 	public String supprimerTrajet() {
 		return "";

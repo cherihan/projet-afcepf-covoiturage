@@ -39,9 +39,9 @@ Index
 
 
 		<div>
-			<h4 style="titleTableTrajets">Voici la liste des trajets disponibles</h4>
-			
-				
+			<h4 style="">Voici la liste des trajets disponibles</h4>
+
+
 
 			<h:form class="formListerTrajets">
 
@@ -57,7 +57,7 @@ Index
 
 						<f:facet name="header">Conducteur pour ce trajet</f:facet>
 
-						<ui:repeat value="#{trajet.utilisateurs}" var="user">
+						<ui:repeat value="#{trajet.utilisateurs.get(0)}" var="user">
 							<h:outputText value="#{user.nom}" />
 							<br />
 						</ui:repeat>
@@ -70,7 +70,8 @@ Index
 
 						<f:facet name="header">Date et heure de depart</f:facet>
 						<h:outputText value="#{trajet.dateDepart}">
-							<f:convertDateTime pattern="dd/MM/yy hh:mm" timeZone="Europe/Paris"/>
+							<f:convertDateTime pattern="dd/MM/yy hh:mm"
+								timeZone="Europe/Paris" />
 						</h:outputText>
 
 
@@ -115,7 +116,7 @@ Index
 
 						<f:facet name="header">Type de vehicule</f:facet>
 
-						<ui:repeat value="#{trajet.utilisateurs}" var="user">
+						<ui:repeat value="#{trajet.utilisateurs.get(0)}" var="user">
 							<h:outputText value="#{user.typeVehicule}" />
 							<br />
 						</ui:repeat>
@@ -124,9 +125,15 @@ Index
 					</h:column>
 					<h:column>
 
-						<f:facet name="header">Voir le trajet</f:facet>
+						<f:facet name="header">S'inscire au trajet</f:facet>
+
+						<h:commandLink
+							action="#{utilisateurMBean.sInscireTrajet(trajet, connectionMBean.user)}">
 
 
+							<h:graphicImage value="../resources/image/edit.png" />
+
+						</h:commandLink>
 
 
 					</h:column>

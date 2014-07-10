@@ -3,6 +3,7 @@ package fr.afcepf.atod21.coVoiturage.managedBean;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -73,6 +74,9 @@ public class InscriptionMBean {
 			messageErrorPassword = "Attention, les deux passwords que vous avez saisis ne sont pas identiques !";
 			retour = "error";
 		}
+		
+
+		
 		System.out.println(retour);
 		return retour;
 	}
