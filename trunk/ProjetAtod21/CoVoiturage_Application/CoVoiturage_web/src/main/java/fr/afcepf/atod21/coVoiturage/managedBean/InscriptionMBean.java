@@ -1,10 +1,15 @@
 package fr.afcepf.atod21.coVoiturage.managedBean;
 
 import java.util.Date;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
 import fr.afcepf.atod21.coVoiturage.common.Common;
 import fr.afcepf.atod21.coVoiturage.entity.Adresse;
@@ -42,6 +47,20 @@ public class InscriptionMBean {
 				Date userNaissance = Common.convertDate(dateNaissanceSaisie);
 				user.setDateNaissance(userNaissance);
 				idUser = businessUtilisateur.creerCompte(user);
+				HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+				HttpSession session = request.getSession();
+				
+				ConnectionMBean userConnectionMB = (ConnectionMBean)session.getAttribute("connectionMBean");
+				// On fait un test au cas ou l'utilisateur aurait essayé de se connecter avec un mauvais login / mot de passe :
+				// auquel cas JSF aurait déjà instancié le managedBean.
+				if(userConnectionMB == null) {
+					userConnectionMB = new ConnectionMBean();
+					session.setAttribute("connectionMBean", userConnectionMB);
+				}
+				userConnectionMB.setUser(user);
+				userConnectionMB.setEmail(user.getEmail());
+				userConnectionMB.setPassword(user.getPassword());
+				userConnectionMB.seConnecter();
 			}
 			
 			catch (Exception e) {
