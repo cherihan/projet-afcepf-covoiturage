@@ -136,7 +136,7 @@ Creer un Trajet
 					<br /> <br />
 
 					<h:commandButton value="Valider"
-						action="#{trajetMBean.creerTrajet() }" styleClass="classBtnSubmit" />
+						action="#{trajetMBean.creerTrajet(connectionMBean.user) }" styleClass="classBtnSubmit" />
 					<h:commandButton value="Annuler" action="#{trajetMBean.annuler() }"
 						styleClass="classBtnSubmit" />
 				</fieldset>
