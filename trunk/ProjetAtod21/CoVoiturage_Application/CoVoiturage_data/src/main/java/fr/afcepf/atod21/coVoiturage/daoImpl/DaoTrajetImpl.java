@@ -36,7 +36,7 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	}
 
 	@Override
-	public void creerTrajet(Trajet trajet, Utilisateur user) {
+	public Integer creerTrajet(Trajet trajet, Utilisateur user) {
 
 		trajet.setVilleDepart(em.find(Ville.class, trajet.getVilleDepart()
 				.getIdVille()));
@@ -54,6 +54,9 @@ public class DaoTrajetImpl implements IDaoTrajet {
 		user = em.find(Utilisateur.class, user.getIdUtilisateur());
 		user.getTrajets().add(trajet);
 		em.persist(user);
+		em.flush();
+		
+		return trajet.getIdTrajet();
 
 	}
 
