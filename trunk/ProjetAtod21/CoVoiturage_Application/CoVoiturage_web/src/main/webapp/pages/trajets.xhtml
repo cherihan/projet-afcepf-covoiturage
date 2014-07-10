@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="title">Historique des Trajets</ui:define>
+
+	<ui:define name="css">
+				<link rel="stylesheet" href="../resources/css/common-style.css" />
+				<link rel="stylesheet" href="../resources/css/jquery-ui-1.10.4.custom.css" />
+				<link rel="stylesheet" href="../resources/css/histoTrajets.css" />
+				
+	</ui:define>
+
+	<ui:define name="javascript">
+		<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.custom.js"></script>
+		<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script type="text/javascript" src="../resources/js/index.js"></script>
+	</ui:define>
+
+	<ui:define name="content">
+		<div class="formHistoTrajet">
+			<h:form>
+				<ul>
+					<li><h:outputLink styleClass="linkResearch"
+							value="../pages/creeTrajet.xhtml">Créer un trajet</h:outputLink></li>
+
+				</ul> 
+				<fieldset>
+					<legend>Historique de mes Trajets</legend>
+					
+					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsEnCours(connectionMBean.user)}">
+						<f:verbatim>Mes trajets en cours</f:verbatim>
+					</h:commandLink>
+
+					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsEffectues()}" >
+						<f:verbatim>Mes trajets effectués</f:verbatim>
+					</h:commandLink>
+					
+					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsProposes()}">
+						<f:verbatim>Mes trajets proposés</f:verbatim>
+					</h:commandLink>
+					
+					<h:panelGroup rendered="#{histoTrajetMBean.afficheHistoTrajets}">
+						<fieldset class="classDetailHisto" >
+							<legend><h:outputLabel value="#{histoTrajetMBean.typeHistoTrajet}" /></legend>
+							
+							<h:dataTable value="#{histoTrajetMBean.listeTrajets}" 
+										 var="trajet">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Conducteur" />
+									</f:facet>
+									<h:outputLabel value="" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Date et heure de départ" />
+									</f:facet>
+									<h:outputLabel value="#{trajet.dateDepart}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Ville de départ" />
+									</f:facet>
+									<h:outputLabel value="#{trajet.villeDepart}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Ville d'arrivée" />
+									</f:facet>
+									<h:outputLabel value="#{trajet.villeArrivee}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Type de véhicule" />
+									</f:facet>
+									<h:outputLabel value="" />
+								</h:column>
+								
+				<!-- 				
+								<h:column rendered="#{histoTrajetMBean.listeTrajets != null}">
+									<h:commandLink action="#{histoTrajetMBean.supprimer(trajet.id)}"
+												   value="delete" >
+									</h:commandLink>
+								</h:column>
+				 -->				
+								
+							</h:dataTable>
+							
+						</fieldset>
+					</h:panelGroup>
+				</fieldset>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>
