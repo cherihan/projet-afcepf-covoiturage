@@ -180,10 +180,11 @@ public class Trajet implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Trajet [dateDepart=" + dateDepart + ", nbPassagers="
-				+ nbPassagers + ", statut=" + statut + ", tarif=" + tarif
-				+ ", villeDepart=" + villeDepart + ", villeArrivee="
-				+ villeArrivee + "]";
+		return "Trajet [idTrajet=" + idTrajet + ", dateDepart=" + dateDepart
+				+ ", nbPassagers=" + nbPassagers + ", statut=" + statut
+				+ ", tarif=" + tarif + ", villeDepart=" + villeDepart
+				+ ", villeArrivee=" + villeArrivee + ", utilisateurs="
+				+ utilisateurs + "]";
 	}
 
 }
