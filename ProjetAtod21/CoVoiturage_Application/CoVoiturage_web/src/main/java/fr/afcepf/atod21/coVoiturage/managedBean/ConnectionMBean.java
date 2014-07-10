@@ -29,13 +29,10 @@ public class ConnectionMBean {
 
 	public String seConnecter() {
 		this.user = this.businessUtilisateur.seConnecter(email, password);
-		if (this.user != null) {
+		if (this.user != null)
 			this.userConnected = true;
-		}
-		else {
+		else
 			this.userExists = false;
-			System.out.println("--> Utilisateur non trouvé !");
-		}
 		return "";
 	}
 
@@ -46,7 +43,7 @@ public class ConnectionMBean {
 		this.userExists = true;
 		if (!userRemembered)
 			this.email="";
-		return "";
+		return "/pages/index.xhtml";
 	}
 
 	public String changerPassword() {
