@@ -155,9 +155,20 @@ body,html {
 	margin-top: 5px;
 }
 
-.classConnexion fieldset  input {
+.classConnexion fieldset  input[type=text], .classConnexion fieldset  input[type=password] {
 	width: 100px;
 	margin-top: 5px;
+}
+
+.classConnexion fieldset  input[type=checkbox] {
+	margin-left: 20px;
+	margin-top: 5px;
+}
+
+.classConnexion fieldset input[type=submit] {
+	width: 130px;
+	height: 20px;
+	margin-left: 20px;
 }
 
 .classConnexion fieldset .classBtnLogin {
