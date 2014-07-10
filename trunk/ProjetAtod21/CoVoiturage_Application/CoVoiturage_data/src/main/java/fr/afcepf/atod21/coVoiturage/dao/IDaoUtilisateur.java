@@ -18,7 +18,7 @@ public interface IDaoUtilisateur {
 
 	Integer creerCompte(Utilisateur user);
 
-	void sInscrireTrajet(Integer idTrajet, Integer idUser);
+	void sInscrireTrajet(Trajet trajet, Utilisateur user);
 
 	void seDesinscrireTrajet(Integer idTrajet, Integer idUser);
 

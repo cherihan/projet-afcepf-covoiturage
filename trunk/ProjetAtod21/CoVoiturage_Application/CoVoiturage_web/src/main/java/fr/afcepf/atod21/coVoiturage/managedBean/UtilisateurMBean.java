@@ -9,7 +9,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
 import fr.afcepf.atod21.coVoiturage.common.Common;
@@ -18,80 +21,68 @@ import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 
 @ManagedBean
 @SessionScoped
-public class UtilisateurMBean   {
-
+public class UtilisateurMBean {
 
 	@ManagedProperty(value = "#{businessUtilisateurImpl}")
 	private IBusinessUtilisateur businessUtilisateur;
 
 	private Utilisateur user;
 	private Trajet trajet;
-	
-	
+
 	private String email;
 	private String password;
 	private String villeDepart;
 	private String villeArrivee;
 	private String dateDepart;
 	private boolean displayTableResultsTrajets = false;
+	private HtmlDataTable dataTableTrajets = new HtmlDataTable();
 
 	private List<Trajet> listResults = new ArrayList<Trajet>();
-	
-	
-	
-	
 
 	@PostConstruct
 	public void init() {
-		System.out.println("Initialisation du bean 'UtilisateurMBean'");
 		
-		
+		System.out.println(" ---------------- init utilisateur bean ---------------------------");
 		
 	}
 
-	public String sInscireTrajet() {
-		//TODO
+	public String sInscireTrajet(Trajet trajet, Utilisateur user) {
+
+
+		businessUtilisateur.sInscrireTrajet(trajet, user);
+
 		return "";
 	}
 
 	public String seDesincrireTrajet() {
-		//TODO
+		// TODO
 		return "";
 	}
 
 	public String annulerInscriptionTrajet() {
-		//TODO
+		// TODO
 		return "";
 	}
 
-	
 	public String rechercherTrajet() {
+		
+
 
 		String statut = "en cours";
 		String retour = "listerTrajets";
 
 		Date dateToConvert = Common.convertDate(this.dateDepart);
-	
-		
-		
 
 		if (this.villeArrivee == null || this.villeArrivee.trim().length() == 0) {
 
 			this.listResults = this.businessUtilisateur
 					.rechercherTrajetParVilleDepart(dateToConvert, villeDepart,
 							statut);
-			
-		
 
 		} else {
 
-			System.out.println(" ----------- MB --------------- rechercherAvecVilleArrivee");
-			
 			this.listResults = this.businessUtilisateur.rechercherTrajet(
 					dateToConvert, this.villeDepart, this.villeArrivee, statut);
-			
-			
-
 
 		}
 
@@ -100,19 +91,24 @@ public class UtilisateurMBean   {
 
 		}
 		if (listResults.size() == 0 || listResults == null) {
-			FacesMessage message = new FacesMessage("Aucun resultat disponible");
+			FacesMessage message = new FacesMessage(
+					"Aucun resultat disponible !");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			this.displayTableResultsTrajets = false;
 			retour = "error";
 		}
+		
+
 
 		return retour;
 
 	}
+	
+
 
 
 	public String motDepasseOublie() {
-		//TODO
+		// TODO
 		return "";
 	}
 
@@ -194,5 +190,13 @@ public class UtilisateurMBean   {
 
 	public void setListResults(List<Trajet> listResults) {
 		this.listResults = listResults;
+	}
+
+	public HtmlDataTable getDataTableTrajets() {
+		return dataTableTrajets;
+	}
+
+	public void setDataTableTrajets(HtmlDataTable dataTableTrajets) {
+		this.dataTableTrajets = dataTableTrajets;
 	}
 }

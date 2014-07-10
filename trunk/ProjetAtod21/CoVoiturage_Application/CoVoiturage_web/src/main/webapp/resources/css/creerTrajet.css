@@ -1,17 +1,17 @@
-
 .classCreerTrajet {
 	margin-top: 30px;
 }
 
 .classCreerTrajet fieldset {
 	border-color: maroon;
-    margin: auto;
-    width: 50%;
-
+	margin: auto;
+	width: 50%;
+	font-family: verdana;
+	box-shadow:5px 5px 5px 0px maroon;
 }
-
 .classCreerTrajet legend {
 	color: maroon;
+	font-size: 14px;
 }
 
 .classCreerTrajet label {
@@ -21,18 +21,37 @@
 
 .classCreerTrajet .classBtnSubmit {
 	margin-top: 20px;
-	background-color: white;
-	color:maroon;
+	border-radius: 3px;
+	background-color: maroon;
 	border: 1px solid maroon;
-	padding: 4px;
-	border-radius:3px;
-
+	color: white;
 	font-size: 14px;
+	padding: 4px;
 }
 
-.classCreerTrajet .classBtnSubmit:HOVER{
-	background-color: maroon;
-	color:white;
+.classCreerTrajet .classBtnSubmit:HOVER {
+	background-color: white;
+	color: maroon;
+}
+
+.linkReturnIndex {
+	color: maroon;
+	font-size: 12px;
+	margin-left: 20px;
+	padding: 5px;
+	text-decoration: none;
+}
+
+.messageSuccess {
+	color: maroon;
+	float: right;
+	font-style: italic;
+	font-weight: bold;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+	text-decoration: none;
+	width: 50%;
 }
 
 .errorClass {

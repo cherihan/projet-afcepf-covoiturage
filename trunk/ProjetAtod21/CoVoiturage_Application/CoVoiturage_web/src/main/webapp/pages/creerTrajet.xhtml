@@ -51,6 +51,15 @@ Creer un Trajet
 
 		<div class="classCreerTrajet">
 
+			<h:messages globalOnly="true" styleClass="messageSuccess" />
+			<h:outputLink value="../pages/index.xhtml"
+				styleClass="linkReturnIndex">
+
+				<h:graphicImage value="../resources/image/home.png"
+					title="Retour a la page d'accueil" />
+
+			</h:outputLink>
+
 			<h:form>
 
 
@@ -142,11 +151,12 @@ Creer un Trajet
 					<br /> <br />
 
 					<h:commandButton value="Valider"
-						action="#{trajetMBean.creerTrajet(connectionMBean.user)}" styleClass="classBtnSubmit" style="margin-left:35px;"  />
-					<h:commandButton  value="Annuler" action="#{trajetMBean.annuler() }"
-						styleClass="classBtnSubmit" style="margin-left:60px;" immediate="true"   />
+						action="#{trajetMBean.creerTrajet(connectionMBean.user)}"
+						styleClass="classBtnSubmit" style="margin-left:35px;" />
+					<h:commandButton value="Annuler" action="#{trajetMBean.annuler() }"
+						styleClass="classBtnSubmit" style="margin-left:60px;"
+						immediate="true" />
 				</fieldset>
-
 			</h:form>
 
 		</div>

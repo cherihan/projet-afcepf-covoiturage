@@ -31,7 +31,7 @@
 	</navigation-rule>
 
 	<navigation-rule>
-		<from-view-id>/pages/inscription.xhtml</from-view-id>
+		<from-view-id>/pages/creerCompte.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/pages/index.xhtml</to-view-id>
@@ -40,10 +40,6 @@
 
 	<navigation-rule>
 		<from-view-id>/pages/creerTrajet.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>success</from-outcome>
-			<to-view-id>/pages/index.xhtml</to-view-id>
-		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>error</from-outcome>

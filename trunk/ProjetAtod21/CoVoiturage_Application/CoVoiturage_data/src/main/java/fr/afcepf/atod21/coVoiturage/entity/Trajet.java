@@ -29,7 +29,7 @@ public class Trajet implements Serializable {
 	private int nbPassagers;
 
 	private String statut;
-	private int tarif;
+	private Integer tarif;
 
 	// bi-directional many-to-one association to Avi
 	@OneToMany(mappedBy = "trajet")
@@ -56,7 +56,7 @@ public class Trajet implements Serializable {
 	public Trajet() {
 	}
 
-	public Trajet(Date dateDepart, int nbPassagers, String statut, int tarif,
+	public Trajet(Date dateDepart, int nbPassagers, String statut, Integer tarif,
 			Ville villeDepart, Ville villeArrivee) {
 		super();
 
@@ -100,13 +100,6 @@ public class Trajet implements Serializable {
 		this.statut = statut;
 	}
 
-	public int getTarif() {
-		return this.tarif;
-	}
-
-	public void setTarif(int tarif) {
-		this.tarif = tarif;
-	}
 
 	public List<Avis> getAvis() {
 		return this.avis;
@@ -186,5 +179,15 @@ public class Trajet implements Serializable {
 				+ ", villeArrivee=" + villeArrivee + ", utilisateurs="
 				+ utilisateurs + "]";
 	}
+
+	public Integer getTarif() {
+		return tarif;
+	}
+
+	public void setTarif(Integer tarif) {
+		this.tarif = tarif;
+	}
+
+
 
 }
