@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.persistence.criteria.CriteriaBuilder.In;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
+import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
 import fr.afcepf.atod21.coVoiturage.common.Common;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
@@ -39,16 +40,15 @@ public class TrajetMBean {
 	@ManagedProperty(value = "#{businessTrajetImpl}")
 	private IBusinessTrajet businessTrajet;
 
+	@ManagedProperty(value = "#{businessUtilisateurImpl}")
+	private IBusinessUtilisateur businessUtilisateur;
+
 	@PostConstruct
 	public void init() {
-
-		System.out.println("---------- init Trajet Bean -------------");
 
 		this.listVilles = businessTrajet.getAllVilles();
 
 		for (Ville v : this.listVilles) {
-
-			System.out.println("Ville ===> " + v.getNom());
 
 			mapVilles.put(v.getNom(), v);
 			this.listNomVilles.add(v.getNom());
@@ -57,48 +57,30 @@ public class TrajetMBean {
 
 	}
 
-	public String creerTrajet() {
+	public String creerTrajet(Utilisateur userEnSession) {
+
 		this.villeDepart = this.mapVilles.get(this.villeDepart.getNom());
 
 		this.villeArrivee = this.mapVilles.get(this.villeArrivee.getNom());
 
-		System.out.println("------ date selected ----- " + this.dateDepart);
-
-
-
-
-		 Date dateDepart = Common.convertDate(this.dateDepart);
-		
-
-		
-
-		System.out.println("------ date selected after conversion ----- "
-				+ dateDepart);
+		Date dateDepart = Common.convertDate(this.dateDepart);
 
 		int nbPassagers = Integer.parseInt(this.nbPassagersSelected);
 
 		Trajet trajetToInsert = new Trajet(dateDepart, nbPassagers, "en cours",
 				trajet.getTarif(), villeDepart, villeArrivee);
 
-		List<Utilisateur> listUsers = new ArrayList<>();
+		System.out
+				.println(" ID TrajetToInsert " + trajetToInsert.getIdTrajet());
 
-
-		trajetToInsert.setUtilisateurs(listUsers);
-
-		// this.trajet.setVilleDepart(villeDepart);
-		// this.trajet.setVilleArrivee(villeArrivee);
-		// this.trajet.setDateDepart(dateDepart);
-
-		// this.trajet.setStatut("en cours");
-
-		businessTrajet.creerTrajet(trajetToInsert);
+		businessTrajet.creerTrajet(trajetToInsert, userEnSession);
 
 		return "";
 
 	}
 
 	public String annuler() {
-		return "";
+		return "/index.xhtml";
 	}
 
 	public String supprimerTrajet() {
@@ -124,8 +106,6 @@ public class TrajetMBean {
 	public void setTrajet(Trajet trajet) {
 		this.trajet = trajet;
 	}
-
-
 
 	public String getDateDepart() {
 		return dateDepart;
@@ -181,6 +161,14 @@ public class TrajetMBean {
 
 	public void setListNomVilles(List<String> listNomVilles) {
 		this.listNomVilles = listNomVilles;
+	}
+
+	public IBusinessUtilisateur getBusinessUtilisateur() {
+		return businessUtilisateur;
+	}
+
+	public void setBusinessUtilisateur(IBusinessUtilisateur businessUtilisateur) {
+		this.businessUtilisateur = businessUtilisateur;
 	}
 
 }
