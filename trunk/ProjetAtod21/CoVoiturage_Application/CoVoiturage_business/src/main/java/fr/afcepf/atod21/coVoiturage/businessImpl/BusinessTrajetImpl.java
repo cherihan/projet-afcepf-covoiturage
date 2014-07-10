@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.dao.IDaoTrajet;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
+import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Ville;
 
 @Service
@@ -26,9 +27,9 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 	}
 
 	@Override
-	public void creerTrajet(Trajet trajet) {
+	public void creerTrajet(Trajet trajet, Utilisateur user) {
 
-		daoTrajet.creerTrajet(trajet);
+		daoTrajet.creerTrajet(trajet, user);
 
 	}
 

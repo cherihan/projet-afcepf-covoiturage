@@ -79,6 +79,12 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 		return daoUtilisateur.creerCompte(user);
 	}
 
+	@Override
+	public Utilisateur getUserById(Integer idUser) {
+		
+		return daoUtilisateur.getUserById(idUser);
+	}
+
 
 
 
