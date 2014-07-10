@@ -57,7 +57,6 @@ public class TrajetMBean {
 
 		}
 
-		System.out.println(" ---------------- init trajet bean ---------------------------");
 	
 
 	}
