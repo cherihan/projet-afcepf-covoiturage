@@ -20,28 +20,45 @@ public class HistoTrajetMBean {
 	private List<Trajet> listeTrajetsProposes;
 	private String typeHistoTrajet;
 	private boolean afficheHistoTrajets = false;
-	
-	@ManagedProperty (value="#{businessTrajetImpl}")
+
+	@ManagedProperty(value = "#{businessTrajetImpl}")
 	private IBusinessTrajet businessTrajet;
 
 	public String histoTrajets(Utilisateur user, String typeHistoTrajets) {
-		
-		setListeHistoTrajets(businessTrajet.getHistoTrajets(user.getIdUtilisateur(), typeHistoTrajets));
+
+		setListeHistoTrajets(businessTrajet.getHistoTrajets(
+				user.getIdUtilisateur(), typeHistoTrajets));
 		this.typeHistoTrajet = typeHistoTrajets;
 		this.afficheHistoTrajets = true;
+
+		switch (typeHistoTrajets) {
+		case "en cours":
+			setTypeHistoTrajet("Mes trajets en cours");
+			break;
+		case "effectues":
+			setTypeHistoTrajet("Mes trajets effectués");
+			break;
+
+		case "proposes":
+			setTypeHistoTrajet("Mes trajets proposés");
+			break;
+		default:
+			break;
+		}
+
 		return "";
 	}
 
 	public String consulterTrajet(int idTrajet) {
-		
+
 		return "";
 	}
-	
+
 	public String supprimerTrajet(int idTrajet) {
-		
+
 		return "";
 	}
-	
+
 	public IBusinessTrajet getBusinessTrajet() {
 		return businessTrajet;
 	}
