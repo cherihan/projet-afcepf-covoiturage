@@ -43,6 +43,16 @@
 	font-size: 12px;
 }
 
+.formHistoTrajet fieldset .classHistoLink {
+	margin-left: 10px;
+	margin-right: 10px;
+	color: maroon;
+}
+
+.formHistoTrajet fieldset .classHistoLink:HOVER {
+	border-bottom: 2px solid maroon;
+}
+
 .formHistoTrajet ul {
 	list-style-type: none;
 	margin: 0;
