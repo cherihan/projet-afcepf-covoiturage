@@ -47,6 +47,8 @@
 	margin-left: 10px;
 	margin-right: 10px;
 	color: maroon;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 .formHistoTrajet fieldset .classHistoLink:HOVER {
@@ -114,4 +116,40 @@
 
 .formInfos fieldset legend label{
 	color:black;
+}
+
+
+.tableResultsTrajets {
+	border-collapse: collapse;
+	margin-top: 17px;
+}
+
+.titleTableResultsTrajets {
+	color: maroon;
+}
+
+.tableResultsTrajets th {
+	font-size: 11px;
+	color: black;
+	border: 2px solid maroon;
+	background-color: #EAEAEA;
+}
+
+.tableResultsTrajets tr {
+	border-collapse: collapse;
+	border-radius: 4px;
+}
+
+.tableResultsTrajets td {
+	border: 2px solid maroon;
+	font-style: bold;
+	width: 100px;
+}
+
+.tableResultsTrajets .rowPair {
+	background-color: white;
+}
+
+.tableResultsTrajets .rowInpair {
+	background-color: #F7DAB4;
 }
