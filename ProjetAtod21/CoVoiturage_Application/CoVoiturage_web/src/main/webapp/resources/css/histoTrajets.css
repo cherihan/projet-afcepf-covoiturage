@@ -11,6 +11,11 @@
 	border-color: maroon;
 	width: 99%;
 	box-shadow: 5px 5px 5px 0 maroon;
+	
+}
+
+.formHistoTrajet fieldset legend{
+	font-weight: bold;
 }
 
 .formHistoTrajet fieldset .classDetailHisto {
@@ -20,7 +25,6 @@
 	width: 95%;
 }
 
-
 .formHistoTrajet fieldset .champs {
 	float: left;
 	width: 90px;
@@ -28,9 +32,10 @@
 
 .formHistoTrajet fieldset .classLink {
 	margin-top: 10px;
-	color: maroon;
+	color: black;
 	margin-left: 15px;
 	font-size: 13px;
+	text-decoration: none;
 }
 
 .formHistoTrajet fieldset .classLink:HOVER {
@@ -66,21 +71,37 @@
 }
 
 .formAvis fieldset {
-	font-size: 11px;
-	color: maroon;
-	border-radius: 3px;
 	border-color: maroon;
-	width: 40%;
-	margin: auto;
-	margin-top: 30px;
+	box-shadow: 5px 5px 5px 0 maroon;
+	color: maroon;
+	font-family: verdana;
+	margin: 70px auto auto;
+	width: 50%;
+	border-radius: 3px;
+}
+
+.formAvis fieldset legend{
+	font-weight: bold; 
 }
 
 .formInfos fieldset {
-	font-size: 11px;
-	color: blue;
-	border-radius: 3px;
 	border-color: maroon;
-	width: 30%;
-	margin: auto;
-	margin-top: 30px;
+	box-shadow: 5px 5px 5px 0 maroon;
+	color: maroon;
+	font-family: verdana;
+	margin: 70px auto auto;
+	width: 50%;
+	border-radius: 3px;
+}
+
+.formInfos fieldset label{
+	color:black;
+}
+
+.formInfos fieldset legend{
+	font-weight: bold;
+}
+
+.formInfos fieldset legend label{
+	color:black;
 }

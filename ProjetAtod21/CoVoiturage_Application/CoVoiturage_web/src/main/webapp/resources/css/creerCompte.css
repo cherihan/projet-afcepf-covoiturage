@@ -8,6 +8,7 @@
 	width: 50%;
 	font-family: verdana;
 	box-shadow: 5px 5px 5px 0px maroon;
+	border-radius: 3px;
 }
 
 .formCreerCompte legend {
@@ -19,7 +20,7 @@
 	float: left;
 	width: 250px;
 	font-size: 12px;
-	color: maroon;
+	color: black;
 }
 
 .formCreerCompte  input:required {
