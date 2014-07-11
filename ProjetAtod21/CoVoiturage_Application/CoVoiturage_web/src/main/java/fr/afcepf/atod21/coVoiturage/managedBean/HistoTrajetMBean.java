@@ -14,6 +14,7 @@ import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 @SessionScoped
 public class HistoTrajetMBean {
 
+	private List<Trajet> listeHistoTrajets;
 	private List<Trajet> listeTrajetsEffectues;
 	private List<Trajet> listeTrajetsEnCours;
 	private List<Trajet> listeTrajetsProposes;
@@ -23,26 +24,21 @@ public class HistoTrajetMBean {
 	@ManagedProperty (value="#{businessTrajetImpl}")
 	private IBusinessTrajet businessTrajet;
 
-	public String trajetsEnCours(Utilisateur user) {
+	public String histoTrajets(Utilisateur user, String typeHistoTrajets) {
 		
-		listeTrajetsEnCours = businessTrajet.getTrajetsEnCoursById(user.getIdUtilisateur());
-		this.typeHistoTrajet = "Trajets en cours";
+		setListeHistoTrajets(businessTrajet.getHistoTrajets(user.getIdUtilisateur(), typeHistoTrajets));
+		this.typeHistoTrajet = typeHistoTrajets;
 		this.afficheHistoTrajets = true;
 		return "";
 	}
 
-	public String trajetsEffectues(Utilisateur user) {
-
-		listeTrajetsEffectues = businessTrajet.getTrajetsEffectuesById(user.getIdUtilisateur());
-		this.typeHistoTrajet = "Trajets effectués";
-		this.afficheHistoTrajets = true;
+	public String consulterTrajet(int idTrajet) {
+		
 		return "";
 	}
+	
+	public String supprimerTrajet(int idTrajet) {
 		
-	public String trajetsProposes(Utilisateur user) {
-		listeTrajetsProposes = businessTrajet.getTrajetsProposesById(user.getIdUtilisateur());
-		this.typeHistoTrajet = "Trajets Proposés";
-		this.afficheHistoTrajets = true;
 		return "";
 	}
 	
@@ -92,6 +88,14 @@ public class HistoTrajetMBean {
 
 	public void setAfficheHistoTrajets(boolean afficheHistoTrajets) {
 		this.afficheHistoTrajets = afficheHistoTrajets;
+	}
+
+	public List<Trajet> getListeHistoTrajets() {
+		return listeHistoTrajets;
+	}
+
+	public void setListeHistoTrajets(List<Trajet> listeHistoTrajets) {
+		this.listeHistoTrajets = listeHistoTrajets;
 	}
 
 }

@@ -48,9 +48,17 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 		return daoTrajet.getAllVilles();
 	}
 
+	
+	
 	@Override
-	public List<Trajet> getTrajetsEnCoursById(int idUser) {
-		List<Trajet> listeTrajets = daoTrajet.getTrajetsEnCoursById(idUser);
+	public List<Trajet> getHistoTrajets(int idUser, String typeHistoTrajets) {
+		List<Trajet> listeTrajets = daoTrajet.getHistoTrajets(idUser, typeHistoTrajets);
+		return listeTrajets;
+	}
+
+	@Override
+	public List<Trajet> getTrajetsEnCoursById(int idUser, String typeHistoTrajets) {
+		List<Trajet> listeTrajets = daoTrajet.getTrajetsEnCoursById(idUser, typeHistoTrajets);
 		return listeTrajets;
 	}
 
