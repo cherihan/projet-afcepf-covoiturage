@@ -91,12 +91,11 @@
 
 					<h:outputLabel value="Date de Naissance " />
 					<h:inputText value="#{inscriptionMBean.dateNaissanceSaisie}"
-						required="true" styleClass="birthDate" id="naissance"
+						styleClass="birthDate" id="naissance"
 						label="Date de naissance">
-						<f:ajax event="blur" render="messageBirthDate" />
+						
 					</h:inputText>
-					<h:message for="naissance" styleClass="messsages"
-						id="messageBirthDate" />
+					
 					<br /> <br />
 
 					<h:outputLabel value="Votre adresse " />
