@@ -5,7 +5,12 @@
 	version="2.5">
 	<display-name>CoVoiturage_web</display-name>
 
+	<welcome-file-list>
 
+		<welcome-file>../pages/index.xhtml</welcome-file>
+
+
+	</welcome-file-list>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring/application-config.xml</param-value>
