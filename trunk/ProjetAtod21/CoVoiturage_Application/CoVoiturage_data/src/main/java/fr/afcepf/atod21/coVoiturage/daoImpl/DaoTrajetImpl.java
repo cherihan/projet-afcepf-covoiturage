@@ -67,7 +67,35 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	}
 
 	@Override
-	public List<Trajet> getTrajetsEnCoursById(int idUser) {
+	public List<Trajet> getHistoTrajets(int idUser, String typeHistoTrajet) {
+		
+		String query = "";
+		switch (typeHistoTrajet) {
+		
+			case "en cours":
+				query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
+				break;
+	
+			case "effectues":
+				query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
+				break;
+
+			case "proposes":
+				query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
+				break;
+	
+			default:
+				break;
+		}
+		Utilisateur u = (Utilisateur) em.createQuery(query)
+				.setParameter("idUser",idUser)
+				.getSingleResult();
+		
+		return u.getTrajets();
+	}
+
+	@Override
+	public List<Trajet> getTrajetsEnCoursById(int idUser, String typeHistoTrajet) {
 		
 		String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
 		Utilisateur u = (Utilisateur) em.createQuery(query)

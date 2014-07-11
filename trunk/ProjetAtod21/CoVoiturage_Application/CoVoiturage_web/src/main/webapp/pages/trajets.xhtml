@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/template/commonLayout.xhtml">
 	<ui:define name="title">Historique des Trajets</ui:define>
@@ -34,15 +35,15 @@
 					
 					<br/><br/>
 					
-					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsEnCours(connectionMBean.user)}">
+					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.histoTrajets(connectionMBean.user, 'en cours')}">
 						<f:verbatim>Mes trajets en cours</f:verbatim>
 					</h:commandLink>
 
-					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsEffectues(connectionMBean.user)}" >
+					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.histoTrajets(connectionMBean.user, 'effectues')}" >
 						<f:verbatim>Mes trajets effectués</f:verbatim>
 					</h:commandLink>
 					
-					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.trajetsProposes(connectionMBean.user)}">
+					<h:commandLink styleClass="classLink" action="#{histoTrajetMBean.histoTrajets(connectionMBean.user, 'proposes')}">
 						<f:verbatim>Mes trajets proposés</f:verbatim>
 					</h:commandLink>
 					
@@ -50,48 +51,59 @@
 						<fieldset class="classDetailHisto" >
 							<legend><h:outputLabel value="#{histoTrajetMBean.typeHistoTrajet}" /></legend>
 							
-							<h:panelGroup rendered="#{!empty histoTrajetMBean.listeTrajetsEffectues}">
-								<h:dataTable value="#{histoTrajetMBean.listeTrajetsEffectues}" 
-											 var="trajet">
+							<h:panelGroup rendered="#{!empty histoTrajetMBean.listeHistoTrajets}">
+								<h:dataTable
+									value="#{histoTrajetMBean.listeHistoTrajets}" var="trajet">
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="Conducteur" />
+											<h:outputText
+												value="Conducteur" />
 										</f:facet>
 										<h:outputLabel value="" />
 									</h:column>
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="Date et heure de départ" />
+											<h:outputText
+												value="Date et heure de départ" />
 										</f:facet>
-										<h:outputLabel value="#{trajet.dateDepart}" />
+										<h:outputLabel
+											value="#{trajet.dateDepart}" />
 									</h:column>
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="Ville de départ" />
+											<h:outputText
+												value="Ville de départ" />
 										</f:facet>
-										<h:outputLabel value="#{trajet.villeDepart.nom}" />
+										<h:outputLabel
+											value="#{trajet.villeDepart.nom}" />
 									</h:column>
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="Ville d'arrivée" />
+											<h:outputText
+												value="Ville d'arrivée" />
 										</f:facet>
-										<h:outputLabel value="#{trajet.villeArrivee.nom}" />
+										<h:outputLabel
+											value="#{trajet.villeArrivee.nom}" />
 									</h:column>
 									<h:column>
 										<f:facet name="header">
-											<h:outputText value="Type de véhicule" />
+											<h:outputText
+												value="Type de véhicule" />
 										</f:facet>
 										<h:outputLabel value="" />
 									</h:column>
-									
-					<!-- 				
-									<h:column rendered="#{histoTrajetMBean.listeTrajets != null}">
-										<h:commandLink action="#{histoTrajetMBean.supprimer(trajet.id)}"
-													   value="delete" >
+
+									<h:column>
+										<h:commandLink styleClass="classHistoLink"
+											action="#{histoTrajetMBean.consulterTrajet(trajet.idTrajet)}"
+											value="voir le détail">
+										</h:commandLink>
+										<h:commandLink styleClass="classHistoLink"
+											action="#{histoTrajetMBean.supprimerTrajet(trajet.idTrajet)}"
+											value="supprimer">
 										</h:commandLink>
 									</h:column>
-					 -->				
-									
+
 								</h:dataTable>
 							</h:panelGroup>
 						</fieldset>
