@@ -10,8 +10,10 @@
 	box-shadow:5px 5px 5px 0px maroon;
 }
 .classCreerTrajet legend {
+
 	color: maroon;
-	font-size: 14px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .classCreerTrajet label {
