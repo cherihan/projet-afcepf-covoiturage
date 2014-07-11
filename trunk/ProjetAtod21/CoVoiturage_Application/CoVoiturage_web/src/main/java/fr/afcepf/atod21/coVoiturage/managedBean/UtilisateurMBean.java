@@ -80,6 +80,8 @@ public class UtilisateurMBean {
 
 		if (this.villeArrivee == null || this.villeArrivee.trim().length() == 0) {
 
+			
+			
 			this.listResults = this.businessUtilisateur
 					.rechercherTrajetParVilleDepart(dateToConvert, villeDepart,
 							statut);
