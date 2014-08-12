@@ -1,7 +1,9 @@
 package fr.afcepf.atod21.coVoiturage.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -19,13 +21,13 @@ public class Adresse implements Serializable {
 	@Column(name="id_adresse")
 	private int idAdresse;
 
-	@Column(name="nom_voie")
+    private String numero;
+
+    @Column(name="type_voie")
+    private String typeVoie;
+
+    @Column(name="nom_voie")
 	private String nomVoie;
-
-	private String numero;
-
-	@Column(name="type_voie")
-	private String typeVoie;
 
 	//bi-directional many-to-one association to Ville
 	@ManyToOne
@@ -100,10 +102,33 @@ public class Adresse implements Serializable {
 		return utilisateur;
 	}
 
-	@Override
-	public String toString() {
-		return "Adresse [idAdresse=" + idAdresse + ", nomVoie=" + nomVoie
-				+ ", numero=" + numero + ", typeVoie=" + typeVoie + ", ville="
-				+ ville + "]";
-	}
+    /**
+     * @param paramNumero
+     * @param paramTypeVoie
+     * @param paramNomVoie
+     * @param paramVille
+     * @param paramUtilisateurs
+     */
+    public Adresse(String paramNumero, String paramTypeVoie,
+            String paramNomVoie, Ville paramVille,
+            List<Utilisateur> paramUtilisateurs) {
+        super();
+        numero = paramNumero;
+        typeVoie = paramTypeVoie;
+        nomVoie = paramNomVoie;
+        ville = paramVille;
+        utilisateurs = paramUtilisateurs;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Adresse [idAdresse=" + idAdresse + ", numero=" + numero
+                + ", typeVoie=" + typeVoie + ", nomVoie=" + nomVoie
+                + ", ville=" + ville + ", utilisateurs=" + utilisateurs + "]";
+    }
+
+
 }

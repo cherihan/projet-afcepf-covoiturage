@@ -23,38 +23,29 @@ public class Utilisateur implements Serializable {
 	private int idUtilisateur;
 
 	private String civilite;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String password;
+    private String telephone;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_naissance")
 	private Date dateNaissance;
 
-	private String email;
+    @Column(name="type_vehicule")
+    private String typeVehicule;
 
-	private String nom;
+    @Column(name="permis_conduire")
+	private String permisConduire;
 
-	private String password;
+    //bi-directional many-to-one association to Adresse
+    @ManyToOne
+    private Adresse adresse;
 
-	@Column(name="permis_conduire")
-	private byte permisConduire;
-
-	private String prenom;
-
-	private String telephone;
-
-	@Column(name="type_vehicule")
-	private String typeVehicule;
-
-	//bi-directional many-to-one association to Avi
+    //bi-directional many-to-one association to Avis
 	@OneToMany(mappedBy="utilisateur")
 	private List<Avis> avis;
-
-	//bi-directional many-to-one association to CommentaireTrajet
-	@OneToMany(mappedBy="utilisateur")
-	private List<CommentaireTrajet> commentaireTrajets;
-
-	//bi-directional many-to-one association to Adresse
-	@ManyToOne
-	private Adresse adresse;
 
 	//bi-directional many-to-many association to Trajet
 	@ManyToMany()
@@ -68,6 +59,10 @@ public class Utilisateur implements Serializable {
 			}
 		)
 	private List<Trajet> trajets;
+
+    //bi-directional one-to-many association to Carte
+    @OneToMany(mappedBy="utilisateur")
+    private List<Carte> cartes;
 
 	public Utilisateur() {
 	}
@@ -120,11 +115,11 @@ public class Utilisateur implements Serializable {
 		this.password = password;
 	}
 
-	public byte getPermisConduire() {
+	public String getPermisConduire() {
 		return this.permisConduire;
 	}
 
-	public void setPermisConduire(byte permisConduire) {
+	public void setPermisConduire(String permisConduire) {
 		this.permisConduire = permisConduire;
 	}
 
@@ -174,28 +169,6 @@ public class Utilisateur implements Serializable {
 		return avi;
 	}
 
-	public List<CommentaireTrajet> getCommentaireTrajets() {
-		return this.commentaireTrajets;
-	}
-
-	public void setCommentaireTrajets(List<CommentaireTrajet> commentaireTrajets) {
-		this.commentaireTrajets = commentaireTrajets;
-	}
-
-	public CommentaireTrajet addCommentaireTrajet(CommentaireTrajet commentaireTrajet) {
-		getCommentaireTrajets().add(commentaireTrajet);
-		commentaireTrajet.setUtilisateur(this);
-
-		return commentaireTrajet;
-	}
-
-	public CommentaireTrajet removeCommentaireTrajet(CommentaireTrajet commentaireTrajet) {
-		getCommentaireTrajets().remove(commentaireTrajet);
-		commentaireTrajet.setUtilisateur(null);
-
-		return commentaireTrajet;
-	}
-
 	public Adresse getAdresse() {
 		return this.adresse;
 	}
@@ -212,13 +185,69 @@ public class Utilisateur implements Serializable {
 		this.trajets = trajets;
 	}
 
-	@Override
-	public String toString() {
-		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", civilite="
-				+ civilite + ", dateNaissance=" + dateNaissance + ", email="
-				+ email + ", nom=" + nom + ", password=" + password
-				+ ", permisConduire=" + permisConduire + ", prenom=" + prenom
-				+ ", telephone=" + telephone + ", typeVehicule=" + typeVehicule
-				+ "]";
-	}
+	/**
+     * @return the cartes
+     */
+    public List<Carte> getCartes() {
+        return cartes;
+    }
+
+    /**
+     * @param paramCartes the cartes to set
+     */
+    public void setCartes(List<Carte> paramCartes) {
+        cartes = paramCartes;
+    }
+
+    /**
+     * @param paramCivilite
+     * @param paramNom
+     * @param paramPrenom
+     * @param paramEmail
+     * @param paramPassword
+     * @param paramTelephone
+     * @param paramDateNaissance
+     * @param paramTypeVehicule
+     * @param paramPermisConduire
+     * @param paramAdresse
+     * @param paramAvis
+     * @param paramTrajets
+     * @param paramCartes
+     */
+    public Utilisateur(String paramCivilite, String paramNom,
+            String paramPrenom, String paramEmail, String paramPassword,
+            String paramTelephone, Date paramDateNaissance,
+            String paramTypeVehicule, String paramPermisConduire,
+            Adresse paramAdresse, List<Avis> paramAvis,
+            List<Trajet> paramTrajets, List<Carte> paramCartes) {
+        super();
+        civilite = paramCivilite;
+        nom = paramNom;
+        prenom = paramPrenom;
+        email = paramEmail;
+        password = paramPassword;
+        telephone = paramTelephone;
+        dateNaissance = paramDateNaissance;
+        typeVehicule = paramTypeVehicule;
+        permisConduire = paramPermisConduire;
+        adresse = paramAdresse;
+        avis = paramAvis;
+        trajets = paramTrajets;
+        cartes = paramCartes;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Utilisateur [idUtilisateur=" + idUtilisateur + ", civilite="
+                + civilite + ", nom=" + nom + ", prenom=" + prenom + ", email="
+                + email + ", password=" + password + ", telephone=" + telephone
+                + ", dateNaissance=" + dateNaissance + ", typeVehicule="
+                + typeVehicule + ", permisConduire=" + permisConduire
+                + ", adresse=" + adresse + ", avis=" + avis + ", trajets="
+                + trajets + ", cartes=" + cartes + "]";
+    }
+
 }

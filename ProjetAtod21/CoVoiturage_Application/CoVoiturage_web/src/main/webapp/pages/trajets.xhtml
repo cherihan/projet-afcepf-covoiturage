@@ -10,27 +10,29 @@
 
 	<ui:define name="css">
 		<link rel="stylesheet" href="../resources/css/common-style.css" />
-		<link rel="stylesheet"
-			href="../resources/css/jquery-ui-1.10.4.custom.css" />
+		<link rel="stylesheet" href="../resources/css/jquery-ui-1.10.4.custom.css" />
 		<link rel="stylesheet" href="../resources/css/histoTrajets.css" />
-
 	</ui:define>
 
 	<ui:define name="javascript">
 		<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script>
-		<script type="text/javascript"
-			src="../resources/js/jquery-ui-1.10.4.custom.js"></script>
-		<script type="text/javascript"
-			src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.custom.js"></script>
+		<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script>
 		<script type="text/javascript" src="../resources/js/index.js"></script>
 	</ui:define>
 
 	<ui:define name="content">
+		<div>
+			<h:outputLink styleClass="linkReturnIndex" value="../pages/index.xhtml">
+				<h:graphicImage value="../resources/image/home.png" title="Retour à la page d'accueil" />
+			</h:outputLink>
+		</div>
 		<div class="formHistoTrajet">
 			<h:form>
 				<ul>
-					<li><h:outputLink styleClass="linkResearch"
-							value="../pages/creerTrajet.xhtml">Créer un trajet</h:outputLink></li>
+					<li><h:outputLink styleClass="linkResearch" value="../pages/creerTrajet.xhtml">
+						Créer un trajet
+					</h:outputLink></li>
 
 				</ul>
 				<fieldset>
@@ -39,78 +41,111 @@
 					<br /> <br />
 
 					<h:commandLink styleClass="classLink"
-						action="#{histoTrajetMBean.histoTrajets(connectionMBean.user, 'en cours')}">
-						<f:verbatim>Mes trajets en cours</f:verbatim>
+								   action="#{histoTrajetMBean.histoAllTrajets(connectionMBean.user)}">
+						<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoAll}">Tous mes trajets</h:outputLabel>
+						<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoAll}">
+							Tous mes trajets
+						</h:outputLabel>
 					</h:commandLink>
 
 					<h:commandLink styleClass="classLink"
-						action="#{histoTrajetMBean.histoTrajets(connectionMBean.user, 'effectues')}">
-						<f:verbatim>Mes trajets effectués</f:verbatim>
+								   action="#{histoTrajetMBean.histoTrajetsByType(connectionMBean.user, 'en cours')}">
+						<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoEnCours}">Mes trajets en cours</h:outputLabel>
+						<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoEnCours}">
+							Mes trajets en cours
+						</h:outputLabel>
 					</h:commandLink>
 
 					<h:commandLink styleClass="classLink"
-						action="#{histoTrajetMBean.histoTrajets(connectionMBean.user, 'proposes')}">
-						<f:verbatim>Mes trajets proposés</f:verbatim>
+								   action="#{histoTrajetMBean.histoTrajetsByType(connectionMBean.user, 'terminé')}">
+						<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoTermines}">Mes trajets terminés</h:outputLabel>
+						<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoTermines}">
+							Mes trajets terminés
+						</h:outputLabel>
+					</h:commandLink>
+
+					<h:commandLink styleClass="classLink"
+								   action="#{histoTrajetMBean.histoTrajetsByType(connectionMBean.user, 'proposé')}">
+						<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoProposes}">Mes trajets proposés</h:outputLabel>
+						<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoProposes}">
+							Mes trajets proposés
+						</h:outputLabel>
 					</h:commandLink>
 					<br /> <br />
+					
 					<h:panelGroup rendered="#{histoTrajetMBean.afficheHistoTrajets}">
-						<legend>
-							<h:outputLabel value="#{histoTrajetMBean.typeHistoTrajet}" />
-						</legend>
-
-						<h:panelGroup
-							rendered="#{!empty histoTrajetMBean.listeHistoTrajets}">
-							<h:dataTable cellpadding="13" cellspacing="13"
+						<h:panelGroup rendered="#{!empty histoTrajetMBean.listeHistoTrajets}">
+						
+							<h:dataTable cellpadding="20" cellspacing="30"
 								styleClass="tableResultsTrajets" rowClasses="rowPair, rowInpair"
 								headerClass="styleHeaderTableResultsTrajets"
 								columnClasses="column1, column2, column3"
 								value="#{histoTrajetMBean.listeHistoTrajets}" var="trajet">
+
+								<h:column rendered="#{histoTrajetMBean.activeHistoAll}">
+									<f:facet name="header">
+										<h:outputText value="Statut du trajet" />
+										<br /><br />
+										<h:commandLink action="#{order.sortByOrderAsc(histoTrajetMBean.listeHistoTrajets)}">
+    										<h:graphicImage value="../resources/image/fleche-asc.png" title="Trier par ordre croissant" />
+    			   						</h:commandLink>
+										<h:commandLink action="#{order.sortByOrderDesc(histoTrajetMBean.listeHistoTrajets)}">
+    										<h:graphicImage value="../resources/image/fleche-desc.png" title="Trier par ordre décroissant" />
+    			   						</h:commandLink>
+									</f:facet>
+									<h:outputLabel value="#{trajet.statut}" />
+								</h:column>
+
 								<h:column>
 									<f:facet name="header">
 										<h:outputText value="Conducteur" />
 									</f:facet>
-									<h:outputLabel
-										value="#{connectionMBean.user.civilite} #{connectionMBean.user.nom} #{connectionMBean.user.prenom}" />
+									<h:outputLabel rendered="#{connectionMBean.user.idUtilisateur != trajet.conducteurIdUser}"
+										value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).civilite} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).nom} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).prenom}" />
+									<h:outputLabel rendered="#{connectionMBean.user.idUtilisateur == trajet.conducteurIdUser}">
+										<b>Moi</b>
+									</h:outputLabel>
 								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Type de véhicule" />
+									</f:facet>
+									<h:outputLabel value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).typeVehicule}" />
+								</h:column>
+								
 								<h:column>
 									<f:facet name="header">
 										<h:outputText value="Date et heure de départ" />
 									</f:facet>
 									<h:outputLabel value="#{trajet.dateDepart}">
 
-										<f:convertDateTime pattern="dd/MM/yy hh:mm"
+										<f:convertDateTime pattern="dd/MM/yyyy hh:mm"
 											timeZone="Europe/Paris" />
 									</h:outputLabel>
 								</h:column>
+								
 								<h:column>
 									<f:facet name="header">
 										<h:outputText value="Ville de départ" />
 									</f:facet>
 									<h:outputLabel value="#{trajet.villeDepart.nom}" />
 								</h:column>
+								
 								<h:column>
 									<f:facet name="header">
 										<h:outputText value="Ville d'arrivée" />
 									</f:facet>
 									<h:outputLabel value="#{trajet.villeArrivee.nom}" />
 								</h:column>
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Type de véhicule" />
-									</f:facet>
-									<h:outputLabel value="#{connectionMBean.user.typeVehicule}" />
-								</h:column>
 
 								<h:column>
-
 									<f:facet name="header">
 										<h:outputText value="Action" />
 									</f:facet>
-
-
 									<h:commandLink styleClass="classHistoLink"
 										action="#{histoTrajetMBean.consulterTrajet(trajet.idTrajet)}"
-										value="Détail">
+										value="Voir détail">
 									</h:commandLink>
 									<h:commandLink styleClass="classHistoLink"
 										action="#{histoTrajetMBean.supprimerTrajet(trajet.idTrajet)}"

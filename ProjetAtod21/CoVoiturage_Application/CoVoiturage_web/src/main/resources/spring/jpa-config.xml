@@ -9,29 +9,23 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  
-  <!-- configuration de JPA intégré dans Spring 
-       cette config utilise systématiquement META-INF/persistence.xml -->
-  <bean id="emf"
-    class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-    <!-- injection de "myDataSource" configuré dans  datasource-config.xml  -->
-    <property name="dataSource" ref="dataSource"/>
- </bean>
+	<!-- configuration de JPA intégré dans Spring 
+	cette config utilise systématiquement META-INF/persistence.xml -->
+	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<!-- injection de "myDataSource" configuré dans  datasource-config.xml  -->
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 
-<!-- gestionnaire de transaction spring compatible jpa -->
-<bean id="txManager"
-    class="org.springframework.orm.jpa.JpaTransactionManager">
-     <property name="entityManagerFactory" ref="emf"/>
-</bean>
+	<!-- gestionnaire de transaction spring compatible jpa -->
+	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	     <property name="entityManagerFactory" ref="emf"/>
+	</bean>
 
-<!-- pour demander à Spring d'interpreter @Transactional -->
+	<!-- pour demander à Spring d'interpreter @Transactional -->
+	<tx:annotation-driven  transaction-manager="txManager"  />
 
-
-
-<tx:annotation-driven  transaction-manager="txManager"  />
-
-<!-- Annotation indispensable pour la prise en compte de 
-     @PersistenceContext() par Spring -->
-<bean class=
-"org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	<!-- Annotation indispensable pour la prise en compte de 
+	     @PersistenceContext() par Spring -->
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
    
 </beans>

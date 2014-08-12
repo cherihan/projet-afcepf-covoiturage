@@ -1,7 +1,9 @@
 package fr.afcepf.atod21.coVoiturage.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -19,10 +21,10 @@ public class Ville implements Serializable {
 	@Column(name="id_ville")
 	private int idVille;
 
-	@Column(name="code_postal")
-	private String codePostal;
+    private String nom;
 
-	private String nom;
+    @Column(name="code_postal")
+	private String codePostal;
 
 	private String pays;
 
@@ -139,9 +141,35 @@ public class Ville implements Serializable {
 		return trajets2;
 	}
 
-	@Override
-	public String toString() {
-		return "Ville [idVille=" + idVille + ", nom=" + nom + "]";
-	}
+    /**
+     * @param paramNom
+     * @param paramCodePostal
+     * @param paramPays
+     * @param paramAdresses
+     * @param paramTrajets1
+     * @param paramTrajets2
+     */
+    public Ville(String paramNom, String paramCodePostal, String paramPays,
+            List<Adresse> paramAdresses, List<Trajet> paramTrajets1,
+            List<Trajet> paramTrajets2) {
+        super();
+        nom = paramNom;
+        codePostal = paramCodePostal;
+        pays = paramPays;
+        adresses = paramAdresses;
+        trajets1 = paramTrajets1;
+        trajets2 = paramTrajets2;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Ville [idVille=" + idVille + ", nom=" + nom + ", codePostal="
+                + codePostal + ", pays=" + pays + ", adresses=" + adresses
+                + ", trajets1=" + trajets1 + ", trajets2=" + trajets2 + "]";
+    }
+
 
 }

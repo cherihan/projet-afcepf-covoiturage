@@ -1,6 +1,7 @@
 package fr.afcepf.atod21.coVoiturage.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -23,13 +24,13 @@ public class Avis implements Serializable {
 
 	private String note;
 
-	//bi-directional many-to-one association to Trajet
+    //bi-directional many-to-one association to Utilisateur
+    @ManyToOne
+    private Utilisateur utilisateur;
+
+    //bi-directional many-to-one association to Trajet
 	@ManyToOne
 	private Trajet trajet;
-
-	//bi-directional many-to-one association to Utilisateur
-	@ManyToOne
-	private Utilisateur utilisateur;
 
 	public Avis() {
 	}
@@ -73,5 +74,30 @@ public class Avis implements Serializable {
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
+
+    /**
+     * @param paramContenu
+     * @param paramNote
+     * @param paramUtilisateur
+     * @param paramTrajet
+     */
+    public Avis(String paramContenu, String paramNote,
+            Utilisateur paramUtilisateur, Trajet paramTrajet) {
+        super();
+        contenu = paramContenu;
+        note = paramNote;
+        utilisateur = paramUtilisateur;
+        trajet = paramTrajet;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Avis [idAvis=" + idAvis + ", contenu=" + contenu + ", note="
+                + note + ", utilisateur=" + utilisateur + ", trajet=" + trajet
+                + "]";
+    }
 
 }

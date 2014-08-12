@@ -14,10 +14,6 @@
 	
 }
 
-.formHistoTrajet fieldset legend{
-	font-weight: bold;
-}
-
 .formHistoTrajet fieldset .classDetailHisto {
 	margin-top: 10px;
 	margin-left: 15px;
@@ -32,7 +28,7 @@
 
 .formHistoTrajet fieldset .classLink {
 	margin-top: 10px;
-	color: black;
+	color: maroon;
 	margin-left: 15px;
 	font-size: 13px;
 	text-decoration: none;
@@ -41,6 +37,13 @@
 .formHistoTrajet fieldset .classLink:HOVER {
 	border-bottom: 2px solid maroon;
 	font-size: 12px;
+	font-weight: bold;
+}
+
+.formHistoTrajet fieldset .classLink .classRendered {
+	border-bottom: 2px solid maroon;
+	font-size: 12px;
+	font-weight: bold;
 }
 
 .formHistoTrajet fieldset .classHistoLink {
@@ -48,7 +51,7 @@
 	margin-right: 10px;
 	color: maroon;
 	text-decoration: none;
-	font-weight: bold;
+	border-bottom: 1px solid maroon;
 }
 
 .formHistoTrajet fieldset .classHistoLink:HOVER {

@@ -21,188 +21,155 @@ import fr.afcepf.atod21.coVoiturage.common.Common;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Ville;
+import fr.afcepf.atod21.coVoiturage.utils.Consts;
 
 @ManagedBean
 @SessionScoped
 public class TrajetMBean {
 
-	private Trajet trajet = new Trajet();
+    private Trajet trajet = new Trajet();
+    private String dateDepart;
+    private String nbPassagersSelected;
+    private Ville villeDepart = new Ville();
+    private Ville villeArrivee = new Ville();
+    private List<Ville> listVilles = new ArrayList<Ville>();
+    private List<String> listNomVilles = new ArrayList<String>();
+    private Map<String, Ville> mapVilles = new HashMap<String, Ville>();
 
-	private String dateDepart;
-	private String nbPassagersSelected;
+    @ManagedProperty(value = "#{businessTrajetImpl}")
+    private IBusinessTrajet businessTrajet;
 
-	private Ville villeDepart = new Ville();
-	private Ville villeArrivee = new Ville();
+    @ManagedProperty(value = "#{businessUtilisateurImpl}")
+    private IBusinessUtilisateur businessUtilisateur;
 
-	private List<Ville> listVilles = new ArrayList<Ville>();
-	private List<String> listNomVilles = new ArrayList<String>();
+    @PostConstruct
+    public void init() {
+        this.listVilles = businessTrajet.getAllVilles();
+        for (Ville v : this.listVilles) {
+            mapVilles.put(v.getNom(), v);
+            this.listNomVilles.add(v.getNom());
+        }
+    }
 
-	private Map<String, Ville> mapVilles = new HashMap<String, Ville>();
+    public String creerTrajet(Utilisateur userEnSession) {
+        String redirection = "success";
+        this.villeDepart = this.mapVilles.get(this.villeDepart.getNom());
+        this.villeArrivee = this.mapVilles.get(this.villeArrivee.getNom());
+        Date dateDepart = Common.convertDate(this.dateDepart);
+        int nbPassagersMax = Integer.parseInt(this.nbPassagersSelected);
+        Trajet trajetToInsert = new Trajet(new Date(), userEnSession.getIdUtilisateur(), dateDepart, villeDepart,
+                                            villeArrivee, nbPassagersMax, nbPassagersMax, trajet.getTarif());
+        Integer idTrajet = businessTrajet.creerTrajet(trajetToInsert, userEnSession);
+        FacesMessage message = new FacesMessage("Votre trajet a été crée avec succès !");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        if (idTrajet == null) {
+            redirection = "error";
+        }
+        clearFormUtilisateur();
+        return redirection;
+    }
 
-	@ManagedProperty(value = "#{businessTrajetImpl}")
-	private IBusinessTrajet businessTrajet;
+    public String annuler() {
+        clearFormUtilisateur();
+        return "cancel";
+    }
 
-	@ManagedProperty(value = "#{businessUtilisateurImpl}")
-	private IBusinessUtilisateur businessUtilisateur;
+    private void clearFormUtilisateur() {
+        HttpSession session = ((HttpServletRequest) FacesContext
+                .getCurrentInstance().getExternalContext().getRequest())
+                .getSession();
+        UtilisateurMBean utilisateurBean = (UtilisateurMBean) session.getAttribute("utilisateurMBean");
+        utilisateurBean.setDateDepart("");
+        utilisateurBean.setVilleDepart(null);
+        utilisateurBean.setVilleArrivee(null);
+    }
 
-	@PostConstruct
-	public void init() {
+    public String supprimerTrajet() {
+        return "";
+    }
 
-		this.listVilles = businessTrajet.getAllVilles();
+    public String ajouterCommentaireTrajet() {
+        return "";
+    }
 
-		for (Ville v : this.listVilles) {
+    public IBusinessTrajet getBusinessTrajet() {
+        return businessTrajet;
+    }
 
-			mapVilles.put(v.getNom(), v);
-			this.listNomVilles.add(v.getNom());
+    public void setBusinessTrajet(IBusinessTrajet businessTrajet) {
+        this.businessTrajet = businessTrajet;
+    }
 
-		}
+    public Trajet getTrajet() {
+        return trajet;
+    }
 
-	
+    public void setTrajet(Trajet trajet) {
+        this.trajet = trajet;
+    }
 
-	}
+    public String getDateDepart() {
+        return dateDepart;
+    }
 
-	public String creerTrajet(Utilisateur userEnSession) {
+    public void setDateDepart(String dateDepart) {
+        this.dateDepart = dateDepart;
+    }
 
-		String redirection = "success";
+    public String getNbPassagersSelected() {
+        return nbPassagersSelected;
+    }
 
-		this.villeDepart = this.mapVilles.get(this.villeDepart.getNom());
+    public void setNbPassagersSelected(String nbPassagersSelected) {
+        this.nbPassagersSelected = nbPassagersSelected;
+    }
 
-		this.villeArrivee = this.mapVilles.get(this.villeArrivee.getNom());
+    public List<Ville> getListVilles() {
+        return listVilles;
+    }
 
-		Date dateDepart = Common.convertDate(this.dateDepart);
+    public void setListVilles(List<Ville> listVilles) {
+        this.listVilles = listVilles;
+    }
 
-		int nbPassagers = Integer.parseInt(this.nbPassagersSelected);
+    public Map<String, Ville> getMapVilles() {
+        return mapVilles;
+    }
 
-		Trajet trajetToInsert = new Trajet(dateDepart, nbPassagers, "en cours",
-				trajet.getTarif(), villeDepart, villeArrivee);
+    public void setMapVilles(Map<String, Ville> mapVilles) {
+        this.mapVilles = mapVilles;
+    }
 
-		Integer idTrajet = businessTrajet.creerTrajet(trajetToInsert,
-				userEnSession);
+    public Ville getVilleDepart() {
+        return villeDepart;
+    }
 
-		FacesMessage message = new FacesMessage(
-				"Votre trajet a été crée avec succès !");
-		FacesContext.getCurrentInstance().addMessage(null, message);
+    public void setVilleDepart(Ville villeDepart) {
+        this.villeDepart = villeDepart;
+    }
 
-		if (idTrajet == null) {
+    public Ville getVilleArrivee() {
+        return villeArrivee;
+    }
 
-			redirection = "error";
-		}
+    public void setVilleArrivee(Ville villeArrivee) {
+        this.villeArrivee = villeArrivee;
+    }
 
-		clearFormUtilisateur();
+    public List<String> getListNomVilles() {
+        return listNomVilles;
+    }
 
-		return redirection;
+    public void setListNomVilles(List<String> listNomVilles) {
+        this.listNomVilles = listNomVilles;
+    }
 
-	}
+    public IBusinessUtilisateur getBusinessUtilisateur() {
+        return businessUtilisateur;
+    }
 
-	public String annuler() {
-
-		clearFormUtilisateur();
-
-
-		return "cancel";
-	}
-
-	private void clearFormUtilisateur() {
-		HttpSession session = ((HttpServletRequest) FacesContext
-				.getCurrentInstance().getExternalContext().getRequest())
-				.getSession();
-		UtilisateurMBean utilisateurBean = (UtilisateurMBean) session
-				.getAttribute("utilisateurMBean");
-
-		utilisateurBean.setDateDepart("");
-		utilisateurBean.setVilleDepart(null);
-		utilisateurBean.setVilleArrivee(null);
-
-	}
-
-
-
-	public String supprimerTrajet() {
-		return "";
-	}
-
-	public String ajouterCommentaireTrajet() {
-		return "";
-	}
-
-	public IBusinessTrajet getBusinessTrajet() {
-		return businessTrajet;
-	}
-
-	public void setBusinessTrajet(IBusinessTrajet businessTrajet) {
-		this.businessTrajet = businessTrajet;
-	}
-
-	public Trajet getTrajet() {
-		return trajet;
-	}
-
-	public void setTrajet(Trajet trajet) {
-		this.trajet = trajet;
-	}
-
-	public String getDateDepart() {
-		return dateDepart;
-	}
-
-	public void setDateDepart(String dateDepart) {
-		this.dateDepart = dateDepart;
-	}
-
-	public String getNbPassagersSelected() {
-		return nbPassagersSelected;
-	}
-
-	public void setNbPassagersSelected(String nbPassagersSelected) {
-		this.nbPassagersSelected = nbPassagersSelected;
-	}
-
-	public List<Ville> getListVilles() {
-		return listVilles;
-	}
-
-	public void setListVilles(List<Ville> listVilles) {
-		this.listVilles = listVilles;
-	}
-
-	public Map<String, Ville> getMapVilles() {
-		return mapVilles;
-	}
-
-	public void setMapVilles(Map<String, Ville> mapVilles) {
-		this.mapVilles = mapVilles;
-	}
-
-	public Ville getVilleDepart() {
-		return villeDepart;
-	}
-
-	public void setVilleDepart(Ville villeDepart) {
-		this.villeDepart = villeDepart;
-	}
-
-	public Ville getVilleArrivee() {
-		return villeArrivee;
-	}
-
-	public void setVilleArrivee(Ville villeArrivee) {
-		this.villeArrivee = villeArrivee;
-	}
-
-	public List<String> getListNomVilles() {
-		return listNomVilles;
-	}
-
-	public void setListNomVilles(List<String> listNomVilles) {
-		this.listNomVilles = listNomVilles;
-	}
-
-	public IBusinessUtilisateur getBusinessUtilisateur() {
-		return businessUtilisateur;
-	}
-
-	public void setBusinessUtilisateur(IBusinessUtilisateur businessUtilisateur) {
-		this.businessUtilisateur = businessUtilisateur;
-	}
+    public void setBusinessUtilisateur(IBusinessUtilisateur businessUtilisateur) {
+        this.businessUtilisateur = businessUtilisateur;
+    }
 
 }
