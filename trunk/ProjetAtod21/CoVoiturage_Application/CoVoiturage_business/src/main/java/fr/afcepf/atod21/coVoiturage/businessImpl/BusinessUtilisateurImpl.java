@@ -61,19 +61,15 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 	}
 
 	@Override
-	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart,
-			String villeArrivee, String statut) {
+	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart, String villeArrivee) {
 
-		return daoUtilisateur.rechercherTrajet(dateDepart, villeDepart,
-				villeArrivee, statut);
+		return daoUtilisateur.rechercherTrajet(dateDepart, villeDepart, villeArrivee);
 	}
 
 	@Override
-	public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart,
-			String villeDepart, String statut) {
+	public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart, String villeDepart) {
 
-		return daoUtilisateur.rechercherTrajetParVilleDepart(dateDepart,
-				villeDepart, statut);
+		return daoUtilisateur.rechercherTrajetParVilleDepart(dateDepart, villeDepart);
 	}
 
 	@Override

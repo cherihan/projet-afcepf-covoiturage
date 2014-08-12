@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import fr.afcepf.atod21.coVoiturage.utils.Consts;
+
 import java.util.Date;
 import java.util.List;
 
@@ -21,16 +23,36 @@ public class Trajet implements Serializable {
 	@Column(name = "id_trajet")
 	private int idTrajet;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_depart")
-	private Date dateDepart;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_creation")
+    private Date dateCreation;
+    
+    @Column(name = "conducteur_id_user")
+    private int conducteurIdUser;
 
-	@Column(name = "nb_passagers")
-	private int nbPassagers;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_depart")
+    private Date dateDepart;
+    
+    // bi-directional many-to-one association to Ville
+    @ManyToOne
+    @JoinColumn(name = "ville_depart_id")
+    private Ville villeDepart;
 
+    // bi-directional many-to-one association to Ville
+    @ManyToOne
+    @JoinColumn(name = "ville_arrivee_id")
+    private Ville villeArrivee;
+
+    @Column(name = "nb_passagers_max")
+    private int nbPassagersMax;
+    
+    @Column(name = "nb_passagers_restant")
+    private int nbPassagersRestant;
+    
+    private Integer tarif;
 	private String statut;
-	private Integer tarif;
-
+    
 	// bi-directional many-to-one association to Avi
 	@OneToMany(mappedBy = "trajet")
 	private List<Avis> avis;
@@ -39,36 +61,94 @@ public class Trajet implements Serializable {
 	@OneToMany(mappedBy = "trajet")
 	private List<CommentaireTrajet> commentaireTrajets;
 
-	// bi-directional many-to-one association to Ville
-	@ManyToOne
-	@JoinColumn(name = "ville_depart_id")
-	private Ville villeDepart;
-
-	// bi-directional many-to-one association to Ville
-	@ManyToOne
-	@JoinColumn(name = "ville_arrivee_id")
-	private Ville villeArrivee;
-
 	// bi-directional many-to-many association to Utilisateur
 	@ManyToMany(mappedBy = "trajets")
 	private List<Utilisateur> utilisateurs;
 
-	public Trajet() {
+	/**
+     * @return the dateCreation
+     */
+    public Date getDateCreation() {
+        return this.dateCreation;
+    }
+
+    /**
+     * @param paramDateCreation the dateCreation to set
+     */
+    public void setDateCreation(Date paramDateCreation) {
+        this.dateCreation = paramDateCreation;
+    }
+
+    /**
+     * @return the conducteurIdUser
+     */
+    public int getConducteurIdUser() {
+        return conducteurIdUser;
+    }
+
+    /**
+     * @param paramConducteurIdUser the conducteurIdUser to set
+     */
+    public void setConducteurIdUser(int paramConducteurIdUser) {
+        conducteurIdUser = paramConducteurIdUser;
+    }
+
+    /**
+     * @return the nbPassagersMax
+     */
+    public int getNbPassagersMax() {
+        return nbPassagersMax;
+    }
+
+    /**
+     * @param paramNbPassagersMax the nbPassagersMax to set
+     */
+    public void setNbPassagersMax(int paramNbPassagersMax) {
+        nbPassagersMax = paramNbPassagersMax;
+    }
+
+    /**
+     * @return the nbPassagersRestant
+     */
+    public int getNbPassagersRestant() {
+        return nbPassagersRestant;
+    }
+
+    /**
+     * @param paramNbPassagersRestant the nbPassagersRestant to set
+     */
+    public void setNbPassagersRestant(int paramNbPassagersRestant) {
+        nbPassagersRestant = paramNbPassagersRestant;
+    }
+
+    public Trajet() {
 	}
 
-	public Trajet(Date dateDepart, int nbPassagers, String statut, Integer tarif,
-			Ville villeDepart, Ville villeArrivee) {
-		super();
+	/**
+     * @param paramDateCreation
+     * @param paramConducteurIdUser
+     * @param paramDateDepart
+     * @param paramVilleDepart
+     * @param paramVilleArrivee
+     * @param paramNbPassagersMax
+     * @param paramNbPassagersRestant
+     * @param paramTarif
+     */
+    public Trajet(Date paramDateCreation, int paramConducteurIdUser, Date paramDateDepart, Ville paramVilleDepart,
+            Ville paramVilleArrivee, int paramNbPassagersMax, int paramNbPassagersRestant, Integer paramTarif) {
+        super();
+        dateCreation = paramDateCreation;
+        conducteurIdUser = paramConducteurIdUser;
+        dateDepart = paramDateDepart;
+        villeDepart = paramVilleDepart;
+        villeArrivee = paramVilleArrivee;
+        nbPassagersMax = paramNbPassagersMax;
+        nbPassagersRestant = paramNbPassagersRestant;
+        tarif = paramTarif;
+        statut = Consts.PROPOSE;
+    }
 
-		this.dateDepart = dateDepart;
-		this.nbPassagers = nbPassagers;
-		this.statut = statut;
-		this.tarif = tarif;
-		this.villeDepart = villeDepart;
-		this.villeArrivee = villeArrivee;
-	}
-
-	public int getIdTrajet() {
+    public int getIdTrajet() {
 		return this.idTrajet;
 	}
 
@@ -84,14 +164,6 @@ public class Trajet implements Serializable {
 		this.dateDepart = dateDepart;
 	}
 
-	public int getNbPassagers() {
-		return this.nbPassagers;
-	}
-
-	public void setNbPassagers(int nbPassagers) {
-		this.nbPassagers = nbPassagers;
-	}
-
 	public String getStatut() {
 		return this.statut;
 	}
@@ -100,7 +172,14 @@ public class Trajet implements Serializable {
 		this.statut = statut;
 	}
 
+    public Integer getTarif() {
+        return tarif;
+    }
 
+    public void setTarif(Integer tarif) {
+        this.tarif = tarif;
+    }
+    
 	public List<Avis> getAvis() {
 		return this.avis;
 	}
@@ -163,31 +242,27 @@ public class Trajet implements Serializable {
 		this.villeArrivee = villeArrivee;
 	}
 
-	public List<Utilisateur> getUtilisateurs() {
+	
+    public List<Utilisateur> getUtilisateurs() {
 		return this.utilisateurs;
 	}
 
 	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
 		this.utilisateurs = utilisateurs;
 	}
+	
 
-	@Override
-	public String toString() {
-		return "Trajet [idTrajet=" + idTrajet + ", dateDepart=" + dateDepart
-				+ ", nbPassagers=" + nbPassagers + ", statut=" + statut
-				+ ", tarif=" + tarif + ", villeDepart=" + villeDepart
-				+ ", villeArrivee=" + villeArrivee + ", utilisateurs="
-				+ utilisateurs + "]";
-	}
-
-	public Integer getTarif() {
-		return tarif;
-	}
-
-	public void setTarif(Integer tarif) {
-		this.tarif = tarif;
-	}
-
-
+	/* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Trajet [idTrajet=" + idTrajet + ", dateCreation="
+                + dateCreation + ", conducteurIdUser=" + conducteurIdUser
+                + ", dateDepart=" + dateDepart + ", villeDepart=" + villeDepart
+                + ", villeArrivee=" + villeArrivee + ", nbPassagersMax="
+                + nbPassagersMax + ", nbPassagersRestant=" + nbPassagersRestant
+                + ", tarif=" + tarif + ", statut=" + statut + "]";
+    }
 
 }

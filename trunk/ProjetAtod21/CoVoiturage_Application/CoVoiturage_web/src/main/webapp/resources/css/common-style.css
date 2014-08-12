@@ -328,3 +328,13 @@ h4 {
 #footer ul li a:HOVER {
 	border-bottom: 4px solid white;
 }
+
+/******************************* Common *************************************/
+
+.linkReturnIndex {
+	color: maroon;
+	font-size: 12px;
+	margin-left: 20px;
+	padding: 5px;
+	text-decoration: none;
+}

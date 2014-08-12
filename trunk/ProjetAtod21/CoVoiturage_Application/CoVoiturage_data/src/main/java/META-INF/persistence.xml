@@ -13,6 +13,7 @@
 		<class>fr.afcepf.atod21.coVoiturage.entity.Trajet</class>
 		<class>fr.afcepf.atod21.coVoiturage.entity.Utilisateur</class>
 		<class>fr.afcepf.atod21.coVoiturage.entity.Ville</class>
+		<class>fr.afcepf.atod21.coVoiturage.entity.Carte</class>
 
 
 		<properties>

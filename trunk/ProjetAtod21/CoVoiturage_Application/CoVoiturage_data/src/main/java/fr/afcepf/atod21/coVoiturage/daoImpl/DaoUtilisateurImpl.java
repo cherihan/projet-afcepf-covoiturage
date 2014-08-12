@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.afcepf.atod21.coVoiturage.dao.IDaoUtilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
+import fr.afcepf.atod21.coVoiturage.utils.Consts;
 
 @Component
 @Transactional
@@ -56,15 +57,13 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 
 	@Override
 	public Utilisateur seConnecter(String email, String password) {
-
 		String requete = "SELECT user FROM Utilisateur user WHERE user.email = :emailUser and user.password = :passwordUser";
-
 		List<Utilisateur> liste = em.createQuery(requete, Utilisateur.class)
-										.setParameter("emailUser", email)
-										.setParameter("passwordUser", password).getResultList();
+									.setParameter("emailUser", email)
+									.setParameter("passwordUser", password)
+									.getResultList();
 		if (liste.size() != 0)
 			return liste.get(0);
-		
 		return null;
 	}
 
@@ -98,47 +97,41 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 	}
 
 	@Override
-	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart,
-			String villeArrivee, String statut) {
+	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart, String villeArrivee) {
 		System.out.println(" ----------- DAO --------------- rechercherAvecVilleArrivee");
 
 		String requete = "SELECT t FROM Trajet t INNER JOIN fetch t.utilisateurs WHERE t.villeDepart.nom=:villeDepart "
-				+ "AND t.villeArrivee.nom=:villeArrivee AND t.dateDepart=:dateDepart AND t.statut=:statut ";
+				+ "AND t.villeArrivee.nom=:villeArrivee AND t.dateDepart=:dateDepart AND (t.statut=:statut1 OR t.statut=:statut2)";
 
 		javax.persistence.Query query = em.createQuery(requete);
 		query.setParameter("dateDepart", dateDepart);
 		query.setParameter("villeDepart", villeDepart);
 		query.setParameter("villeArrivee", villeArrivee);
-		query.setParameter("statut", statut);
+        query.setParameter("statut1", Consts.PROPOSE);
+        query.setParameter("statut2", Consts.EN_COURS);
 
 		List<Trajet> listResults = query.getResultList();
-		System.out.println("----- DAO Size ----- " + listResults.size());
-		
-		
-		
 
 		return listResults;
 	}
 
 	@Override
-	public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart,
-			String villeDepart, String statut) {
+	public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart, String villeDepart) {
 
 		
 
-		String requete = "SELECT t FROM Trajet t INNER JOIN fetch t.utilisateurs  "
+		String requete = "SELECT t FROM Trajet t INNER JOIN fetch t.utilisateurs "
 				+ "WHERE t.villeDepart.nom=:villeDepart "
 				+ "AND t.dateDepart=:dateDepart "
-				+ "AND t.statut=:statut ";
+				+ "AND (t.statut=:statut1 OR t.statut=:statut2)";
 
 		javax.persistence.Query query = em.createQuery(requete);
 		query.setParameter("dateDepart", dateDepart);
 		query.setParameter("villeDepart", villeDepart);
-		query.setParameter("statut", statut);
+        query.setParameter("statut1", Consts.PROPOSE);
+        query.setParameter("statut2", Consts.EN_COURS);
 
 		List<Trajet> listResults = query.getResultList();
-
-		System.out.println("----- DAO Size ----- " + listResults.size());
 
 		return listResults;
 	}

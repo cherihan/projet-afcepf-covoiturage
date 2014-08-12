@@ -45,19 +45,14 @@ public class UtilisateurMBean {
 	}
 
 	public String sInscireTrajet(Trajet trajet, Utilisateur user) {
-
 		try {
 			businessUtilisateur.sInscrireTrajet(trajet, user);
 			FacesMessage message = new FacesMessage(
 					"Votre demande d'inscription à ce trajet est enregistrée !");
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return "";
 	}
 
@@ -72,42 +67,30 @@ public class UtilisateurMBean {
 	}
 
 	public String rechercherTrajet() {
-
-		String statut = "en cours";
 		String retour = "listerTrajets";
-
-		Date dateToConvert = Common.convertDate(this.dateDepart);
-
+		Date dateDeDepart = Common.convertDate(this.dateDepart);
 		if (this.villeArrivee == null || this.villeArrivee.trim().length() == 0) {
-
-			
-			
-			this.listResults = this.businessUtilisateur
-					.rechercherTrajetParVilleDepart(dateToConvert, villeDepart,
-							statut);
-
+			this.listResults = this.businessUtilisateur.rechercherTrajetParVilleDepart(dateDeDepart, villeDepart);
 		} else {
-
-			this.listResults = this.businessUtilisateur.rechercherTrajet(
-					dateToConvert, this.villeDepart, this.villeArrivee, statut);
-
+			this.listResults = this.businessUtilisateur.rechercherTrajet(dateDeDepart, this.villeDepart, this.villeArrivee);
 		}
 
 		if (listResults != null) {
 			this.displayTableResultsTrajets = true;
-
 		}
+
 		if (listResults.size() == 0 || listResults == null) {
-			FacesMessage message = new FacesMessage(
-					"Aucun resultat disponible !");
+			FacesMessage message = new FacesMessage("Aucun resultat disponible !");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			this.displayTableResultsTrajets = false;
 			retour = "error";
 		}
-
 		return retour;
-
 	}
+
+   public Utilisateur getUserById(int idUser) {
+       return this.businessUtilisateur.getUserById(idUser);
+    }
 
 	public String motDepasseOublie() {
 		// TODO
