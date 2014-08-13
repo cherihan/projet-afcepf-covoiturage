@@ -1,7 +1,6 @@
 .formHistoTrajet {
-	margin: auto;
-	width: 50%;
-	margin-top: 50px;
+	margin: 30px;
+	width: 79%;
 }
 
 .formHistoTrajet fieldset {
@@ -9,7 +8,7 @@
 	color: maroon;
 	border-radius: 3px;
 	border-color: maroon;
-	width: 99%;
+	width: 88%;
 	box-shadow: 5px 5px 5px 0 maroon;
 	
 }
@@ -29,7 +28,7 @@
 .formHistoTrajet fieldset .classLink {
 	margin-top: 10px;
 	color: maroon;
-	margin-left: 15px;
+	margin-left: 20px;
 	font-size: 13px;
 	text-decoration: none;
 }
@@ -60,9 +59,7 @@
 
 .formHistoTrajet ul {
 	list-style-type: none;
-	margin: 0;
-	width: 50%;
-	margin-bottom: 30px;
+	margin: 0 0 20px;
 	padding: 0;
 }
 
@@ -124,7 +121,6 @@
 
 .tableResultsTrajets {
 	border-collapse: collapse;
-	margin-top: 17px;
 }
 
 .titleTableResultsTrajets {
