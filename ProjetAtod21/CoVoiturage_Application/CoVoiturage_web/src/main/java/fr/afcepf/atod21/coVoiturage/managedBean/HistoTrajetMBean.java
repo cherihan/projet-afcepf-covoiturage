@@ -19,6 +19,8 @@ public class HistoTrajetMBean {
 	private List<Trajet> listeTrajetsEffectues;
 	private List<Trajet> listeTrajetsEnCours;
 	private List<Trajet> listeTrajetsProposes;
+    private boolean activeHistoConducteur = false;
+    private boolean activeHistoPassager = false;
     private boolean activeHistoEnCours = false;
     private boolean activeHistoTermines = false;
     private boolean activeHistoProposes = false;
@@ -28,21 +30,54 @@ public class HistoTrajetMBean {
 	@ManagedProperty(value = "#{businessTrajetImpl}")
 	private IBusinessTrajet businessTrajet;
 
-   public String histoAllTrajets(Utilisateur user) {
+	public String activeTypeHisto(String typeHisto) {
+   
+	    switch (typeHisto) {
+            case Consts.PASSAGER :
+                this.activeHistoPassager = true;
+                this.activeHistoConducteur = false;
+                this.activeHistoAll = false;
+                break;
+    
+            case Consts.CONDUCTEUR :
+                this.activeHistoPassager = false;
+                this.activeHistoConducteur = true;
+                this.activeHistoAll = false;
+                break;
+    
+            default:
+                break;
+        }
 
-        setListeHistoTrajets(businessTrajet.getAllHistoTrajets(user.getIdUtilisateur()));
         this.activeHistoEnCours = false;
         this.activeHistoTermines = false;
         this.activeHistoProposes = false;
+	    this.afficheHistoTrajets = false;
+	    return "";    
+	}
+
+    public String histoAllTrajets(Utilisateur user) {
+
+        setListeHistoTrajets(businessTrajet.getAllHistoTrajets(user.getIdUtilisateur()));
+        
+        this.activeHistoPassager = false;
+        this.activeHistoConducteur = false;
         this.activeHistoAll = true;
+        this.activeHistoEnCours = false;
+        this.activeHistoTermines = false;
+        this.activeHistoProposes = false;
         this.afficheHistoTrajets = true;
 
         return "";
     }
-   
+
 	public String histoTrajetsByType(Utilisateur user, String typeHistoTrajet) {
 
-		setListeHistoTrajets(businessTrajet.getHistoTrajetsByType(user.getIdUtilisateur(), typeHistoTrajet));
+	    if (this.activeHistoConducteur)
+	        setListeHistoTrajets(businessTrajet.getHistoTrajetsAsConductorByType(user.getIdUtilisateur(), typeHistoTrajet));
+	    else if (this.activeHistoPassager)
+            setListeHistoTrajets(businessTrajet.getHistoTrajetsAsPassengerByType(user.getIdUtilisateur(), typeHistoTrajet));
+	    
 	    this.activeHistoEnCours = false;
 	    this.activeHistoTermines = false;
         this.activeHistoProposes = false;
@@ -60,10 +95,8 @@ public class HistoTrajetMBean {
     
     		case Consts.PROPOSE :
     		    this.activeHistoProposes = true;
-    		    System.out.println("===> je suis dans le case PROPOSE.");
-    		    System.out.println("===> typeHistoTrajt = " + typeHistoTrajet);
     		    break;
-    			
+
     		default:
     			break;
 		}
@@ -71,12 +104,23 @@ public class HistoTrajetMBean {
 	}
 
 	public String consulterTrajet(int idTrajet) {
-
+        System.out.println("===> id trajet from consulter = " + idTrajet);
+        System.out.println("===> id trajet from consulter = " + idTrajet);
+        System.out.println("===> id trajet from consulter = " + idTrajet);
+        System.out.println("===> id trajet from consulter = " + idTrajet);
+        System.out.println("===> id trajet from consulter = " + idTrajet);
+        System.out.println("===> id trajet from consulter = " + idTrajet);
+        System.out.println("===> id trajet from consulter = " + idTrajet);
 		return "";
 	}
 
 	public String supprimerTrajet(int idTrajet) {
-
+        System.out.println("===> id trajet from supprimer = " + idTrajet);
+        System.out.println("===> id trajet from supprimer = " + idTrajet);
+        System.out.println("===> id trajet from supprimer = " + idTrajet);
+        System.out.println("===> id trajet from supprimer = " + idTrajet);
+        System.out.println("===> id trajet from supprimer = " + idTrajet);
+        System.out.println("===> id trajet from supprimer = " + idTrajet);
 		return "";
 	}
 
@@ -127,6 +171,34 @@ public class HistoTrajetMBean {
 	public void setListeHistoTrajets(List<Trajet> listeHistoTrajets) {
 		this.listeHistoTrajets = listeHistoTrajets;
 	}
+
+    /**
+     * @return the activeHistoConducteur
+     */
+    public boolean isActiveHistoConducteur() {
+        return activeHistoConducteur;
+    }
+
+    /**
+     * @param paramActiveHistoConducteur the activeHistoConducteur to set
+     */
+    public void setActiveHistoConducteur(boolean paramActiveHistoConducteur) {
+        activeHistoConducteur = paramActiveHistoConducteur;
+    }
+
+    /**
+     * @return the activeHistoPassager
+     */
+    public boolean isActiveHistoPassager() {
+        return activeHistoPassager;
+    }
+
+    /**
+     * @param paramActiveHistoPassager the activeHistoPassager to set
+     */
+    public void setActiveHistoPassager(boolean paramActiveHistoPassager) {
+        activeHistoPassager = paramActiveHistoPassager;
+    }
 
     /**
      * @return the activeHistoEnCours

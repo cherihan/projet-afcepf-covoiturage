@@ -60,24 +60,44 @@ public class DaoTrajetImpl implements IDaoTrajet {
 		
 		String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
 		Utilisateur u = (Utilisateur) em.createQuery(query).setParameter("idUser",idUser).getSingleResult();
+		System.out.println("===> taille = " + u.getTrajets().size());
 		return u.getTrajets();
 	}
 
    @Override
-    public List<Trajet> getHistoTrajetsByType(int idUser, String typeHistoTrajet) {
+    public List<Trajet> getHistoTrajetsAsConductorByType(int idUser, String typeHistoTrajet) {
         
         String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
         Utilisateur u = (Utilisateur) em.createQuery(query).setParameter("idUser",idUser).getSingleResult();
-        
+
         List<Trajet> listeAllTrajets = u.getTrajets();
+
         List<Trajet> listeTrajets = new ArrayList<Trajet>();
         if(listeAllTrajets != null) {
             for (Trajet t : listeAllTrajets) {
-                if (t.getStatut().equals(typeHistoTrajet))
+                if (t.getStatut().equals(typeHistoTrajet) && t.getConducteurIdUser() == idUser)
                     listeTrajets.add(t);
             }
         }
         return listeTrajets;
     }
+
+   @Override
+   public List<Trajet> getHistoTrajetsAsPassengerByType(int idUser, String typeHistoTrajet) {
+       
+       String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
+       Utilisateur u = (Utilisateur) em.createQuery(query).setParameter("idUser",idUser).getSingleResult();
+
+       List<Trajet> listeAllTrajets = u.getTrajets();
+
+       List<Trajet> listeTrajets = new ArrayList<Trajet>();
+       if(listeAllTrajets != null) {
+           for (Trajet t : listeAllTrajets) {
+               if (t.getStatut().equals(typeHistoTrajet) && t.getConducteurIdUser() != idUser)
+                   listeTrajets.add(t);
+           }
+       }
+       return listeTrajets;
+   }
 
 }

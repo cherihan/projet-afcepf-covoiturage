@@ -56,10 +56,16 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 		return listeTrajets;
 	}
 
-	@Override
-	public List<Trajet> getHistoTrajetsByType(int idUser, String typeHistoTrajet) {
-		List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsByType(idUser, typeHistoTrajet);
-		return listeTrajets;
-	}
+    @Override
+    public List<Trajet> getHistoTrajetsAsConductorByType(int idUser, String typeHistoTrajet) {
+        List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsAsConductorByType(idUser, typeHistoTrajet);
+        return listeTrajets;
+    }
+
+    @Override
+    public List<Trajet> getHistoTrajetsAsPassengerByType(int idUser, String typeHistoTrajet) {
+        List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsAsPassengerByType(idUser, typeHistoTrajet);
+        return listeTrajets;
+    }
 
 }

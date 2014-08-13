@@ -14,6 +14,7 @@ public interface IDaoTrajet {
 	void supprimerTrajet(int idTrajet, int idUser);
 	List<Ville> getAllVilles();
 	List<Trajet> getAllHistoTrajets(int idUser);
-	List<Trajet> getHistoTrajetsByType(int idUser, String typeHistoTrajet);
+    List<Trajet> getHistoTrajetsAsConductorByType(int idUser, String typeHistoTrajet);
+    List<Trajet> getHistoTrajetsAsPassengerByType(int idUser, String typeHistoTrajet);
 	
 }
