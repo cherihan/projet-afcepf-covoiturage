@@ -11,77 +11,85 @@ import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
 import fr.afcepf.atod21.coVoiturage.dao.IDaoUtilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
+import fr.afcepf.atod21.coVoiturage.utils.Consts;
 
 @Service
 @Transactional
 public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 
-	@Autowired
-	private IDaoUtilisateur daoUtilisateur;
+    @Autowired
+    private IDaoUtilisateur daoUtilisateur;
 
-	@Override
-	public void afficher() {
-		daoUtilisateur.afficher();
-	}
+    @Override
+    public void afficher() {
+        daoUtilisateur.afficher();
+    }
 
-	@Override
-	public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
+    @Override
+    public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
 
-		daoUtilisateur.sInscrireTrajet(trajet, user);
-		
+        int nbPlacesDispo = trajet.getNbPassagersRestant()-1;
+        
+        if (nbPlacesDispo == 0) {
+            trajet.setStatut(Consts.COMPLET);
+        } else if (nbPlacesDispo > 0) {
+            trajet.setStatut(Consts.EN_COURS);
+        }
+        trajet.setNbPassagersRestant(nbPlacesDispo);
+        daoUtilisateur.sInscrireTrajet(trajet, user);
 
-	}
+    }
 
-	@Override
-	public void seDesinscrireTrajet(Integer idTrajet, Integer idUser) {
-		// TODO Auto-generated method stub
+    @Override
+    public void seDesinscrireTrajet(Integer idTrajet, Integer idUser) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public void annulerInscriptionTrajet(Integer idTrajet, Integer idUser) {
-		// TODO Auto-generated method stub
+    @Override
+    public void annulerInscriptionTrajet(Integer idTrajet, Integer idUser) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public Utilisateur seConnecter(String email, String password) {
-		return daoUtilisateur.seConnecter(email, password);
-	}
+    @Override
+    public Utilisateur seConnecter(String email, String password) {
+        return daoUtilisateur.seConnecter(email, password);
+    }
 
-	@Override
-	public void seDeconnecter(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
+    @Override
+    public void seDeconnecter(Utilisateur utilisateur) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public void changerPassword(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
+    @Override
+    public void changerPassword(Utilisateur utilisateur) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart, String villeArrivee) {
+    @Override
+    public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart, String villeArrivee) {
 
-		return daoUtilisateur.rechercherTrajet(dateDepart, villeDepart, villeArrivee);
-	}
+        return daoUtilisateur.rechercherTrajet(dateDepart, villeDepart, villeArrivee);
+    }
 
-	@Override
-	public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart, String villeDepart) {
+    @Override
+    public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart, String villeDepart) {
 
-		return daoUtilisateur.rechercherTrajetParVilleDepart(dateDepart, villeDepart);
-	}
+        return daoUtilisateur.rechercherTrajetParVilleDepart(dateDepart, villeDepart);
+    }
 
-	@Override
-	public Integer creerCompte(Utilisateur user) {
-		return daoUtilisateur.creerCompte(user);
-	}
+    @Override
+    public Integer creerCompte(Utilisateur user) {
+        return daoUtilisateur.creerCompte(user);
+    }
 
-	@Override
-	public Utilisateur getUserById(Integer idUser) {
+    @Override
+    public Utilisateur getUserById(Integer idUser) {
 
-		return daoUtilisateur.getUserById(idUser);
-	}
+        return daoUtilisateur.getUserById(idUser);
+    }
 
 }
