@@ -7,7 +7,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>CoVoiturage_business</artifactId>
-
+	<packaging>jar</packaging>
+	
 	<properties>
 
 		<!-- Generic properties -->
