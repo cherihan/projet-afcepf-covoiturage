@@ -1,6 +1,5 @@
 package fr.afcepf.atod21.coVoiturage.managedBean;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
