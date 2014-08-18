@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="title">
+		Index
+	</ui:define>
+
+	<ui:define name="css">
+		<link rel="stylesheet" href="../resources/css/common-style.css" />
+		<link rel="stylesheet" href="../resources/css/jquery-ui-1.10.4.custom.css" />
+		<link rel="stylesheet" href="../resources/css/listerTrajets.css" />
+	</ui:define>
+
+	<ui:define name="javascript">
+	</ui:define>
+
+	<ui:define name="content">
+		<div>
+			<h4 style="">Voici la liste des trajets disponibles</h4>
+			<h:messages globalOnly="true" styleClass="messageSuccess" />
+			<h:form class="formListerTrajets">
+				<h:dataTable value="#{utilisateurMBean.listResults}" var="trajet"
+					cellpadding="13" cellspacing="13" styleClass="tableResultsTrajets"
+					rowClasses="rowPair, rowInpair"
+					headerClass="styleHeaderTableResultsTrajets"
+					columnClasses="column1, column2, column3"
+					rendered="#{utilisateurMBean.displayTableResultsTrajets}">
+
+					<h:column rendered="true">
+						<f:facet name="header">identifiant Trajet</f:facet>
+						<h:outputText value="#{trajet.idTrajet}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Conducteur</f:facet>
+						<h:outputText value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).civilite} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).nom} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).prenom}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Date et heure de depart</f:facet>
+						<h:outputText value="#{trajet.dateDepart}">
+							<f:convertDateTime pattern="dd/MM/yyyy hh:mm"
+								timeZone="Europe/Paris"     />
+						</h:outputText>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ville de depart</f:facet>
+						<h:outputText value="#{trajet.villeDepart.nom  }" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ville d'arrivee </f:facet>
+						<h:outputText value="#{trajet.villeArrivee.nom   }" />
+					</h:column>
+
+					<h:column >
+						<f:facet name="header">Statut</f:facet>
+						<h:outputText rendered="#{trajet.statut == constsMBean.COMPLET}" value="Complet" style="color:gray"/>
+						<h:outputText rendered="#{trajet.statut == constsMBean.PROPOSE}" value="Nouveau !" style="color:blue"/>
+						<h:outputText rendered="#{trajet.statut == constsMBean.EN_COURS}" value="Places disponibles" style="color:green"/>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Nombre de places disponible</f:facet>
+						<h:outputText value="#{trajet.nbPassagersRestant  }" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Tarif</f:facet>
+						<h:outputText value="#{trajet.tarif  }" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Type de vehicule</f:facet>
+						<ui:repeat value="#{trajet.utilisateurs.get(0)}" var="user">
+							<h:outputText value="#{user.typeVehicule}" />
+							<br />
+						</ui:repeat>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">S'inscire au trajet</f:facet>
+						<h:outputText rendered="#{trajet.nbPassagersRestant == 0}" value="#{constsMBean.COMPLET}" style="color:gray"/>
+						<h:outputText rendered="#{(trajet.nbPassagersRestant != 0) and (connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur))}" value=""/>
+						<h:commandLink rendered="#{(trajet.nbPassagersRestant != 0) and ((connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur)) or (not connectionMBean.userConnected))}"
+							action="#{utilisateurMBean.sInscireTrajet(trajet, connectionMBean.user)}">
+							<h:graphicImage value="../resources/image/edit.png" />
+						</h:commandLink>
+
+					</h:column>
+				</h:dataTable>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>
