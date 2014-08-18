@@ -9,5 +9,4 @@ cd /d %~dp0
 echo lancement de l'operation de dumpage :
 echo creation de la base de donnees 'db_covoiturage' + dumpage... 
 "%MYSQL_HOME%\bin\mysql" -uroot -pafcepf<db_covoiturage.sql
-echo operation terminee avec succes.
 pause
