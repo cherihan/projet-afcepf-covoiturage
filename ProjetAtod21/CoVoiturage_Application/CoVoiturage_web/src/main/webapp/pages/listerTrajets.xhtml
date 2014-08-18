@@ -30,6 +30,11 @@
 					columnClasses="column1, column2, column3"
 					rendered="#{utilisateurMBean.displayTableResultsTrajets}">
 
+					<h:column rendred="false">
+						<f:facet name="header">identifiant Trajet</f:facet>
+						<h:outputText value="#{trajet.}" />
+					</h:column>
+
 					<h:column>
 						<f:facet name="header">Conducteur</f:facet>
 						<ui:repeat value="#{trajet.utilisateurs.get(0)}" var="user">
@@ -81,6 +86,7 @@
 							<h:graphicImage value="../resources/image/edit.png" />
 						</h:commandLink>
 					</h:column>
+
 				</h:dataTable>
 
 			</h:form>

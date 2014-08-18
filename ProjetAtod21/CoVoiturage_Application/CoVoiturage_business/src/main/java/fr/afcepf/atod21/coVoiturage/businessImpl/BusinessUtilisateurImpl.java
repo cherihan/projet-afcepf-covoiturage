@@ -28,6 +28,7 @@ public class BusinessUtilisateurImpl implements IBusinessUtilisateur {
 	public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
 
 		daoUtilisateur.sInscrireTrajet(trajet, user);
+		
 
 	}
 
