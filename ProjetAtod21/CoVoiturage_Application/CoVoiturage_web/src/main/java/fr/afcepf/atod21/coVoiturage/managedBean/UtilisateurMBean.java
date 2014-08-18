@@ -11,8 +11,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
 import fr.afcepf.atod21.coVoiturage.common.Common;
@@ -48,7 +46,7 @@ public class UtilisateurMBean {
 		try {
 			businessUtilisateur.sInscrireTrajet(trajet, user);
 			FacesMessage message = new FacesMessage(
-					"Votre demande d'inscription à ce trajet est enregistrée !");
+					"Votre demande d'inscription à ce trajet a bien été enregistrée !");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (Exception e) {
 			e.printStackTrace();
