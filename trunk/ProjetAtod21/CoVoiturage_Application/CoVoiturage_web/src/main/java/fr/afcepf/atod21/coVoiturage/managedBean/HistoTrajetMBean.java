@@ -1,10 +1,16 @@
 package fr.afcepf.atod21.coVoiturage.managedBean;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
@@ -16,111 +22,103 @@ import fr.afcepf.atod21.coVoiturage.utils.Consts;
 public class HistoTrajetMBean {
 
 	private List<Trajet> listeHistoTrajets;
-	private List<Trajet> listeTrajetsEffectues;
-	private List<Trajet> listeTrajetsEnCours;
-	private List<Trajet> listeTrajetsProposes;
-    private boolean activeHistoConducteur = false;
-    private boolean activeHistoPassager = false;
-    private boolean activeHistoEnCours = false;
-    private boolean activeHistoTermines = false;
-    private boolean activeHistoProposes = false;
-    private boolean activeHistoAll = false;
+	
     private boolean afficheHistoTrajets = false;
+    private boolean statutRender = false;
+    private boolean restantsRender = false;
+    private boolean nbParticipantsRender = false;
+    
+    private String typeUtilisateur;
+    private Map<String,String> typeUtilisateurValues;
+    {
+        typeUtilisateurValues = new LinkedHashMap<String,String>();
+        typeUtilisateurValues.put("", "");
+        typeUtilisateurValues.put("Passager", Consts.PASSAGER);
+        typeUtilisateurValues.put("Conducteur", Consts.CONDUCTEUR);
+    }
+    
+    private String typeHistoTrajet;
+    private Map<String,String> typeHistoTrajetValues = null;
     
 	@ManagedProperty(value = "#{businessTrajetImpl}")
 	private IBusinessTrajet businessTrajet;
 
-	public String activeTypeHisto(String typeHisto) {
-   
-	    switch (typeHisto) {
-            case Consts.PASSAGER :
-                this.activeHistoPassager = true;
-                this.activeHistoConducteur = false;
-                this.activeHistoAll = false;
-                break;
-    
-            case Consts.CONDUCTEUR :
-                this.activeHistoPassager = false;
-                this.activeHistoConducteur = true;
-                this.activeHistoAll = false;
-                break;
-    
-            default:
-                break;
+    public String typeUserListner () {
+        typeHistoTrajetValues = new LinkedHashMap<String,String>();
+
+        typeHistoTrajetValues.clear();
+        typeHistoTrajetValues.put("", Consts.EMPTY);
+        switch (typeUtilisateur) {
+        case Consts.EMPTY:
+            break;
+        case Consts.PASSAGER:
+            typeHistoTrajetValues.put("Tous", Consts.ALL_TRAJETS);
+            typeHistoTrajetValues.put("En cours", Consts.EN_COURS);
+            typeHistoTrajetValues.put("Terminés", Consts.TERMINE);
+            break;
+        case Consts.CONDUCTEUR:
+            typeHistoTrajetValues.put("Tous", Consts.ALL_TRAJETS);
+            typeHistoTrajetValues.put("En cours", Consts.EN_COURS);
+            typeHistoTrajetValues.put("Terminés", Consts.TERMINE);
+            typeHistoTrajetValues.put("Proposés", Consts.PROPOSE);
+            break;
+        default:
+            break;
         }
-
-        this.activeHistoEnCours = false;
-        this.activeHistoTermines = false;
-        this.activeHistoProposes = false;
-	    this.afficheHistoTrajets = false;
-	    return "";    
-	}
-
-    public String histoAllTrajets(Utilisateur user) {
-
-        setListeHistoTrajets(businessTrajet.getAllHistoTrajets(user.getIdUtilisateur()));
-        
-        this.activeHistoPassager = false;
-        this.activeHistoConducteur = false;
-        this.activeHistoAll = true;
-        this.activeHistoEnCours = false;
-        this.activeHistoTermines = false;
-        this.activeHistoProposes = false;
-        this.afficheHistoTrajets = true;
 
         return "";
     }
 
-	public String histoTrajetsByType(Utilisateur user, String typeHistoTrajet) {
-
-	    if (this.activeHistoConducteur)
-	        setListeHistoTrajets(businessTrajet.getHistoTrajetsAsConductorByType(user.getIdUtilisateur(), typeHistoTrajet));
-	    else if (this.activeHistoPassager)
-            setListeHistoTrajets(businessTrajet.getHistoTrajetsAsPassengerByType(user.getIdUtilisateur(), typeHistoTrajet));
-	    
-	    this.activeHistoEnCours = false;
-	    this.activeHistoTermines = false;
-        this.activeHistoProposes = false;
-        this.activeHistoAll = false;
-		this.afficheHistoTrajets = true;
-
-		switch (typeHistoTrajet) {
-    		case Consts.EN_COURS :
-    		    this.activeHistoEnCours = true;
-    			break;
-    			
-    		case Consts.TERMINE :
-    		    this.activeHistoTermines = true;
-    			break;
+    public String listerHistoTrajets(Utilisateur userConnected) {
     
-    		case Consts.PROPOSE :
-    		    this.activeHistoProposes = true;
-    		    break;
+    	statutRender = false;
+    	restantsRender = false;
+    	nbParticipantsRender = false;
+    	
+        switch (typeHistoTrajet) {
+        case Consts.ALL_TRAJETS:
+            setListeHistoTrajets(businessTrajet.getAllHistoTrajets(userConnected.getIdUtilisateur()));
+            if (!(listeHistoTrajets == null || listeHistoTrajets.size() == 0)) {
+            	statutRender = true;
+                afficheHistoTrajets = true;
+            } else {
+                FacesMessage message = new FacesMessage("type user : " + typeUtilisateur + " / type trajet : " + typeHistoTrajet);
+                FacesContext.getCurrentInstance().addMessage(null, message);
+            }
+            break;
 
-    		default:
-    			break;
-		}
-		return "";
-	}
-
+        default:
+            setListeHistoTrajets(businessTrajet.getHistoTrajetsAsConductorByType(userConnected.getIdUtilisateur(), typeHistoTrajet));
+            if (!(listeHistoTrajets == null || listeHistoTrajets.size() == 0)) {
+            	if (typeHistoTrajet.equals(Consts.EN_COURS) || typeHistoTrajet.equals(Consts.PROPOSE)) {
+            		restantsRender = true;
+            	} else if (typeHistoTrajet.equals(Consts.TERMINE)){
+                	nbParticipantsRender = true;
+                }
+                afficheHistoTrajets = true;
+            } else {
+                FacesMessage message = new FacesMessage("type user : " + typeUtilisateur + " / type trajet : " + typeHistoTrajet);
+                FacesContext.getCurrentInstance().addMessage(null, message);
+            }
+            break;
+        }
+        return "";
+    }
+	
 	public String consulterTrajet(int idTrajet) {
-        System.out.println("===> id trajet from consulter = " + idTrajet);
-        System.out.println("===> id trajet from consulter = " + idTrajet);
-        System.out.println("===> id trajet from consulter = " + idTrajet);
-        System.out.println("===> id trajet from consulter = " + idTrajet);
-        System.out.println("===> id trajet from consulter = " + idTrajet);
-        System.out.println("===> id trajet from consulter = " + idTrajet);
-        System.out.println("===> id trajet from consulter = " + idTrajet);
 		return "";
 	}
 
 	public String supprimerTrajet(int idTrajet) {
-        System.out.println("===> id trajet from supprimer = " + idTrajet);
-        System.out.println("===> id trajet from supprimer = " + idTrajet);
-        System.out.println("===> id trajet from supprimer = " + idTrajet);
-        System.out.println("===> id trajet from supprimer = " + idTrajet);
-        System.out.println("===> id trajet from supprimer = " + idTrajet);
-        System.out.println("===> id trajet from supprimer = " + idTrajet);
+
+		int resp = JOptionPane.showConfirmDialog(null, "Etes-vous sûr de vouloir supprimer ce trajet ?",
+												"Confirmation de suppression", JOptionPane.OK_CANCEL_OPTION);
+		System.out.println("resp = " + resp);
+		if (resp == 0)
+			System.out.println("Réponse : Oui");
+		else
+			System.out.println("Réponse : Non");
+		
 		return "";
 	}
 
@@ -132,31 +130,7 @@ public class HistoTrajetMBean {
 		this.businessTrajet = businessTrajet;
 	}
 
-	public List<Trajet> getListeTrajetsEffectues() {
-		return listeTrajetsEffectues;
-	}
-
-	public void setListeTrajetsEffectues(List<Trajet> listeTrajetsEffectues) {
-		this.listeTrajetsEffectues = listeTrajetsEffectues;
-	}
-
-	public List<Trajet> getListeTrajetsEnCours() {
-		return listeTrajetsEnCours;
-	}
-
-	public void setListeTrajetsEnCours(List<Trajet> listeTrajetsEnCours) {
-		this.listeTrajetsEnCours = listeTrajetsEnCours;
-	}
-
-	public List<Trajet> getListeTrajetsProposes() {
-		return listeTrajetsProposes;
-	}
-
-	public void setListeTrajetsProposes(List<Trajet> listeTrajetsProposes) {
-		this.listeTrajetsProposes = listeTrajetsProposes;
-	}
-
-	public boolean isAfficheHistoTrajets() {
+    public boolean isAfficheHistoTrajets() {
 		return afficheHistoTrajets;
 	}
 
@@ -172,88 +146,62 @@ public class HistoTrajetMBean {
 		this.listeHistoTrajets = listeHistoTrajets;
 	}
 
-    /**
-     * @return the activeHistoConducteur
-     */
-    public boolean isActiveHistoConducteur() {
-        return activeHistoConducteur;
+    public String getTypeHistoTrajet() {
+        return typeHistoTrajet;
     }
 
-    /**
-     * @param paramActiveHistoConducteur the activeHistoConducteur to set
-     */
-    public void setActiveHistoConducteur(boolean paramActiveHistoConducteur) {
-        activeHistoConducteur = paramActiveHistoConducteur;
+    public void setTypeHistoTrajet(String paramTypeHistoTrajet) {
+        typeHistoTrajet = paramTypeHistoTrajet;
     }
 
-    /**
-     * @return the activeHistoPassager
-     */
-    public boolean isActiveHistoPassager() {
-        return activeHistoPassager;
+    public Map<String, String> getTypeHistoTrajetValues() {
+        return typeHistoTrajetValues;
     }
 
-    /**
-     * @param paramActiveHistoPassager the activeHistoPassager to set
-     */
-    public void setActiveHistoPassager(boolean paramActiveHistoPassager) {
-        activeHistoPassager = paramActiveHistoPassager;
+    public void setTypeHistoTrajetValues(
+            Map<String, String> paramTypeHistoTrajetValues) {
+        typeHistoTrajetValues = paramTypeHistoTrajetValues;
     }
 
-    /**
-     * @return the activeHistoEnCours
-     */
-    public boolean isActiveHistoEnCours() {
-        return activeHistoEnCours;
+    public String getTypeUtilisateur() {
+        return typeUtilisateur;
     }
 
-    /**
-     * @param paramActiveHistoEnCours the activeHistoEnCours to set
-     */
-    public void setActiveHistoEnCours(boolean paramActiveHistoEnCours) {
-        activeHistoEnCours = paramActiveHistoEnCours;
+    public void setTypeUtilisateur(String paramTypeUtilisateur) {
+        typeUtilisateur = paramTypeUtilisateur;
     }
 
-    /**
-     * @return the activeHistoProposes
-     */
-    public boolean isActiveHistoProposes() {
-        return activeHistoProposes;
+    public Map<String, String> getTypeUtilisateurValues() {
+        return typeUtilisateurValues;
     }
 
-    /**
-     * @param paramActiveHistoProposes the activeHistoProposes to set
-     */
-    public void setActiveHistoProposes(boolean paramActiveHistoProposes) {
-        activeHistoProposes = paramActiveHistoProposes;
+    public void setTypeUtilisateurValues(
+            Map<String, String> paramTypeUtilisateurValues) {
+        typeUtilisateurValues = paramTypeUtilisateurValues;
     }
 
-    /**
-     * @return the activeHistoTermines
-     */
-    public boolean isActiveHistoTermines() {
-        return activeHistoTermines;
-    }
+	public boolean isStatutRender() {
+		return statutRender;
+	}
 
-    /**
-     * @param paramActiveHistoTermines the activeHistoTermines to set
-     */
-    public void setActiveHistoTermines(boolean paramActiveHistoTermines) {
-        activeHistoTermines = paramActiveHistoTermines;
-    }
+	public void setStatutRender(boolean statutRender) {
+		this.statutRender = statutRender;
+	}
 
-    /**
-     * @return the activeHistoAll
-     */
-    public boolean isActiveHistoAll() {
-        return activeHistoAll;
-    }
+	public boolean isRestantsRender() {
+		return restantsRender;
+	}
 
-    /**
-     * @param paramActiveHistoAll the activeHistoAll to set
-     */
-    public void setActiveHistoAll(boolean paramActiveHistoAll) {
-        activeHistoAll = paramActiveHistoAll;
-    }
+	public void setRestantsRender(boolean restantsRender) {
+		this.restantsRender = restantsRender;
+	}
+
+	public boolean isNbParticipantsRender() {
+		return nbParticipantsRender;
+	}
+
+	public void setNbParticipantsRender(boolean nbParticipantsRender) {
+		this.nbParticipantsRender = nbParticipantsRender;
+	}
 
 }
