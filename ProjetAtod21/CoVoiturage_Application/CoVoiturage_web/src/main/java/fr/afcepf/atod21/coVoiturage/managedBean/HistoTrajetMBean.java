@@ -110,7 +110,7 @@ public class HistoTrajetMBean {
 	}
 
 	public String supprimerTrajet(int idTrajet) {
-
+/*
 		int resp = JOptionPane.showConfirmDialog(null, "Etes-vous sûr de vouloir supprimer ce trajet ?",
 												"Confirmation de suppression", JOptionPane.OK_CANCEL_OPTION);
 		System.out.println("resp = " + resp);
@@ -118,7 +118,7 @@ public class HistoTrajetMBean {
 			System.out.println("Réponse : Oui");
 		else
 			System.out.println("Réponse : Non");
-		
+*/	
 		return "";
 	}
 
