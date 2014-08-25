@@ -10,6 +10,7 @@
 <import resource="dataSourceAFCEPF.xml"/>
 <!-- <import resource="dataSourceHOME.xml"/>   -->
 <import resource="jpa-config.xml"/>
+<import resource="Spring-CXF.xml"/>
 
 
 
