@@ -28,6 +28,7 @@
 			</h:outputLink>
 		</div>
 		<div class="formHistoTrajet">
+			<h:messages globalOnly="true" styleClass="messageSuccess" />
 			<h:form>
 				<ul>
 					<li><h:outputLink styleClass="linkResearch" value="../pages/creerTrajet.xhtml">
@@ -40,59 +41,28 @@
 
 					<br />
 					<h:panelGroup>
-						<h:commandLink styleClass="classLink"
-									   action="#{histoTrajetMBean.histoAllTrajets(connectionMBean.user)}">
-							<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoAll}">Tous mes trajets</h:outputLabel>
-							<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoAll}">
-								Tous mes trajets
-							</h:outputLabel>
-						</h:commandLink>
-					
-						<h:commandLink styleClass="classLink"
-									   action="#{histoTrajetMBean.activeTypeHisto('passager')}">
-							<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoPassager}">En tant que Passager seulement</h:outputLabel>
-							<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoPassager}">
-								En tant que Passager seulement
-							</h:outputLabel>
-						</h:commandLink>
-	
-						<h:commandLink styleClass="classLink"
-									   action="#{histoTrajetMBean.activeTypeHisto('conducteur')}">
-							<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoConducteur}">En tant que Conducteur seulement</h:outputLabel>
-							<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoConducteur}">
-								En tant que Conducteur seulement
-							</h:outputLabel>
-						</h:commandLink>
+						<h:outputText value="En tant que :" />
+						<h:selectOneMenu id="typeUser" required="false" requiredMessage="sélection obligatoire !" validatorMessage=""
+										 value="#{histoTrajetMBean.typeUtilisateur}" styleClass="classSelectOneMenu">
+							<f:selectItems value="#{histoTrajetMBean.typeUtilisateurValues}" />
+							<f:ajax event="change" execute="@form" render="typeTrajet" listener="#{histoTrajetMBean.typeUserListner()}" />
+						</h:selectOneMenu>
+						<h:message for="typeUser" styleClass="messageValidator" />
+						<br /><br />
+						
+						<h:outputText value="type de trajets :" />
+						<h:selectOneMenu id="typeTrajet" required="false" requiredMessage="sélection obligatoire !"
+										 value="#{histoTrajetMBean.typeHistoTrajet}" styleClass="classSelectOneMenu" >
+							<f:selectItems value="#{histoTrajetMBean.typeHistoTrajetValues}" />
+						</h:selectOneMenu>
+						<h:message for="typeTrajet" styleClass="messageValidator" />
+						<br /><br />
 
-					</h:panelGroup>
-					<br /> <br />
-					
-					<h:panelGroup rendered="#{histoTrajetMBean.activeHistoConducteur or histoTrajetMBean.activeHistoPassager}">
-						<h:commandLink styleClass="classLink"
-									   action="#{histoTrajetMBean.histoTrajetsByType(connectionMBean.user, 'en cours')}">
-							<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoEnCours}">Mes trajets en cours</h:outputLabel>
-							<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoEnCours}">
-								Mes trajets en cours
-							</h:outputLabel>
-						</h:commandLink>
-	
-						<h:commandLink styleClass="classLink"
-									   action="#{histoTrajetMBean.histoTrajetsByType(connectionMBean.user, 'terminé')}">
-							<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoTermines}">Mes trajets terminés</h:outputLabel>
-							<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoTermines}">
-								Mes trajets terminés
-							</h:outputLabel>
-						</h:commandLink>
-	
-						<h:commandLink styleClass="classLink"
-									   action="#{histoTrajetMBean.histoTrajetsByType(connectionMBean.user, 'proposé')}">
-							<h:outputLabel rendered="#{!histoTrajetMBean.activeHistoProposes and histoTrajetMBean.activeHistoConducteur}">
-								Mes trajets proposés
-							</h:outputLabel>
-							<h:outputLabel styleClass="classRendered" rendered="#{histoTrajetMBean.activeHistoProposes}">
-								Mes trajets proposés
-							</h:outputLabel>
-						</h:commandLink>
+						<h:commandButton action="#{histoTrajetMBean.listerHistoTrajets(connectionMBean.user)}"
+										 value="Afficher historique" styleClass="btnLogin">
+							<f:ajax render="@form" execute="@form" />
+						</h:commandButton>
+						
 					</h:panelGroup>
 					<br /> <br />
 					
@@ -105,7 +75,7 @@
 								columnClasses="column1, column2, column3"
 								value="#{histoTrajetMBean.listeHistoTrajets}" var="trajet">
 
-								<h:column rendered="#{histoTrajetMBean.activeHistoAll}">
+								<h:column rendered="#{histoTrajetMBean.statutRender}">
 									<f:facet name="header">
 										<h:outputText value="Statut du trajet" />
 										<br /><br />
@@ -176,13 +146,14 @@
 									<h:outputLabel value="#{trajet.villeArrivee.nom}" />
 								</h:column>
 
-								<h:column rendered="#{histoTrajetMBean.activeHistoEnCours or histoTrajetMBean.activeHistoProposes}">
+								<h:column rendered="#{histoTrajetMBean.restantsRender}">
 									<f:facet name="header">
 										<h:outputText value="Nombre de places restant" />
 									</f:facet>
 									<h:outputLabel value="#{trajet.nbPassagersRestant}" />
 								</h:column>
-								<h:column rendered="#{histoTrajetMBean.activeHistoTermines}">
+								
+								<h:column rendered="#{histoTrajetMBean.nbParticipantsRender}">
 									<f:facet name="header">
 										<h:outputText value="Nombre de participants" />
 									</f:facet>
@@ -193,11 +164,16 @@
 									<f:facet name="header">
 										<h:outputText value="Action" />
 									</f:facet>
-									<h:commandLink action="#{histoTrajetMBean.consulterTrajet(trajet.idTrajet)}">
+									<h:commandLink action="#{histoTrajetMBean.consulterTrajet(trajet.idTrajet)}" value="Consulter">
+										
+										<!--
 										<h:graphicImage value="../resources/image/consulter.png" title="Voir le détail de ce trajet" />
+										-->
 									</h:commandLink>
-									<h:commandLink action="#{histoTrajetMBean.supprimerTrajet(trajet.idTrajet)}">
+									<h:commandLink action="#{histoTrajetMBean.supprimerTrajet(trajet.idTrajet)}" value="Supprimer">
+										<!-- 
 										<h:graphicImage value="../resources/image/supprimer.png" title="supprimer ce trajet" />
+										 -->
 									</h:commandLink>
 								</h:column>
 
