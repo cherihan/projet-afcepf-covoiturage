@@ -29,7 +29,7 @@ public class Ville implements Serializable {
 	private String pays;
 
 	//bi-directional many-to-one association to Adresse
-	@OneToMany(mappedBy="ville")
+	@OneToMany(mappedBy="ville", fetch=FetchType.EAGER)
 	private List<Adresse> adresses;
 
 	//bi-directional many-to-one association to Trajet

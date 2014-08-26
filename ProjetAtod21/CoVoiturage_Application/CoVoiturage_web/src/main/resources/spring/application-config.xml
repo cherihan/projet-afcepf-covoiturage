@@ -6,13 +6,9 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<import resource="business-dao-config.xml"/>
-<import resource="dataSourceAFCEPF.xml"/>
-<!-- <import resource="dataSourceHOME.xml"/>   -->
-<import resource="jpa-config.xml"/>
-<import resource="Spring-CXF.xml"/>
-
-
-
+	<import resource="business-dao-config.xml"/>
+	<import resource="dataSourceAFCEPF.xml"/>
+	<import resource="jpa-config.xml"/>
+	<import resource="Spring-CXF.xml"/>
 
 </beans>

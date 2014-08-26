@@ -1,12 +1,14 @@
 package fr.afcepf.atod21.coVoiturage.services;
 
-import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import javax.jws.WebService;
+
+import fr.afcepf.atod21.coVoiturage.business.dto.UtilisateurDto;
+import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 
 @WebService
 public interface IConnexionServiceSoap {
 
-    Utilisateur seConnecter(String email, String password);
+    UtilisateurDto seConnecterSOAP(String email, String password);
     //void seDeconnecter(Utilisateur utilisateur);
 
 }
