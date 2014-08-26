@@ -11,6 +11,7 @@ import fr.afcepf.atod21.coVoiturage.dao.IDaoTrajet;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Ville;
+import fr.afcepf.atod21.coVoiturage.utils.Consts;
 
 @Service
 @Transactional
@@ -19,6 +20,10 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 	@Autowired
 	private IDaoTrajet daoTrajet;
 
+    public void setDaoTrajet(IDaoTrajet daoTrajet) {
+        this.daoTrajet = daoTrajet;
+    }
+    
 	@Override
 	public void ajouterCommentaireTrajet(int idTrajet, int idUser) {
 		// TODO Auto-generated method stub
@@ -38,17 +43,39 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 		
 	}
 
-	public void setDaoTrajet(IDaoTrajet daoTrajet) {
-		this.daoTrajet = daoTrajet;
-	}
-
 	@Override
 	public List<Ville> getAllVilles() {
 
 		return daoTrajet.getAllVilles();
 	}
 
-	
+    @Override
+    public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
+
+        int nbPlacesDispo = trajet.getNbPassagersRestant()-1;
+        
+        if (nbPlacesDispo == 0) {
+            trajet.setStatut(Consts.COMPLET);
+        } else if (nbPlacesDispo > 0) {
+            trajet.setStatut(Consts.EN_COURS);
+        }
+        trajet.setNbPassagersRestant(nbPlacesDispo);
+        daoTrajet.sInscrireTrajet(trajet, user);
+
+    }
+
+    @Override
+    public void seDesinscrireTrajet(Integer idTrajet, Integer idUser) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void annulerInscriptionTrajet(Integer idTrajet, Integer idUser) {
+        // TODO Auto-generated method stub
+
+    }
+
 	
 	@Override
 	public List<Trajet> getAllHistoTrajets(int idUser) {

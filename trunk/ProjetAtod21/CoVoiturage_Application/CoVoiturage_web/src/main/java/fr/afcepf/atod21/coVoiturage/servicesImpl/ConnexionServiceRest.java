@@ -12,10 +12,10 @@ import fr.afcepf.atod21.coVoiturage.services.IConnexionServiceRest;
 public class ConnexionServiceRest implements IConnexionServiceRest {
 
     @Autowired
-    IDaoConnexion connexionDao;
+    IDaoConnexion daoConnexion;
     
-    public void setConnexionDao(IDaoConnexion paramConnexionDao) {
-        connexionDao = paramConnexionDao;
+    public void setDaoConnexion(IDaoConnexion paramDaoConnexion) {
+        daoConnexion = paramDaoConnexion;
     }
 
     public ConnexionServiceRest() {

@@ -5,15 +5,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import fr.afcepf.atod21.coVoiturage.business.IBusinessConnexion;
 import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
+import fr.afcepf.atod21.coVoiturage.business.dto.UtilisateurDto;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 
 @ManagedBean
 @SessionScoped
 public class ConnectionMBean {
 
-	@ManagedProperty(value = "#{businessUtilisateurImpl}")
-	private IBusinessUtilisateur businessUtilisateur;
+	@ManagedProperty(value = "#{businessConnexionImpl}")
+	private IBusinessConnexion businessConnexion;
 
 	private String email;
 	private String password;
@@ -28,7 +30,7 @@ public class ConnectionMBean {
 	}
 
 	public String seConnecter() {
-		this.user = this.businessUtilisateur.seConnecter(email, password);
+		this.user = this.businessConnexion.seConnecter(email, password);
 		if (this.user != null)
 			this.userConnected = true;
 		else
@@ -37,7 +39,7 @@ public class ConnectionMBean {
 	}
 
 	public String seDeconnecter() {
-		this.businessUtilisateur.seDeconnecter(user);
+		this.businessConnexion.seDeconnecter(user);
 		this.user = null;
 		this.userConnected=false;
 		this.userExists = true;
@@ -57,15 +59,22 @@ public class ConnectionMBean {
 	}
 
 	
-	public IBusinessUtilisateur getBusinessUtilisateur() {
-		return businessUtilisateur;
-	}
 
-	public void setBusinessUtilisateur(IBusinessUtilisateur businessUtilisateur) {
-		this.businessUtilisateur = businessUtilisateur;
-	}
+	/**
+     * @return the businessConnexion
+     */
+    public IBusinessConnexion getBusinessConnexion() {
+        return businessConnexion;
+    }
 
-	public String getEmail() {
+    /**
+     * @param paramBusinessConnexion the businessConnexion to set
+     */
+    public void setBusinessConnexion(IBusinessConnexion paramBusinessConnexion) {
+        businessConnexion = paramBusinessConnexion;
+    }
+
+    public String getEmail() {
 		return email;
 	}
 

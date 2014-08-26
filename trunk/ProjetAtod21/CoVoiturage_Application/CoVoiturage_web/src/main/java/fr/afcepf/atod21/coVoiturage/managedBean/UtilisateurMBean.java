@@ -12,6 +12,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 
+import fr.afcepf.atod21.coVoiturage.business.IBusinessConnexion;
+import fr.afcepf.atod21.coVoiturage.business.IBusinessRecherche;
+import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
 import fr.afcepf.atod21.coVoiturage.common.Common;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
@@ -24,6 +27,12 @@ public class UtilisateurMBean {
 	@ManagedProperty(value = "#{businessUtilisateurImpl}")
 	private IBusinessUtilisateur businessUtilisateur;
 
+    @ManagedProperty(value = "#{businessRechercheImpl}")
+    private IBusinessRecherche businessRecherche;
+       
+    @ManagedProperty(value = "#{businessTrajetImpl}")
+    private IBusinessTrajet businessTrajet;
+   
 	private Utilisateur user;
 	private Trajet trajet;
 
@@ -44,7 +53,7 @@ public class UtilisateurMBean {
 
 	public String sInscireTrajet(Trajet trajet, Utilisateur user) {
 		try {
-			businessUtilisateur.sInscrireTrajet(trajet, user);
+		    businessTrajet.sInscrireTrajet(trajet, user);
 			FacesMessage message = new FacesMessage(
 					"Votre demande d'inscription à ce trajet a bien été enregistrée !");
 			FacesContext.getCurrentInstance().addMessage(null, message);
@@ -68,9 +77,9 @@ public class UtilisateurMBean {
 		String retour = "listerTrajets";
 		Date dateDeDepart = Common.convertDate(this.dateDepart);
 		if (this.villeArrivee == null || this.villeArrivee.trim().length() == 0) {
-			this.listResults = this.businessUtilisateur.rechercherTrajetParVilleDepart(dateDeDepart, villeDepart);
+			this.listResults = this.businessRecherche.rechercherTrajetParVilleDepart(dateDeDepart, villeDepart);
 		} else {
-			this.listResults = this.businessUtilisateur.rechercherTrajet(dateDeDepart, this.villeDepart, this.villeArrivee);
+			this.listResults = this.businessRecherche.rechercherTrajet(dateDeDepart, this.villeDepart, this.villeArrivee);
 		}
 
 		if (listResults != null) {
@@ -119,7 +128,36 @@ public class UtilisateurMBean {
 		this.businessUtilisateur = businessUtilisateur;
 	}
 
-	public String getEmail() {
+	
+	/**
+     * @return the businessRecherche
+     */
+    public IBusinessRecherche getBusinessRecherche() {
+        return businessRecherche;
+    }
+
+    /**
+     * @param paramBusinessRecherche the businessRecherche to set
+     */
+    public void setBusinessRecherche(IBusinessRecherche paramBusinessRecherche) {
+        businessRecherche = paramBusinessRecherche;
+    }
+
+    /**
+     * @return the businessTrajet
+     */
+    public IBusinessTrajet getBusinessTrajet() {
+        return businessTrajet;
+    }
+
+    /**
+     * @param paramBusinessTrajet the businessTrajet to set
+     */
+    public void setBusinessTrajet(IBusinessTrajet paramBusinessTrajet) {
+        businessTrajet = paramBusinessTrajet;
+    }
+
+    public String getEmail() {
 		return email;
 	}
 

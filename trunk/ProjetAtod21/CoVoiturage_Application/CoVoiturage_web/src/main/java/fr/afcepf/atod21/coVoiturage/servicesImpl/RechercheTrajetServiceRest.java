@@ -5,12 +5,22 @@ import java.util.List;
 
 import javax.ws.rs.Path;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import fr.afcepf.atod21.coVoiturage.dao.IDaoRecherche;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.services.IRechercheTrajetServiceRest;
 
 @Path("/recherche")
 public class RechercheTrajetServiceRest implements IRechercheTrajetServiceRest {
 
+    @Autowired
+    IDaoRecherche daoRecherche;
+    
+    public void setDaoRecherche(IDaoRecherche paramDaoRecherche) {
+        daoRecherche = paramDaoRecherche;
+    }
+    
     public RechercheTrajetServiceRest() {
         // TODO Auto-generated constructor stub
     }

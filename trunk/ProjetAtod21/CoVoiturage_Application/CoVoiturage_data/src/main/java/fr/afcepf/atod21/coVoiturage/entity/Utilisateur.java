@@ -3,6 +3,7 @@ package fr.afcepf.atod21.coVoiturage.entity;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * 
  */
 @Entity
+@XmlRootElement
 @NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
 public class Utilisateur implements Serializable {
 	private static final long serialVersionUID = 1L;

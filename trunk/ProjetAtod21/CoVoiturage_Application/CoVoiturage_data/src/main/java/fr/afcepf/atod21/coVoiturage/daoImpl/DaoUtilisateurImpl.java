@@ -27,51 +27,10 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 		
 	}
 
-	@Override
-	public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
-		
-		
-		//user = em.find(Utilisateur.class, user.getIdUtilisateur());
-
-		
-		user.getTrajets().add(trajet);
-			
-		
-		em.persist(user);
-		
-	}
-
-	@Override
-	public void seDesinscrireTrajet(Integer idTrajet, Integer idUser) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void annulerInscriptionTrajet(Integer idTrajet, Integer idUser) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 
-	@Override
-	public Utilisateur seConnecter(String email, String password) {
-		String requete = "SELECT user FROM Utilisateur user WHERE user.email = :emailUser and user.password = :passwordUser";
-		List<Utilisateur> liste = em.createQuery(requete, Utilisateur.class)
-									.setParameter("emailUser", email)
-									.setParameter("passwordUser", password)
-									.getResultList();
-		if (liste.size() != 0)
-			return liste.get(0);
-		return null;
-	}
 
-	@Override
-	public void seDeconnecter(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void changerPassword(Utilisateur utilisateur) {
@@ -94,53 +53,6 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 		em.flush();
 		
 		return user.getIdUtilisateur();
-	}
-
-	@Override
-	public List<Trajet> rechercherTrajet(Date dateDepart, String villeDepart, String villeArrivee) {
-		System.out.println(" ----------- DAO --------------- rechercherAvecVilleArrivee");
-/*
-        String requete = "SELECT t FROM Trajet t INNER JOIN fetch t.utilisateurs WHERE t.villeDepart.nom=:villeDepart "
-                + "AND t.villeArrivee.nom=:villeArrivee AND t.dateDepart=:dateDepart "
-                + "AND (t.statut=:statut1 OR t.statut=:statut2 OR t.statut=:statut3)";
-*/
-        String requete = "SELECT t FROM Trajet t INNER JOIN fetch t.utilisateurs WHERE t.villeDepart.nom=:villeDepart "
-                + "AND t.villeArrivee.nom=:villeArrivee AND t.dateDepart=:dateDepart "
-                + "AND (t.statut=:statut1 OR t.statut=:statut2 OR t.statut=:statut3) GROUP BY t.idTrajet";
-
-		javax.persistence.Query query = em.createQuery(requete);
-		query.setParameter("dateDepart", dateDepart);
-		query.setParameter("villeDepart", villeDepart);
-		query.setParameter("villeArrivee", villeArrivee);
-        query.setParameter("statut1", Consts.PROPOSE);
-        query.setParameter("statut2", Consts.EN_COURS);
-        query.setParameter("statut3", Consts.COMPLET);
-
-		List<Trajet> listResults = query.getResultList();
-
-		return listResults;
-	}
-
-	@Override
-	public List<Trajet> rechercherTrajetParVilleDepart(Date dateDepart, String villeDepart) {
-
-		
-
-		String requete = "SELECT t FROM Trajet t INNER JOIN fetch t.utilisateurs "
-				+ "WHERE t.villeDepart.nom=:villeDepart "
-				+ "AND t.dateDepart=:dateDepart "
-                + "AND (t.statut=:statut1 OR t.statut=:statut2 OR t.statut=:statut3)";
-
-		javax.persistence.Query query = em.createQuery(requete);
-		query.setParameter("dateDepart", dateDepart);
-		query.setParameter("villeDepart", villeDepart);
-        query.setParameter("statut1", Consts.PROPOSE);
-        query.setParameter("statut2", Consts.EN_COURS);
-        query.setParameter("statut3", Consts.COMPLET);
-
-		List<Trajet> listResults = query.getResultList();
-
-		return listResults;
 	}
 
 	@Override

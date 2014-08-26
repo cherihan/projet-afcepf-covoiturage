@@ -50,6 +50,32 @@ public class DaoTrajetImpl implements IDaoTrajet {
 		return trajet.getIdTrajet();
 	}
 
+	   @Override
+	    public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
+	        
+	        
+	        //user = em.find(Utilisateur.class, user.getIdUtilisateur());
+
+	        
+	        user.getTrajets().add(trajet);
+	            
+	        
+	        em.persist(user);
+	        
+	    }
+
+	    @Override
+	    public void seDesinscrireTrajet(Integer idTrajet, Integer idUser) {
+	        // TODO Auto-generated method stub
+	        
+	    }
+
+	    @Override
+	    public void annulerInscriptionTrajet(Integer idTrajet, Integer idUser) {
+	        // TODO Auto-generated method stub
+	        
+	    }
+
 	@Override
 	public List<Ville> getAllVilles() {
 		return em.createQuery("SELECT v FROM Ville v").getResultList();
