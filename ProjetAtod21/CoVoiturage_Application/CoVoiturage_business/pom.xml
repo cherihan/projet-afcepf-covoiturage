@@ -17,7 +17,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Spring -->
-		<spring-framework.version>3.2.3.RELEASE</spring-framework.version>
+		<spring-framework.version>3.0.5.RELEASE</spring-framework.version>
 
 		<!-- Hibernate / JPA -->
 		<hibernate.version>4.2.1.Final</hibernate.version>
@@ -32,14 +32,10 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>fr.afcepf.atod21.coVoiturage</groupId>
 			<artifactId>CoVoiturage_data</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-
-
-
 		</dependency>
 
 		<dependency>
@@ -48,21 +44,19 @@
 			<version>1.7.3</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.7.3</version>
 		</dependency>
 
-
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
-
-		<!-- Spring and Transactions -->
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
@@ -81,6 +75,9 @@
 			<version>${spring-framework.version}</version>
 		</dependency>
 
+
+		
+		<!-- MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -102,14 +99,12 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
 
 		<!-- Test Artifacts -->
 		<dependency>
@@ -125,6 +120,21 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- WebServices -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>3.0.1</version>
+		</dependency>		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>3.0.1</version>
+		</dependency>
 
 	</dependencies>
 
