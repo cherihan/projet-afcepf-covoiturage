@@ -2,6 +2,7 @@ package fr.afcepf.atod21.coVoiturage.businessImpl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessConnexion;
 import fr.afcepf.atod21.coVoiturage.business.dto.UtilisateurDto;
@@ -28,23 +29,20 @@ public class BusinessConnexionImpl implements IBusinessConnexion {
     public UtilisateurDto seConnecterSOAP(String email, String password) {
 
         Utilisateur user = daoConnexion.seConnecter(email, password);
-        UtilisateurDto userDto = new UtilisateurDto();
-        BeanUtils.copyProperties(user, userDto);
         
-        userDto.setNumeroAdresse(user.getAdresse().getNumero());
-        userDto.setTypeVoieAdresse(user.getAdresse().getTypeVoie());
-        userDto.setNomVoieAdresse(user.getAdresse().getNomVoie());
-        userDto.setNomVille(user.getAdresse().getVille().getNom());
-        userDto.setCodePostalVille(user.getAdresse().getVille().getCodePostal());
-        userDto.setPaysVille(user.getAdresse().getVille().getPays());
-        //userDto.setPorteurCarte(user.getCartes().get(0).getPorteur());
-        //userDto.setNumCarte(user.getCartes().get(0).getNumCarte());
-        //userDto.setCryptogrammeCarte(user.getCartes().get(0).getCryptogramme());
-        //userDto.setDateExpirationCarte(user.getCartes().get(0).getDateExpiration());
-        
-        System.out.println("===> user DTO : " + userDto);
-        
-        return userDto;
+        if (user != null) {
+            UtilisateurDto userDto = new UtilisateurDto();
+            BeanUtils.copyProperties(user, userDto);
+            
+            userDto.setNumeroAdresse(user.getAdresse().getNumero());
+            userDto.setTypeVoieAdresse(user.getAdresse().getTypeVoie());
+            userDto.setNomVoieAdresse(user.getAdresse().getNomVoie());
+            userDto.setNomVille(user.getAdresse().getVille().getNom());
+            userDto.setCodePostalVille(user.getAdresse().getVille().getCodePostal());
+            userDto.setPaysVille(user.getAdresse().getVille().getPays());
+            return userDto;
+        }
+        return null;        
     }
 
     @Override
