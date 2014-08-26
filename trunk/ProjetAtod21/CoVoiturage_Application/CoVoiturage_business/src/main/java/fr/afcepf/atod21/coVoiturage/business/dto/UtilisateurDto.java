@@ -2,8 +2,6 @@ package fr.afcepf.atod21.coVoiturage.business.dto;
 
 import java.util.Date;
 
-import fr.afcepf.atod21.coVoiturage.entity.Adresse;
-
 public class UtilisateurDto {
 
     private int idUtilisateur;
@@ -25,10 +23,6 @@ public class UtilisateurDto {
     private String codePostalVille;
     private String paysVille;
     
-    private String porteurCarte;
-    private String numCarte;
-    private String cryptogrammeCarte;
-    private Date dateExpirationCarte;
     /**
      * @return the idUtilisateur
      */
@@ -221,50 +215,6 @@ public class UtilisateurDto {
     public void setPaysVille(String paramPaysVille) {
         paysVille = paramPaysVille;
     }
-    /**
-     * @return the porteurCarte
-     */
-    public String getPorteurCarte() {
-        return porteurCarte;
-    }
-    /**
-     * @param paramPorteurCarte the porteurCarte to set
-     */
-    public void setPorteurCarte(String paramPorteurCarte) {
-        porteurCarte = paramPorteurCarte;
-    }
-
-    public String getNumCarte() {
-        return numCarte;
-    }
-    
-    public void setNumCarte(String paramNumCarte) {
-        numCarte = paramNumCarte;
-    }
-    /**
-     * @return the cryptogrammeCarte
-     */
-    public String getCryptogrammeCarte() {
-        return cryptogrammeCarte;
-    }
-    /**
-     * @param paramCryptogrammeCarte the cryptogrammeCarte to set
-     */
-    public void setCryptogrammeCarte(String paramCryptogrammeCarte) {
-        cryptogrammeCarte = paramCryptogrammeCarte;
-    }
-    /**
-     * @return the dateExpirationCarte
-     */
-    public Date getDateExpirationCarte() {
-        return dateExpirationCarte;
-    }
-    /**
-     * @param paramDateExpirationCarte the dateExpirationCarte to set
-     */
-    public void setDateExpirationCarte(Date paramDateExpirationCarte) {
-        dateExpirationCarte = paramDateExpirationCarte;
-    }
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
@@ -278,11 +228,7 @@ public class UtilisateurDto {
                 + ", numeroAdresse=" + numeroAdresse + ", typeVoieAdresse="
                 + typeVoieAdresse + ", nomVoieAdresse=" + nomVoieAdresse
                 + ", nomVille=" + nomVille + ", codePostalVille="
-                + codePostalVille + ", paysVille=" + paysVille
-                + ", porteurCarte=" + porteurCarte + ", numCarte="
-                + numCarte + ", cryptogrammeCarte=" + cryptogrammeCarte
-                + ", dateExpirationCarte=" + dateExpirationCarte + "]";
+                + codePostalVille + ", paysVille=" + paysVille + "]";
     }
-    
-    
+
 }

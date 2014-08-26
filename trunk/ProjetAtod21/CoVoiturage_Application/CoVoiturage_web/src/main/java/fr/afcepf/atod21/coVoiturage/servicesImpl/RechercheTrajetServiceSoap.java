@@ -9,7 +9,7 @@ import javax.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessRecherche;
-import fr.afcepf.atod21.coVoiturage.entity.Trajet;
+import fr.afcepf.atod21.coVoiturage.business.dto.TrajetDto;
 import fr.afcepf.atod21.coVoiturage.services.IRechercheTrajetServiceSoap;
 
 @WebService(endpointInterface = "fr.afcepf.atod21.coVoiturage.services.IRechercheTrajetServiceSoap")
@@ -24,17 +24,16 @@ public class RechercheTrajetServiceSoap implements IRechercheTrajetServiceSoap {
 
     @Override
     @WebMethod
-    public List<Trajet> rechercherTrajet(Date paramDateDepart, String paramVilleDepart, String paramVilleArrivee) {
-        
-        return businessRecherche.rechercherTrajet(paramDateDepart, paramVilleDepart, paramVilleArrivee);
+    public List<TrajetDto> rechercherTrajetSOAP(Date paramDateDepart, String paramVilleDepart, String paramVilleArrivee) {
+
+        return businessRecherche.rechercherTrajetSOAP(paramDateDepart, paramVilleDepart, paramVilleArrivee);
     }
 
-    @Override
     @WebMethod
-    public List<Trajet> rechercherTrajetParVilleDepart(Date paramDateDepart, String paramVilleDepart) {
-        
-        return businessRecherche.rechercherTrajetParVilleDepart(paramDateDepart, paramVilleDepart);
+    @Override
+    public List<TrajetDto> rechercherTrajetParVilleDepartSOAP(Date paramDateDepart, String paramVilleDepart) {
+    
+        return businessRecherche.rechercherTrajetParVilleDepartSOAP(paramDateDepart, paramVilleDepart);
     }
-
 
 }
