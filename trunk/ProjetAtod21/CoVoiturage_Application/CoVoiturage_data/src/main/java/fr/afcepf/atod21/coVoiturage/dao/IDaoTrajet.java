@@ -17,8 +17,10 @@ public interface IDaoTrajet {
     List<Trajet> getHistoTrajetsAsConductorByType(int idUser, String typeHistoTrajet);
     List<Trajet> getHistoTrajetsAsPassengerByType(int idUser, String typeHistoTrajet);
 
-    void sInscrireTrajet(Trajet trajet, Utilisateur user);
-    void seDesinscrireTrajet(Integer idTrajet, Integer idUser);
-    void annulerInscriptionTrajet(Integer idTrajet, Integer idUser);
+    boolean sInscrireTrajet(Trajet trajet, Utilisateur user);
+    boolean seDesinscrireTrajet(Integer idTrajet, Integer idUser);
+    boolean annulerInscriptionTrajet(Integer idTrajet, Integer idUser);
+    
+    Trajet rechercheById(Integer IdTrajet);
 
 }
