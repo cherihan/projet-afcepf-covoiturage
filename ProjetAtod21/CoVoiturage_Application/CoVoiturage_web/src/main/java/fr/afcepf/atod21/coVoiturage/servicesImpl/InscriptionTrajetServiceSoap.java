@@ -1,32 +1,29 @@
 package fr.afcepf.atod21.coVoiturage.servicesImpl;
 
+import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import fr.afcepf.atod21.coVoiturage.dao.IDaoTrajet;
-import fr.afcepf.atod21.coVoiturage.entity.Trajet;
-import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
+import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.services.IInscriptionTrajetServiceSoap;
 
-@WebService(endpointInterface = "fr.afcepf.atod21.coVoiturage.services.IInscriptionTrajetSoap")
+@WebService(endpointInterface = "fr.afcepf.atod21.coVoiturage.services.IInscriptionTrajetServiceSoap")
 public class InscriptionTrajetServiceSoap implements IInscriptionTrajetServiceSoap {
-
-    @Autowired
-    IDaoTrajet daoTrajet;
     
-    public void setDaoTrajet(IDaoTrajet paramDaoTrajet) {
-        daoTrajet = paramDaoTrajet;
+    IBusinessTrajet businessTrajet;
+    
+    public void setBusinessTrajet(IBusinessTrajet paramBusinessTrajet) {
+        businessTrajet = paramBusinessTrajet;
     }
-
-    public InscriptionTrajetServiceSoap() {
-        // TODO Auto-generated constructor stub
-    }
-
+    
+    
     @Override
-    public void sInscrireTrajet(Trajet paramTrajet, Utilisateur paramUser) {
-        // TODO Auto-generated method stub
-        
+    @WebMethod
+    public boolean sInscrireTrajetDto(Integer IdTrajet, Integer IdUser) {
+      businessTrajet.sInscrireTrajetSoap(IdTrajet, IdUser);    
+        return true;
     }
+
+  
+    
 
 }
