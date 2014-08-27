@@ -21,11 +21,11 @@
 	</bean>
 	<bean id="connexionBusisnessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessConnexionImpl" />
 
-<!-- 	<jaxws:endpoint id="rechercheTrajetSoapService" implementor="#rechercheTrajetSoapImpl" address="/RechercheTrajetService" /> -->
-<!-- 	<bean id="rechercheTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetServiceSoap"> -->
-<!-- 		<property name="businessRecherche" ref="rechercheTrajetBusinessSoap" /> -->
-<!-- 	</bean> -->
-<!-- 	<bean id="rechercheTrajetBusinessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessRechercheImpl" /> -->
+	<jaxws:endpoint id="rechercheTrajetSoapService" implementor="#rechercheTrajetSoapImpl" address="/RechercheTrajetService" />
+	<bean id="rechercheTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetServiceSoap">
+		<property name="businessRecherche" ref="rechercheTrajetBusinessSoap" />
+	</bean>
+	<bean id="rechercheTrajetBusinessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessRechercheImpl" />
 	
 
 	<jaxws:endpoint id="inscriptionTrajetSoapService" implementor="#inscriptionTrajetSoapImpl" address="/InscriptionTrajetService" />
