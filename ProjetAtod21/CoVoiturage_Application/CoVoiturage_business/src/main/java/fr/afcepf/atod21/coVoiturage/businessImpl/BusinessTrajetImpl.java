@@ -2,26 +2,89 @@ package fr.afcepf.atod21.coVoiturage.businessImpl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.omg.PortableInterceptor.USER_EXCEPTION;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
+import fr.afcepf.atod21.coVoiturage.business.dto.TrajetDto;
+import fr.afcepf.atod21.coVoiturage.business.dto.UtilisateurDto;
 import fr.afcepf.atod21.coVoiturage.dao.IDaoTrajet;
+import fr.afcepf.atod21.coVoiturage.dao.IDaoUtilisateur;
+import fr.afcepf.atod21.coVoiturage.daoImpl.DaoUtilisateurImpl;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Ville;
 import fr.afcepf.atod21.coVoiturage.utils.Consts;
 
-@Service
+//@Service
 @Transactional
 public class BusinessTrajetImpl implements IBusinessTrajet {
 
+       
 	@Autowired
 	private IDaoTrajet daoTrajet;
+	
+	@Autowired
+	private IDaoUtilisateur daoUtilisateur;
 
     public void setDaoTrajet(IDaoTrajet daoTrajet) {
         this.daoTrajet = daoTrajet;
+    }
+    
+    
+
+    @Override
+    public boolean sInscrireTrajetSoap(int idTrajet, int idUser) {
+
+        System.out.println("==============================================");
+        System.out.println("id trajet = " + idTrajet);
+        System.out.println("id user = " + idUser);
+        System.out.println("==============================================");
+        
+        Trajet trajet = daoTrajet.rechercheById(idTrajet);
+        
+        System.out.println("==============================================");
+        System.out.println("================ 1 =======================");
+        System.out.println("==============================================");
+
+        Utilisateur user = daoUtilisateur.getUserById(idUser);
+        
+        System.out.println("==============================================");
+        System.out.println("================ 2 =======================");
+        System.out.println("==============================================");
+
+        daoTrajet.sInscrireTrajet(trajet, user);
+        
+        System.out.println("==============================================");
+        System.out.println("================ 3 =======================");
+        System.out.println("==============================================");
+
+        TrajetDto trajetDto = new TrajetDto();
+
+        try {
+            BeanUtils.copyProperties(trajet, trajetDto);
+        } catch (BeansException e) {
+            System.err.println(" ERREUR : " + e.getMessage());
+        }
+
+        System.out.println("==============================================");
+        System.out.println("================ 4 =======================");
+        System.out.println("==============================================");
+        
+        trajetDto.setVilleDepart(trajet.getVilleDepart().getNom());
+        trajetDto.setVilleArrivee(trajet.getVilleArrivee().getNom());
+
+        System.out.println("==============================================");
+        System.out.println("================ 5 =======================");
+        System.out.println("==============================================");
+        return true;
     }
     
 	@Override
@@ -50,7 +113,7 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 	}
 
     @Override
-    public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
+    public boolean sInscrireTrajet(Trajet trajet, Utilisateur user) {
 
         int nbPlacesDispo = trajet.getNbPassagersRestant()-1;
         
@@ -61,19 +124,18 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
         }
         trajet.setNbPassagersRestant(nbPlacesDispo);
         daoTrajet.sInscrireTrajet(trajet, user);
-
+      return true;
     }
 
     @Override
-    public void seDesinscrireTrajet(Integer idTrajet, Integer idUser) {
+    public boolean seDesinscrireTrajet(int idTrajet, int idUser) {
         // TODO Auto-generated method stub
-
+      return true;
     }
 
     @Override
-    public void annulerInscriptionTrajet(Integer idTrajet, Integer idUser) {
-        // TODO Auto-generated method stub
-
+    public boolean annulerInscriptionTrajet(int idTrajet, int idUser) {
+        return false;
     }
 
 	
@@ -94,5 +156,15 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
         List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsAsPassengerByType(idUser, typeHistoTrajet);
         return listeTrajets;
     }
+
+
+    /**
+     * @param paramDaoUtilisateur the daoUtilisateur to set
+     */
+    public void setDaoUtilisateur(IDaoUtilisateur paramDaoUtilisateur) {
+        daoUtilisateur = paramDaoUtilisateur;
+    }
+
+   
 
 }
