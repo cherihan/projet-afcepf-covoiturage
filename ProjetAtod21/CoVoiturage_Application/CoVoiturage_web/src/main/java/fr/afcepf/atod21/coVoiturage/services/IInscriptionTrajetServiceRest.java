@@ -5,7 +5,7 @@ import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 
 public interface IInscriptionTrajetServiceRest {
 
-    void sInscrireTrajet(Trajet trajet, Utilisateur user);
+    boolean sInscrireTrajetDto(Integer IdTrajet, Integer IdUser);
     //void seDesinscrireTrajet(Integer idTrajet, Integer idUser);
 
 }
