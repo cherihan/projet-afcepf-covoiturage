@@ -16,8 +16,9 @@ public interface IBusinessTrajet {
     List<Trajet> getHistoTrajetsAsConductorByType(int idUser, String typeHistoTrajet);
     List<Trajet> getHistoTrajetsAsPassengerByType(int idUser, String typeHistoTrajet);
     
-    void sInscrireTrajet(Trajet trajet, Utilisateur user);
-    void seDesinscrireTrajet(Integer idTrajet, Integer idUser);
-    void annulerInscriptionTrajet(Integer idTrajet, Integer idUser);
+    boolean sInscrireTrajet(Trajet trajet, Utilisateur user);
+    boolean sInscrireTrajetSoap(int idTrajet, int idUser);
+    boolean seDesinscrireTrajet(int idTrajet, int idUser);
+    boolean annulerInscriptionTrajet(int idTrajet, int idUser);
 
 }
