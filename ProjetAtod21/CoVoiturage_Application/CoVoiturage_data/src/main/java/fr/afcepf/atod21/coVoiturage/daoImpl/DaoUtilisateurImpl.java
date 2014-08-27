@@ -59,8 +59,7 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 	public Utilisateur getUserById(Integer idUser) {
 		
 		Utilisateur user = em.find(Utilisateur.class, idUser);
-		
-		
+	
 		return user;
 	}
 
