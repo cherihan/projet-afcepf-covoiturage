@@ -1,14 +1,13 @@
 package fr.afcepf.atod21.coVoiturage.services;
 
-import fr.afcepf.atod21.coVoiturage.entity.Trajet;
-import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
-
+import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 @WebService
 public interface IInscriptionTrajetServiceSoap {
 
-    void sInscrireTrajet(Trajet trajet, Utilisateur user);
+    @WebMethod
+    boolean sInscrireTrajetDto(Integer IdTrajet, Integer IdUser);
     //void seDesinscrireTrajet(Integer idTrajet, Integer idUser);
 
 }
