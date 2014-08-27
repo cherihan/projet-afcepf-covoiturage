@@ -1,32 +1,31 @@
 package fr.afcepf.atod21.coVoiturage.servicesImpl;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import fr.afcepf.atod21.coVoiturage.dao.IDaoTrajet;
-import fr.afcepf.atod21.coVoiturage.entity.Trajet;
-import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
+import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.services.IInscriptionTrajetServiceRest;
 
 @Path("/inscriptionTrajet")
 public class InscriptionTrajetServiceRest implements IInscriptionTrajetServiceRest {
 
-    @Autowired
-    IDaoTrajet daoTrajet;
+    //@Autowired
+    private IBusinessTrajet businessTrajet;
     
-    public void setDaoTrajet(IDaoTrajet paramDaoTrajet) {
-        daoTrajet = paramDaoTrajet;
-    }
-    
-    public InscriptionTrajetServiceRest() {
-        // TODO Auto-generated constructor stub
+    public void setBusinessTrajet(IBusinessTrajet paramBusinessTrajet) {
+        businessTrajet = paramBusinessTrajet;
     }
 
     @Override
-    public void sInscrireTrajet(Trajet paramTrajet, Utilisateur paramUser) {
-        // TODO Auto-generated method stub
-        
+    @Path("/{IdTrajet}/{IdUser}")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public boolean sInscrireTrajetDto(@PathParam("IdTrajet") Integer IdTrajet, @PathParam("IdUser") Integer IdUser) {
+       return businessTrajet.sInscrireTrajetSoap(IdTrajet, IdUser);
     }
 
+    
 }
