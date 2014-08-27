@@ -12,7 +12,7 @@ import fr.afcepf.atod21.coVoiturage.services.IConnexionServiceSoap;
 @WebService(endpointInterface = "fr.afcepf.atod21.coVoiturage.services.IConnexionServiceSoap")
 public class ConnexionServiceSoap implements IConnexionServiceSoap {
 
-    @Autowired
+    //@Autowired
     private IBusinessConnexion businessConnexion;
 
     public void setBusinessConnexion(IBusinessConnexion paramBusinessConnexion) {
