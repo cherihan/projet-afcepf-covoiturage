@@ -51,29 +51,38 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	}
 
 	   @Override
-	    public void sInscrireTrajet(Trajet trajet, Utilisateur user) {
+	    public boolean sInscrireTrajet(Trajet trajet, Utilisateur user) {
 	        
 	        
 	        //user = em.find(Utilisateur.class, user.getIdUtilisateur());
 
+	        if (user != null){
 	        
+	            System.out.println("===================================================================");
+	            System.out.println("trajet à ajouter " + trajet.getIdTrajet());
+	            System.out.println("user à ajouter " + user.getIdUtilisateur());
+	            System.out.println("===================================================================");
+	            
 	        user.getTrajets().add(trajet);
 	            
 	        
 	        em.persist(user);
+	        return true; 
+	        }
+	        return false;
 	        
 	    }
 
 	    @Override
-	    public void seDesinscrireTrajet(Integer idTrajet, Integer idUser) {
-	        // TODO Auto-generated method stub
+	    public boolean seDesinscrireTrajet(Integer idTrajet, Integer idUser) {
 	        
+	        return false;
 	    }
 
 	    @Override
-	    public void annulerInscriptionTrajet(Integer idTrajet, Integer idUser) {
+	    public boolean annulerInscriptionTrajet(Integer idTrajet, Integer idUser) {
 	        // TODO Auto-generated method stub
-	        
+	        return false;
 	    }
 
 	@Override
@@ -125,5 +134,52 @@ public class DaoTrajetImpl implements IDaoTrajet {
        }
        return listeTrajets;
    }
+
+@Override
+public Trajet rechercheById(Integer idTrajet) {
+
+    System.out.println("==============================================");
+    System.out.println("========== A ================");
+    System.out.println("==============================================");
+
+//    Trajet trajet = new Trajet();
+//    trajet = em.find(Trajet.class, trajet.getIdTrajet());
+
+    
+    Trajet ttt = em.find(Trajet.class, idTrajet);
+
+    
+    System.out.println("==============================================");
+    System.out.println("========== B ================");
+    System.out.println("==============================================");
+
+    if (ttt != null)
+    System.out.println("=====> Trajet : " + ttt.getNbPassagersMax());
+    else
+        System.out.println("===== ttt est nul =========");
+
+    //System.exit(0);
+    //Utilisateur user = em.find(Utilisateur.class, idUser);
+    
+//    String requete = "SELECT trajet FROM Trajet trajet WHERE trajet.id_trajet = :idTrajet";
+//    List<Trajet> liste = em.createQuery(requete, Utilisateur.class)
+//                                .setParameter("emailUser", email)
+//                                .setParameter("passwordUser", password)
+//                                .getResultList();
+//    
+//    String requete = "SELECT user FROM Utilisateur user WHERE user.email = :emailUser and user.password = :passwordUser";
+//    List<Utilisateur> liste = em.createQuery(requete, Utilisateur.class)
+//                                .setParameter("emailUser", email)
+//                                .setParameter("passwordUser", password)
+//                                .getResultList();
+//    
+    
+    
+//    Trajet tt = em.find(Trajet.class, idTrajet);
+//    
+//    System.out.println("TRAJET DANS RECHERCHE BY ID " + tt);
+    
+    return ttt;
+}
 
 }
