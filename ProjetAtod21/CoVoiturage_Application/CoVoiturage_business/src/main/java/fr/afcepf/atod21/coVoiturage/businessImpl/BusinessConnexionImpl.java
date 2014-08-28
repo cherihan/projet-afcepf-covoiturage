@@ -2,6 +2,7 @@ package fr.afcepf.atod21.coVoiturage.businessImpl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessConnexion;
@@ -9,6 +10,7 @@ import fr.afcepf.atod21.coVoiturage.business.dto.UtilisateurDto;
 import fr.afcepf.atod21.coVoiturage.dao.IDaoConnexion;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 
+@Service
 public class BusinessConnexionImpl implements IBusinessConnexion {
 
     @Autowired
