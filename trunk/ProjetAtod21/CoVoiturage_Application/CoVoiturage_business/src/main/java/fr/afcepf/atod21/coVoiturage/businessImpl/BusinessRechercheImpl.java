@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessRecherche;
 import fr.afcepf.atod21.coVoiturage.business.dto.TrajetDto;
 import fr.afcepf.atod21.coVoiturage.dao.IDaoRecherche;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 
+@Service
 public class BusinessRechercheImpl implements IBusinessRecherche {
 
+    @Autowired
     private IDaoRecherche daoRecherche;
 
     public void setDaoRecherche(IDaoRecherche paramDaoRecherche) {
