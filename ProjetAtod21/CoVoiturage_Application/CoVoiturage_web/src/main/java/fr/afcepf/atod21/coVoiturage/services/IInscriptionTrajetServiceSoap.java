@@ -8,6 +8,9 @@ public interface IInscriptionTrajetServiceSoap {
 
     @WebMethod
     boolean sInscrireTrajetDto(Integer IdTrajet, Integer IdUser);
+    
+//    @WebMethod
+//    boolean desInscrireTrajetDto(int IdTrajet, int IdUser);
     //void seDesinscrireTrajet(Integer idTrajet, Integer idUser);
 
 }
