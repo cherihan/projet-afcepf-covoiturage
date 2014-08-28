@@ -23,9 +23,10 @@
 
 	<jaxws:endpoint id="rechercheTrajetSoapService" implementor="#rechercheTrajetSoapImpl" address="/RechercheTrajetService" />
 	<bean id="rechercheTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetServiceSoap">
-		<property name="businessRecherche" ref="rechercheTrajetBusinessSoap" />
+
 	</bean>
-	<bean id="rechercheTrajetBusinessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessRechercheImpl" />
+	<!-- 		<property name="businessRecherche" ref="rechercheTrajetBusinessSoap" /> -->
+<!-- 	<bean id="rechercheTrajetBusinessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessRechercheImpl" /> -->
 	
 
 	<jaxws:endpoint id="inscriptionTrajetSoapService" implementor="#inscriptionTrajetSoapImpl" address="/InscriptionTrajetService" />
@@ -33,6 +34,12 @@
 		<property name="businessTrajet" ref="inscriptionTrajetBusinessSoap" />
 	</bean>
 	<bean id="inscriptionTrajetBusinessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" />
+	
+	<jaxws:endpoint id="desInscriptionTrajetSoapService" implementor="#desInscriptionTrajetSoapImpl" address="/desInscriptionTrajetService" />
+	<bean id="desInscriptionTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.DesInscriptionTrajetServiceSoap">
+		<property name="businessTrajet" ref="desInscriptionTrajetBusinessSoap" />
+	</bean>
+	<bean id="desInscriptionTrajetBusinessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" />
 
 <!-- 	<bean id="trajetImpl" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl"> -->
 <!-- 		<property name="daoTrajet" ref="TrajetDaoId" /> -->
@@ -66,7 +73,7 @@
 <!-- 		</jaxrs:extensionMappings> -->
 <!-- 	</jaxrs:server> -->
 <!-- 	<bean id="rechercheRestImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetServiceRest"> -->
-<!-- 		<property name="daoRecherche" ref="rechercheRestDAO" /> -->
+<!-- 		<property name="daoRechercheRest" ref="rechercheRestDAO" /> -->
 <!-- 	</bean> -->
 <!-- 	<bean id="rechercheRestDAO" class="fr.afcepf.atod21.coVoiturage.daoImpl.DaoRechercheImpl" /> -->
 
@@ -83,5 +90,20 @@
 		<property name="businessTrajet" ref="inscriptionRestDAO" />
 	</bean>
 	<bean id="inscriptionRestDAO" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" />
+	
+	
+<!-- 	<jaxrs:server id="desinscriptionRestService" address="/"> -->
+<!-- 		<jaxrs:serviceBeans> -->
+<!-- 			<ref bean="desinscriptionRestImpl" /> -->
+<!-- 		</jaxrs:serviceBeans> -->
+<!-- 		<jaxrs:extensionMappings> -->
+<!-- 			<entry key="json" value="application/json" /> -->
+<!-- 			<entry key="xml" value="application/xml" /> -->
+<!-- 		</jaxrs:extensionMappings> -->
+<!-- 	</jaxrs:server> -->
+<!-- 	<bean id="desinscriptionRestImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.InscriptionTrajetServiceRest"> -->
+<!-- 		<property name="businessTrajet" ref="desinscriptionRestDAO" /> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="desinscriptionRestDAO" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" /> -->
 	
 </beans>
