@@ -23,7 +23,7 @@ public class InscriptionTrajetServiceSoap implements IInscriptionTrajetServiceSo
         return true;
     }
 
-  
+
     
 
 }
