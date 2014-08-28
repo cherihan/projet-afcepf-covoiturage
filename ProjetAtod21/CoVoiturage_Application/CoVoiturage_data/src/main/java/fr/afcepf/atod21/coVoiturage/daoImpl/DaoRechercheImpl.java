@@ -6,10 +6,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
 import fr.afcepf.atod21.coVoiturage.dao.IDaoRecherche;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.utils.Consts;
 
+@Repository
 public class DaoRechercheImpl implements IDaoRecherche {
 
     @PersistenceContext
