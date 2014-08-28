@@ -27,5 +27,16 @@ public class InscriptionTrajetServiceRest implements IInscriptionTrajetServiceRe
        return businessTrajet.sInscrireTrajetSoap(IdTrajet, IdUser);
     }
 
+    @Override
+    @Path("/desinscrire/{IdTrajet}/{IdUser}")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public boolean seDesinscrireTrajet(@PathParam("IdTrajet") Integer IdTrajet, @PathParam("IdUser") Integer IdUser) {
+        return businessTrajet.seDesinscrireTrajet(IdTrajet, IdUser);
+    }
+    
+    
+    
+
     
 }

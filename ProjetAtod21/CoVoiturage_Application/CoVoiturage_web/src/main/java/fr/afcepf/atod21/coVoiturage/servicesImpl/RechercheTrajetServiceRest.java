@@ -15,10 +15,10 @@ import fr.afcepf.atod21.coVoiturage.services.IRechercheTrajetServiceRest;
 public class RechercheTrajetServiceRest implements IRechercheTrajetServiceRest {
 
     @Autowired
-    IDaoRecherche daoRecherche;
+    IDaoRecherche daoRechercheRest;
     
     public void setDaoRecherche(IDaoRecherche paramDaoRecherche) {
-        daoRecherche = paramDaoRecherche;
+        daoRechercheRest = paramDaoRecherche;
     }
     
     public RechercheTrajetServiceRest() {
