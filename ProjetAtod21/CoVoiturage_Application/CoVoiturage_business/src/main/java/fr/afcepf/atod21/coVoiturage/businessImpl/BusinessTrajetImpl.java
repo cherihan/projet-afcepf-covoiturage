@@ -27,44 +27,24 @@ import fr.afcepf.atod21.coVoiturage.utils.Consts;
 @Transactional
 public class BusinessTrajetImpl implements IBusinessTrajet {
 
-       
-	@Autowired
-	private IDaoTrajet daoTrajet;
-	
-	@Autowired
-	private IDaoUtilisateur daoUtilisateur;
+    @Autowired
+    private IDaoTrajet daoTrajet;
+
+    @Autowired
+    private IDaoUtilisateur daoUtilisateur;
 
     public void setDaoTrajet(IDaoTrajet daoTrajet) {
         this.daoTrajet = daoTrajet;
     }
-    
-    
 
     @Override
     public boolean sInscrireTrajetSoap(int idTrajet, int idUser) {
 
-        System.out.println("==============================================");
-        System.out.println("id trajet = " + idTrajet);
-        System.out.println("id user = " + idUser);
-        System.out.println("==============================================");
-        
         Trajet trajet = daoTrajet.rechercheById(idTrajet);
-        
-        System.out.println("==============================================");
-        System.out.println("================ 1 =======================");
-        System.out.println("==============================================");
 
         Utilisateur user = daoUtilisateur.getUserById(idUser);
-        
-        System.out.println("==============================================");
-        System.out.println("================ 2 =======================");
-        System.out.println("==============================================");
 
         daoTrajet.sInscrireTrajet(trajet, user);
-        
-        System.out.println("==============================================");
-        System.out.println("================ 3 =======================");
-        System.out.println("==============================================");
 
         TrajetDto trajetDto = new TrajetDto();
 
@@ -74,49 +54,42 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
             System.err.println(" ERREUR : " + e.getMessage());
         }
 
-        System.out.println("==============================================");
-        System.out.println("================ 4 =======================");
-        System.out.println("==============================================");
-        
         trajetDto.setVilleDepart(trajet.getVilleDepart().getNom());
         trajetDto.setVilleArrivee(trajet.getVilleArrivee().getNom());
 
-        System.out.println("==============================================");
-        System.out.println("================ 5 =======================");
-        System.out.println("==============================================");
         return true;
     }
-    
-	@Override
-	public void ajouterCommentaireTrajet(int idTrajet, int idUser) {
-		// TODO Auto-generated method stub
 
-	}
+    @Override
+    public void ajouterCommentaireTrajet(int idTrajet, int idUser) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public Integer creerTrajet(Trajet trajet, Utilisateur user) {
+    }
 
-	return 	daoTrajet.creerTrajet(trajet, user);
+    @Override
+    public Integer creerTrajet(Trajet trajet, Utilisateur user) {
 
-	}
+        return daoTrajet.creerTrajet(trajet, user);
 
-	@Override
-	public void supprimerTrajet(int idTrajet, int idUser) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public List<Ville> getAllVilles() {
+    @Override
+    public void supprimerTrajet(int idTrajet, int idUser) {
+        // TODO Auto-generated method stub
 
-		return daoTrajet.getAllVilles();
-	}
+    }
+
+    @Override
+    public List<Ville> getAllVilles() {
+
+        return daoTrajet.getAllVilles();
+    }
 
     @Override
     public boolean sInscrireTrajet(Trajet trajet, Utilisateur user) {
 
-        int nbPlacesDispo = trajet.getNbPassagersRestant()-1;
-        
+        int nbPlacesDispo = trajet.getNbPassagersRestant() - 1;
+
         if (nbPlacesDispo == 0) {
             trajet.setStatut(Consts.COMPLET);
         } else if (nbPlacesDispo > 0) {
@@ -124,13 +97,12 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
         }
         trajet.setNbPassagersRestant(nbPlacesDispo);
         daoTrajet.sInscrireTrajet(trajet, user);
-      return true;
+        return true;
     }
 
     @Override
     public boolean seDesinscrireTrajet(int idTrajet, int idUser) {
-        // TODO Auto-generated method stub
-      return true;
+        return true;
     }
 
     @Override
@@ -138,33 +110,30 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
         return false;
     }
 
-	
-	@Override
-	public List<Trajet> getAllHistoTrajets(int idUser) {
-		List<Trajet> listeTrajets = daoTrajet.getAllHistoTrajets(idUser);
-		return listeTrajets;
-	}
-
     @Override
-    public List<Trajet> getHistoTrajetsAsConductorByType(int idUser, String typeHistoTrajet) {
-        List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsAsConductorByType(idUser, typeHistoTrajet);
+    public List<Trajet> getAllHistoTrajets(int idUser) {
+        List<Trajet> listeTrajets = daoTrajet.getAllHistoTrajets(idUser);
         return listeTrajets;
     }
 
     @Override
-    public List<Trajet> getHistoTrajetsAsPassengerByType(int idUser, String typeHistoTrajet) {
-        List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsAsPassengerByType(idUser, typeHistoTrajet);
+    public List<Trajet> getHistoTrajetsAsConductorByType(int idUser,
+            String typeHistoTrajet) {
+        List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsAsConductorByType(
+                idUser, typeHistoTrajet);
         return listeTrajets;
     }
 
+    @Override
+    public List<Trajet> getHistoTrajetsAsPassengerByType(int idUser,
+            String typeHistoTrajet) {
+        List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsAsPassengerByType(
+                idUser, typeHistoTrajet);
+        return listeTrajets;
+    }
 
-    /**
-     * @param paramDaoUtilisateur the daoUtilisateur to set
-     */
     public void setDaoUtilisateur(IDaoUtilisateur paramDaoUtilisateur) {
         daoUtilisateur = paramDaoUtilisateur;
     }
-
-   
 
 }
