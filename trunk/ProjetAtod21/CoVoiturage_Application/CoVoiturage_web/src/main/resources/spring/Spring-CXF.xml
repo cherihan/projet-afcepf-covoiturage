@@ -30,7 +30,7 @@
 		<property name="businessTrajet" ref="businessTrajetId" />
 	</bean>
 	
-	<jaxws:endpoint id="desInscriptionTrajetSoapService" implementor="#desInscriptionTrajetSoapImpl" address="/desInscriptionTrajetService" />
+	<jaxws:endpoint id="desInscriptionTrajetSoapService" implementor="#desInscriptionTrajetSoapImpl" address="/SOAP/DesInscriptionTrajetService" />
 	<bean id="desInscriptionTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.DesInscriptionTrajetServiceSoap">
 		<property name="businessTrajet" ref="businessTrajetId" />
 	</bean>
