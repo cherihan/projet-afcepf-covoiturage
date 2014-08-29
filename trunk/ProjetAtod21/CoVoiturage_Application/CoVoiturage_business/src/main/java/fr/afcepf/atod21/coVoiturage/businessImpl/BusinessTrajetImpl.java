@@ -102,7 +102,7 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 
     @Override
     public boolean seDesinscrireTrajet(int idTrajet, int idUser) {
-        return true;
+        return false;
     }
 
     @Override
