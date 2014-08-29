@@ -14,96 +14,60 @@
 	<import resource="classpath:META-INF/cxf/cxf.xml"/>
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-	<!-- SOAP -->	
-	<jaxws:endpoint id="connexionSoapService" implementor="#connexionSoapImpl" address="/ConnexionService" />
-	<bean id="connexionSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.ConnexionServiceSoap">
-		<property name="businessConnexion" ref="connexionBusisnessSoap" />
-	</bean>
-	<bean id="connexionBusisnessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessConnexionImpl" />
-
-	<jaxws:endpoint id="rechercheTrajetSoapService" implementor="#rechercheTrajetSoapImpl" address="/RechercheTrajetService" />
-	<bean id="rechercheTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetServiceSoap">
-
-	</bean>
-	<!-- 		<property name="businessRecherche" ref="rechercheTrajetBusinessSoap" /> -->
-<!-- 	<bean id="rechercheTrajetBusinessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessRechercheImpl" /> -->
+	<!-- Déclaration de BusinessBeans -->
+	<bean id="busisnessConnexionId" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessConnexionImpl" />
+	<bean id="businessTrajetId" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" />
+		
 	
-
-	<jaxws:endpoint id="inscriptionTrajetSoapService" implementor="#inscriptionTrajetSoapImpl" address="/InscriptionTrajetService" />
-	<bean id="inscriptionTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.InscriptionTrajetServiceSoap">
-		<property name="businessTrajet" ref="inscriptionTrajetBusinessSoap" />
+	<!-- SOAP -->	
+	<jaxws:endpoint id="connexionSoapService" implementor="#connexionSoapImpl" address="/SOAP/ConnexionService" />
+	<bean id="connexionSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.ConnexionServiceSoap">
+		<property name="businessConnexion" ref="busisnessConnexionId" />
 	</bean>
-	<bean id="inscriptionTrajetBusinessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" />
+
+	<jaxws:endpoint id="inscriptionTrajetSoapService" implementor="#inscriptionTrajetSoapImpl" address="/SOAP/InscriptionTrajetService" />
+	<bean id="inscriptionTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.InscriptionTrajetServiceSoap">
+		<property name="businessTrajet" ref="businessTrajetId" />
+	</bean>
 	
 	<jaxws:endpoint id="desInscriptionTrajetSoapService" implementor="#desInscriptionTrajetSoapImpl" address="/desInscriptionTrajetService" />
 	<bean id="desInscriptionTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.DesInscriptionTrajetServiceSoap">
-		<property name="businessTrajet" ref="desInscriptionTrajetBusinessSoap" />
+		<property name="businessTrajet" ref="businessTrajetId" />
 	</bean>
-	<bean id="desInscriptionTrajetBusinessSoap" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" />
-
-<!-- 	<bean id="trajetImpl" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl"> -->
-<!-- 		<property name="daoTrajet" ref="TrajetDaoId" /> -->
-<!-- 	</bean> -->
-<!-- 	<bean id="TrajetDaoId" class="fr.afcepf.atod21.coVoiturage.daoImpl.DaoTrajetImpl" /> -->
-
-
-
+	
 	<!-- REST -->
-	<jaxrs:server id="connexionRestService" address="/con">
+	<jaxrs:server id="connexionRestService" address="/REST/seConnecter">
 		<jaxrs:serviceBeans>
 			<ref bean="connexionRestImpl" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
-			<entry key="json" value="application/json" />
 			<entry key="xml" value="application/xml" />
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
 	<bean id="connexionRestImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.ConnexionServiceRest">
-		<property name="businessConnexion" ref="connexionRestID" />
+		<property name="businessConnexion" ref="busisnessConnexionId" />
 	</bean>
-	<bean id="connexionRestID" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessConnexionImpl" />
 
-<!-- 	<jaxrs:server id="rechercheRestService" address="/RechercheTrajetService"> -->
-<!-- 		<jaxrs:serviceBeans> -->
-<!-- 			<ref bean="rechercheRestImpl" /> -->
-<!-- 		</jaxrs:serviceBeans> -->
-<!-- 		<jaxrs:extensionMappings> -->
-<!-- 			<entry key="json" value="application/json" /> -->
-<!-- 			<entry key="xml" value="application/xml" /> -->
-<!-- 		</jaxrs:extensionMappings> -->
-<!-- 	</jaxrs:server> -->
-<!-- 	<bean id="rechercheRestImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetServiceRest"> -->
-<!-- 		<property name="daoRechercheRest" ref="rechercheRestDAO" /> -->
-<!-- 	</bean> -->
-<!-- 	<bean id="rechercheRestDAO" class="fr.afcepf.atod21.coVoiturage.daoImpl.DaoRechercheImpl" /> -->
-
-	<jaxrs:server id="inscriptionRestService" address="/">
+	<jaxrs:server id="inscriptionRestService" address="/REST/sInscrire">
 		<jaxrs:serviceBeans>
 			<ref bean="inscriptionRestImpl" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
-			<entry key="json" value="application/json" />
 			<entry key="xml" value="application/xml" />
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
 	<bean id="inscriptionRestImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.InscriptionTrajetServiceRest">
-		<property name="businessTrajet" ref="inscriptionRestDAO" />
+		<property name="businessTrajet" ref="businessTrajetId" />
 	</bean>
-	<bean id="inscriptionRestDAO" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" />
 	
-	
-<!-- 	<jaxrs:server id="desinscriptionRestService" address="/"> -->
-<!-- 		<jaxrs:serviceBeans> -->
-<!-- 			<ref bean="desinscriptionRestImpl" /> -->
-<!-- 		</jaxrs:serviceBeans> -->
-<!-- 		<jaxrs:extensionMappings> -->
-<!-- 			<entry key="json" value="application/json" /> -->
-<!-- 			<entry key="xml" value="application/xml" /> -->
-<!-- 		</jaxrs:extensionMappings> -->
-<!-- 	</jaxrs:server> -->
-<!-- 	<bean id="desinscriptionRestImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.InscriptionTrajetServiceRest"> -->
-<!-- 		<property name="businessTrajet" ref="desinscriptionRestDAO" /> -->
-<!-- 	</bean> -->
-<!-- 	<bean id="desinscriptionRestDAO" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" /> -->
-	
+	<jaxrs:server id="desInscriptionRestService" address="/REST/DesInscrire">
+		<jaxrs:serviceBeans>
+			<ref bean="desInscriptionRestImpl" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="xml" value="application/xml" />
+		</jaxrs:extensionMappings>
+	</jaxrs:server>	<bean id="desInscriptionRestImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.DesInscriptionTrajetServiceRest">
+		<property name="businessTrajet" ref="businessTrajetId" />
+	</bean>
 </beans>
