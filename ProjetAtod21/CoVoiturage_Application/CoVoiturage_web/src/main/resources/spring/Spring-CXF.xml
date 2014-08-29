@@ -20,6 +20,10 @@
 		
 	
 	<!-- SOAP -->	
+	<jaxws:endpoint id="orchestrateurService" implementor="#orchestrateurSoapImpl" address="/SOAP/OrchestrateurService" />
+	<bean id="orchestrateurSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.OrchestrateurSoap">
+	</bean>
+	
 	<jaxws:endpoint id="connexionSoapService" implementor="#connexionSoapImpl" address="/SOAP/ConnexionService" />
 	<bean id="connexionSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.ConnexionServiceSoap">
 		<property name="businessConnexion" ref="busisnessConnexionId" />
