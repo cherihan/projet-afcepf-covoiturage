@@ -4,6 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,7 +27,7 @@ public class ConnexionServiceRest implements IConnexionServiceRest {
 @Override
 @Path("/{email}/{password}")
 @GET
-@Produces("application/xml")
+@Produces(MediaType.APPLICATION_XML)
 public UtilisateurDto seConnecterSOAP(@PathParam("email") String email, @PathParam("password") String password) {
     return businessConnexion.seConnecterSOAP(email, password);
 }
