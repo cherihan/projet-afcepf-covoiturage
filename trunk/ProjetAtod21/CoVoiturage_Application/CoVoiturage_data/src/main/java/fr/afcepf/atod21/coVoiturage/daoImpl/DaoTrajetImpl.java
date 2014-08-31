@@ -1,10 +1,12 @@
 package fr.afcepf.atod21.coVoiturage.daoImpl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.Selection;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,26 +15,53 @@ import fr.afcepf.atod21.coVoiturage.dao.IDaoTrajet;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Ville;
-import fr.afcepf.atod21.coVoiturage.utils.Consts;
 
 @Component
 @Transactional
 public class DaoTrajetImpl implements IDaoTrajet {
 
-    @PersistenceContext
-    private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-    @Override
-    public void ajouterCommentaireTrajet(int idTrajet, int idUser) {
-        // TODO Auto-generated method stub
+	@Override
+	public void ajouterCommentaireTrajet(int idTrajet, int idUser) {
+		// TODO Auto-generated method stub
 
-    }
+	}
 
-    @Override
-    public void supprimerTrajet(int idTrajet, int idUser) {
-        // TODO Auto-generated method stub
+	@Override
+	public boolean supprimerTrajet(Trajet trajet, Utilisateur user) {
+		user = em.find(Utilisateur.class, user.getIdUtilisateur());
+        user.getTrajets().remove(trajet);
 
-    }
+		//em.persist(user);
+		//em.flush();
+
+		return true;
+	}
+	
+	public void delete(Trajet trajet) {
+		Utilisateur user = em.find(Utilisateur.class, 1);
+		List<Trajet> listeTrajetsBefore = user.getTrajets();
+		//Trajet trajet = em.find(Trajet.class, 40);
+/*
+		int index = 0;
+		boolean foundTrajet = false;
+		Trajet t = null;
+		Iterator<Trajet> iterator = listeTrajets.iterator();
+		while (iterator.hasNext() && !foundTrajet) {
+			t = iterator.next();
+			if (t.getIdTrajet() == 40) {
+				index = listeTrajets.indexOf(t);
+				foundTrajet = true;
+			}
+		}
+
+		/*
+		em.persist(user);
+		em.flush();
+		*/
+	}
 
     @Override
     public Integer creerTrajet(Trajet trajet, Utilisateur user) {
@@ -80,62 +109,36 @@ public class DaoTrajetImpl implements IDaoTrajet {
         return false;
     }
 
-    @Override
-    public List<Ville> getAllVilles() {
-        return em.createQuery("SELECT v FROM Ville v").getResultList();
-    }
+	@Override
+	public List<Ville> getAllVilles() {
+		return em.createQuery("SELECT v FROM Ville v").getResultList();
+	}
 
-    @Override
-    public List<Trajet> getAllHistoTrajets(int idUser) {
+	@Override
+	public List<Trajet> getAllHistoTrajets(int idUser) {
+		
+		String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
+		Utilisateur u = (Utilisateur) em.createQuery(query).setParameter("idUser",idUser).getSingleResult();
+		return u.getTrajets();
+	}
 
+   @Override
+    public List<Trajet> getHistoTrajetsByType(int idUser, String typeHistoTrajet) {
         String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
-        Utilisateur u = (Utilisateur) em.createQuery(query)
-                .setParameter("idUser", idUser).getSingleResult();
-        System.out.println("===> taille = " + u.getTrajets().size());
-        return u.getTrajets();
-    }
-
-    @Override
-    public List<Trajet> getHistoTrajetsAsConductorByType(int idUser,
-            String typeHistoTrajet) {
-
-        String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
-        Utilisateur u = (Utilisateur) em.createQuery(query)
-                .setParameter("idUser", idUser).getSingleResult();
+        Utilisateur u = (Utilisateur) em.createQuery(query).setParameter("idUser",idUser).getSingleResult();
 
         List<Trajet> listeAllTrajets = u.getTrajets();
 
         List<Trajet> listeTrajets = new ArrayList<Trajet>();
-        if (listeAllTrajets != null) {
+        if(listeAllTrajets != null) {
             for (Trajet t : listeAllTrajets) {
-                if (t.getStatut().equals(typeHistoTrajet)
-                        && t.getConducteurIdUser() == idUser)
+                if (t.getStatut().equals(typeHistoTrajet) && t.getConducteurIdUser() == idUser)
                     listeTrajets.add(t);
             }
         }
         return listeTrajets;
     }
 
-    @Override
-    public List<Trajet> getHistoTrajetsAsPassengerByType(int idUser,
-            String typeHistoTrajet) {
-
-        String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
-        Utilisateur u = (Utilisateur) em.createQuery(query)
-                .setParameter("idUser", idUser).getSingleResult();
-
-        List<Trajet> listeAllTrajets = u.getTrajets();
-
-        List<Trajet> listeTrajets = new ArrayList<Trajet>();
-        if (listeAllTrajets != null) {
-            for (Trajet t : listeAllTrajets) {
-                if (t.getStatut().equals(typeHistoTrajet)
-                        && t.getConducteurIdUser() != idUser)
-                    listeTrajets.add(t);
-            }
-        }
-        return listeTrajets;
-    }
 
     @Override
     public Trajet rechercheById(Integer idTrajet) {
