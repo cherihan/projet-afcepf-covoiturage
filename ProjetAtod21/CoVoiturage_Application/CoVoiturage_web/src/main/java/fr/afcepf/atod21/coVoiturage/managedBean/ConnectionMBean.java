@@ -6,8 +6,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessConnexion;
-import fr.afcepf.atod21.coVoiturage.business.IBusinessUtilisateur;
-import fr.afcepf.atod21.coVoiturage.business.dto.UtilisateurDto;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 
 @ManagedBean
@@ -30,6 +28,7 @@ public class ConnectionMBean {
 	}
 
 	public String seConnecter() {
+
 		this.user = this.businessConnexion.seConnecter(email, password);
 		if (this.user != null)
 			this.userConnected = true;
