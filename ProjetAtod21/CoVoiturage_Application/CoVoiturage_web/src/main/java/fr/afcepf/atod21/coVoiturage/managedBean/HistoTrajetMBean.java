@@ -9,8 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
@@ -27,6 +25,7 @@ public class HistoTrajetMBean {
     private boolean statutRender = false;
     private boolean restantsRender = false;
     private boolean nbParticipantsRender = false;
+    private boolean showMessage = false;
     
     private String typeUtilisateur;
     private Map<String,String> typeUtilisateurValues;
@@ -88,7 +87,7 @@ public class HistoTrajetMBean {
             break;
 
         default:
-            setListeHistoTrajets(businessTrajet.getHistoTrajetsAsConductorByType(userConnected.getIdUtilisateur(), typeHistoTrajet));
+            setListeHistoTrajets(businessTrajet.getHistoTrajetsByType(userConnected.getIdUtilisateur(), typeHistoTrajet));
             if (!(listeHistoTrajets == null || listeHistoTrajets.size() == 0)) {
             	if (typeHistoTrajet.equals(Consts.EN_COURS) || typeHistoTrajet.equals(Consts.PROPOSE)) {
             		restantsRender = true;
@@ -105,23 +104,22 @@ public class HistoTrajetMBean {
         return "";
     }
 	
-	public String consulterTrajet(int idTrajet) {
+	public String consulterTrajet(Trajet trajet) {
 		return "";
 	}
 
-	public String supprimerTrajet(int idTrajet) {
+	public String supprimerTrajet(Trajet trajet, Utilisateur userConnected) {
 /*
-		int resp = JOptionPane.showConfirmDialog(null, "Etes-vous sûr de vouloir supprimer ce trajet ?",
-												"Confirmation de suppression", JOptionPane.OK_CANCEL_OPTION);
-		System.out.println("resp = " + resp);
-		if (resp == 0)
-			System.out.println("Réponse : Oui");
-		else
-			System.out.println("Réponse : Non");
-*/	
+		businessTrajet.supprimerTrajet(trajet, userConnected);
+		setListeHistoTrajets(businessTrajet.getHistoTrajetsByType(userConnected.getIdUtilisateur(), typeHistoTrajet));
+        FacesMessage message = new FacesMessage("Votre trajet a bien été supprimé de votre historique.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+*/
+        this.showMessage = true;
+        
 		return "";
 	}
-
+	
 	public IBusinessTrajet getBusinessTrajet() {
 		return businessTrajet;
 	}
@@ -202,6 +200,14 @@ public class HistoTrajetMBean {
 
 	public void setNbParticipantsRender(boolean nbParticipantsRender) {
 		this.nbParticipantsRender = nbParticipantsRender;
+	}
+
+	public boolean isShowMessage() {
+		return showMessage;
+	}
+
+	public void setShowMessage(boolean showMessage) {
+		this.showMessage = showMessage;
 	}
 
 }
