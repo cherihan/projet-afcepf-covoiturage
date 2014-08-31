@@ -37,6 +37,10 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
         this.daoTrajet = daoTrajet;
     }
 
+    public void setDaoUtilisateur(IDaoUtilisateur paramDaoUtilisateur) {
+        daoUtilisateur = paramDaoUtilisateur;
+    }
+    
     @Override
     public boolean sInscrireTrajetSoap(int idTrajet, int idUser) {
 
@@ -61,17 +65,18 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
     }
 
     @Override
-    public void ajouterCommentaireTrajet(int idTrajet, int idUser) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public Integer creerTrajet(Trajet trajet, Utilisateur user) {
 
         return daoTrajet.creerTrajet(trajet, user);
 
     }
+    
+    @Override
+    public void ajouterCommentaireTrajet(int idTrajet, int idUser) {
+        // TODO Auto-generated method stub
+
+    }
+
 
     @Override
     public void supprimerTrajet(int idTrajet, int idUser) {
@@ -116,24 +121,20 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
         return listeTrajets;
     }
 
-    @Override
-    public List<Trajet> getHistoTrajetsAsConductorByType(int idUser,
-            String typeHistoTrajet) {
-        List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsAsConductorByType(
-                idUser, typeHistoTrajet);
-        return listeTrajets;
-    }
+	@Override
+	public List<Trajet> getAllHistoTrajets(int idUser) {
+		List<Trajet> listeTrajets = daoTrajet.getAllHistoTrajets(idUser);
+		return listeTrajets;
+	}
 
     @Override
-    public List<Trajet> getHistoTrajetsAsPassengerByType(int idUser,
-            String typeHistoTrajet) {
-        List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsAsPassengerByType(
-                idUser, typeHistoTrajet);
-        return listeTrajets;
-    }
+    public List<Trajet> getHistoTrajetsByType(int idUser, String typeHistoTrajet) {
+        System.out.println("=========================");
+        System.out.println("====> Business getHistoTrajets.");
+        System.out.println("=========================");
 
-    public void setDaoUtilisateur(IDaoUtilisateur paramDaoUtilisateur) {
-        daoUtilisateur = paramDaoUtilisateur;
+        List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsByType(idUser, typeHistoTrajet);
+        return listeTrajets;
     }
 
 }
