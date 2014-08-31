@@ -32,106 +32,104 @@ public class UtilisateurMBean {
 
     @ManagedProperty(value = "#{businessTrajetImpl}")
     private IBusinessTrajet businessTrajet;
+   
+	private Utilisateur user;
+	private Trajet trajet;
 
-    private Utilisateur user;
-    private Trajet trajet;
+	private String email;
+	private String password;
+	private String villeDepart;
+	private String villeArrivee;
+	private String dateDepart;
+	private boolean displayTableResultsTrajets = false;
+	private HtmlDataTable dataTableTrajets = new HtmlDataTable();
 
-    private String email;
-    private String password;
-    private String villeDepart;
-    private String villeArrivee;
-    private String dateDepart;
-    private boolean displayTableResultsTrajets = false;
-    private HtmlDataTable dataTableTrajets = new HtmlDataTable();
+	private List<Trajet> listResults = new ArrayList<Trajet>();
 
-    private List<Trajet> listResults = new ArrayList<Trajet>();
+	@PostConstruct
+	public void init() {
 
-    @PostConstruct
-    public void init() {
+	}
 
+	public String sInscireTrajet(Trajet trajet, Utilisateur user) {
+		try {
+		    businessTrajet.sInscrireTrajet(trajet, user);
+			FacesMessage message = new FacesMessage(
+					"Votre demande d'inscription Ã  ce trajet a bien Ã©tÃ© enregistrÃ©e !");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+
+	public String seDesincrireTrajet() {
+		// TODO
+		return "";
+	}
+
+	public String annulerInscriptionTrajet() {
+		// TODO
+		return "";
+	}
+
+	public String rechercherTrajet() {
+		String retour = "listerTrajets";
+		Date dateDeDepart = Common.convertDate(this.dateDepart);
+		if (this.villeArrivee == null || this.villeArrivee.trim().length() == 0) {
+			this.listResults = this.businessRecherche.rechercherTrajetParVilleDepart(dateDeDepart, villeDepart);
+		} else {
+			this.listResults = this.businessRecherche.rechercherTrajet(dateDeDepart, this.villeDepart, this.villeArrivee);
+		}
+
+		if (listResults != null) {
+			this.displayTableResultsTrajets = true;
+		}
+
+		if (listResults.size() == 0 || listResults == null) {
+			FacesMessage message = new FacesMessage("Aucun resultat disponible !");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+			this.displayTableResultsTrajets = false;
+			retour = "error";
+		}
+		return retour;
+	}
+
+   public Utilisateur getUserById(int idUser) {
+       return this.businessUtilisateur.getUserById(idUser);
     }
 
-    public String sInscireTrajet(Trajet trajet, Utilisateur user) {
-        try {
-            businessTrajet.sInscrireTrajet(trajet, user);
-            FacesMessage message = new FacesMessage(
-                    "Votre demande d'inscription à ce trajet a bien été enregistrée !");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
+	public String motDepasseOublie() {
+		// TODO
+		return "";
+	}
 
-    public String seDesincrireTrajet() {
-        // TODO
-        return "";
-    }
+	public Utilisateur getUser() {
+		return user;
+	}
 
-    public String annulerInscriptionTrajet() {
-        // TODO
-        return "";
-    }
+	public void setUser(Utilisateur user) {
+		this.user = user;
+	}
 
-    public String rechercherTrajet() {
-        String retour = "listerTrajets";
-        Date dateDeDepart = Common.convertDate(this.dateDepart);
-        if (this.villeArrivee == null || this.villeArrivee.trim().length() == 0) {
-            this.listResults = this.businessRecherche
-                    .rechercherTrajetParVilleDepart(dateDeDepart, villeDepart);
-        } else {
-            this.listResults = this.businessRecherche.rechercherTrajet(
-                    dateDeDepart, this.villeDepart, this.villeArrivee);
-        }
+	public Trajet getTrajet() {
+		return trajet;
+	}
 
-        if (listResults != null) {
-            this.displayTableResultsTrajets = true;
-        }
+	public void setTrajet(Trajet trajet) {
+		this.trajet = trajet;
+	}
 
-        if (listResults.size() == 0 || listResults == null) {
-            FacesMessage message = new FacesMessage(
-                    "Aucun resultat disponible !");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            this.displayTableResultsTrajets = false;
-            retour = "error";
-        }
-        return retour;
-    }
+	public IBusinessUtilisateur getBusinessUtilisateur() {
+		return businessUtilisateur;
+	}
 
-    public Utilisateur getUserById(int idUser) {
-        return this.businessUtilisateur.getUserById(idUser);
-    }
+	public void setBusinessUtilisateur(IBusinessUtilisateur businessUtilisateur) {
+		this.businessUtilisateur = businessUtilisateur;
+	}
 
-    public String motDepasseOublie() {
-        // TODO
-        return "";
-    }
-
-    public Utilisateur getUser() {
-        return user;
-    }
-
-    public void setUser(Utilisateur user) {
-        this.user = user;
-    }
-
-    public Trajet getTrajet() {
-        return trajet;
-    }
-
-    public void setTrajet(Trajet trajet) {
-        this.trajet = trajet;
-    }
-
-    public IBusinessUtilisateur getBusinessUtilisateur() {
-        return businessUtilisateur;
-    }
-
-    public void setBusinessUtilisateur(IBusinessUtilisateur businessUtilisateur) {
-        this.businessUtilisateur = businessUtilisateur;
-    }
-
-    /**
+	
+	/**
      * @return the businessRecherche
      */
     public IBusinessRecherche getBusinessRecherche() {
@@ -139,8 +137,7 @@ public class UtilisateurMBean {
     }
 
     /**
-     * @param paramBusinessRecherche
-     *            the businessRecherche to set
+     * @param paramBusinessRecherche the businessRecherche to set
      */
     public void setBusinessRecherche(IBusinessRecherche paramBusinessRecherche) {
         businessRecherche = paramBusinessRecherche;
@@ -154,74 +151,73 @@ public class UtilisateurMBean {
     }
 
     /**
-     * @param paramBusinessTrajet
-     *            the businessTrajet to set
+     * @param paramBusinessTrajet the businessTrajet to set
      */
     public void setBusinessTrajet(IBusinessTrajet paramBusinessTrajet) {
         businessTrajet = paramBusinessTrajet;
     }
 
     public String getEmail() {
-        return email;
-    }
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public String getVilleDepart() {
-        return villeDepart;
-    }
+	public String getVilleDepart() {
+		return villeDepart;
+	}
 
-    public void setVilleDepart(String villeDepart) {
-        this.villeDepart = villeDepart;
-    }
+	public void setVilleDepart(String villeDepart) {
+		this.villeDepart = villeDepart;
+	}
 
-    public String getVilleArrivee() {
-        return villeArrivee;
-    }
+	public String getVilleArrivee() {
+		return villeArrivee;
+	}
 
-    public void setVilleArrivee(String villeArrivee) {
-        this.villeArrivee = villeArrivee;
-    }
+	public void setVilleArrivee(String villeArrivee) {
+		this.villeArrivee = villeArrivee;
+	}
 
-    public String getDateDepart() {
-        return dateDepart;
-    }
+	public String getDateDepart() {
+		return dateDepart;
+	}
 
-    public void setDateDepart(String dateDepart) {
-        this.dateDepart = dateDepart;
-    }
+	public void setDateDepart(String dateDepart) {
+		this.dateDepart = dateDepart;
+	}
 
-    public boolean isDisplayTableResultsTrajets() {
-        return displayTableResultsTrajets;
-    }
+	public boolean isDisplayTableResultsTrajets() {
+		return displayTableResultsTrajets;
+	}
 
-    public void setDisplayTableResultsTrajets(boolean displayTableResultsTrajets) {
-        this.displayTableResultsTrajets = displayTableResultsTrajets;
-    }
+	public void setDisplayTableResultsTrajets(boolean displayTableResultsTrajets) {
+		this.displayTableResultsTrajets = displayTableResultsTrajets;
+	}
 
-    public List<Trajet> getListResults() {
-        return listResults;
-    }
+	public List<Trajet> getListResults() {
+		return listResults;
+	}
 
-    public void setListResults(List<Trajet> listResults) {
-        this.listResults = listResults;
-    }
+	public void setListResults(List<Trajet> listResults) {
+		this.listResults = listResults;
+	}
 
-    public HtmlDataTable getDataTableTrajets() {
-        return dataTableTrajets;
-    }
+	public HtmlDataTable getDataTableTrajets() {
+		return dataTableTrajets;
+	}
 
-    public void setDataTableTrajets(HtmlDataTable dataTableTrajets) {
-        this.dataTableTrajets = dataTableTrajets;
-    }
+	public void setDataTableTrajets(HtmlDataTable dataTableTrajets) {
+		this.dataTableTrajets = dataTableTrajets;
+	}
 }
