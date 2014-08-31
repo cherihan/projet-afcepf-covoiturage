@@ -77,7 +77,6 @@ public class InscriptionMBean {
 		FacesMessage message = new FacesMessage("Compte crée avec succès !");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 
-		System.out.println(retour);
 		return retour;
 	}
 
