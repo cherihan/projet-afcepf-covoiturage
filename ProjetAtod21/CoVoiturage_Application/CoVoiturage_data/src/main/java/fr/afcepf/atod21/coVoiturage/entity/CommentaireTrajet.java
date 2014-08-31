@@ -20,18 +20,31 @@ public class CommentaireTrajet implements Serializable {
 	@Column(name="id_commentaire_trajet")
 	private int idCommentaireTrajet;
 
+    private String commentaire;
+    
+	@Column(name="commentaire_id_QR")
+    private int commentaireIdQR;
+
+	@Column(name="commentaire_type_QR")
+    private String commentaireTypeQR;
+
 	//bi-directional many-to-one association to Trajet
 	@ManyToOne
 	private Trajet trajet;
 
-    private String commetaire;
-    
-    private int commentaireIdQR;
-
-    private String commentaireTypeQR;
-
 	public CommentaireTrajet() {
 	}
+	
+	public CommentaireTrajet(int idCommentaireTrajet, Trajet trajet,
+			String commentaire, int commentaireIdQR, String commentaireTypeQR) {
+		super();
+		this.idCommentaireTrajet = idCommentaireTrajet;
+		this.trajet = trajet;
+		this.commentaire = commentaire;
+		this.commentaireIdQR = commentaireIdQR;
+		this.commentaireTypeQR = commentaireTypeQR;
+	}
+
 
 	public int getIdCommentaireTrajet() {
 		return this.idCommentaireTrajet;
@@ -39,6 +52,31 @@ public class CommentaireTrajet implements Serializable {
 
 	public void setIdCommentaireTrajet(int idCommentaireTrajet) {
 		this.idCommentaireTrajet = idCommentaireTrajet;
+	}
+
+    public int getCommentaireIdQR() {
+        return commentaireIdQR;
+    }
+
+    public void setCommentaireIdQR(int paramCommentaireIdQR) {
+        commentaireIdQR = paramCommentaireIdQR;
+    }
+
+    public String getCommentaireTypeQR() {
+        return commentaireTypeQR;
+    }
+
+    public void setCommentaireTypeQR(String paramCommentaireTypeQR) {
+        commentaireTypeQR = paramCommentaireTypeQR;
+    }
+
+    
+    public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
 	}
 
 	public Trajet getTrajet() {
@@ -49,72 +87,13 @@ public class CommentaireTrajet implements Serializable {
 		this.trajet = trajet;
 	}
 
-    /**
-     * @return the commetaire
-     */
-    public String getCommetaire() {
-        return commetaire;
-    }
+	@Override
+	public String toString() {
+		return "CommentaireTrajet [idCommentaireTrajet=" + idCommentaireTrajet
+				+ ", commentaire=" + commentaire + ", commentaireIdQR="
+				+ commentaireIdQR + ", commentaireTypeQR=" + commentaireTypeQR
+				+ "]";
+	}
 
-    /**
-     * @param paramCommetaire the commetaire to set
-     */
-    public void setCommetaire(String paramCommetaire) {
-        commetaire = paramCommetaire;
-    }
-
-    /**
-     * @return the commentaireIdQR
-     */
-    public int getCommentaireIdQR() {
-        return commentaireIdQR;
-    }
-
-    /**
-     * @param paramCommentaireIdQR the commentaireIdQR to set
-     */
-    public void setCommentaireIdQR(int paramCommentaireIdQR) {
-        commentaireIdQR = paramCommentaireIdQR;
-    }
-
-    /**
-     * @return the commentaireTypeQR
-     */
-    public String getCommentaireTypeQR() {
-        return commentaireTypeQR;
-    }
-
-    /**
-     * @param paramCommentaireTypeQR the commentaireTypeQR to set
-     */
-    public void setCommentaireTypeQR(String paramCommentaireTypeQR) {
-        commentaireTypeQR = paramCommentaireTypeQR;
-    }
-
-    /**
-     * @param paramTrajet
-     * @param paramCommetaire
-     * @param paramCommentaireIdQR
-     * @param paramCommentaireTypeQR
-     */
-    public CommentaireTrajet(Trajet paramTrajet, String paramCommetaire,
-            int paramCommentaireIdQR, String paramCommentaireTypeQR) {
-        super();
-        trajet = paramTrajet;
-        commetaire = paramCommetaire;
-        commentaireIdQR = paramCommentaireIdQR;
-        commentaireTypeQR = paramCommentaireTypeQR;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "CommentaireTrajet [idCommentaireTrajet=" + idCommentaireTrajet
-                + ", trajet=" + trajet + ", commetaire=" + commetaire
-                + ", commentaireIdQR=" + commentaireIdQR
-                + ", commentaireTypeQR=" + commentaireTypeQR + "]";
-    }
 
 }

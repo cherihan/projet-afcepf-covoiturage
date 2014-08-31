@@ -48,7 +48,18 @@ public class Carte implements Serializable {
         
     }
 
-    /**
+    public Carte(int idCarte, String porteur, String numCarte,
+			String cryptogramme, Date dateExpiration, Utilisateur utilisateur) {
+		super();
+		this.idCarte = idCarte;
+		this.porteur = porteur;
+		this.numCarte = numCarte;
+		this.cryptogramme = cryptogramme;
+		this.dateExpiration = dateExpiration;
+		this.utilisateur = utilisateur;
+	}
+
+	/**
      * @return the idCarte
      */
     public int getIdCarte() {
@@ -133,33 +144,13 @@ public class Carte implements Serializable {
         utilisateur = paramUtilisateur;
     }
 
-    /**
-     * @param paramPorteur
-     * @param paramNumCarte
-     * @param paramCryptogramme
-     * @param paramDateExpiration
-     * @param paramUtilisateur
-     */
-    public Carte(String paramPorteur, String paramNumCarte,
-            String paramCryptogramme, Date paramDateExpiration,
-            Utilisateur paramUtilisateur) {
-        super();
-        porteur = paramPorteur;
-        numCarte = paramNumCarte;
-        cryptogramme = paramCryptogramme;
-        dateExpiration = paramDateExpiration;
-        utilisateur = paramUtilisateur;
-    }
+	@Override
+	public String toString() {
+		return "Carte [idCarte=" + idCarte + ", porteur=" + porteur
+				+ ", numCarte=" + numCarte + ", cryptogramme=" + cryptogramme
+				+ ", dateExpiration=" + dateExpiration + "]";
+	}
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "Carte [idCarte=" + idCarte + ", porteur=" + porteur
-                + ", numCarte=" + numCarte + ", dateExpiration="
-                + dateExpiration + ", cryptogramme=" + cryptogramme + "]";
-    }
-    
+
     
 }

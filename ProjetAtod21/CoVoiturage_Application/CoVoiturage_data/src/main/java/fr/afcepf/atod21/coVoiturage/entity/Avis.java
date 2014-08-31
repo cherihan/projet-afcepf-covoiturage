@@ -35,6 +35,18 @@ public class Avis implements Serializable {
 	public Avis() {
 	}
 
+	
+	public Avis(int idAvis, String contenu, String note,
+			Utilisateur utilisateur, Trajet trajet) {
+		super();
+		this.idAvis = idAvis;
+		this.contenu = contenu;
+		this.note = note;
+		this.utilisateur = utilisateur;
+		this.trajet = trajet;
+	}
+
+
 	public int getIdAvis() {
 		return this.idAvis;
 	}
@@ -75,29 +87,11 @@ public class Avis implements Serializable {
 		this.utilisateur = utilisateur;
 	}
 
-    /**
-     * @param paramContenu
-     * @param paramNote
-     * @param paramUtilisateur
-     * @param paramTrajet
-     */
-    public Avis(String paramContenu, String paramNote,
-            Utilisateur paramUtilisateur, Trajet paramTrajet) {
-        super();
-        contenu = paramContenu;
-        note = paramNote;
-        utilisateur = paramUtilisateur;
-        trajet = paramTrajet;
-    }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "Avis [idAvis=" + idAvis + ", contenu=" + contenu + ", note="
-                + note + ", utilisateur=" + utilisateur + ", trajet=" + trajet
-                + "]";
-    }
+	@Override
+	public String toString() {
+		return "Avis [idAvis=" + idAvis + ", contenu=" + contenu + ", note="
+				+ note + "]";
+	}
 
 }
