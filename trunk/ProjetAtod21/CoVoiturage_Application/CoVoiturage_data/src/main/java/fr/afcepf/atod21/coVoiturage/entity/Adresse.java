@@ -3,6 +3,11 @@ package fr.afcepf.atod21.coVoiturage.entity;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 import java.util.List;
 
@@ -12,6 +17,8 @@ import java.util.List;
  * 
  */
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "address-type", propOrder = {"numero", "typeVoie", "nomVoie", "ville"})
 @NamedQuery(name="Adresse.findAll", query="SELECT a FROM Adresse a")
 public class Adresse implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,26 +26,47 @@ public class Adresse implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_adresse")
+	@XmlTransient
 	private int idAdresse;
 
+	@XmlElement(required = true)
     private String numero;
 
     @Column(name="type_voie")
+    @XmlElement(required = true)
     private String typeVoie;
 
     @Column(name="nom_voie")
+    @XmlElement(required = true)
 	private String nomVoie;
 
 	//bi-directional many-to-one association to Ville
 	@ManyToOne
+	@XmlElement(name = "ville-adresse", required = true)
 	private Ville ville;
 
 	//bi-directional many-to-one association to Utilisateur
 	@OneToMany(mappedBy="adresse")
+	@XmlTransient
 	private List<Utilisateur> utilisateurs;
 
 	public Adresse() {
 	}
+
+
+
+	public Adresse(int idAdresse, String numero, String typeVoie,
+			String nomVoie, Ville ville, List<Utilisateur> utilisateurs) {
+		super();
+		this.idAdresse = idAdresse;
+		this.numero = numero;
+		this.typeVoie = typeVoie;
+		this.nomVoie = nomVoie;
+		this.ville = ville;
+		this.utilisateurs = utilisateurs;
+	}
+
+
 
 	public int getIdAdresse() {
 		return this.idAdresse;
@@ -80,55 +108,15 @@ public class Adresse implements Serializable {
 		this.ville = ville;
 	}
 
-	public List<Utilisateur> getUtilisateurs() {
-		return this.utilisateurs;
+
+
+	@Override
+	public String toString() {
+		return "Adresse [idAdresse=" + idAdresse + ", numero=" + numero
+				+ ", typeVoie=" + typeVoie + ", nomVoie=" + nomVoie
+				+ ", ville=" + ville + "]";
 	}
 
-	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
-		this.utilisateurs = utilisateurs;
-	}
-
-	public Utilisateur addUtilisateur(Utilisateur utilisateur) {
-		getUtilisateurs().add(utilisateur);
-		utilisateur.setAdresse(this);
-
-		return utilisateur;
-	}
-
-	public Utilisateur removeUtilisateur(Utilisateur utilisateur) {
-		getUtilisateurs().remove(utilisateur);
-		utilisateur.setAdresse(null);
-
-		return utilisateur;
-	}
-
-    /**
-     * @param paramNumero
-     * @param paramTypeVoie
-     * @param paramNomVoie
-     * @param paramVille
-     * @param paramUtilisateurs
-     */
-    public Adresse(String paramNumero, String paramTypeVoie,
-            String paramNomVoie, Ville paramVille,
-            List<Utilisateur> paramUtilisateurs) {
-        super();
-        numero = paramNumero;
-        typeVoie = paramTypeVoie;
-        nomVoie = paramNomVoie;
-        ville = paramVille;
-        utilisateurs = paramUtilisateurs;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "Adresse [idAdresse=" + idAdresse + ", numero=" + numero
-                + ", typeVoie=" + typeVoie + ", nomVoie=" + nomVoie
-                + ", ville=" + ville + ", utilisateurs=" + utilisateurs + "]";
-    }
 
 
 }
