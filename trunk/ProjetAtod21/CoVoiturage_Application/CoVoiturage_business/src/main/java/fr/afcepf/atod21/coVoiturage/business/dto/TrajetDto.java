@@ -1,24 +1,49 @@
 package fr.afcepf.atod21.coVoiturage.business.dto;
 
-import java.util.Date;
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 @XmlRootElement
-public class TrajetDto {
+public class TrajetDto implements Serializable {
 
-   
+    private static final long serialVersionUID = 1L;
+    
     private int idTrajet;
-    private Date dateCreation;
+    private String dateCreationDto;
     private int conducteurIdUser;
-    private Date dateDepart;
-    private String villeDepart;
-    private String villeArrivee;
+    private String dateDepartDto;
+    private String villeDepartDto;
+    private String villeArriveeDto;
     private int nbPassagersMax;
     private int nbPassagersRestant;
-    private Integer tarif;
+    private int tarif;
     private String statut;
+    
+    public TrajetDto() {
+    }
+
+    public TrajetDto(int paramIdTrajet, String paramDateCreationDto,
+            int paramConducteurIdUser, String paramDateDepartDto,
+            String paramVilleDepartDto, String paramVilleArriveeDto,
+            int paramNbPassagersMax, int paramNbPassagersRestant,
+            int paramTarif, String paramStatut) {
+        super();
+        idTrajet = paramIdTrajet;
+        dateCreationDto = paramDateCreationDto;
+        conducteurIdUser = paramConducteurIdUser;
+        dateDepartDto = paramDateDepartDto;
+        villeDepartDto = paramVilleDepartDto;
+        villeArriveeDto = paramVilleArriveeDto;
+        nbPassagersMax = paramNbPassagersMax;
+        nbPassagersRestant = paramNbPassagersRestant;
+        tarif = paramTarif;
+        statut = paramStatut;
+    }
+
+
+
+
     /**
      * @return the idTrajet
      */
@@ -31,18 +56,7 @@ public class TrajetDto {
     public void setIdTrajet(int paramIdTrajet) {
         idTrajet = paramIdTrajet;
     }
-    /**
-     * @return the dateCreation
-     */
-    public Date getDateCreation() {
-        return dateCreation;
-    }
-    /**
-     * @param paramDateCreation the dateCreation to set
-     */
-    public void setDateCreation(Date paramDateCreation) {
-        dateCreation = paramDateCreation;
-    }
+
     /**
      * @return the conducteurIdUser
      */
@@ -55,42 +69,7 @@ public class TrajetDto {
     public void setConducteurIdUser(int paramConducteurIdUser) {
         conducteurIdUser = paramConducteurIdUser;
     }
-    /**
-     * @return the dateDepart
-     */
-    public Date getDateDepart() {
-        return dateDepart;
-    }
-    /**
-     * @param paramDateDepart the dateDepart to set
-     */
-    public void setDateDepart(Date paramDateDepart) {
-        dateDepart = paramDateDepart;
-    }
-    /**
-     * @return the villeDepart
-     */
-    public String getVilleDepart() {
-        return villeDepart;
-    }
-    /**
-     * @param paramVilleDepart the villeDepart to set
-     */
-    public void setVilleDepart(String paramVilleDepart) {
-        villeDepart = paramVilleDepart;
-    }
-    /**
-     * @return the villeArrivee
-     */
-    public String getVilleArrivee() {
-        return villeArrivee;
-    }
-    /**
-     * @param paramVilleArrivee the villeArrivee to set
-     */
-    public void setVilleArrivee(String paramVilleArrivee) {
-        villeArrivee = paramVilleArrivee;
-    }
+
     /**
      * @return the nbPassagersMax
      */
@@ -118,13 +97,13 @@ public class TrajetDto {
     /**
      * @return the tarif
      */
-    public Integer getTarif() {
+    public int getTarif() {
         return tarif;
     }
     /**
      * @param paramTarif the tarif to set
      */
-    public void setTarif(Integer paramTarif) {
+    public void setTarif(int paramTarif) {
         tarif = paramTarif;
     }
     /**
@@ -139,19 +118,87 @@ public class TrajetDto {
     public void setStatut(String paramStatut) {
         statut = paramStatut;
     }
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
+
+    /**
+     * @return the dateCreationDto
      */
-    @Override
-    public String toString() {
-        return "TrajetDto [idTrajet=" + idTrajet + ", dateCreation="
-                + dateCreation + ", conducteurIdUser=" + conducteurIdUser
-                + ", dateDepart=" + dateDepart + ", villeDepart=" + villeDepart
-                + ", villeArrivee=" + villeArrivee + ", nbPassagersMax="
-                + nbPassagersMax + ", nbPassagersRestant=" + nbPassagersRestant
-                + ", tarif=" + tarif + ", statut=" + statut + "]";
+    public String getDateCreationDto() {
+        return dateCreationDto;
     }
-    
-    
-    
+
+
+
+    /**
+     * @param paramDateCreationDto the dateCreationDto to set
+     */
+    public void setDateCreationDto(String paramDateCreationDto) {
+        dateCreationDto = paramDateCreationDto;
+    }
+
+
+
+    /**
+     * @return the dateDepartDto
+     */
+    public String getDateDepartDto() {
+        return dateDepartDto;
+    }
+
+
+
+    /**
+     * @param paramDateDepartDto the dateDepartDto to set
+     */
+    public void setDateDepartDto(String paramDateDepartDto) {
+        dateDepartDto = paramDateDepartDto;
+    }
+
+
+
+    /**
+     * @return the villeDepartDto
+     */
+    public String getVilleDepartDto() {
+        return villeDepartDto;
+    }
+
+
+
+    /**
+     * @param paramVilleDepartDto the villeDepartDto to set
+     */
+    public void setVilleDepartDto(String paramVilleDepartDto) {
+        villeDepartDto = paramVilleDepartDto;
+    }
+
+
+
+    /**
+     * @return the villeArriveeDto
+     */
+    public String getVilleArriveeDto() {
+        return villeArriveeDto;
+    }
+
+
+
+    /**
+     * @param paramVilleArriveeDto the villeArriveeDto to set
+     */
+    public void setVilleArriveeDto(String paramVilleArriveeDto) {
+        villeArriveeDto = paramVilleArriveeDto;
+    }
+
+	@Override
+	public String toString() {
+		return "TrajetDto [idTrajet=" + idTrajet + ", dateCreationDto="
+				+ dateCreationDto + ", conducteurIdUser=" + conducteurIdUser
+				+ ", dateDepartDto=" + dateDepartDto + ", villeDepartDto="
+				+ villeDepartDto + ", villeArriveeDto=" + villeArriveeDto
+				+ ", nbPassagersMax=" + nbPassagersMax
+				+ ", nbPassagersRestant=" + nbPassagersRestant + ", tarif="
+				+ tarif + ", statut=" + statut + "]";
+	}
+
+   
 }
