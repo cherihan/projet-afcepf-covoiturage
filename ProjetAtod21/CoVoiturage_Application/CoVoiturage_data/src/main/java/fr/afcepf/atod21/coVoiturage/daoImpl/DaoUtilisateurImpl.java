@@ -41,12 +41,6 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 
 	@Override
 	public Integer creerCompte(Utilisateur user) {
-		System.out.println("Adresse de l'utilisateur : " + user.getAdresse());
-
-		System.out.println("Ville de l'utilisateur : " + user.getAdresse().getVille());
-
-		System.out.println("Utilisateur : " + user);
-		
 		em.persist(user.getAdresse().getVille());
 		em.persist(user.getAdresse());
 		em.persist(user);
@@ -59,7 +53,8 @@ public class DaoUtilisateurImpl implements IDaoUtilisateur {
 	public Utilisateur getUserById(Integer idUser) {
 		
 		Utilisateur user = em.find(Utilisateur.class, idUser);
-	
+		
+		
 		return user;
 	}
 
