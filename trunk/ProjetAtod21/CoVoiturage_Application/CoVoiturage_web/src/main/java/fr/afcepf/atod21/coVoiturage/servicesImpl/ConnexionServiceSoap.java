@@ -3,8 +3,6 @@ package fr.afcepf.atod21.coVoiturage.servicesImpl;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import fr.afcepf.atod21.coVoiturage.business.IBusinessConnexion;
 import fr.afcepf.atod21.coVoiturage.business.dto.UtilisateurDto;
 import fr.afcepf.atod21.coVoiturage.services.IConnexionServiceSoap;
@@ -19,6 +17,7 @@ public class ConnexionServiceSoap implements IConnexionServiceSoap {
         businessConnexion = paramBusinessConnexion;
     }
 
+    //CALL => http://localhost:8080/CoVoiturage_web/ws/SOAP/authenification?wsdl
     @Override
     @WebMethod
     public UtilisateurDto seConnecterSOAP(String email, String password) {
