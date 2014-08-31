@@ -10,11 +10,10 @@ public interface IBusinessTrajet {
 
 	void ajouterCommentaireTrajet(int idTrajet, int idUser);
 	Integer creerTrajet(Trajet trajet, Utilisateur user);
-	void supprimerTrajet(int idTrajet, int idUser);
+	boolean supprimerTrajet(Trajet trajet, Utilisateur user);
 	List<Ville> getAllVilles();
 	List<Trajet> getAllHistoTrajets(int idUser);
-    List<Trajet> getHistoTrajetsAsConductorByType(int idUser, String typeHistoTrajet);
-    List<Trajet> getHistoTrajetsAsPassengerByType(int idUser, String typeHistoTrajet);
+    List<Trajet> getHistoTrajetsByType(int idUser, String typeHistoTrajet);
     
     boolean sInscrireTrajet(Trajet trajet, Utilisateur user);
     boolean sInscrireTrajetSoap(int idTrajet, int idUser);
