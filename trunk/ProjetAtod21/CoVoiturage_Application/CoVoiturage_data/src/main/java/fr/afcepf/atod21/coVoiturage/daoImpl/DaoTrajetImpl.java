@@ -116,9 +116,11 @@ public class DaoTrajetImpl implements IDaoTrajet {
 
 	@Override
 	public List<Trajet> getAllHistoTrajets(int idUser) {
-		
+    	System.out.println("===> Dao.");
 		String query = "SELECT u FROM Utilisateur u inner join fetch u.trajets WHERE u.idUtilisateur = :idUser";
 		Utilisateur u = (Utilisateur) em.createQuery(query).setParameter("idUser",idUser).getSingleResult();
+    	System.out.println("===> taille : " + u.getTrajets().size());
+
 		return u.getTrajets();
 	}
 

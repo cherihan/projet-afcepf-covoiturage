@@ -29,7 +29,7 @@ public class OrchestrateurSoap implements IOrchestrateurSoap {
     @WebMethod
     public List<TrajetDto> rechercherTrajetSOAP(Date paramDateDepart,
             String paramVilleDepart, String paramVilleArrivee) {
-        RechercheTrajetServiceSoap rechercheTrajetWS = new RechercheTrajetServiceSoap();
+        RechercheTrajetSoap rechercheTrajetWS = new RechercheTrajetSoap();
         return rechercheTrajetWS.rechercherTrajetSOAP(paramDateDepart,
                 paramVilleDepart, paramVilleArrivee);
     }
@@ -38,7 +38,7 @@ public class OrchestrateurSoap implements IOrchestrateurSoap {
     @WebMethod
     public List<TrajetDto> rechercherTrajetParVilleDepartSOAP(
             Date paramDateDepart, String paramVilleDepart) {
-        RechercheTrajetServiceSoap rechercheTrajetWS = new RechercheTrajetServiceSoap();
+        RechercheTrajetParVilleSoap rechercheTrajetWS = new RechercheTrajetParVilleSoap();
         return rechercheTrajetWS.rechercherTrajetParVilleDepartSOAP(
                 paramDateDepart, paramVilleDepart);
     }
