@@ -2,10 +2,6 @@ package fr.afcepf.atod21.coVoiturage.businessImpl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.business.dto.TrajetDto;
-import fr.afcepf.atod21.coVoiturage.business.dto.UtilisateurDto;
 import fr.afcepf.atod21.coVoiturage.dao.IDaoTrajet;
 import fr.afcepf.atod21.coVoiturage.dao.IDaoUtilisateur;
-import fr.afcepf.atod21.coVoiturage.daoImpl.DaoUtilisateurImpl;
 import fr.afcepf.atod21.coVoiturage.entity.Trajet;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import fr.afcepf.atod21.coVoiturage.entity.Ville;
 import fr.afcepf.atod21.coVoiturage.utils.Consts;
 
-//@Service
+@Service
 @Transactional
 public class BusinessTrajetImpl implements IBusinessTrajet {
 
@@ -58,8 +52,8 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
             System.err.println(" ERREUR : " + e.getMessage());
         }
 
-        trajetDto.setVilleDepart(trajet.getVilleDepart().getNom());
-        trajetDto.setVilleArrivee(trajet.getVilleArrivee().getNom());
+        trajetDto.setVilleDepartDto(trajet.getVilleDepart().getNom());
+        trajetDto.setVilleArriveeDto(trajet.getVilleArrivee().getNom());
 
         return true;
     }
@@ -78,11 +72,11 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
     }
 
 
-    @Override
-    public void supprimerTrajet(int idTrajet, int idUser) {
-        // TODO Auto-generated method stub
-
-    }
+	@Override
+	public boolean supprimerTrajet(Trajet trajet, Utilisateur user) {
+		System.out.println("======> Business, id trajet : " + trajet.getIdTrajet());
+		return daoTrajet.supprimerTrajet(trajet, user);
+	}
 
     @Override
     public List<Ville> getAllVilles() {
@@ -117,22 +111,13 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 
     @Override
     public List<Trajet> getAllHistoTrajets(int idUser) {
+    	System.out.println("===> Business.");
         List<Trajet> listeTrajets = daoTrajet.getAllHistoTrajets(idUser);
         return listeTrajets;
     }
 
-	@Override
-	public List<Trajet> getAllHistoTrajets(int idUser) {
-		List<Trajet> listeTrajets = daoTrajet.getAllHistoTrajets(idUser);
-		return listeTrajets;
-	}
-
     @Override
     public List<Trajet> getHistoTrajetsByType(int idUser, String typeHistoTrajet) {
-        System.out.println("=========================");
-        System.out.println("====> Business getHistoTrajets.");
-        System.out.println("=========================");
-
         List<Trajet> listeTrajets = daoTrajet.getHistoTrajetsByType(idUser, typeHistoTrajet);
         return listeTrajets;
     }

@@ -38,7 +38,7 @@
 				<br />
 				<fieldset>
 					<legend>Historique de mes Trajets</legend>
-					<h:messages globalOnly="true" styleClass="messageSuccess" rendered="#{histoTrajetMBean.showMessage}"/>
+					<h:messages id="facesMessage" globalOnly="true" styleClass="messageSuccess" rendered="#{histoTrajetMBean.showMessage}"/>
 
 					<br />
 					<h:panelGroup>
@@ -61,7 +61,7 @@
 
 						<h:commandButton action="#{histoTrajetMBean.listerHistoTrajets(connectionMBean.user)}"
 										 value="Afficher historique" styleClass="btnLogin">
-							<f:ajax render="@form" execute="@form" />
+							
 						</h:commandButton>
 						
 					</h:panelGroup>
@@ -70,7 +70,7 @@
 					<h:panelGroup rendered="#{histoTrajetMBean.afficheHistoTrajets}">
 						<h:panelGroup rendered="#{!empty histoTrajetMBean.listeHistoTrajets}">
 						
-							<h:dataTable cellpadding="20" cellspacing="30"
+							<h:dataTable id="tableData" cellpadding="20" cellspacing="30"
 								styleClass="tableResultsTrajets" rowClasses="rowPair, rowInpair"
 								headerClass="styleHeaderTableResultsTrajets"
 								columnClasses="column1, column2, column3"
@@ -165,32 +165,14 @@
 									<f:facet name="header">
 										<h:outputText value="Action" />
 									</f:facet>
-									<h:commandLink action="#{histoTrajetMBean.consulterTrajet(trajet)}"
-												   value="Consulter">
-										
-										<!--
-										<h:graphicImage value="../resources/image/consulter.png" title="Voir le détail de ce trajet" />
-										-->
-									</h:commandLink>
-									<br />
-									<h:commandLink action="#{histoTrajetMBean.supprimerTrajet(trajet, connectionMBean.user)}"
-												   value="Supprimer"
-												   onclick="if (! confirm('Etes-vous sûr de vouloir supprimer ce trajet ?')) return false">
-									<!-- 
-										<h:graphicImage value="../resources/image/supprimer.png" title="supprimer ce trajet" />
-									-->
-									<!-- 
-									    <p:growl id="messages" />
-									    <p:commandButton value="Supprimer" actionListener="#{buttonBean.supprimer}" update="messages">
-									        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert"/>
-									    </p:commandButton>
-									 
-									    <p:confirmDialog global="true">
-									        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-									        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-									    </p:confirmDialog>
-									-->
-									</h:commandLink>
+									 <h:commandLink action="#{histoTrajetMBean.consulterTrajet(trajet)}" >
+									 	<f:ajax event="click" ></f:ajax>
+									 	Consulter
+									 </h:commandLink>
+									 <h:commandLink action="#{histoTrajetMBean.supprimerTrajet2}" >
+									 	<f:ajax event="click" ></f:ajax>
+									 	Supprimer
+									 </h:commandLink>
 								</h:column>
 
 							</h:dataTable>

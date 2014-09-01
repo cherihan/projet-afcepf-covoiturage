@@ -14,22 +14,21 @@
 	<import resource="classpath:META-INF/cxf/cxf.xml"/>
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-	<!-- Déclaration de BusinessBeans -->
+	<!-- Business Beans -->
 	<bean id="businessConnexionId" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessConnexionImpl" />
 	<bean id="businessTrajetId" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" />
 	<bean id="businessRechercheId" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessRechercheImpl" />
 		
-	
-	<!-- SOAP -->	
+	<!-- WS-SOAP -->	
 	<jaxws:endpoint id="orchestrateurService" implementor="#orchestrateurSoapImpl" address="/SOAP/OrchestrateurService" />
 	<bean id="orchestrateurSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.OrchestrateurSoap">
 	</bean>
-	
-	<jaxws:endpoint id="connexionSoapService" implementor="#connexionSoapImpl" address="/SOAP/ConnexionService" />
+
+	<jaxws:endpoint id="connexionSoapService" implementor="#connexionSoapImpl" address="/SOAP/authenification" />
 	<bean id="connexionSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.ConnexionServiceSoap">
 		<property name="businessConnexion" ref="businessConnexionId" />
 	</bean>
-
+	
 	<jaxws:endpoint id="inscriptionTrajetSoapService" implementor="#inscriptionTrajetSoapImpl" address="/SOAP/InscriptionTrajetService" />
 	<bean id="inscriptionTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.InscriptionTrajetServiceSoap">
 		<property name="businessTrajet" ref="businessTrajetId" />
@@ -40,11 +39,6 @@
 		<property name="businessTrajet" ref="businessTrajetId" />
 	</bean>
 	
-	<jaxws:endpoint id="connexionSoapService" implementor="#connexionSoapImpl" address="/SOAP/authenification" />
-	<bean id="connexionSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.ConnexionServiceSoap">
-		<property name="businessConnexion" ref="businessConnexionId" />
-	</bean>
-
 	<jaxws:endpoint id="rechercheTrajetSoapService" implementor="#rechercheTrajetSoapImpl" address="/SOAP/rechercheTrajet" />
 	<bean id="rechercheTrajetSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetSoap">
 		<property name="businessRecherche" ref="businessRechercheId" />
@@ -55,7 +49,7 @@
 		<property name="businessRecherche" ref="businessRechercheId" />
 	</bean>
 	
-	<!-- REST -->
+	<!-- WS-REST -->
 	<jaxrs:server id="connexionRestService" address="/REST/seConnecter">
 		<jaxrs:serviceBeans>
 			<ref bean="connexionRestImpl" />
