@@ -29,7 +29,7 @@
 			</h:outputLink>
 		</div>
 		<div class="formHistoTrajet">
-			<h:form>
+			<h:form >
 				<ul>
 					<li><h:outputLink styleClass="linkResearch" value="../pages/creerTrajet.xhtml">
 						Créer un trajet
@@ -38,10 +38,9 @@
 				<br />
 				<fieldset>
 					<legend>Historique de mes Trajets</legend>
-					<h:messages id="facesMessage" globalOnly="true" styleClass="messageSuccess" rendered="#{histoTrajetMBean.showMessage}"/>
 
 					<br />
-					<h:panelGroup>
+					<h:panelGroup id="panel_1">
 						<h:outputText value="En tant que :" />
 						<h:selectOneMenu id="typeUser" required="false" requiredMessage="sélection obligatoire !" validatorMessage=""
 										 value="#{histoTrajetMBean.typeUtilisateur}" styleClass="classSelectOneMenu">
@@ -69,7 +68,10 @@
 					
 					<h:panelGroup rendered="#{histoTrajetMBean.afficheHistoTrajets}">
 						<h:panelGroup rendered="#{!empty histoTrajetMBean.listeHistoTrajets}">
-						
+							<div>
+							<h:messages globalOnly="true" styleClass="messageSuccess" rendered="#{histoTrajetMBean.showMessage}"/>
+							
+							</div>
 							<h:dataTable id="tableData" cellpadding="20" cellspacing="30"
 								styleClass="tableResultsTrajets" rowClasses="rowPair, rowInpair"
 								headerClass="styleHeaderTableResultsTrajets"
@@ -169,7 +171,7 @@
 									 	<f:ajax event="click" ></f:ajax>
 									 	Consulter
 									 </h:commandLink>
-									 <h:commandLink action="#{histoTrajetMBean.supprimerTrajet2}" >
+									 <h:commandLink action="#{histoTrajetMBean.supprimerTrajet(trajet, connectionMBean.user)}" >
 									 	<f:ajax event="click" ></f:ajax>
 									 	Supprimer
 									 </h:commandLink>

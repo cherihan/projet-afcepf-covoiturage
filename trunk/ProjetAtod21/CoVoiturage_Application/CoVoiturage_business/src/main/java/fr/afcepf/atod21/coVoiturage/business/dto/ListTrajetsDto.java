@@ -2,6 +2,9 @@ package fr.afcepf.atod21.coVoiturage.business.dto;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class ListTrajetsDto {
 
 	private List<TrajetDto> listeTrajetsDto;

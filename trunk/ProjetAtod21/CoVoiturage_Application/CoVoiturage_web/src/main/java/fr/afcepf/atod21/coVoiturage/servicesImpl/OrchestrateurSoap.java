@@ -53,11 +53,11 @@ public class OrchestrateurSoap implements IOrchestrateurSoap {
         Properties connectedUsersProperties = new Properties();
         System.out.println("============================================Avant clientInput");
         
-        FileInputStream clientInput = new FileInputStream("C:/Users/Stagiaire/workspace/CoVoiturage_Application/CoVoiturage_web/src/main/resources/clientsApplication.properties");
+        FileInputStream clientInput = new FileInputStream("C:/Users/Stagiaire/workspace/clientsApplication.properties");
         
         System.out.println("===================================================avant connected");
         
-        FileInputStream connectedUsersInput = new FileInputStream("C:/Users/Stagiaire/workspace/CoVoiturage_Application/CoVoiturage_web/src/main/resources/connectedClients.properties");
+        FileInputStream connectedUsersInput = new FileInputStream("C:/Users/Stagiaire/workspace/connectedClients.properties");
         System.out.println("==============================================================================================Avant le try");
         try {
             clientsProperties.load(clientInput);
