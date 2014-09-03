@@ -22,7 +22,7 @@ public class InscriptionTrajetServiceRest implements
 
     @Override
     @Path("/{IdTrajet}/{IdUser}")
-    @POST
+    @GET
     @Produces(MediaType.TEXT_PLAIN)
     public boolean sInscrireTrajetDto(@PathParam("IdTrajet") Integer IdTrajet,
             @PathParam("IdUser") Integer IdUser) {

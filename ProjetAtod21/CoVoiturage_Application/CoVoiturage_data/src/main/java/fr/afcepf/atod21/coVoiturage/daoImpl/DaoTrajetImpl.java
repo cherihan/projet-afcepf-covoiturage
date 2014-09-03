@@ -31,9 +31,10 @@ public class DaoTrajetImpl implements IDaoTrajet {
 
 	@Override
 	public boolean supprimerTrajet(Trajet trajet, Utilisateur user) {
-		user = em.find(Utilisateur.class, user.getIdUtilisateur());
-        user.getTrajets().remove(trajet);
-
+		System.out.println("======> Dao, id trajet : " + trajet.getIdTrajet());
+		
+		//user = em.find(Utilisateur.class, user.getIdUtilisateur());
+		//user.getTrajets().remove(trajet);
 		//em.persist(user);
 		//em.flush();
 

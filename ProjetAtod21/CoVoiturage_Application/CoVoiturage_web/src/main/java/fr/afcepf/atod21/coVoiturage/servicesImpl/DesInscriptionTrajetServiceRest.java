@@ -22,11 +22,12 @@ public class DesInscriptionTrajetServiceRest implements
 
     @Override
     @Path("/{IdTrajet}/{IdUser}")
-    @POST
+    @GET
     @Produces(MediaType.TEXT_PLAIN)
     public boolean seDesinscrireTrajet(@PathParam("IdTrajet") Integer IdTrajet,
             @PathParam("IdUser") Integer IdUser) {
-        return businessTrajet.seDesinscrireTrajet(IdTrajet, IdUser);
+        businessTrajet.seDesinscrireTrajet(IdTrajet, IdUser);
+        return true;
     }
 
 }

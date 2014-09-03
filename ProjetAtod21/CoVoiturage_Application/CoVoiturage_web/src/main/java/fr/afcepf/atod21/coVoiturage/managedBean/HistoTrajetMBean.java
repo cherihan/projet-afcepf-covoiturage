@@ -123,28 +123,12 @@ public class HistoTrajetMBean {
 		return "";
 	}
 
-	public String supprimerTrajet(Trajet trajet, Utilisateur userConnected) {
-		System.out.println("=================");
-		System.out.println("====== supprimer ========");
-		System.out.println("=================");
-		businessTrajet.supprimerTrajet(trajet, userConnected);
-		setListeHistoTrajets(businessTrajet.getHistoTrajetsByType(userConnected.getIdUtilisateur(), typeHistoTrajet));
-        FacesMessage message = new FacesMessage("Votre trajet a bien été supprimé de votre historique.");
-        FacesContext.getCurrentInstance().addMessage(null, message);
+	public String supprimerTrajet(Trajet trajet, Utilisateur user) {
+		System.out.println("======> MBean, id trajet : " + trajet.getIdTrajet());
 
-        this.showMessage = true;
-        
-		return "";
-	}
+		businessTrajet.supprimerTrajet(trajet, user);
+		//setListeHistoTrajets(businessTrajet.getHistoTrajetsByType(userConnected.getIdUtilisateur(), typeHistoTrajet));
 
-	public String supprimerTrajet2() {
-		System.out.println("=================");
-		System.out.println("====== supprimer 2 ========");
-		System.out.println("=================");
-/*
-		businessTrajet.supprimerTrajet(trajet, userConnected);
-		setListeHistoTrajets(businessTrajet.getHistoTrajetsByType(userConnected.getIdUtilisateur(), typeHistoTrajet));
-*/
         FacesMessage message = new FacesMessage("Votre trajet a bien été supprimé de votre historique.");
         FacesContext.getCurrentInstance().addMessage(null, message);
         this.showMessage = true;
