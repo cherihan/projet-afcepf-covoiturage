@@ -168,7 +168,8 @@
 									 	<f:ajax event="click" ></f:ajax>
 									 	Consulter
 									 </h:commandLink>
-									 <h:commandLink action="#{histoTrajetMBean.supprimer(trajet, connectionMBean.user)}" >
+									 <h:commandLink action="#{histoTrajetMBean.supprimer(trajet, connectionMBean.user)}"
+									 				onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer ce trajet ?')">
 									 	<f:ajax event="click" execute="@form" render="form_1:panel_2"></f:ajax>
 									 	Supprimer
 									 </h:commandLink>
