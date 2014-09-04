@@ -1,12 +1,11 @@
 package fr.afcepf.atod21.coVoiturage.daoImpl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.Selection;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,38 +29,16 @@ public class DaoTrajetImpl implements IDaoTrajet {
 	}
 
 	@Override
-	public boolean supprimerTrajet(Trajet trajet, Utilisateur user) {
-		System.out.println("======> Dao, id trajet : " + trajet.getIdTrajet());
-		
-		//user = em.find(Utilisateur.class, user.getIdUtilisateur());
-		//user.getTrajets().remove(trajet);
-		//em.persist(user);
-		//em.flush();
-
-		return true;
-	}
-	
-	public void delete(Trajet trajet) {
-		Utilisateur user = em.find(Utilisateur.class, 1);
-		List<Trajet> listeTrajetsBefore = user.getTrajets();
-		//Trajet trajet = em.find(Trajet.class, 40);
-/*
-		int index = 0;
-		boolean foundTrajet = false;
-		Trajet t = null;
-		Iterator<Trajet> iterator = listeTrajets.iterator();
-		while (iterator.hasNext() && !foundTrajet) {
-			t = iterator.next();
-			if (t.getIdTrajet() == 40) {
-				index = listeTrajets.indexOf(t);
-				foundTrajet = true;
-			}
+	public boolean supprimer(Trajet trajet, Utilisateur user) {
+		user = em.find(Utilisateur.class, user.getIdUtilisateur());
+		ListIterator<Trajet> li = user.getTrajets().listIterator();
+		while(li.hasNext()) {
+			Trajet t= li.next();
+			if (trajet.getIdTrajet() == t.getIdTrajet())
+				li.remove();
 		}
-
-		/*
-		em.persist(user);
-		em.flush();
-		*/
+		em.merge(user);
+		return true;
 	}
 
     @Override
