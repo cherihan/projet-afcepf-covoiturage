@@ -29,7 +29,7 @@
 			</h:outputLink>
 		</div>
 		<div class="formHistoTrajet">
-			<h:form >
+			<h:form id="form_1">
 				<ul>
 					<li><h:outputLink styleClass="linkResearch" value="../pages/creerTrajet.xhtml">
 						Créer un trajet
@@ -66,12 +66,9 @@
 					</h:panelGroup>
 					<br /> <br />
 					
-					<h:panelGroup rendered="#{histoTrajetMBean.afficheHistoTrajets}">
+					<h:panelGroup id="panel_2" rendered="#{histoTrajetMBean.afficheHistoTrajets}">
 						<h:panelGroup rendered="#{!empty histoTrajetMBean.listeHistoTrajets}">
-							<div>
-							<h:messages globalOnly="true" styleClass="messageSuccess" rendered="#{histoTrajetMBean.showMessage}"/>
-							
-							</div>
+							<h:messages id="messages" globalOnly="true" styleClass="messageSuccess" />
 							<h:dataTable id="tableData" cellpadding="20" cellspacing="30"
 								styleClass="tableResultsTrajets" rowClasses="rowPair, rowInpair"
 								headerClass="styleHeaderTableResultsTrajets"
@@ -171,8 +168,8 @@
 									 	<f:ajax event="click" ></f:ajax>
 									 	Consulter
 									 </h:commandLink>
-									 <h:commandLink action="#{histoTrajetMBean.supprimerTrajet(trajet, connectionMBean.user)}" >
-									 	<f:ajax event="click" ></f:ajax>
+									 <h:commandLink action="#{histoTrajetMBean.supprimer(trajet, connectionMBean.user)}" >
+									 	<f:ajax event="click" execute="@form" render="form_1:panel_2"></f:ajax>
 									 	Supprimer
 									 </h:commandLink>
 								</h:column>

@@ -73,9 +73,8 @@ public class BusinessTrajetImpl implements IBusinessTrajet {
 
 
 	@Override
-	public boolean supprimerTrajet(Trajet trajet, Utilisateur user) {
-		System.out.println("======> Business, id trajet : " + trajet.getIdTrajet());
-		return daoTrajet.supprimerTrajet(trajet, user);
+	public boolean supprimer(Trajet trajet, Utilisateur user) {
+		return daoTrajet.supprimer(trajet, user);
 	}
 
     @Override

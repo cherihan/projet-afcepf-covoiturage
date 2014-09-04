@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import org.hibernate.annotations.Cascade;
+
 import java.util.Date;
 import java.util.List;
 
@@ -77,12 +79,21 @@ public class Utilisateur implements Serializable {
     private Adresse adresse;
 
     //bi-directional many-to-one association to Avis
-	@OneToMany(mappedBy="utilisateur")
+	@OneToMany(orphanRemoval=true, mappedBy="utilisateur")
 	@XmlTransient
 	private List<Avis> avis;
 
 	//bi-directional many-to-many association to Trajet
+	//@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
 	@ManyToMany(fetch = FetchType.EAGER)
+	/*
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+        org.hibernate.annotations.CascadeType.DELETE,
+        org.hibernate.annotations.CascadeType.MERGE,
+        org.hibernate.annotations.CascadeType.PERSIST
+        //org.hibernate.annotations.CascadeType.DELETE_ORPHAN
+        })
+    */
 	@JoinTable(
 		name="utilisateur_has_trajet"
 		, joinColumns={

@@ -64,9 +64,10 @@
 }
 
 .formHistoTrajet ul li {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	color: green;
+	font-style: italic;
+	font-weight: bold;
+	margin: auto;
 }
 
 .formHistoTrajet ul li a {

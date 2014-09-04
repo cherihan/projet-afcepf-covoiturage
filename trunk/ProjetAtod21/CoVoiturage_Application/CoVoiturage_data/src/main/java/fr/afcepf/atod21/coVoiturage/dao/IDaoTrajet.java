@@ -10,7 +10,7 @@ public interface IDaoTrajet {
 
 	void ajouterCommentaireTrajet(int idTrajet, int idUser);
 	Integer creerTrajet(Trajet trajet, Utilisateur user);
-	boolean supprimerTrajet(Trajet trajet, Utilisateur user);
+	boolean supprimer(Trajet trajet, Utilisateur user);
 	List<Ville> getAllVilles();
 	List<Trajet> getAllHistoTrajets(int idUser);
     List<Trajet> getHistoTrajetsByType(int idUser, String typeHistoTrajet);

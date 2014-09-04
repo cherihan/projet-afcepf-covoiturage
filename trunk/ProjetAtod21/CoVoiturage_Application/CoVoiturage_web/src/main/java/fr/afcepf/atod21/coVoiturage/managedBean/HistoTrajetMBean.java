@@ -27,7 +27,6 @@ public class HistoTrajetMBean {
     private boolean statutRender = false;
     private boolean restantsRender = false;
     private boolean nbParticipantsRender = false;
-    private boolean showMessage = false;
     
     private String typeUtilisateur;
     private Map<String,String> typeUtilisateurValues;
@@ -118,20 +117,16 @@ public class HistoTrajetMBean {
     }
 	
 	public String consulterTrajet(Trajet trajet) {
-		System.out.println("====== consulter =======");
-		System.out.println("====== id trajet : " + trajet.getIdTrajet());
+		//TODO
 		return "";
 	}
 
-	public String supprimerTrajet(Trajet trajet, Utilisateur user) {
-		System.out.println("======> MBean, id trajet : " + trajet.getIdTrajet());
-
-		businessTrajet.supprimerTrajet(trajet, user);
-		//setListeHistoTrajets(businessTrajet.getHistoTrajetsByType(userConnected.getIdUtilisateur(), typeHistoTrajet));
-
+	public String supprimer(Trajet trajet, Utilisateur user) {
+		businessTrajet.supprimer(trajet, user);
+		List<Trajet> liste = businessTrajet.getHistoTrajetsByType(user.getIdUtilisateur(), typeHistoTrajet);
+		setListeHistoTrajets(liste);
         FacesMessage message = new FacesMessage("Votre trajet a bien été supprimé de votre historique.");
         FacesContext.getCurrentInstance().addMessage(null, message);
-        this.showMessage = true;
         
 		return "";
 	}
@@ -216,14 +211,6 @@ public class HistoTrajetMBean {
 
 	public void setNbParticipantsRender(boolean nbParticipantsRender) {
 		this.nbParticipantsRender = nbParticipantsRender;
-	}
-
-	public boolean isShowMessage() {
-		return showMessage;
-	}
-
-	public void setShowMessage(boolean showMessage) {
-		this.showMessage = showMessage;
 	}
 
 }
