@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<struts-config>
+	<form-beans>
+		<form-bean name="paffichage"
+			type="fr.afcepf.atod21.client.action.ActionPremiere" />
+	</form-beans>
+	<action-mappings>
+		<action path="/affichage" type="fr.afcepf.atod21.client.action.ActionPremiereForm"
+			name="paffichage">
+			<forward name="success" path="/premiere.jsp" />
+		</action>
+	</action-mappings>
+	<message-resources parameter="fr.afcepf.atod21.client.resources.config" />
+</struts-config>
