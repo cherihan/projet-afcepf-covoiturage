@@ -8,10 +8,8 @@
 <title>Premiere Action cov (MVC2)</title>
 </head>
 <body>
-	<form action="/affichage.cov">
-		saisie : <input type="text" value="saisie" />
-		<input type="submit" value="Valider" />
+	<form>
+		<span>saisie : </span>
 	</form>
-	<c:if test="${paffichage.label != null }">${paffichage.label }</c:if>
 </body>
 </html>
