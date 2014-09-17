@@ -34,9 +34,5 @@ public class ActionCovForm implements IActionCovForm {
             return champNonRempli;
 	    }
 	}
-	
-	public void peuplement (ActionCovForm actionCovForm, Map<String, String[]> requestMapAttributes){
-	    
-	}
 
 }
