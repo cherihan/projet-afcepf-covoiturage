@@ -40,8 +40,6 @@ public class ActionCovServlet extends HttpServlet {
 			beanToPopulate.populateBean(actionForm, request.getParameterMap());
 			action.execute(request, response);
 			
-			
-			
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
