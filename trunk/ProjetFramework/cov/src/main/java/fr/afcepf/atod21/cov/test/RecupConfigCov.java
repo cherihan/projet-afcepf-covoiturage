@@ -69,7 +69,7 @@ public class RecupConfigCov {
                                 if ((enfant2.getNodeName().equals("form-name"))
                                         && (enfant2.getTextContent().equals(enfant.getTextContent()))) {
                                     resultat = true;
-                                    mapLiaison.put(formClass, actionName);
+                                    mapLiaison.put(actionName, actionName);
                                     mapActions.put(urlPattern, formClass);
 
                                 }
