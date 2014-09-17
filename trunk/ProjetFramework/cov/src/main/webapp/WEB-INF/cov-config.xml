@@ -2,27 +2,16 @@
 <struts-config>
 	<actions>
 		<action>
-			<action-name>fr.afcepf.atod21.cov.test.ActionPremiere</action-name>
+			<action-name>fr.afcepf.atod21.cov.test.ActionCov</action-name>
 			<url-pattern>/affichage</url-pattern>
 			<form-name>paffichage</form-name>
 		</action>
-		<action>
-			<action-name>fr.afcepf.atod21.cov.test.ActionDeuxieme</action-name>
-			<url-pattern>/affichage2</url-pattern>
-			<form-name>paffichage2</form-name>
-		</action>
-
 	</actions>
+	
 	<forms>
 		<form>
-			<form-class>fr.afcepf.atod21.cov.test.ActionPremiereForm</form-class>
+			<form-class>fr.afcepf.atod21.cov.test.ActionCovForm</form-class>
 			<form-name>paffichage</form-name>
-
-		</form>
-		<form>
-			<form-class>fr.afcepf.atod21.cov.test.ActionDeuxiemeForm</form-class>
-			<form-name>paffichage2</form-name>
-
 		</form>
 	</forms>
 	<message-resources parameter="fr.afcepf.atod21.cov.test.config" />
