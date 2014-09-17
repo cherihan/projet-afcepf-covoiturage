@@ -7,5 +7,4 @@ public abstract class ActionCov implements IActionCov {
 
 	@Override
 	public abstract String execute(HttpServletRequest request, HttpServletResponse response);
-
 }
