@@ -4,4 +4,9 @@ import fr.afcepf.atod21.cov.config.ActionCovConfig;
 
 public class ActionCovMapping extends ActionCovConfig {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 }

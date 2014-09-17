@@ -1,25 +1,59 @@
 package fr.afcepf.atod21.cov.servlet;
 
+import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.xml.sax.SAXException;
+
+import fr.afcepf.atod21.cov.action.ActionCov;
+import fr.afcepf.atod21.cov.action.ActionCovForm;
+import fr.afcepf.atod21.cov.bean.BeanCovPopulate;
+import fr.afcepf.atod21.cov.factory.Factory;
 
 public class ActionCovServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	protected String config = "/WEB-INF/cov-config.xml";
+//	protected String config = "/WEB-INF/cov-config.xml";
+//
+//    public void init() throws ServletException {
+//    	System.out.println("toto");
+//    }
 
-	/**
-     * <p>Initialize this servlet.  Most of the processing has been factored into
-     * support methods so that you can override particular functionality at a
-     * fairly granular level.</p>
-     *
-     * @exception ServletException if we cannot configure ourselves correctly
-     */
-    public void init() throws ServletException {
-    	System.out.println("toto");
-    }
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
 
-
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			
+			Factory factory = new Factory().getInstance();
+			ActionCov action = factory.getAction(request.getRequestURI());
+			ActionCovForm actionForm = factory.getActionForm(request.getParameter("form"));
+			BeanCovPopulate beanToPopulate = new BeanCovPopulate();
+			beanToPopulate.populateBean(actionForm, request.getParameterMap());
+			action.execute(request, response);
+			
+			
+			
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
