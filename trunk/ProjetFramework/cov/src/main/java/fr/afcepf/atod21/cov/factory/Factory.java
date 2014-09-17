@@ -30,7 +30,7 @@ public class Factory implements IFactory{
 	private static DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 	private static DocumentBuilder db;
 	private static Document document;
-	
+
 	public Factory getInstance() throws SAXException, IOException{
 		if(instanceFactory == null){
 			instanceFactory = new Factory();

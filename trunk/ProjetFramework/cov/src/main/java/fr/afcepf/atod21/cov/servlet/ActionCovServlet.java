@@ -2,6 +2,7 @@ package fr.afcepf.atod21.cov.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +19,6 @@ public class ActionCovServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-//	protected String config = "/WEB-INF/cov-config.xml";
-//
-//    public void init() throws ServletException {
-//    	System.out.println("toto");
-//    }
-
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -32,14 +27,19 @@ public class ActionCovServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			
+			String forwardPath = null;
 			Factory factory = new Factory().getInstance();
 			ActionCov action = factory.getAction(request.getRequestURI());
 			ActionCovForm actionForm = factory.getActionForm(request.getParameter("form"));
 			BeanCovPopulate beanToPopulate = new BeanCovPopulate();
 			beanToPopulate.populateBean(actionForm, request.getParameterMap());
-			action.execute(request, response);
-			
+			forwardPath = action.execute(request, response);
+			if(forwardPath == null){
+				forwardPath = request.getRequestURI();
+			}
+			RequestDispatcher reqDispatch = request.getRequestDispatcher(forwardPath);
+			reqDispatch.forward(request, response);
+					
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
@@ -52,6 +52,7 @@ public class ActionCovServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }
