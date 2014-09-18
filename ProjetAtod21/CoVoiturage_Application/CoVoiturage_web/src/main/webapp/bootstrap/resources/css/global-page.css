@@ -1,0 +1,30 @@
+img {
+	width : 100%;
+	heigh : auto;
+	max-width: 100%;
+}
+
+.topClass {
+	height: 15vh;
+}
+
+.topCenterClass {
+	height: 15vh;
+}
+
+.centerClass {
+	height:60vh;
+}
+
+.rightClass {
+	height: 100vh;
+}
+
+ .leftClass  {
+	height: 100vh;
+}
+ 
+
+.bottomClass {
+	height: 10vh;
+}

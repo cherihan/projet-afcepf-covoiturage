@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<h:link rel="" type=""></h:link>
+	<title><ui:insert name="title"></ui:insert></title>
+	<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+	<link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../resources/css/global-page.css" rel="stylesheet" type="text/css"/>
+	<ui:insert name="css"></ui:insert>
+	<ui:insert name="javascript"></ui:insert>
+</h:head>
+
+<body>
+	<f:view>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2">
+					<ui:insert name="left">
+						<ui:include src="/bootstrap/template/left.xhtml" />
+					</ui:insert>
+				</div>
+				
+				<div class="col-lg-8">
+					<div class="row">
+						<ui:insert name="top">
+							<ui:include src="/bootstrap/template/top.xhtml" />
+						</ui:insert>
+					</div>
+					<div class="row">
+						<ui:insert name="top-center">
+							<ui:include src="/bootstrap/template/top-center.xhtml" />
+						</ui:insert>
+					</div>
+					<div class="row">
+						<ui:insert name="center">
+							<ui:include src="/bootstrap/template/center.xhtml" />
+						</ui:insert>
+					</div>
+					<div class="row">
+						<ui:insert name="bottom">
+							<ui:include src="/bootstrap/template/bottom.xhtml" />
+						</ui:insert>
+					</div>
+				</div>
+				
+				<div class="col-lg-2">
+					<ui:insert name="right">
+						<ui:include src="/bootstrap/template/right.xhtml" />
+					</ui:insert>
+				</div>
+			</div>
+		</div>
+
+	</f:view>
+</body>
+</html>

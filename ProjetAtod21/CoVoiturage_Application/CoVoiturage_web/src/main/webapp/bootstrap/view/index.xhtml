@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="../template/commonLayout.xhtml">
+	<ui:define name="title">Co-Voiturage AFCEPF</ui:define>
+
+	<ui:define name="css">
+<!-- 		<link rel="stylesheet" href="../resources/css/jquery-ui-1.10.4.custom.css" /> -->
+<!-- 		<link rel="stylesheet" type="text/css" href="../resources/css/jquery.datetimepicker.css" /> -->
+<!-- 		<link rel="stylesheet" href="../resources/css/index.css" /> -->
+	</ui:define>
+
+	<ui:define name="javascript">
+<!-- 		<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script> -->
+<!-- 		<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.custom.js"></script> -->
+<!-- 		<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script> -->
+<!-- 		<script type="text/javascript" src="../resources/js/jquery.js"></script> -->
+<!-- 		<script type="text/javascript" src="../resources/js/jquery.datetimepicker.js"></script> -->
+<!-- 		<script type="text/javascript" src="../resources/js/index.js"></script> -->
+	</ui:define>
+
+	<ui:define name="top">
+		<h:graphicImage styleClass="topClass" value="../resources/images/banner-top.jpg"></h:graphicImage>
+	</ui:define>
+	<ui:define name="top-center">
+		<h:graphicImage styleClass="topCenterClass" value="../resources/images/banner-top-center.jpg"></h:graphicImage>
+	</ui:define>
+	<ui:define name="left">
+		<h:graphicImage styleClass="leftClass" value="../resources/images/banner-hotels.jpg"></h:graphicImage>
+	</ui:define>
+	<ui:define name="right">
+		<h:graphicImage styleClass="rightClass" value="../resources/images/banner-restaurants.jpg"></h:graphicImage>
+	</ui:define>
+	<ui:define name="bottom">
+		<h:graphicImage styleClass="bottomClass" value="../resources/images/banner-bottom.jpg"></h:graphicImage>
+	</ui:define>
+	
+	<ui:define name="center">
+		<div class="formRechercherTrajet">
+			<h:form>
+				<h3>Votre application de CoVoiturage</h3>
+				<div class="classError">
+					<h:messages globalOnly="true" styleClass="errorMessage" />
+				</div>
+				
+				<fieldset>
+					<legend>Rechercher un trajet</legend>
+					<br />
+					<h:outputLabel value="Ville de depart" for="villeDepart" />
+					<h:inputText id="villeDepart"
+								 required="true"
+								 requiredMessage="Ville de depart obligatoire"
+								 value="#{utilisateurMBean.villeDepart}" styleClass="champs">
+						<f:ajax event="blur" render="villeDepartMessage" />
+					</h:inputText>
+					<h:message for="villeDepart" id="villeDepartMessage"
+						       style="color:red; font-size: 11px; font-weight: bold;
+						       display:inline-block; margin-left:15px;" />
+					<br /> <br />
+					
+					<h:outputLabel value="Ville d'arrivee" />
+					<h:inputText id="villeArrivee"
+								 value="#{utilisateurMBean.villeArrivee}"
+								 styleClass="champs" />
+					<br /> <br />
+					
+					<h:outputLabel value="Date de depart" />
+					<h:inputText id="dateDepart" value="#{utilisateurMBean.dateDepart}"
+								 required="true" requiredMessage="Date de depart obligatoire"
+								 styleClass="datePickerDeparture" style="width: 143px;" />
+					<h:message for="dateDepart"
+							   style="color:red;font-size: 11px; display:inline-block;  font-weight: bold;margin-left:15px;" />
+					<br /> <br />
+					
+					<h:commandButton value="Valider" styleClass="classBtnSubmit"
+									 action="#{utilisateurMBean.rechercherTrajet()}" />
+				</fieldset>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>
