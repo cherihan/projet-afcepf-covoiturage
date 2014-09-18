@@ -1,0 +1,341 @@
+/************************ BODY ***********************/
+body,html {
+	height: 100%;
+	font-family: verdana;
+	font-size: 12px;
+	font-family: verdana;
+	max-width: 2000px;
+	min-width: 1200px;
+}
+
+#page {
+	min-height: 100%;
+}
+
+/*********************** DIV HEADER ************************/
+.header {
+	background-color: maroon;
+	color: white;
+	font-family: verdana;
+	font-size: 12px;
+	height: 140px;
+	border-radius: 4px;
+	box-shadow: 4px 4px 4px maroon;
+}
+
+/*********************** DIV RECHERCHER TRAJET ET CREER COMPTE  ************************/
+.header .classTrajetEtCompte {
+	color: white;
+	font-family: verdana;
+	font-size: 13px;
+	width: 42%;
+	height: 120px;
+	float: left;
+	text-align: center;
+}
+
+.classTrajetEtCompte ul {
+	padding: 0;
+	margin: 0;
+	margin-top: 37px;
+}
+
+.classTrajetEtCompte li {
+	display: inline;
+	list-style: none;
+}
+
+.
+.classTrajetEtCompte li a {
+	display: inline-block;
+	margin: 0 30px;
+}
+
+.classTrajetEtCompte .linkResearch {
+	background-color: white;
+	border: 2px solid white;
+	border-radius: 3px;
+	color: maroon;
+	display: inline-block;
+	margin-right: 15px;
+	padding: 5px 4px;
+	text-decoration: none;
+}
+
+.classTrajetEtCompte .linkCreate {
+	background-color: white;
+	border: 2px solid white;
+	border-radius: 3px;
+	color: maroon;
+	display: inline-block;
+	padding: 5px;
+	text-decoration: none;
+}
+
+.classTrajetEtCompte .linkResearch:HOVER {
+	background-color: maroon;
+	color: white;
+	border: 2px solid white;
+}
+
+.classTrajetEtCompte .linkCreate:HOVER {
+	background-color: maroon;
+	color: white;
+	border: 2px solid white;
+}
+
+/*********************** DIV DECONNEXION ET MON PROFIL ************************/
+.header .classDeconnexionEtProfil {
+	height: 140px;
+	float: left;
+	width: 23%;
+}
+
+.classDeconnexionEtProfil .classLinkLogOut {
+	padding-top: 40px;
+	text-decoration: none;
+	line-height: 95px;
+	color: white;
+}
+
+.classDeconnexionEtProfil .classLinkLogOut:HOVER {
+	border-bottom: 3px solid white;
+}
+
+.classTrajetEtCompte .classTitle {
+	float: left;
+	padding-left: 45px;
+	padding-top: 20px;
+	padding-left: 45px;
+	font-size: 18px;
+}
+
+/*********************** DIV CONNEXION ************************/
+.header .classConnexion {
+	float: left;
+	height: 140px;
+	width: 35%;
+}
+
+.classConnexion .classLink {
+	margin-right: 20px;
+	margin-top: 20px;
+	border: none;
+	height: 20px;
+	/* 	width: 135px; */
+	color: white;
+	height: 22px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 4px;
+	text-decoration: none;
+	font-size: 11px;
+}
+
+.classConnexion .classLink:HOVER {
+	color: white;
+	border-bottom: 3px solid white;
+	/* 	font-weight: bold; */
+	font-size: 11px;
+	height: 22px;
+	/* 	width: 135px; */
+}
+
+.classConnexion fieldset {
+	margin-top: 6px;
+	width: 95%;
+	font-size: 13px;
+	border: none;
+	border-left: 1px solid white;
+}
+
+h4 {
+	color: maroon;
+	margin: 64px auto auto;
+	width: 50%;
+}
+
+.classConnexion fieldset label {
+	float: left;
+	width: 65px;
+	margin-top: 5px;
+}
+
+.classConnexion fieldset  input[type=text],.classConnexion fieldset  input[type=password]
+	{
+	width: 135px;
+	margin-top: 5px;
+}
+
+.classConnexion fieldset  input[type=checkbox] {
+	margin-left: 20px;
+	margin-top: 5px;
+}
+
+.classConnexion fieldset input[type=submit] {
+	width: 130px;
+	height: 20px;
+	margin-left: 20px;
+}
+
+.classConnexion fieldset input[type=submit]:HOVER {
+	background-color: maroon;
+	color: white;
+	border: 2px solid white;
+}
+
+.classConnexion fieldset .classBtnLogin {
+	margin-left: 65px;
+	background-color: white;
+	color: maroon;
+	border: none;
+}
+
+.styleBtnLogOut {
+	float: left;
+}
+
+.classConnexion fieldset a {
+	color: white;
+	text-decoration: none;
+}
+
+.classConnexion fieldset a:HOVER {
+	border-bottom: 3px solid white;
+}
+
+#menu-accordeon {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-align: center;
+	width: 130px;
+	float: right;
+	margin-top: 10px;
+	margin-right: 72px;
+}
+
+#menu-accordeon ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-align: center;
+}
+
+#menu-accordeon li {
+	background-color: marron;
+	background-image: -webkit-linear-gradient(top, marron 0%, #333A40 100%);
+	background-image: linear-gradient(to bottom, marron 0%, #333A40 100%);
+	border-radius: 6px;
+	margin-bottom: 2px;
+	box-shadow: 3px 3px 3px #999;
+	border: solid 1px white;
+}
+
+#menu-accordeon li li {
+	max-height: 0;
+	overflow: hidden;
+	transition: all .5s;
+	border-radius: 0;
+	background: #444;
+	box-shadow: none;
+	border: none;
+	margin: 0
+}
+
+#menu-accordeon a {
+	display: block;
+	text-decoration: none;
+	color: #fff;
+	padding: 8px 0;
+	font-family: verdana;
+	font-size: 13px;
+}
+
+#menu-accordeon ul li a,#menu-accordeon li:hover li a {
+	font-size: 1em;
+}
+
+#menu-accordeon li:hover {
+	background: maroon;
+}
+
+#menu-accordeon li li:hover {
+	background: #999;
+}
+
+#menu-accordeon ul li:last-child {
+	border-radius: 0 0 6px 6px;
+	border: none;
+}
+
+#menu-accordeon li:hover li {
+	max-height: 15em;
+}
+
+/*********************** DIV MESSAGE ************************/
+.message {
+	height: auto;
+}
+
+.messageError {
+	color: red;
+}
+
+.messageSucces {
+	color: green;
+}
+
+/*********************** DIV CONTENT ************************/
+#content {
+	/* 	background-color: #E2B68E; */
+	overflow: auto;
+	padding-bottom: 200px;
+	padding-top: 10px;
+	margin: 0px;
+	height: auto;
+	overflow: auto;
+	/* 	box-shadow: 5px 5px 5px #E2B68E; */
+	border-radius: 3px;
+}
+
+#footer {
+	border: 2px solid maroon;
+	background-color: maroon;
+	position: relative;
+	margin-top: -80px;
+	height: 80px;
+	color: white;
+	box-shadow: 5px 5px 5px maroon;
+	border-radius: 3px;
+}
+
+#footer ul {
+	list-style-type: none;
+}
+
+#footer ul li {
+	list-style-type: none;
+	display: inline;
+}
+
+#footer ul li a {
+	color: white;
+	text-decoration: none;
+	padding: 5px;
+	margin-right: 130px;
+}
+
+#footer ul li a:HOVER {
+	border-bottom: 4px solid white;
+}
+
+/******************************* Common *************************************/
+
+.linkReturnIndex {
+	color: maroon;
+	font-size: 12px;
+	margin-left: 20px;
+	padding: 5px;
+	text-decoration: none;
+}

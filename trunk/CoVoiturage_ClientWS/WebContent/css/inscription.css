@@ -1,0 +1,39 @@
+.formCreerCompte {
+	margin-top: 50px;
+}
+
+.formCreerCompte label {
+	margin-left : 50px;
+	float : left;
+	width : 300px;
+}
+
+.formCreerCompte input {
+	width : 300px;
+}
+
+.formCreerCompte .classBtnSubmit {
+	width : 305px;
+	margin-left : 350px;
+}
+
+.formCreerCompte  legend {
+	position:absolute; left:50%;
+}
+
+.formCreerCompte  input:required {
+  box-shadow: 4px 4px 20px rgba(200, 0, 0, 0.85);
+}
+
+.formCreerCompte  error{
+  box-shadow: 4px 4px 20px rgba(200, 0, 0, 0.85);
+}
+.messsages{
+	color:red;
+	 box-shadow: 1px 1px 2px rgba(200, 0, 0, 0.85);
+	 margin-left : 50px;
+}
+.formAnnulationCreerCompte .classBtnSubmitCancel{
+	width : 305px;
+	margin-left : 350px;
+}

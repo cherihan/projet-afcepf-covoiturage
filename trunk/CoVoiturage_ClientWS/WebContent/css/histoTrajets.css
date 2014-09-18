@@ -1,0 +1,167 @@
+.formHistoTrajet {
+	margin: 30px;
+	width: 79%;
+}
+
+.formHistoTrajet fieldset {
+	font-size: 12px;
+	color: maroon;
+	border-radius: 3px;
+	border-color: maroon;
+	width: 88%;
+	box-shadow: 5px 5px 5px 0 maroon;
+	
+}
+
+.formHistoTrajet fieldset .classDetailHisto {
+	margin-top: 10px;
+	margin-left: 15px;
+	margin-bottom: 5px;
+	width: 95%;
+}
+
+.formHistoTrajet fieldset .champs {
+	float: left;
+	width: 90px;
+}
+
+.formHistoTrajet fieldset .classLink {
+	margin-top: 10px;
+	color: maroon;
+	margin-left: 20px;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+.formHistoTrajet fieldset .classLink:HOVER {
+	border-bottom: 2px solid maroon;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.formHistoTrajet fieldset .classLink .classRendered {
+	border-bottom: 2px solid maroon;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.formHistoTrajet fieldset .classHistoLink {
+	margin-left: 10px;
+	margin-right: 10px;
+	color: maroon;
+	text-decoration: none;
+	border-bottom: 1px solid maroon;
+}
+
+.formHistoTrajet fieldset .classHistoLink:HOVER {
+	border-bottom: 2px solid maroon;
+}
+
+.formHistoTrajet ul {
+	list-style-type: none;
+	margin: 0 0 20px;
+	padding: 0;
+}
+
+.formHistoTrajet ul li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.formHistoTrajet ul li a {
+	background-color: maroon;
+	border: 2px solid maroon;
+	border-radius: 3px;
+	box-shadow: 0 9px 0 white;
+	color: white;
+	font-size: 13px;
+	padding: 7px 21px;
+	text-decoration: none;
+	transition: all 0.1s ease 0s;
+	font-weight: bold;
+}
+
+.formAvis fieldset {
+	border-color: maroon;
+	box-shadow: 5px 5px 5px 0 maroon;
+	color: maroon;
+	font-family: verdana;
+	margin: 70px auto auto;
+	width: 50%;
+	border-radius: 3px;
+}
+
+.formAvis fieldset legend{
+	font-weight: bold; 
+}
+
+.formInfos fieldset {
+	border-color: maroon;
+	box-shadow: 5px 5px 5px 0 maroon;
+	color: maroon;
+	font-family: verdana;
+	margin: 70px auto auto;
+	width: 50%;
+	border-radius: 3px;
+}
+
+.formInfos fieldset label{
+	color:black;
+}
+
+.formInfos fieldset legend{
+	font-weight: bold;
+}
+
+.formInfos fieldset legend label{
+	color:black;
+}
+
+
+.tableResultsTrajets {
+	border-collapse: collapse;
+}
+
+.titleTableResultsTrajets {
+	color: maroon;
+}
+
+.tableResultsTrajets th {
+	font-size: 11px;
+	color: black;
+	border: 2px solid maroon;
+	background-color: #EAEAEA;
+}
+
+.tableResultsTrajets tr {
+	border-collapse: collapse;
+	border-radius: 4px;
+}
+
+.tableResultsTrajets td {
+	border: 2px solid maroon;
+	font-style: bold;
+	width: 100px;
+}
+
+.tableResultsTrajets .rowPair {
+	background-color: white;
+}
+
+.tableResultsTrajets .rowInpair {
+	background-color: #F7DAB4;
+}
+
+.formHistoTrajet fieldset .classSelectOneMenu {
+	margin-left: 10px;
+	width: 100px;
+}
+
+.formHistoTrajet fieldset .messageValidator {
+	color:red;
+	font-size: 11px;
+	font-weight: bold;
+	display:inline-block;
+	margin-left:15px;	
+}
