@@ -46,7 +46,7 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -84,7 +84,9 @@
 			<artifactId>myfaces-impl</artifactId>
 			<version>2.1.15</version>
 		</dependency>
-		
+
+
+
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
@@ -97,24 +99,31 @@
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
 			<version>3.0.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+
+
 		<!-- CXF JSon -->
 		<dependency>
-		  <groupId>org.codehaus.jackson</groupId>
-		  <artifactId>jackson-jaxrs</artifactId>
-		  <version>1.9.2</version>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>1.9.2</version>
 		</dependency>
 
 	</dependencies>

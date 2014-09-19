@@ -7,10 +7,20 @@
 <h:head>
 	<h:link rel="" type=""></h:link>
 	<title><ui:insert name="title"></ui:insert></title>
-	<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
 	<link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/global-page.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="../resources/css/jquery-ui-1.10.4.custom.css" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/jquery.datetimepicker.css" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/owl.theme.css" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/owl.transitions.css" />
+	<link rel="stylesheet" href="../resources/css/index.css" />
+	<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../resources/js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script>
+	<script type="text/javascript" src="../resources/js/jquery.datetimepicker.js"></script>
+	<script type="text/javascript" src="../resources/js/index.js"></script>
 	<ui:insert name="css"></ui:insert>
 	<ui:insert name="javascript"></ui:insert>
 </h:head>
@@ -18,40 +28,40 @@
 <body>
 	<f:view>
 
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-2 leftClass">
 					<ui:insert name="left">
-						<ui:include src="/bootstrap/template/left.xhtml" />
+<!-- 						<ui:include src="../template/left.xhtml" /> -->
 					</ui:insert>
 				</div>
 				
 				<div class="col-lg-8">
-					<div class="row">
+					<div class="row topClass">
 						<ui:insert name="top">
-							<ui:include src="/bootstrap/template/top.xhtml" />
+<!-- 							<ui:include src="../template/top.xhtml" /> -->
 						</ui:insert>
 					</div>
-					<div class="row">
+					<div class="row topCenterClass">
 						<ui:insert name="top-center">
-							<ui:include src="/bootstrap/template/top-center.xhtml" />
+<!-- 							<ui:include src="../template/top-center.xhtml" /> -->
 						</ui:insert>
 					</div>
-					<div class="row">
+					<div class="row centerClass">
 						<ui:insert name="center">
-							<ui:include src="/bootstrap/template/center.xhtml" />
+<!-- 							<ui:include src="../template/center.xhtml" /> -->
 						</ui:insert>
 					</div>
-					<div class="row">
+					<div class="row bottomClass">
 						<ui:insert name="bottom">
-							<ui:include src="/bootstrap/template/bottom.xhtml" />
+<!-- 							<ui:include src="../template/bottom.xhtml" /> -->
 						</ui:insert>
 					</div>
 				</div>
 				
-				<div class="col-lg-2">
+				<div class="col-lg-2 rightClass">
 					<ui:insert name="right">
-						<ui:include src="/bootstrap/template/right.xhtml" />
+<!-- 						<ui:include src="../template/right.xhtml" /> -->
 					</ui:insert>
 				</div>
 			</div>
