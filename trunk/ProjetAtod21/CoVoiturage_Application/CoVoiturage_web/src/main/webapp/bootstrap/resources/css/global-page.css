@@ -1,30 +1,56 @@
 img {
 	width : 100%;
-	heigh : auto;
+	height : auto;
 	max-width: 100%;
 }
 
 .topClass {
-	height: 15vh;
+	height: 80px;
+	background-color: #f8f8f8;
 }
 
 .topCenterClass {
-	height: 15vh;
+	height: 130px;
+	background-color: white;
 }
 
 .centerClass {
-	height:60vh;
+	height:600px;
+	background-color: gray;
+}
+ 
+.bottomClass {
+	height: 80px;
+	background-color: white;
 }
 
 .rightClass {
-	height: 100vh;
+	height: 890px;
+	background-color: lightgray;
+	padding-left: 1px;
 }
 
  .leftClass  {
-	height: 100vh;
+	height: 890px;
+	background-color: lightgray;
+	padding-right: 1px;
 }
- 
 
-.bottomClass {
-	height: 10vh;
+/* bootstrap upgrade for vertical divider */
+.navbar .divider-vertical {
+height: 50px;
+margin: 0 9px;
+border-right: 1px solid #ffffff;
+border-left: 1px solid #f2f2f2;
+}
+
+.navbar-inverse .divider-vertical {
+border-right-color: #222222;
+border-left-color: #111111;
+}
+
+@media (max-width: 767px) {
+.navbar-collapse .nav > .divider-vertical {
+    display: none;
+  }
 }

@@ -1,0 +1,83 @@
+#owl-demo .item{
+  background: #3fbf79;
+  padding: 30px 0px;
+  width : 100%;
+  color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/*
+.formRechercherTrajet {
+	margin-top: 20px;
+}
+
+.formRechercherTrajet fieldset {
+	border-color: maroon;
+	border-radius: 3px;
+	font-size: 13px;
+	margin: 67px auto auto;
+	width: 50%;
+	font-family: verdana;
+	box-shadow: 5px 5px 5px 0px maroon;
+}
+
+.formRechercherTrajet legend {
+	color: maroon;
+	font-weight: bold;
+}
+
+.formRechercherTrajet fieldset label {
+	margin-left: 10px;
+	width: 135px;
+	float: left;
+	color: black;
+}
+
+.formRechercherTrajet fieldset .champs {
+	
+}
+
+.formRechercherTrajet fieldset .classBtnSubmit {
+	background-color: maroon;
+	border: 1px solid maroon;
+	border-radius: 3px;
+	color: white;
+	font-size: 14px;
+	margin: auto auto auto 146px;
+	padding: 4px;
+}
+
+.formRechercherTrajet fieldset .classBtnSubmit:HOVER {
+	background-color: white;
+	color: maroon;
+}
+
+.formRechercherTrajet .classError {
+	height: auto;
+	margin: 22px auto auto;
+	width: 250px;
+}
+
+.formRechercherTrajet h3 {
+	text-align: center;
+	background-color: maroon;
+	color: white;
+	border: none;
+	margin: 0;
+	line-height: 42px;
+	box-shadow: 4px 4px 4px maroon;
+}
+
+.formRechercherTrajet ul {
+	padding: 0;
+	color: red;
+	font-weight: bold;
+	float: left;
+	font-style: italic;
+	list-style-type: none;
+}
+*/
+

@@ -1,0 +1,95 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://java.sun.com/jsf/passthrough">
+<nav class="navbar" role="navigation">
+	<h:form id="connexionForm" styleClass="navbar-form navbar-left" role="form">
+		<div class="form-group">
+			<h:outputLink styleClass="btn btn-success" role="button" value="../pages/index.xhtml">
+				<span class="glyphicon glyphicon-search"></span> Rechercher un trajet
+			</h:outputLink>
+		</div>
+		<div class="form-group">
+			<h:outputLink styleClass="btn btn-warning" rendered="#{!connectionMBean.userConnected}" value="../pages/creerCompte.xhtml">
+			</h:outputLink>
+							<span class="glyphicon glyphicon-user"></span> Créer un compte
+		</div>
+	</h:form>
+	<h:form styleClass="navbar-form navbar-right" role="form">
+		<div class="classConnexion">
+			<fieldset>
+				<div>
+					<h:panelGroup rendered="#{!connectionMBean.userConnected}">
+						<div class="form-group has-feedback">
+								<h:inputText  styleClass="form-control" placeholder="Email" value="#{connectionMBean.email}" />
+								<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+						</div>
+						<div class="form-group has-feedback">
+								<h:inputSecret styleClass="form-control" value="#{connectionMBean.password}" placeholder="Password"/>
+								<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+						</div>
+						<div class="form-group">
+							<h:commandButton styleClass="btn btn-primary" value="Se connecter"
+								action="#{connectionMBean.seConnecter()}">
+								<f:ajax render="@form" execute="@form" />
+							</h:commandButton>
+						</div>
+						<br/>
+						<div class="checkbox">
+							<label>
+								<h:selectBooleanCheckbox value="#{connectionMBean.userRemembered}" /> Se souvenir de moi |
+							</label> 
+						</div>
+						<div class="form-group">
+							<h:outputLink styleClass="classLink">
+								<f:verbatim>Mot de passe oublié?</f:verbatim>
+							</h:outputLink>
+						</div>
+					</h:panelGroup>
+
+					<h:panelGroup rendered="#{connectionMBean.userConnected}">
+						<span>Bonjour </span>
+						<strong>
+							<span><h:outputText value="#{connectionMBean.user.civilite.toUpperCase()}" /></span>
+							<span><h:outputText value="#{connectionMBean.user.nom}" /></span>
+							<span><h:outputText value="#{connectionMBean.user.prenom}" /></span>
+						</strong>
+						<div class="form-group">
+							<h:commandLink styleClass="btn btn-warning" action="#{connectionMBean.seDeconnecter()}"><span class="glyphicon glyphicon-off"></span> Se deconnecter</h:commandLink>
+						</div>
+					</h:panelGroup>
+				</div>
+				<div>
+					<h:panelGroup
+						rendered="#{!connectionMBean.userConnected and !connectionMBean.userExists}">
+						<span class="messageErrHeader">L'identifiant et/ou le mot
+							de passe sont incorrects ! Réessayez.</span>
+					</h:panelGroup>
+				</div>
+			</fieldset>
+		</div>
+		
+		<div class="classDeconnexionEtProfil">
+			<h:panelGroup rendered="#{connectionMBean.userConnected}">
+				<ul id="menu-accordeon">
+					<li><h:outputLink>
+							<f:verbatim>Mon profil</f:verbatim>
+						</h:outputLink>
+						<ul>
+							<li><h:outputLink value="../pages/infos.xhtml">
+									<f:verbatim>Mes infos</f:verbatim>
+								</h:outputLink></li>
+							<li><h:outputLink value="../pages/histoTrajets.xhtml">
+									<f:verbatim>Mes trajets</f:verbatim>
+								</h:outputLink></li>
+							<li><h:outputLink value="../pages/avis.xhtml">
+									<f:verbatim>Mes avis</f:verbatim>
+								</h:outputLink></li>
+						</ul></li>
+				</ul>
+			</h:panelGroup>
+		</div>
+	</h:form>
+</nav>
+</ui:composition>
