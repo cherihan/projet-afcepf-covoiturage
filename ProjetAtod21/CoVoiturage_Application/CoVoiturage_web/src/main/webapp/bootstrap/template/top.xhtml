@@ -4,20 +4,20 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://java.sun.com/jsf/passthrough">
 <nav class="navbar" role="navigation">
-	<h:form id="connexionForm" styleClass="navbar-form navbar-left" role="form">
-		<div class="form-group">
-			<h:outputLink styleClass="btn btn-success" role="button" value="../pages/index.xhtml">
-				<span class="glyphicon glyphicon-search"></span> Rechercher un trajet
-			</h:outputLink>
+	<h:form id="connexionForm" styleClass="navbar-form" role="form">
+		<div class="navbar-left">
+			<div class="form-group">
+				<h:outputLink styleClass="btn btn-success" role="button" value="../pages/index.xhtml">
+					<span class="glyphicon glyphicon-search"></span> Rechercher un trajet
+				</h:outputLink>
+			</div>
+			<div class="form-group">
+					<h:outputLink styleClass="btn btn-warning" rendered="#{!connectionMBean.userConnected}" value="../pages/creerCompte.xhtml">
+											<span class="glyphicon glyphicon-user"></span> Créer un compte
+					</h:outputLink>
+			</div>
 		</div>
-		<div class="form-group">
-			<h:outputLink styleClass="btn btn-warning" rendered="#{!connectionMBean.userConnected}" value="../pages/creerCompte.xhtml">
-			</h:outputLink>
-							<span class="glyphicon glyphicon-user"></span> Créer un compte
-		</div>
-	</h:form>
-	<h:form styleClass="navbar-form navbar-right" role="form">
-		<div class="classConnexion">
+		<div class="classConnexion navbar-right">
 			<fieldset>
 				<div>
 					<h:panelGroup rendered="#{!connectionMBean.userConnected}">

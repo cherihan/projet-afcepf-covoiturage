@@ -6,7 +6,7 @@
 	<display-name>CoVoiturage_web</display-name>
 
 	<welcome-file-list>
-		<welcome-file>../bootstrap/view/index.xhtml</welcome-file>
+		<welcome-file>/bootstrap/view/index.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>
