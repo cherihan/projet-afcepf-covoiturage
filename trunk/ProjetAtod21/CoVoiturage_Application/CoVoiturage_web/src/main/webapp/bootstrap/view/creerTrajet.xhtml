@@ -55,37 +55,38 @@
 								</div>
 								<h:message for="villeDepart" styleClass="col-md-4 control-label" style="color:red;font-size: 11px;font-weight: bold;" />
 							</div>
-								<h:outputLabel value="Ville d arrivee" />
-
-								<h:selectOneMenu id="villeArrivee" required="true"
+							<div class="form-group">
+								<h:outputLabel value="Ville d arrivee" styleClass="col-md-4 control-label"/>
+								<div class="col-md-4">
+								<h:selectOneMenu id="villeArrivee" required="true" styleClass="form-control"
 									requiredMessage="Ville d'arrivee obligatoire"
 									value="#{trajetMBean.villeArrivee.nom   }">
 
 									<f:selectItem itemValue="#{null}"
-										itemLabel="-------- Choisir une ville --------" />
+										itemLabel="Choisir une ville" />
 									<f:selectItems value="#{trajetMBean.listNomVilles  }" />
 
 								</h:selectOneMenu>
-
-								<h:message for="villeArrivee"
-									style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:15px;" />
-								<br /> <br />
-
-								<h:outputLabel value="Date de depart" for="dateDepart" />
-
+								</div>
+								<h:message for="villeArrivee" styleClass="col-md-4 control-label" style="color:red;font-size: 11px;font-weight: bold;"/>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Date de depart" for="dateDepart" styleClass="col-md-4 control-label"/>
+								<div class="col-md-4">
 								<h:inputText id="dateDepart" required="true"
 									requiredMessage="Date de depart obligatoire"
 									value="#{trajetMBean.dateDepart}" style="width:90px;"
-									styleClass="datePickerDeparture">
+									styleClass="datePickerDeparture form-control">
 
 
 								</h:inputText>
-								<h:message for="dateDepart"
-									style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:107px;" />
-								<br /> <br />
-								<h:outputLabel value="Tarif (en €)" />
-
-								<h:inputText id="tarif" required="true"
+								</div>
+								<h:message for="dateDepart" styleClass="col-md-4 control-label" style="color:red;font-size: 11px;font-weight: bold;"/>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Tarif (en €)" styleClass="col-md-4 control-label"/>
+								<div class="col-md-4">
+								<h:inputText id="tarif" required="true" styleClass="form-control"
 									requiredMessage="Tarif obligatoire"
 									validatorMessage="Le tarif ne peut etre egale a 0"
 									value="#{trajetMBean.trajet.tarif }">
@@ -93,12 +94,13 @@
 									<f:ajax event="blur" render="tarifMessage"></f:ajax>
 
 								</h:inputText>
-								<h:message id="tarifMessage" for="tarif"
-									style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:55px;" />
-								<br /> <br />
-								<h:outputLabel value="Nombre de passagers" />
-
-								<h:selectOneMenu required="true"
+								</div>
+								<h:message id="tarifMessage" for="tarif" styleClass="col-md-4 control-label" style="color:red;font-size: 11px;font-weight: bold;"/>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Nombre de passagers" styleClass="col-md-4 control-label"/>
+								<div class="col-md-4">
+								<h:selectOneMenu required="true" styleClass="form-control"
 									requiredMessage="Nombre de passagers obligatoire"
 									id="nbPassagers" value="#{trajetMBean.nbPassagersSelected}">
 
@@ -112,18 +114,18 @@
 
 									<f:ajax event="blur" render="nbPassagersMessage"></f:ajax>
 								</h:selectOneMenu>
-								<h:message id="nbPassagersMessage" for="nbPassagers"
-									style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:129px;" />
-								<br /> <br />
-
-								<h:commandButton value="Valider"
-									action="#{trajetMBean.creerTrajet(connectionMBean.user)}"
-									styleClass="classBtnSubmit" style="margin-left:35px;" />
-								<h:commandButton value="Annuler"
-									action="#{trajetMBean.annuler() }" styleClass="classBtnSubmit"
-									style="margin-left:60px;" immediate="true" />
+								</div>
+								<h:message id="nbPassagersMessage" for="nbPassagers" styleClass="col-md-4 control-label" style="color:red;font-size: 11px;font-weight: bold;"/>
+							</div>
 						</div>
-						<div class="panel-footer"></div>
+						<div class="panel-footer">
+							<h:commandButton value="Valider"
+								action="#{trajetMBean.creerTrajet(connectionMBean.user)}"
+								styleClass="classBtnSubmit" style="margin-left:35px;" />
+							<h:commandButton value="Annuler"
+								action="#{trajetMBean.annuler() }" styleClass="classBtnSubmit"
+								style="margin-left:60px;" immediate="true" />
+						</div>
 					</div>
 				</h:form>
 			</div>
