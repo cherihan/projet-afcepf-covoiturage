@@ -38,10 +38,7 @@
 			<h:messages globalOnly="true" styleClass="messageSuccess" />
 			<h:form class="formListerTrajets">
 				<h:dataTable value="#{utilisateurMBean.listResults}" var="trajet"
-					cellpadding="13" cellspacing="13" styleClass="tableResultsTrajets"
-					rowClasses="rowPair, rowInpair"
-					headerClass="styleHeaderTableResultsTrajets"
-					columnClasses="column1, column2, column3"
+					styleClass="table table-bordered table-striped listTrajet"
 					rendered="#{utilisateurMBean.displayTableResultsTrajets}">
 
 					<h:column rendered="true">
