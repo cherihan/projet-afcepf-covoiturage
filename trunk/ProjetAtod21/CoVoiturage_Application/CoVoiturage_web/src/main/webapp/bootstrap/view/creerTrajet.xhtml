@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="../template/commonLayout.xhtml">
+	<ui:define name="title">
+		Creer un Trajet
+	</ui:define>
+
+	<ui:define name="css">
+	</ui:define>
+
+	<ui:define name="javascript">
+	</ui:define>
+
+	<ui:define name="top">
+		<ui:include src="../template/top.xhtml" />
+	</ui:define>
+
+	<ui:define name="top-center">
+		<ui:include src="../template/top-center.xhtml" />
+	</ui:define>
+
+	<ui:define name="left">
+	</ui:define>
+
+	<ui:define name="right">
+	</ui:define>
+
+	<ui:define name="bottom">
+	</ui:define>
+
+	<ui:define name="center">
+		<div class="row">
+			<div class="col-lg-6 col-lg-offset-3">
+				<h:form styleClass="form-horizontal">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Formulaire de creation d'un
+							trajet</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<h:outputLabel value="Ville de depart" for="villeDepart" styleClass="col-md-4 control-label"/>
+								<div class="col-md-4">
+									<h:selectOneMenu id="villeDepart" styleClass="form-control" required="true"
+										requiredMessage="Ville de depart obligatore"
+										value="#{trajetMBean.villeDepart.nom}">
+		
+										<f:selectItem itemValue="#{null}"
+											itemLabel="Choisir une ville" />
+										<f:selectItems value="#{trajetMBean.listNomVilles }" />
+		
+									</h:selectOneMenu>
+								</div>
+								<h:message for="villeDepart" styleClass="col-md-4 control-label" style="color:red;font-size: 11px;font-weight: bold;" />
+							</div>
+								<h:outputLabel value="Ville d arrivee" />
+
+								<h:selectOneMenu id="villeArrivee" required="true"
+									requiredMessage="Ville d'arrivee obligatoire"
+									value="#{trajetMBean.villeArrivee.nom   }">
+
+									<f:selectItem itemValue="#{null}"
+										itemLabel="-------- Choisir une ville --------" />
+									<f:selectItems value="#{trajetMBean.listNomVilles  }" />
+
+								</h:selectOneMenu>
+
+								<h:message for="villeArrivee"
+									style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:15px;" />
+								<br /> <br />
+
+								<h:outputLabel value="Date de depart" for="dateDepart" />
+
+								<h:inputText id="dateDepart" required="true"
+									requiredMessage="Date de depart obligatoire"
+									value="#{trajetMBean.dateDepart}" style="width:90px;"
+									styleClass="datePickerDeparture">
+
+
+								</h:inputText>
+								<h:message for="dateDepart"
+									style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:107px;" />
+								<br /> <br />
+								<h:outputLabel value="Tarif (en €)" />
+
+								<h:inputText id="tarif" required="true"
+									requiredMessage="Tarif obligatoire"
+									validatorMessage="Le tarif ne peut etre egale a 0"
+									value="#{trajetMBean.trajet.tarif }">
+									<f:validateLongRange minimum="1" />
+									<f:ajax event="blur" render="tarifMessage"></f:ajax>
+
+								</h:inputText>
+								<h:message id="tarifMessage" for="tarif"
+									style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:55px;" />
+								<br /> <br />
+								<h:outputLabel value="Nombre de passagers" />
+
+								<h:selectOneMenu required="true"
+									requiredMessage="Nombre de passagers obligatoire"
+									id="nbPassagers" value="#{trajetMBean.nbPassagersSelected}">
+
+									<f:selectItem itemValue="#{null}" itemLabel="------------" />
+									<f:selectItem itemValue="1" itemLabel="1" />
+									<f:selectItem itemValue="2" itemLabel="2" />
+									<f:selectItem itemValue="3" itemLabel="3" />
+									<f:selectItem itemValue="4" itemLabel="4" />
+									<f:selectItem itemValue="5" itemLabel="5" />
+									<f:selectItem itemValue="6" itemLabel="6" />
+
+									<f:ajax event="blur" render="nbPassagersMessage"></f:ajax>
+								</h:selectOneMenu>
+								<h:message id="nbPassagersMessage" for="nbPassagers"
+									style="color:red;font-size: 11px;font-weight: bold;  display:inline-block;margin-left:129px;" />
+								<br /> <br />
+
+								<h:commandButton value="Valider"
+									action="#{trajetMBean.creerTrajet(connectionMBean.user)}"
+									styleClass="classBtnSubmit" style="margin-left:35px;" />
+								<h:commandButton value="Annuler"
+									action="#{trajetMBean.annuler() }" styleClass="classBtnSubmit"
+									style="margin-left:60px;" immediate="true" />
+						</div>
+						<div class="panel-footer"></div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -15,7 +15,8 @@ img {
 }
 
 .centerClass {
-	height:600px;
+	height:800px;
+	overflow : hidden;
 	background-color: gray;
 }
  
@@ -25,13 +26,13 @@ img {
 }
 
 .rightClass {
-	height: 890px;
+	height: 1090px;
 	background-color: lightgray;
 	padding-left: 1px;
 }
 
  .leftClass  {
-	height: 890px;
+	height: 1090px;
 	background-color: lightgray;
 	padding-right: 1px;
 }

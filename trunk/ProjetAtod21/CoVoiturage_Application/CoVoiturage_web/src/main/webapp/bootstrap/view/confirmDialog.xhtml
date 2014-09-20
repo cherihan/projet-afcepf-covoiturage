@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+	<title>Confirmation Dialog</title>
+</head>
+<body>
+<h:form>  
+                      
+    <p:growl id="messages" />
+  
+    <h:panelGrid columns="1" cellpadding="5">  
+        <h:outputText id="msg" value="#{buttonBean.text}"/>  
+          
+        <p:commandButton value="Destroy the World" onclick="confirmation.show()" type="button"/>  
+    </h:panelGrid>  
+      
+    <p:confirmDialog message="Are you sure about destroying the world?"  
+                showEffect="bounce" hideEffect="explode"  
+                header="Initiating destroy process" severity="alert" widgetVar="confirmation">  
+                  
+        <p:commandButton value="Yes Sure" update="messages" oncomplete="confirmation.hide()"  
+                    actionListener="#{buttonBean.destroyWorld}" />  
+        <p:commandButton value="Not Yet" onclick="confirmation.hide()" type="button" />   
+                  
+    </p:confirmDialog>  
+  
+</h:form> 
+</body>
+</html>

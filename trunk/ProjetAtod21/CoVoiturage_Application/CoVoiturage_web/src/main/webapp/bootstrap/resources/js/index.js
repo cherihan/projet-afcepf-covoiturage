@@ -1,5 +1,9 @@
 $(function() {
-	
+    
+	$('.dropdown-menu').find('div').click(function (e) {
+        e.stopPropagation();
+    });
+    
 	var owl = $("#owl-demo");
 	 
 	owl.owlCarousel({
