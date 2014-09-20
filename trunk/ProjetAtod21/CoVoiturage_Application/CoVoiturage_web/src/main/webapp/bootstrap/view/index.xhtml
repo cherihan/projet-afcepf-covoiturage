@@ -31,58 +31,58 @@
 	</ui:define>
 	
 	<ui:define name="center">
-		<div class="formRechercherTrajet">
-			<h:form styleClass="form-horizontal" role="form">
-				<div class="classError">
-					<h:messages globalOnly="true" styleClass="errorMessage" />
-				</div>
-				
-				<fieldset>
-					<legend>Rechercher un trajet</legend>
-					<div class="form-group">
-						<h:outputLabel value="Ville de depart" for="villeDepart" styleClass="col-sm-2 col-sm-offset-3 control-label"/>
-						<div class="col-sm-3">
-							<h:inputText id="villeDepart"
-										 required="true"
-										 requiredMessage="Ville de depart obligatoire"
-										 value="#{utilisateurMBean.villeDepart}" styleClass="champs">
-								<f:ajax event="blur" render="villeDepartMessage" />
-							</h:inputText>
+		<div class="row">
+			<div class="col-lg-6 col-lg-offset-3">
+				<h:form styleClass="form-horizontal">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><strong>Rechercher un trajet</strong></div>
+						<div class="panel-body">
+							<div class="classError">
+								<h:messages globalOnly="true" styleClass="errorMessage" />
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Ville de depart" for="villeDepart" styleClass="col-md-4 control-label"/>
+								<div class="col-sm-4">
+									<h:inputText id="villeDepart" styleClass="form-control"
+												 required="true"
+												 requiredMessage="Ville de depart obligatoire"
+												 value="#{utilisateurMBean.villeDepart}">
+										<f:ajax event="blur" render="villeDepartMessage" />
+									</h:inputText>
+								</div>
+									<h:message for="villeDepart" id="villeDepartMessage" styleClass="col-md-4 control-label" style="color:red;font-size: 11px;font-weight: bold;"/>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Ville d'arrivee" styleClass="col-md-4 control-label"/>
+								<div class="col-sm-4">
+									<h:inputText id="villeArrivee"
+												 value="#{utilisateurMBean.villeArrivee}"
+												 styleClass="form-control" />
+								 </div>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Date de depart" styleClass="col-md-4 control-label"/>
+								<div class="col-sm-4">
+									<h:inputText id="dateDepart" value="#{utilisateurMBean.dateDepart}"
+												 required="true" requiredMessage="Date de depart obligatoire"
+												 styleClass="datePickerDeparture form-control" />
+								 </div>
+								<h:message for="dateDepart"  styleClass="col-md-4 control-label" style="color:red;font-size: 11px;font-weight: bold;"/>
+							</div>
 						</div>
-						<div class="col-sm-3">
-							<h:message for="villeDepart" id="villeDepartMessage"
-						       style="color:red; font-size: 11px; font-weight: bold;
-						       display:inline-block; margin-left:15px;" />
+						<div class="panel-footer">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-sm-offset-5 col-sm-2">
+										<h:commandButton value="Valider" styleClass="classBtnSubmit btn btn-primary"
+														 action="#{utilisateurMBean.rechercherTrajet()}" />
+									 </div>
+								 </div>
+							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<h:outputLabel value="Ville d'arrivee" styleClass="col-sm-2 col-sm-offset-3 control-label"/>
-						<div class="col-sm-3">
-							<h:inputText id="villeArrivee"
-										 value="#{utilisateurMBean.villeArrivee}"
-										 styleClass="champs" />
-						 </div>
-					</div>
-					<div class="form-group">
-						<h:outputLabel value="Date de depart" styleClass="col-sm-2 col-sm-offset-3 control-label"/>
-						<div class="col-sm-3">
-							<h:inputText id="dateDepart" value="#{utilisateurMBean.dateDepart}"
-										 required="true" requiredMessage="Date de depart obligatoire"
-										 styleClass="datePickerDeparture" />
-						 </div>
-						 <div class="col-sm-3">
-							<h:message for="dateDepart"
-									   style="color:red;font-size: 11px; display:inline-block;  font-weight: bold;margin-left:15px;" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-5 col-sm-1">
-							<h:commandButton value="Valider" styleClass="classBtnSubmit btn btn-default"
-											 action="#{utilisateurMBean.rechercherTrajet()}" />
-						 </div>
-					 </div>
-				</fieldset>
-			</h:form>
+				</h:form>
+			</div>
 		</div>
 	</ui:define>
 </ui:composition>
