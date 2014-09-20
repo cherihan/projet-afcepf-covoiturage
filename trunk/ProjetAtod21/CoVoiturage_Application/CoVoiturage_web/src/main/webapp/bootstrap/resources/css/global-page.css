@@ -18,6 +18,7 @@ img {
 	height:800px;
 	overflow : hidden;
 	background-color: white;
+	padding-top: 100px;
 }
  
 .bottomClass {

@@ -37,8 +37,7 @@
 			<div class="col-lg-6 col-lg-offset-3">
 				<h:form styleClass="form-horizontal">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Formulaire de creation d'un
-							trajet</div>
+						<div class="panel-heading"><strong>Creation d'un trajet</strong></div>
 						<div class="panel-body">
 							<div class="form-group">
 								<h:outputLabel value="Ville de depart" for="villeDepart" styleClass="col-md-4 control-label"/>
@@ -119,18 +118,15 @@
 							</div>
 						</div>
 						<div class="panel-footer">
-							<h:commandButton value="Valider"
-								action="#{trajetMBean.creerTrajet(connectionMBean.user)}"
-								styleClass="classBtnSubmit" style="margin-left:35px;" />
-							<h:commandButton value="Annuler"
-								action="#{trajetMBean.annuler() }" styleClass="classBtnSubmit"
-								style="margin-left:60px;" immediate="true" />
+							<div class="row">
+								<h:commandButton value="Valider" action="#{trajetMBean.creerTrajet(connectionMBean.user)}" styleClass="classBtnSubmit btn btn-primary col-md-2 col-md-offset-4"/>
+								<h:commandButton value="Annuler" action="#{trajetMBean.annuler() }" styleClass="classBtnSubmit btn btn-primary col-md-2" immediate="true" />
+							</div>
 						</div>
 					</div>
 				</h:form>
 			</div>
 		</div>
 	</ui:define>
-
 </ui:composition>
 </html>
