@@ -7,45 +7,83 @@
 	<h:form id="connexionForm" styleClass="navbar-form" role="form">
 		<div class="navbar-left">
 			<div class="form-group">
-				<h:outputLink styleClass="btn btn-success" role="button" value="../pages/index.xhtml">
+				<img src="../resources/images/smartcovoiturage.gif" style="height: 50px; width:auto;"/>
+			</div>
+			<div class="form-group">
+				<h:outputLink styleClass="btn btn-success" value="../view/index.xhtml">
 					<span class="glyphicon glyphicon-search"></span> Rechercher un trajet
 				</h:outputLink>
 			</div>
 			<div class="form-group">
-					<h:outputLink styleClass="btn btn-warning" rendered="#{!connectionMBean.userConnected}" value="../pages/creerCompte.xhtml">
-											<span class="glyphicon glyphicon-user"></span> Créer un compte
+					<h:outputLink styleClass="btn btn-warning" rendered="#{!connectionMBean.userConnected}" value="../view/creerCompte.xhtml">
+						<span class="glyphicon glyphicon-pencil"></span> Créer un compte
 					</h:outputLink>
 			</div>
-		</div>
-		<div class="classConnexion navbar-right">
-			<fieldset>
-				<div>
-					<h:panelGroup rendered="#{!connectionMBean.userConnected}">
-						<div class="form-group has-feedback">
-								<h:inputText  styleClass="form-control" placeholder="Email" value="#{connectionMBean.email}" />
-								<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-						</div>
-						<div class="form-group has-feedback">
-								<h:inputSecret styleClass="form-control" value="#{connectionMBean.password}" placeholder="Password"/>
-								<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-						</div>
-						<div class="form-group">
-							<h:commandButton styleClass="btn btn-primary" value="Se connecter"
-								action="#{connectionMBean.seConnecter()}">
-								<f:ajax render="@form" execute="@form" />
-							</h:commandButton>
-						</div>
-						<br/>
-						<div class="checkbox">
-							<label>
-								<h:selectBooleanCheckbox value="#{connectionMBean.userRemembered}" /> Se souvenir de moi |
-							</label> 
-						</div>
-						<div class="form-group">
-							<h:outputLink styleClass="classLink">
-								<f:verbatim>Mot de passe oublié?</f:verbatim>
+			<div class="form-group">
+				<h:outputLink styleClass="btn btn-warning" rendered="#{connectionMBean.userConnected}" value="../view/creerTrajet.xhtml">
+					<span class="glyphicon glyphicon-road"></span> Créer un trajet
+				</h:outputLink>
+			</div>
+			<h:panelGroup rendered="#{connectionMBean.userConnected}">
+				<div class="btn-group">
+					<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+					  Mon profil <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li>
+							<h:outputLink value="../view/infos.xhtml">
+								<f:verbatim>Mes infos</f:verbatim>
 							</h:outputLink>
-						</div>
+						</li>
+						<li>
+							<h:outputLink value="../view/histoTrajets.xhtml">
+								<f:verbatim>Mes trajets</f:verbatim>
+							</h:outputLink></li>
+						<li>
+							<h:outputLink value="../view/avis.xhtml">
+								<f:verbatim>Mes avis</f:verbatim>
+							</h:outputLink>
+						</li>
+					</ul>
+				</div>
+			</h:panelGroup>
+		</div>
+		<div class="classConnexion navbar-right" style="padding-top: 8px;">
+				<div class="form-group">
+					<h:panelGroup rendered="#{!connectionMBean.userConnected}">
+						<ul class="nav pull-right">
+							<li class="dropdown">
+								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					  				Connexion<span class="caret"></span>
+								</button>
+								<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+										<div class="form-group has-feedback" style="margin-bottom: 2px;">
+												<h:inputText  styleClass="form-control" placeholder="Email" value="#{connectionMBean.email}" />
+												<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+										</div>
+										<div class="form-group has-feedback" style="margin-bottom: 2px;">
+												<h:inputSecret styleClass="form-control" value="#{connectionMBean.password}" placeholder="Password"/>
+												<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+										</div>
+										<div class="checkbox" style="margin-bottom: 2px;">
+											<label>
+												<h:selectBooleanCheckbox value="#{connectionMBean.userRemembered}" /> Se souvenir de moi
+											</label> 
+										</div>
+										<div class="form-group" style="margin-bottom: 2px;">
+											<h:commandButton styleClass="btn btn-primary  btn-sm" value="Se connecter"
+												action="#{connectionMBean.seConnecter()}">
+												<f:ajax render="@form" execute="@form" />
+											</h:commandButton>
+										</div>
+										<div class="form-group">
+											<h:outputLink styleClass="classLink">
+												<f:verbatim>Mot de passe oublié?</f:verbatim>
+											</h:outputLink>
+										</div>
+								</div>
+							</li>
+						</ul>
 					</h:panelGroup>
 
 					<h:panelGroup rendered="#{connectionMBean.userConnected}">
@@ -67,28 +105,6 @@
 							de passe sont incorrects ! Réessayez.</span>
 					</h:panelGroup>
 				</div>
-			</fieldset>
-		</div>
-		
-		<div class="classDeconnexionEtProfil">
-			<h:panelGroup rendered="#{connectionMBean.userConnected}">
-				<ul id="menu-accordeon">
-					<li><h:outputLink>
-							<f:verbatim>Mon profil</f:verbatim>
-						</h:outputLink>
-						<ul>
-							<li><h:outputLink value="../pages/infos.xhtml">
-									<f:verbatim>Mes infos</f:verbatim>
-								</h:outputLink></li>
-							<li><h:outputLink value="../pages/histoTrajets.xhtml">
-									<f:verbatim>Mes trajets</f:verbatim>
-								</h:outputLink></li>
-							<li><h:outputLink value="../pages/avis.xhtml">
-									<f:verbatim>Mes avis</f:verbatim>
-								</h:outputLink></li>
-						</ul></li>
-				</ul>
-			</h:panelGroup>
 		</div>
 	</h:form>
 </nav>

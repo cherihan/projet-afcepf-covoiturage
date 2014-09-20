@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="../template/commonLayout.xhtml">
+	<ui:define name="title">Mes infos</ui:define>
+	<ui:define name="css">
+	</ui:define>
+
+	<ui:define name="javascript">
+	</ui:define>
+
+	<ui:define name="top">
+		<ui:include src="../template/top.xhtml" />
+	</ui:define>
+	
+	<ui:define name="top-center">
+		<ui:include src="../template/top-center.xhtml" />
+	</ui:define>
+	
+	<ui:define name="left">
+	</ui:define>
+	
+	<ui:define name="right">
+	</ui:define>
+	
+	<ui:define name="bottom">
+	</ui:define>
+
+	<ui:define name="center">
+		<div class="formInfos">
+			<h:form>
+				<fieldset>
+					<legend>Mes infos personnelles</legend>
+					
+					<br />
+					<h:outputLabel value="Nom : #{connectionMBean.user.nom}" />
+					<br /><br />
+					<h:outputLabel value="Prénom : #{connectionMBean.user.prenom}" />
+					<br /><br />
+					<h:outputLabel value="Téléphone : #{connectionMBean.user.telephone}" />
+					<br /><br />
+					<h:outputLabel value="Email : #{connectionMBean.user.email}" />
+					<br /><br />
+					<h:outputLabel value="Date de naissance : #{connectionMBean.user.dateNaissance.day}"/>
+					<h:outputLabel value="/#{connectionMBean.user.dateNaissance.month}"/>
+					<h:outputLabel value="/#{connectionMBean.user.dateNaissance.year}"/>
+					<br /><br />
+					<h:outputLabel value="Adresse : #{connectionMBean.user.adresse.numero}, #{connectionMBean.user.adresse.typeVoie} #{connectionMBean.user.adresse.nomVoie} - #{connectionMBean.user.adresse.ville.codePostal} #{connectionMBean.user.adresse.ville.nom}, #{connectionMBean.user.adresse.ville.pays}"/>
+					<br /><br />
+					<h:outputLabel value="Permis de conduire : #{connectionMBean.user.permisConduire==1?'Oui':'Non'}" />
+					<br /><br />
+					<h:outputLabel value="Type de véhicule : #{connectionMBean.user.typeVehicule}" />
+					<br /><br />
+
+				</fieldset>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

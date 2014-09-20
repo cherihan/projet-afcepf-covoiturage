@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="../template/commonLayout.xhtml">
+	<ui:define name="title">Historique des Trajets</ui:define>
+	<ui:define name="css">
+	</ui:define>
+
+	<ui:define name="javascript">
+	</ui:define>
+
+	<ui:define name="top">
+		<ui:include src="../template/top.xhtml" />
+	</ui:define>
+	
+	<ui:define name="top-center">
+		<ui:include src="../template/top-center.xhtml" />
+	</ui:define>
+	
+	<ui:define name="left">
+	</ui:define>
+	
+	<ui:define name="right">
+	</ui:define>
+	
+	<ui:define name="bottom">
+	</ui:define>
+
+	<ui:define name="center">
+		<div>
+			<h:outputLink styleClass="linkReturnIndex" value="../view/index.xhtml">
+<!-- 				<h:graphicImage value="../resources/image/home.png" title="Retour à la page d'accueil" /> -->
+			</h:outputLink>
+		</div>
+		<div class="formHistoTrajet">
+			<h:form id="form_1">
+				<ul>
+					<li><h:outputLink styleClass="linkResearch" value="../view/creerTrajet.xhtml">
+						Créer un trajet
+					</h:outputLink></li>
+				</ul>
+				<br />
+				<fieldset>
+					<legend>Historique de mes Trajets</legend>
+
+					<br />
+					<h:panelGroup id="panel_1">
+						<h:outputText value="En tant que :" />
+						<h:selectOneMenu id="typeUser" required="false" requiredMessage="sélection obligatoire !" validatorMessage=""
+										 value="#{histoTrajetMBean.typeUtilisateur}" styleClass="classSelectOneMenu">
+							<f:selectItems value="#{histoTrajetMBean.typeUtilisateurValues}" />
+							<f:ajax event="change" execute="@form" render="typeTrajet" listener="#{histoTrajetMBean.typeUserListner()}" />
+						</h:selectOneMenu>
+						<h:message for="typeUser" styleClass="messageValidator" />
+						<br /><br />
+						
+						<h:outputText value="type de trajets :" />
+						<h:selectOneMenu id="typeTrajet" required="false" requiredMessage="sélection obligatoire !"
+										 value="#{histoTrajetMBean.typeHistoTrajet}" styleClass="classSelectOneMenu" >
+							<f:selectItems value="#{histoTrajetMBean.typeHistoTrajetValues}" />
+						</h:selectOneMenu>
+						<h:message for="typeTrajet" styleClass="messageValidator" />
+						<br /><br />
+
+						<h:commandButton action="#{histoTrajetMBean.listerHistoTrajets(connectionMBean.user)}"
+										 value="Afficher historique" styleClass="btnLogin">
+							
+						</h:commandButton>
+						
+					</h:panelGroup>
+					<br /> <br />
+					
+					<h:panelGroup id="panel_2" rendered="#{histoTrajetMBean.afficheHistoTrajets}">
+						<h:panelGroup rendered="#{!empty histoTrajetMBean.listeHistoTrajets}">
+							<h:messages id="messages" globalOnly="true" styleClass="messageSuccess" />
+							<h:dataTable id="tableData" cellpadding="20" cellspacing="30"
+								styleClass="tableResultsTrajets" rowClasses="rowPair, rowInpair"
+								headerClass="styleHeaderTableResultsTrajets"
+								columnClasses="column1, column2, column3"
+								value="#{histoTrajetMBean.listeHistoTrajets}" var="trajet">
+
+								<h:column rendered="#{histoTrajetMBean.statutRender}">
+									<f:facet name="header">
+										<h:outputText value="Statut du trajet" />
+										<br /><br />
+										<h:commandLink action="#{order.sortStatutByOrderDesc(histoTrajetMBean.listeHistoTrajets)}">
+<!--     										<h:graphicImage value="../resources/image/fleche-desc.png" title="Trier par ordre décroissant" /> -->
+    			   						</h:commandLink>
+										<h:commandLink action="#{order.sortStatutByOrderAsc(histoTrajetMBean.listeHistoTrajets)}">
+<!--     										<h:graphicImage value="../resources/image/fleche-asc.png" title="Trier par ordre croissant" /> -->
+    			   						</h:commandLink>
+									</f:facet>
+									<h:outputLabel value="#{trajet.statut}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Conducteur" />
+									</f:facet>
+									<h:outputLabel rendered="#{connectionMBean.user.idUtilisateur != trajet.conducteurIdUser}"
+										value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).civilite} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).nom} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).prenom}" />
+									<h:outputLabel rendered="#{connectionMBean.user.idUtilisateur == trajet.conducteurIdUser}">
+										<b>Moi</b>
+									</h:outputLabel>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Type de véhicule" />
+									</f:facet>
+									<h:outputLabel value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).typeVehicule}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Date et heure de départ" />
+									</f:facet>
+									<h:outputLabel value="#{trajet.dateDepart}">
+
+										<f:convertDateTime pattern="dd/MM/yyyy hh:mm"
+											timeZone="Europe/Paris" />
+									</h:outputLabel>
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Ville de départ" />
+										<br /><br />
+										<h:commandLink action="#{order.sortVilleDepartByOrderDesc(histoTrajetMBean.listeHistoTrajets)}">
+<!--     										<h:graphicImage value="../resources/image/fleche-desc.png" title="Trier par ordre décroissant" /> -->
+    			   						</h:commandLink>
+										<h:commandLink action="#{order.sortVilleDepartByOrderAsc(histoTrajetMBean.listeHistoTrajets)}">
+<!--     										<h:graphicImage value="../resources/image/fleche-asc.png" title="Trier par ordre croissant" /> -->
+    			   						</h:commandLink>
+									</f:facet>
+									<h:outputLabel value="#{trajet.villeDepart.nom}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Ville d'arrivée" />
+										<br /><br />
+										<h:commandLink action="#{order.sortVilleArriveeByOrderDesc(histoTrajetMBean.listeHistoTrajets)}">
+<!--     										<h:graphicImage value="../resources/image/fleche-desc.png" title="Trier par ordre décroissant" /> -->
+    			   						</h:commandLink>
+										<h:commandLink action="#{order.sortVilleArriveeByOrderAsc(histoTrajetMBean.listeHistoTrajets)}">
+<!--     										<h:graphicImage value="../resources/image/fleche-asc.png" title="Trier par ordre croissant" /> -->
+    			   						</h:commandLink>
+									</f:facet>
+									<h:outputLabel value="#{trajet.villeArrivee.nom}" />
+								</h:column>
+
+								<h:column rendered="#{histoTrajetMBean.restantsRender}">
+									<f:facet name="header">
+										<h:outputText value="Nombre de places restant" />
+									</f:facet>
+									<h:outputLabel value="#{trajet.nbPassagersRestant}" />
+								</h:column>
+								
+								<h:column rendered="#{histoTrajetMBean.nbParticipantsRender}">
+									<f:facet name="header">
+										<h:outputText value="Nombre de participants" />
+									</f:facet>
+									<h:outputLabel value="#{trajet.nbPassagersMax - trajet.nbPassagersRestant}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Action" />
+									</f:facet>
+									 <h:commandLink action="#{histoTrajetMBean.consulterTrajet(trajet)}" >
+									 	<f:ajax event="click" ></f:ajax>
+									 	Consulter
+									 </h:commandLink>
+									 <h:commandLink action="#{histoTrajetMBean.supprimer(trajet, connectionMBean.user)}"
+									 				onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer ce trajet ?')">
+									 	<f:ajax event="click" execute="@form" render="form_1:panel_2"></f:ajax>
+									 	Supprimer
+									 </h:commandLink>
+								</h:column>
+
+							</h:dataTable>
+						</h:panelGroup>
+					</h:panelGroup>
+				</fieldset>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>
