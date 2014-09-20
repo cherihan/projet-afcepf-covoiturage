@@ -17,12 +17,12 @@ img {
 .centerClass {
 	height:800px;
 	overflow : hidden;
-	background-color: gray;
+	background-color: white;
 }
  
 .bottomClass {
 	height: 80px;
-	background-color: white;
+	background-color: #f8f8f8;
 }
 
 .rightClass {
