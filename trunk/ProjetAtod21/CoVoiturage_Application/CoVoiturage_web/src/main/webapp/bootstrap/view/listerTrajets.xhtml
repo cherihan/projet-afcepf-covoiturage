@@ -38,11 +38,11 @@
 			<h:messages globalOnly="true" styleClass="messageSuccess" />
 			<h:form class="formListerTrajets">
 				<h:dataTable value="#{utilisateurMBean.listResults}" var="trajet"
-					styleClass="table table-bordered table-striped listTrajet"
+					styleClass="table table-bordered table-striped hover listTrajet"
 					rendered="#{utilisateurMBean.displayTableResultsTrajets}">
 
 					<h:column rendered="true">
-						<f:facet name="header">identifiant Trajet</f:facet>
+						<f:facet name="header"># Trajet</f:facet>
 						<h:outputText value="#{trajet.idTrajet}" />
 					</h:column>
 
@@ -77,7 +77,7 @@
 					</h:column>
 
 					<h:column>
-						<f:facet name="header">Nombre de places disponible</f:facet>
+						<f:facet name="header"># places disponible</f:facet>
 						<h:outputText value="#{trajet.nbPassagersRestant  }" />
 					</h:column>
 
@@ -95,12 +95,12 @@
 					</h:column>
 
 					<h:column>
-						<f:facet name="header">S'inscire au trajet</f:facet>
+						<f:facet name="header">S'inscrire</f:facet>
 						<h:outputText rendered="#{trajet.nbPassagersRestant == 0}" value="#{constsMBean.COMPLET}" style="color:gray"/>
 						<h:outputText rendered="#{(trajet.nbPassagersRestant != 0) and (connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur))}" value=""/>
 						<h:commandLink rendered="#{(trajet.nbPassagersRestant != 0) and ((connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur)) or (not connectionMBean.userConnected))}"
-							action="#{utilisateurMBean.sInscireTrajet(trajet, connectionMBean.user)}">
-<!-- 							<h:graphicImage value="../resources/image/edit.png" /> -->
+							action="#{utilisateurMBean.sInscireTrajet(trajet, connectionMBean.user)}" styleClass="btn btn-success">
+							<span class="glyphicon glyphicon-pencil"></span>
 						</h:commandLink>
 
 					</h:column>

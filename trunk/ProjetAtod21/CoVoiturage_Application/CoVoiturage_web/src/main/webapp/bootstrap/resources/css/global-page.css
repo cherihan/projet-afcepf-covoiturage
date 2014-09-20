@@ -4,6 +4,12 @@ img {
 	max-width: 100%;
 }
 
+table{
+	width : 100%;
+	border-spacing: 0px;
+	font-size: 13px;
+}
+
 .topClass {
 	height: 80px;
 	background-color: #f8f8f8;
