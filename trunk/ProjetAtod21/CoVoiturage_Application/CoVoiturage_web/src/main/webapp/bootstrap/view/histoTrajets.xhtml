@@ -31,24 +31,19 @@
 	<ui:define name="bottom">
 	</ui:define>
 
-	<ui:define name="center">
+	<ui:define name="center-breadcrumbs">
 		<div>
-			<h:outputLink styleClass="linkReturnIndex" value="../view/index.xhtml">
-<!-- 				<h:graphicImage value="../resources/image/home.png" title="Retour à la page d'accueil" /> -->
-			</h:outputLink>
+			<ol class="breadcrumb">
+			  <li><a href="#">Accueil</a></li>
+			  <li class="active">Historique de mes Trajets</li>
+			</ol>
 		</div>
+	</ui:define>
+	
+	<ui:define name="center">
 		<div class="formHistoTrajet">
 			<h:form id="form_1">
-				<ul>
-					<li><h:outputLink styleClass="linkResearch" value="../view/creerTrajet.xhtml">
-						Créer un trajet
-					</h:outputLink></li>
-				</ul>
-				<br />
 				<fieldset>
-					<legend>Historique de mes Trajets</legend>
-
-					<br />
 					<h:panelGroup id="panel_1">
 						<h:outputText value="En tant que :" />
 						<h:selectOneMenu id="typeUser" required="false" requiredMessage="sélection obligatoire !" validatorMessage=""
@@ -65,7 +60,6 @@
 							<f:selectItems value="#{histoTrajetMBean.typeHistoTrajetValues}" />
 						</h:selectOneMenu>
 						<h:message for="typeTrajet" styleClass="messageValidator" />
-						<br /><br />
 
 						<h:commandButton action="#{histoTrajetMBean.listerHistoTrajets(connectionMBean.user)}"
 										 value="Afficher historique" styleClass="btnLogin">
@@ -73,114 +67,70 @@
 						</h:commandButton>
 						
 					</h:panelGroup>
-					<br /> <br />
 					
 					<h:panelGroup id="panel_2" rendered="#{histoTrajetMBean.afficheHistoTrajets}">
 						<h:panelGroup rendered="#{!empty histoTrajetMBean.listeHistoTrajets}">
 							<h:messages id="messages" globalOnly="true" styleClass="messageSuccess" />
-							<h:dataTable id="tableData" cellpadding="20" cellspacing="30"
-								styleClass="tableResultsTrajets" rowClasses="rowPair, rowInpair"
-								headerClass="styleHeaderTableResultsTrajets"
-								columnClasses="column1, column2, column3"
+							<h:dataTable id="tableData"
+								styleClass="table table-bordered table-striped hover listTrajet"
 								value="#{histoTrajetMBean.listeHistoTrajets}" var="trajet">
 
 								<h:column rendered="#{histoTrajetMBean.statutRender}">
-									<f:facet name="header">
-										<h:outputText value="Statut du trajet" />
-										<br /><br />
-										<h:commandLink action="#{order.sortStatutByOrderDesc(histoTrajetMBean.listeHistoTrajets)}">
-<!--     										<h:graphicImage value="../resources/image/fleche-desc.png" title="Trier par ordre décroissant" /> -->
-    			   						</h:commandLink>
-										<h:commandLink action="#{order.sortStatutByOrderAsc(histoTrajetMBean.listeHistoTrajets)}">
-<!--     										<h:graphicImage value="../resources/image/fleche-asc.png" title="Trier par ordre croissant" /> -->
-    			   						</h:commandLink>
-									</f:facet>
-									<h:outputLabel value="#{trajet.statut}" />
+									<f:facet name="header">Statut du trajet</f:facet>
+									<h:outputText value="#{trajet.statut}" />
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Conducteur" />
-									</f:facet>
-									<h:outputLabel rendered="#{connectionMBean.user.idUtilisateur != trajet.conducteurIdUser}"
+									<f:facet name="header">Conducteur</f:facet>
+									<h:outputText rendered="#{connectionMBean.user.idUtilisateur != trajet.conducteurIdUser}"
 										value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).civilite} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).nom} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).prenom}" />
-									<h:outputLabel rendered="#{connectionMBean.user.idUtilisateur == trajet.conducteurIdUser}">
+									<h:outputText rendered="#{connectionMBean.user.idUtilisateur == trajet.conducteurIdUser}">
 										<b>Moi</b>
-									</h:outputLabel>
+									</h:outputText>
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Type de véhicule" />
-									</f:facet>
-									<h:outputLabel value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).typeVehicule}" />
+									<f:facet name="header">Type de véhicule</f:facet>
+									<h:outputText value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).typeVehicule}" />
 								</h:column>
 								
 								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Date et heure de départ" />
-									</f:facet>
-									<h:outputLabel value="#{trajet.dateDepart}">
-
-										<f:convertDateTime pattern="dd/MM/yyyy hh:mm"
-											timeZone="Europe/Paris" />
-									</h:outputLabel>
+									<f:facet name="header">Date et heure de départ</f:facet>
+									<h:outputText value="#{trajet.dateDepart}">
+										<f:convertDateTime pattern="dd/MM/yyyy hh:mm" timeZone="Europe/Paris" />
+									</h:outputText>
 								</h:column>
 								
 								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Ville de départ" />
-										<br /><br />
-										<h:commandLink action="#{order.sortVilleDepartByOrderDesc(histoTrajetMBean.listeHistoTrajets)}">
-<!--     										<h:graphicImage value="../resources/image/fleche-desc.png" title="Trier par ordre décroissant" /> -->
-    			   						</h:commandLink>
-										<h:commandLink action="#{order.sortVilleDepartByOrderAsc(histoTrajetMBean.listeHistoTrajets)}">
-<!--     										<h:graphicImage value="../resources/image/fleche-asc.png" title="Trier par ordre croissant" /> -->
-    			   						</h:commandLink>
-									</f:facet>
-									<h:outputLabel value="#{trajet.villeDepart.nom}" />
+									<f:facet name="header">Ville de départ</f:facet>
+									<h:outputText value="#{trajet.villeDepart.nom}" />
 								</h:column>
 								
 								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Ville d'arrivée" />
-										<br /><br />
-										<h:commandLink action="#{order.sortVilleArriveeByOrderDesc(histoTrajetMBean.listeHistoTrajets)}">
-<!--     										<h:graphicImage value="../resources/image/fleche-desc.png" title="Trier par ordre décroissant" /> -->
-    			   						</h:commandLink>
-										<h:commandLink action="#{order.sortVilleArriveeByOrderAsc(histoTrajetMBean.listeHistoTrajets)}">
-<!--     										<h:graphicImage value="../resources/image/fleche-asc.png" title="Trier par ordre croissant" /> -->
-    			   						</h:commandLink>
-									</f:facet>
-									<h:outputLabel value="#{trajet.villeArrivee.nom}" />
+									<f:facet name="header">Ville d'arrivée</f:facet>
+									<h:outputText value="#{trajet.villeArrivee.nom}" />
 								</h:column>
 
 								<h:column rendered="#{histoTrajetMBean.restantsRender}">
-									<f:facet name="header">
-										<h:outputText value="Nombre de places restant" />
-									</f:facet>
-									<h:outputLabel value="#{trajet.nbPassagersRestant}" />
+									<f:facet name="header">Nombre de places restant</f:facet>
+									<h:outputText value="#{trajet.nbPassagersRestant}"/>
 								</h:column>
 								
 								<h:column rendered="#{histoTrajetMBean.nbParticipantsRender}">
-									<f:facet name="header">
-										<h:outputText value="Nombre de participants" />
-									</f:facet>
-									<h:outputLabel value="#{trajet.nbPassagersMax - trajet.nbPassagersRestant}" />
+									<f:facet name="header">Nombre de participants</f:facet>
+									<h:outputText value="#{trajet.nbPassagersMax - trajet.nbPassagersRestant}" />
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Action" />
-									</f:facet>
-									 <h:commandLink action="#{histoTrajetMBean.consulterTrajet(trajet)}" >
+									<f:facet name="header">Action</f:facet>
+									 <h:commandLink action="#{histoTrajetMBean.consulterTrajet(trajet)}" styleClass="btn btn-success">
+										<span class="glyphicon glyphicon-eye-open"></span>
 									 	<f:ajax event="click" ></f:ajax>
-									 	Consulter
 									 </h:commandLink>
 									 <h:commandLink action="#{histoTrajetMBean.supprimer(trajet, connectionMBean.user)}"
-									 				onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer ce trajet ?')">
+									 				onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer ce trajet ?')" styleClass="btn btn-danger">
+										<span class="glyphicon glyphicon-trash"></span>
 									 	<f:ajax event="click" execute="@form" render="form_1:panel_2"></f:ajax>
-									 	Supprimer
 									 </h:commandLink>
 								</h:column>
 
