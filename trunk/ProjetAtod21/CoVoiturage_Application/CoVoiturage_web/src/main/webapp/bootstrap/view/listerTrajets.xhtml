@@ -45,7 +45,10 @@
 		<div>
 			<h:messages globalOnly="true" styleClass="messageSuccess" />
 			<h:form class="formListerTrajets">
-				<h:dataTable id="tableData" styleClass="table table-bordered table-striped hover listTrajet"
+				<h:dataTable 
+					id="tableData" 
+					styleClass="table table-bordered table-striped hover listTrajet"
+					columnClasses="column1,column2,column3,column4,column5,column6,column7,column8,column9,column10"
 					value="#{utilisateurMBean.listResults}" var="trajet"
 					rendered="#{utilisateurMBean.displayTableResultsTrajets}">
 
