@@ -31,14 +31,22 @@
 	
 	<ui:define name="bottom">
 	</ui:define>
+	
+	<ui:define name="center-breadcrumbs">
+		<div>
+			<ol class="breadcrumb">
+			  <li><a href="#">Accueil</a></li>
+			  <li class="active">trajets disponibles</li>
+			</ol>
+		</div>
+	</ui:define>
 
 	<ui:define name="center">
 		<div>
-			<h4 style="">Voici la liste des trajets disponibles</h4>
 			<h:messages globalOnly="true" styleClass="messageSuccess" />
 			<h:form class="formListerTrajets">
-				<h:dataTable value="#{utilisateurMBean.listResults}" var="trajet"
-					styleClass="table table-bordered table-striped hover listTrajet"
+				<h:dataTable id="tableData" styleClass="table table-bordered table-striped hover listTrajet"
+					value="#{utilisateurMBean.listResults}" var="trajet"
 					rendered="#{utilisateurMBean.displayTableResultsTrajets}">
 
 					<h:column rendered="true">
@@ -90,7 +98,6 @@
 						<f:facet name="header">Type de vehicule</f:facet>
 						<ui:repeat value="#{trajet.utilisateurs.get(0)}" var="user">
 							<h:outputText value="#{user.typeVehicule}" />
-							<br />
 						</ui:repeat>
 					</h:column>
 
@@ -102,7 +109,6 @@
 							action="#{utilisateurMBean.sInscireTrajet(trajet, connectionMBean.user)}" styleClass="btn btn-success">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</h:commandLink>
-
 					</h:column>
 				</h:dataTable>
 
