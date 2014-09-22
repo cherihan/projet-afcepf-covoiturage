@@ -5,6 +5,8 @@ $(function() {
     });
     
 	var owl = $("#owl-demo");
+	var owl_right = $("#owl-demo-right");
+	var owl_left = $("#owl-demo-left");
 	 
 	owl.owlCarousel({
 		autoPlay : 5000,
@@ -13,11 +15,23 @@ $(function() {
 	    autoHeight : true,
 	    pagination: false
 	});
- 
-	$(".play").click(function(){
-		owl.trigger('owl.play',1000); //owl.play event accept autoPlay speed as second parameter
+	
+	owl_left.owlCarousel({
+		autoPlay : 5000,
+		items : 10,
+		singleItem : true,
+	    autoHeight : true,
+	    pagination: false
 	});
-	 
+	
+	owl_right.owlCarousel({
+		autoPlay : 5000,
+		items : 10,
+		singleItem : true,
+	    autoHeight : true,
+	    pagination: false
+	});
+ 
 	$(".datePickerDeparture" ).datetimepicker({
 		 lang:'de',
 		 i18n:{
