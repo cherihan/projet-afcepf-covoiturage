@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/template/commonLayout.xhtml">
 	<ui:define name="title">
@@ -12,7 +12,8 @@
 
 	<ui:define name="css">
 		<link rel="stylesheet" href="../resources/css/common-style.css" />
-		<link rel="stylesheet" href="../resources/css/jquery-ui-1.10.4.custom.css" />
+		<link rel="stylesheet"
+			href="../resources/css/jquery-ui-1.10.4.custom.css" />
 		<link rel="stylesheet" href="../resources/css/listerTrajets.css" />
 	</ui:define>
 
@@ -38,14 +39,15 @@
 
 					<h:column>
 						<f:facet name="header">Conducteur</f:facet>
-						<h:outputText value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).civilite} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).nom} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).prenom}" />
+						<h:outputText
+							value="#{utilisateurMBean.getUserById(trajet.conducteurIdUser).civilite} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).nom} #{utilisateurMBean.getUserById(trajet.conducteurIdUser).prenom}" />
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">Date et heure de depart</f:facet>
 						<h:outputText value="#{trajet.dateDepart}">
 							<f:convertDateTime pattern="dd/MM/yyyy hh:mm"
-								timeZone="Europe/Paris"     />
+								timeZone="Europe/Paris" />
 						</h:outputText>
 					</h:column>
 
@@ -59,11 +61,14 @@
 						<h:outputText value="#{trajet.villeArrivee.nom   }" />
 					</h:column>
 
-					<h:column >
+					<h:column>
 						<f:facet name="header">Statut</f:facet>
-						<h:outputText rendered="#{trajet.statut == constsMBean.COMPLET}" value="Complet" style="color:gray"/>
-						<h:outputText rendered="#{trajet.statut == constsMBean.PROPOSE}" value="Nouveau !" style="color:blue"/>
-						<h:outputText rendered="#{trajet.statut == constsMBean.EN_COURS}" value="Places disponibles" style="color:green"/>
+						<h:outputText rendered="#{trajet.statut == constsMBean.COMPLET}"
+							value="Complet" style="color:gray" />
+						<h:outputText rendered="#{trajet.statut == constsMBean.PROPOSE}"
+							value="Nouveau !" style="color:blue" />
+						<h:outputText rendered="#{trajet.statut == constsMBean.EN_COURS}"
+							value="Places disponibles" style="color:green" />
 					</h:column>
 
 					<h:column>
@@ -86,16 +91,22 @@
 
 					<h:column>
 						<f:facet name="header">S'inscire au trajet</f:facet>
-						<h:outputText rendered="#{trajet.nbPassagersRestant == 0}" value="#{constsMBean.COMPLET}" style="color:gray"/>
-						<h:outputText rendered="#{(trajet.nbPassagersRestant != 0) and (connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur))}" value=""/>
-						<h:commandLink rendered="#{(trajet.nbPassagersRestant != 0) and ((connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur)) or (not connectionMBean.userConnected))}"
-							action="#{utilisateurMBean.sInscireTrajet(trajet, connectionMBean.user)}">
-							<h:graphicImage value="../resources/image/edit.png" />
-						</h:commandLink>
+						<h:outputText rendered="#{trajet.nbPassagersRestant == 0}"
+							value="#{constsMBean.COMPLET}" style="color:gray" />
+						<h:outputText
+							rendered="#{(trajet.nbPassagersRestant != 0) and (connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur))}"
+							value="" />
 
+						<h:commandLink
+							action="#{utilisateurMBean.sInscrireTrajet(trajet, connectionMBean.user)}"
+							rendered="#{(trajet.nbPassagersRestant != 0) and ((connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur)) or (not connectionMBean.userConnected))}">
+							S'inscrire
+						</h:commandLink>
+						<h:commandLink action="#{trajetMBean.consulterTrajet(trajet)}">
+							Consulter
+						</h:commandLink>
 					</h:column>
 				</h:dataTable>
-
 			</h:form>
 		</div>
 	</ui:define>
