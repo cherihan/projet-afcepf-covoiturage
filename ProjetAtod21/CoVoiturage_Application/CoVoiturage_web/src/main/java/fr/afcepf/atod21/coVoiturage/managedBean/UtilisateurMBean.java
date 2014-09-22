@@ -51,7 +51,7 @@ public class UtilisateurMBean {
 
 	}
 
-	public String sInscireTrajet(Trajet trajet, Utilisateur user) {
+	public String sInscrireTrajet(Trajet trajet, Utilisateur user) {
 		try {
 		    businessTrajet.sInscrireTrajet(trajet, user);
 			FacesMessage message = new FacesMessage(
@@ -74,7 +74,7 @@ public class UtilisateurMBean {
 	}
 
 	public String rechercherTrajet() {
-		String retour = "listerTrajets";
+		String retour = "listerTrajets.xhtml?faces-redirect=true";
 		Date dateDeDepart = Common.convertDate(this.dateDepart);
 		if (this.villeArrivee == null || this.villeArrivee.trim().length() == 0) {
 			this.listResults = this.businessRecherche.rechercherTrajetParVilleDepart(dateDeDepart, villeDepart);
@@ -90,7 +90,7 @@ public class UtilisateurMBean {
 			FacesMessage message = new FacesMessage("Aucun resultat disponible !");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			this.displayTableResultsTrajets = false;
-			retour = "error";
+			retour = "";
 		}
 		return retour;
 	}

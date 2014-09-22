@@ -27,7 +27,7 @@ import fr.afcepf.atod21.coVoiturage.utils.Consts;
 @SessionScoped
 public class TrajetMBean {
 
-    private Trajet trajet = new Trajet();
+    private Trajet trajet;
     private String dateDepart;
     private String nbPassagersSelected;
     private Ville villeDepart = new Ville();
@@ -50,7 +50,14 @@ public class TrajetMBean {
             this.listNomVilles.add(v.getNom());
         }
     }
-
+    
+    public String consulterTrajet(Trajet trajet) {
+        System.out.println("Je passe bien dans la méthode consulterTrajet");
+        System.out.println(trajet.getIdTrajet());
+        this.trajet = trajet;
+        return "detailTrajet.xhtml?faces-redirect=true";
+    }
+    
     public String creerTrajet(Utilisateur userEnSession) {
         String redirection = "success";
         this.villeDepart = this.mapVilles.get(this.villeDepart.getNom());
