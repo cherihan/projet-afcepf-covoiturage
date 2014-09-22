@@ -115,11 +115,6 @@ public class HistoTrajetMBean {
         }
         return "";
     }
-	
-	public String consulterTrajet(Trajet trajet) {
-		//TODO
-		return "";
-	}
 
 	public String supprimer(Trajet trajet, Utilisateur user) {
 		businessTrajet.supprimer(trajet, user);
