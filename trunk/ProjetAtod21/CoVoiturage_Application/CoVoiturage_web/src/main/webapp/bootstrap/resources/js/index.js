@@ -12,7 +12,7 @@ $(function() {
 		autoPlay : 5000,
 		items : 10,
 		singleItem : true,
-	    autoHeight : true,
+	    autoHeight : false,
 	    pagination: false
 	});
 	
@@ -20,16 +20,18 @@ $(function() {
 		autoPlay : 5000,
 		items : 10,
 		singleItem : true,
-	    autoHeight : true,
-	    pagination: false
+	    autoHeight : false,
+	    pagination: false,
+	    transitionStyle : "fade"
 	});
 	
 	owl_right.owlCarousel({
 		autoPlay : 5000,
 		items : 10,
 		singleItem : true,
-	    autoHeight : true,
-	    pagination: false
+	    autoHeight : false,
+	    pagination: false,
+	    transitionStyle : "fade"
 	});
  
 	$(".datePickerDeparture" ).datetimepicker({
