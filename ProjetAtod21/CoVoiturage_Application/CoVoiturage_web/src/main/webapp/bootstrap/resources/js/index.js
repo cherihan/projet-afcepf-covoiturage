@@ -17,20 +17,24 @@ $(function() {
 	});
 	
 	owl_left.owlCarousel({
-		autoPlay : 5000,
+		autoPlay : 10000,
 		items : 10,
 		singleItem : true,
 	    autoHeight : false,
 	    pagination: false,
+	    slideSpeed : 1000,
+	    lazyEffect : "fade",
 	    transitionStyle : "fade"
 	});
 	
 	owl_right.owlCarousel({
-		autoPlay : 5000,
+		autoPlay : 10000,
 		items : 10,
 		singleItem : true,
 	    autoHeight : false,
 	    pagination: false,
+	    slideSpeed : 1000,
+	    lazyEffect : "fade",
 	    transitionStyle : "fade"
 	});
  
