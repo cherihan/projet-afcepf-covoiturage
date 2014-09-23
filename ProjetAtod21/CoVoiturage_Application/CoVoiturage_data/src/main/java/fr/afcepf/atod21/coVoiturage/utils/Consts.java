@@ -10,6 +10,8 @@ public final class Consts {
     public static final String ALL_TRAJETS = "tous les trajets";
     public static final String CONDUCTEUR = "conducteur";
     public static final String PASSAGER = "passager";
+    public static final String LIKE = "En tant que";
+    public static final String TYPE_TRAJET = "Type de trajet";
     
     
     private Consts() {
