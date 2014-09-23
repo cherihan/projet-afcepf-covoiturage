@@ -32,7 +32,6 @@ public class HistoTrajetMBean {
     private Map<String,String> typeUtilisateurValues;
     {
         typeUtilisateurValues = new LinkedHashMap<String,String>();
-        typeUtilisateurValues.put("", "");
         typeUtilisateurValues.put("Passager", Consts.PASSAGER);
         typeUtilisateurValues.put("Conducteur", Consts.CONDUCTEUR);
     }
@@ -47,9 +46,9 @@ public class HistoTrajetMBean {
         typeHistoTrajetValues = new LinkedHashMap<String,String>();
 
         typeHistoTrajetValues.clear();
-        typeHistoTrajetValues.put("", Consts.EMPTY);
         switch (typeUtilisateur) {
-        case Consts.EMPTY:
+        case Consts.LIKE:
+        case Consts.TYPE_TRAJET:
             break;
         case Consts.PASSAGER:
             typeHistoTrajetValues.put("Tous", Consts.ALL_TRAJETS);

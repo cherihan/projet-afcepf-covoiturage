@@ -1,4 +1,6 @@
-
+select option:first-child{
+  color: lightgray;
+}
 
 .topCenterClass  img {
 	width:100%;
