@@ -25,10 +25,12 @@
 	<ui:define name="left">
 	</ui:define>
 	
-	<ui:define name="right">
+	<ui:define name="left">
+		<ui:include src="../template/left.xhtml" />
 	</ui:define>
 	
-	<ui:define name="bottom">
+	<ui:define name="right">
+		<ui:include src="../template/right.xhtml" />
 	</ui:define>
 
 	<ui:define name="center-breadcrumbs">
@@ -43,29 +45,40 @@
 	<ui:define name="center">
 		<div class="formHistoTrajet">
 			<h:form id="form_1">
-				<fieldset>
 					<h:panelGroup id="panel_1">
-						<h:outputText value="En tant que :" />
-						<h:selectOneMenu id="typeUser" required="false" requiredMessage="sélection obligatoire !" validatorMessage=""
-										 value="#{histoTrajetMBean.typeUtilisateur}" styleClass="classSelectOneMenu">
-							<f:selectItems value="#{histoTrajetMBean.typeUtilisateurValues}" />
-							<f:ajax event="change" execute="@form" render="typeTrajet" listener="#{histoTrajetMBean.typeUserListner()}" />
-						</h:selectOneMenu>
-						<h:message for="typeUser" styleClass="messageValidator" />
-						<br /><br />
-						
-						<h:outputText value="type de trajets :" />
-						<h:selectOneMenu id="typeTrajet" required="false" requiredMessage="sélection obligatoire !"
-										 value="#{histoTrajetMBean.typeHistoTrajet}" styleClass="classSelectOneMenu" >
-							<f:selectItems value="#{histoTrajetMBean.typeHistoTrajetValues}" />
-						</h:selectOneMenu>
-						<h:message for="typeTrajet" styleClass="messageValidator" />
-
-						<h:commandButton action="#{histoTrajetMBean.listerHistoTrajets(connectionMBean.user)}"
-										 value="Afficher historique" styleClass="btnLogin">
-							
-						</h:commandButton>
-						
+						<div class="row">
+							<div class="col-md-10">
+							<div class="form-inline">
+								<div class="form-group">
+<!-- 									<h:outputText value="En tant que :" styleClass="control-label"/> -->
+									<h:selectOneMenu id="typeUser" required="false" requiredMessage="sélection obligatoire !"
+													 value="#{histoTrajetMBean.typeUtilisateur}" styleClass="form-control">
+										<f:selectItem itemValue="En tant que" noSelectionOption="true" itemDisabled="true"/>
+										<f:selectItems value="#{histoTrajetMBean.typeUtilisateurValues}"/>
+										<f:ajax event="change" execute="@form" render="typeTrajet" listener="#{histoTrajetMBean.typeUserListner()}" />
+									</h:selectOneMenu>
+								</div>
+								<div class="form-group">
+<!-- 									<h:outputText value="type de trajets :" styleClass="control-label"/> -->
+									<h:selectOneMenu id="typeTrajet" required="false" requiredMessage="sélection obligatoire !"
+													 value="#{histoTrajetMBean.typeHistoTrajet}" styleClass="form-control">
+										<f:selectItem itemValue="type de trajets" noSelectionOption="true" itemDisabled="true"/>
+										<f:selectItems value="#{histoTrajetMBean.typeHistoTrajetValues}"/>
+									</h:selectOneMenu>
+								</div>
+								<div class="form-group">
+									<h:commandButton action="#{histoTrajetMBean.listerHistoTrajets(connectionMBean.user)}"
+													 value="Afficher historique" styleClass="classBtnSubmit btn btn-primary">
+										
+									</h:commandButton>
+								</div>
+								<div class="form-group">
+									<h:message for="typeUser" styleClass="messageValidator" />
+									<h:message for="typeTrajet" styleClass="messageValidator" />
+								</div>
+							</div>
+							</div>
+						</div>		
 					</h:panelGroup>
 					
 					<h:panelGroup id="panel_2" rendered="#{histoTrajetMBean.afficheHistoTrajets}">
@@ -137,8 +150,6 @@
 							</h:dataTable>
 						</h:panelGroup>
 					</h:panelGroup>
-				</fieldset>
-
 			</h:form>
 		</div>
 	</ui:define>
