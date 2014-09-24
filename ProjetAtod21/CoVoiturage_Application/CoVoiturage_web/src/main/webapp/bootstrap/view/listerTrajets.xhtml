@@ -37,7 +37,7 @@
 	<ui:define name="center-breadcrumbs">
 		<div>
 			<ol class="breadcrumb">
-			  <li><a href="index.xhtml">Accueil</a></li>
+			  <li><a href="#">Accueil</a></li>
 			  <li class="active">trajets disponibles</li>
 			</ol>
 		</div>
@@ -110,7 +110,7 @@
 						<f:facet name="header">S'inscrire</f:facet>
 						<h:outputText rendered="#{trajet.nbPassagersRestant == 0}" value="#{constsMBean.COMPLET}" style="color:gray"/>
 						<h:outputText rendered="#{(trajet.nbPassagersRestant != 0) and (connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur))}" value=""/>
-						<h:commandLink rendered="#{(trajet.nbPassagersRestant != 0) and ((connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur)) or (not connectionMBean.userConnected))}"
+						<h:commandLink rendered="#{(trajet.nbPassagersRestant != 0) and ((connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur)))}"
 							action="#{utilisateurMBean.sInscrireTrajet(trajet, connectionMBean.user)}" styleClass="btn btn-success">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</h:commandLink>
