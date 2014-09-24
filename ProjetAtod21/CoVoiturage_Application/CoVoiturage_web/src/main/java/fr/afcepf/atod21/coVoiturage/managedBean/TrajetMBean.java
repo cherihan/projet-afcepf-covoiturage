@@ -27,7 +27,7 @@ import fr.afcepf.atod21.coVoiturage.utils.Consts;
 @SessionScoped
 public class TrajetMBean {
 
-    private Trajet trajet;
+    private Trajet trajet = new Trajet();
     private String dateDepart;
     private String nbPassagersSelected;
     private Ville villeDepart = new Ville();
@@ -65,7 +65,7 @@ public class TrajetMBean {
         Date dateDepart = Common.convertDate(this.dateDepart);
         int nbPassagersMax = Integer.parseInt(this.nbPassagersSelected);
         Trajet trajetToInsert = new Trajet(new Date(), userEnSession.getIdUtilisateur(), dateDepart, villeDepart,
-                                            villeArrivee, nbPassagersMax, nbPassagersMax, trajet.getTarif());
+                                            villeArrivee, nbPassagersMax, nbPassagersMax, trajet.getTarif(),"En cours");
         Integer idTrajet = businessTrajet.creerTrajet(trajetToInsert, userEnSession);
         FacesMessage message = new FacesMessage("Votre trajet a été crée avec succès !");
         FacesContext.getCurrentInstance().addMessage(null, message);

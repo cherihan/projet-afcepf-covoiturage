@@ -114,6 +114,22 @@ public class Trajet implements Serializable {
 		this.nbPassagersRestant = nbPassagersRestant;
 		this.tarif = tarif;
 	}
+    
+    public Trajet(Date dateCreation, int conducteurIdUser, Date dateDepart,
+            Ville villeDepart, Ville villeArrivee, int nbPassagersMax,
+            int nbPassagersRestant, int tarif, String statut) {
+        super();
+        this.dateCreation = dateCreation;
+        this.conducteurIdUser = conducteurIdUser;
+        this.dateDepart = dateDepart;
+        this.villeDepart = villeDepart;
+        this.villeArrivee = villeArrivee;
+        this.nbPassagersMax = nbPassagersMax;
+        this.nbPassagersRestant = nbPassagersRestant;
+        this.tarif = tarif;
+        this.statut = statut;
+    }
+
 
 	public Trajet(int idTrajet, Date dateCreation, int conducteurIdUser,
 			Date dateDepart, Ville villeDepart, Ville villeArrivee,
