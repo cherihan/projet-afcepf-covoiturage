@@ -55,7 +55,7 @@ public class UtilisateurMBean {
 		try {
 		    businessTrajet.sInscrireTrajet(trajet, user);
 			FacesMessage message = new FacesMessage(
-					"Votre demande d'inscription Ã  ce trajet a bien Ã©tÃ© enregistrÃ©e !");
+					"Votre demande d'inscription à  ce trajet a bien été enregistrée !");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (Exception e) {
 			e.printStackTrace();
