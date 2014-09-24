@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#bootstrap#view#index.xhtml"
+  PATH="/bootstrap/view/index.xhtml" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#bootstrap#view#index.xhtml:0" NAME="item"
+   PATH="/bootstrap/view/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listerTrajets::#bootstrap#view#listerTrajets.xhtml"
+    NAME="output" PATH="/bootstrap/view/listerTrajets.xhtml"
+    TARGET="rules:#bootstrap#view#listerTrajets.xhtml"
+    TITLE="listerTrajets" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#bootstrap#view#index.xhtml:1" NAME="item1"
+   PATH="/bootstrap/view/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="error::#bootstrap#view#index.xhtml"
+    NAME="output" PATH="/bootstrap/view/index.xhtml"
+    TARGET="rules:#bootstrap#view#index.xhtml" TITLE="error" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#bootstrap#view#creerCompte.xhtml"
+  PATH="/bootstrap/view/creerCompte.xhtml" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#bootstrap#view#creerCompte.xhtml:0"
+   NAME="item" PATH="/bootstrap/view/creerCompte.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success::#bootstrap#view#index.xhtml"
+    NAME="output" PATH="/bootstrap/view/index.xhtml"
+    TARGET="rules:#bootstrap#view#index.xhtml" TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#bootstrap#view#creerTrajet.xhtml"
+  PATH="/bootstrap/view/creerTrajet.xhtml" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#bootstrap#view#creerTrajet.xhtml:0"
+   NAME="item" PATH="/bootstrap/view/creerTrajet.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="error::#bootstrap#view#creerTrajet.xhtml"
+    NAME="output" PATH="/bootstrap/view/creerTrajet.xhtml"
+    TARGET="rules:#bootstrap#view#creerTrajet.xhtml" TITLE="error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancel::#bootstrap#view#index.xhtml"
+    NAME="output1" PATH="/bootstrap/view/index.xhtml"
+    TARGET="rules:#bootstrap#view#index.xhtml" TITLE="cancel" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#bootstrap#view#listerTrajets.xhtml"
+  PATH="/bootstrap/view/listerTrajets.xhtml" model-entity="JSFProcessGroup"/>
+</PROCESS>

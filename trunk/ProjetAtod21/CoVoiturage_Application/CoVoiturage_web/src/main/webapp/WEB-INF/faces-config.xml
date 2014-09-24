@@ -1,59 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
-	version="2.1">
-
-	<factory>
-	    <render-kit-factory>org.omnifaces.renderkit.Html5RenderKitFactory</render-kit-factory>
-	</factory>
-	<application>
-		<!-- <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver 
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+ <navigation-rule>
+  <from-view-id>/bootstrap/view/index.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>listerTrajets</from-outcome>
+   <to-view-id>/bootstrap/view/listerTrajets.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/bootstrap/view/index.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>error</from-outcome>
+   <to-view-id>/bootstrap/view/index.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/bootstrap/view/creerCompte.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>success</from-outcome>
+   <to-view-id>/bootstrap/view/index.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/bootstrap/view/creerTrajet.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>error</from-outcome>
+   <to-view-id>/bootstrap/view/creerTrajet.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cancel</from-outcome>
+   <to-view-id>/bootstrap/view/index.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <application>
+  <!-- <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver 
 			</variable-resolver> pour jsf 1.1 -->
-		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-		<message-bundle>messages</message-bundle>
-		<!-- a partir de jsf 1.2 -->
-	</application>
-
-	<navigation-rule>
-		<from-view-id>/bootstrap/view/index.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>listerTrajets</from-outcome>
-			<to-view-id>/bootstrap/view/listerTrajets.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
-	<navigation-rule>
-		<from-view-id>/bootstrap/view/index.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>error</from-outcome>
-			<to-view-id>/bootstrap/view/index.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
-	<navigation-rule>
-		<from-view-id>/bootstrap/view/creerCompte.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>success</from-outcome>
-			<to-view-id>/bootstrap/view/index.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
-	<navigation-rule>
-		<from-view-id>/bootstrap/view/creerTrajet.xhtml</from-view-id>
-
-		<navigation-case>
-			<from-outcome>error</from-outcome>
-			<to-view-id>/bootstrap/view/creerTrajet.xhtml</to-view-id>
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>cancel</from-outcome>
-			<to-view-id>/bootstrap/view/index.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
-
-
+  <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+  <message-bundle>messages</message-bundle>
+  <!-- a partir de jsf 1.2 -->
+ </application>
+ <factory>
+  <render-kit-factory>org.omnifaces.renderkit.Html5RenderKitFactory</render-kit-factory>
+ </factory>
 </faces-config>
