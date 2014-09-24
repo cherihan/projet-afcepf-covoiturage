@@ -36,7 +36,7 @@
 	<ui:define name="center-breadcrumbs">
 		<div>
 			<ol class="breadcrumb">
-			  <li><a href="index.xhtml">Accueil</a></li>
+			  <li><a href="#">Accueil</a></li>
 			  <li class="active">Historique de mes Trajets</li>
 			</ol>
 		</div>
@@ -136,7 +136,7 @@
 
 								<h:column>
 									<f:facet name="header">Action</f:facet>
-									 <h:commandLink action="#{histoTrajetMBean.consulterTrajet(trajet)}" styleClass="btn btn-success">
+									 <h:commandLink action="#{trajetMBean.consulterTrajet(trajet)}" styleClass="btn btn-success">
 										<i class="fa fa-file-text-o"></i>
 									 	<f:ajax event="click" ></f:ajax>
 									 </h:commandLink>
