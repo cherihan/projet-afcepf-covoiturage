@@ -122,7 +122,8 @@ public class HistoTrajetMBean {
         FacesMessage message = new FacesMessage("Votre trajet a bien été supprimé de votre historique.");
         FacesContext.getCurrentInstance().addMessage(null, message);
         
-		return "";
+        listerHistoTrajets(user);
+        return "histoTrajets.xhtml";
 	}
 	
 	public IBusinessTrajet getBusinessTrajet() {
