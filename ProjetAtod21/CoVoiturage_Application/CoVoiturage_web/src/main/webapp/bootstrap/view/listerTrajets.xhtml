@@ -114,12 +114,14 @@
 						</ui:repeat>
 					</h:column>
 
-					<h:column>
+					<h:column rendered="#{connectionMBean.userConnected}">
 						<f:facet name="header">S'inscrire</f:facet>
 						<h:outputText rendered="#{trajet.nbPassagersRestant == 0}" value="#{constsMBean.COMPLET}" style="color:gray"/>
 						<h:outputText rendered="#{(trajet.nbPassagersRestant != 0) and (connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur))}" value=""/>
-						<h:commandLink rendered="#{(trajet.nbPassagersRestant != 0) and ((connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur)))}"
-							action="#{utilisateurMBean.sInscrireTrajet(trajet, connectionMBean.user)}" styleClass="btn btn-success">
+<!-- 					<h:commandLink rendered="#{(trajet.nbPassagersRestant != 0) and ((connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur)) or (not connectionMBean.userConnected))}" -->
+						<h:commandLink rendered="#{(trajet.nbPassagersRestant != 0) and ((connectionMBean.userConnected and (trajet.conducteurIdUser != connectionMBean.user.idUtilisateur)))}" 
+						action="#{trajetMBean.sInscrireTrajet(trajet, connectionMBean.user)}"
+						styleClass="btn btn-success">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</h:commandLink>
 					</h:column>

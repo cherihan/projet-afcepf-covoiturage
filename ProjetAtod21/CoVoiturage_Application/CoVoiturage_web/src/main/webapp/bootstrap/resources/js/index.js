@@ -98,25 +98,20 @@ $(function() {
 	 
      rebuildCarousels = function(data){
     	 
-//    	var banners = [
-//    	               {"elem" : $("#owl-demo-left"), "owl" : $("#owl-demo-left").data('owlCarousel'), "newitems" : data[0].hotel},
-//    	               {"elem" : $("#owl-demo-right"), "owl" : $("#owl-demo-right").data('owlCarousel'), "newitems" : data[0].restaurant},
-//    	               {"elem" : $("#owl-demo"), "owl" : $("#owl-demo").data('owlCarousel'), "newitems" : data[0].terroir}
-//       ];
-    	
     	var banners = [
-    	               {"elem" : $("#owl-demo-left"), "owl" : $("#owl-demo-left").data('owlCarousel'), "newitems" : data[0].hotel},
-    	               {"elem" : $("#owl-demo-right"), "owl" : $("#owl-demo-right").data('owlCarousel'), "newitems" : data[0].restaurant}
+    	               {"elem" : $("#owl-demo-left"), "owl" : $("#owl-demo-left").data('owlCarousel'), "newitems" : data[0].hotel, className: "item"},
+    	               {"elem" : $("#owl-demo-right"), "owl" : $("#owl-demo-right").data('owlCarousel'), "newitems" : data[0].restaurant, className: "item"},
+    	               {"elem" : $("#owl-demo"), "owl" : $("#owl-demo").data('owlCarousel'), "newitems" : data[0].terroir, className: "item1"}
        ];
     	
     	// Appliquer la function annonyme sur chaque entrée du tableau
     	banners.map(function(entry){
-    		updateCarousel(entry.elem, entry.owl, entry.newitems);
+    		updateCarousel(entry.elem, entry.owl, entry.newitems, entry.className);
     	});
     	
      };
      
-     updateCarousel = function(elem, objOwl, newItems){
+     updateCarousel = function(elem, objOwl, newItems, className){
     	// la partie fixe d'URL vers le dossier bannières
     	var adPrefix = "http://localhost:8080/CoVoiturage_web/bootstrap/resources/images/bannieres/";
     	
@@ -125,9 +120,12 @@ $(function() {
     	 */ 
     	var lengthBeforeUpdate = elem.find('.owl-wrapper').children().length;
     	
+    	
+    	//
+    	
     	// l'ajout des bannières reçus par la requete AJAX vers la servlet
     	for(var i = 0; i< newItems.length; i++){
-    		objOwl.addItem('<div class="item"><img src="'+ adPrefix + newItems[i] + '.jpg"/></div>');
+    		objOwl.addItem('<div class="'+ className +'"><img src="'+ adPrefix + newItems[i] + '.jpg"/></div>');
     	}
     	
     	// afficher la première bannières dans la liste récuperée

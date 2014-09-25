@@ -56,7 +56,7 @@ public class HistoTrajetMBean {
             typeHistoTrajetValues.put("Terminés", Consts.TERMINE);
             break;
         case Consts.CONDUCTEUR:
-            typeHistoTrajetValues.put("Tous", Consts.ALL_TRAJETS);
+            //typeHistoTrajetValues.put("Tous", Consts.ALL_TRAJETS);
             typeHistoTrajetValues.put("En cours", Consts.EN_COURS);
             typeHistoTrajetValues.put("Terminés", Consts.TERMINE);
             typeHistoTrajetValues.put("Proposés", Consts.PROPOSE);

@@ -62,13 +62,20 @@ public class DaoTrajetImpl implements IDaoTrajet {
     @Override
     public boolean sInscrireTrajet(Trajet trajet, Utilisateur user) {
 
-        // user = em.find(Utilisateur.class, user.getIdUtilisateur());
-
+         user = em.find(Utilisateur.class, user.getIdUtilisateur());
+         System.out.println("==================== avant merge :" + trajet);
         if (user != null) {
-
-            user.getTrajets().add(trajet);
-
-            em.persist(user);
+            List<Trajet> tra = user.getTrajets();
+        	System.out.println("==================== taille  avant :" + tra.size());
+        	System.out.println("==================== places dispo:" + trajet.getIdTrajet() + " / " + trajet.getNbPassagersRestant());
+            tra.add(trajet);
+            System.out.println("==================== taille  apres :" + tra.size());
+            em.merge(user);
+            em.merge(trajet);
+            Utilisateur user_ = em.find(Utilisateur.class, user.getIdUtilisateur());
+            Trajet trajet_ = em.find(Trajet.class, trajet.getIdTrajet());
+            System.out.println("==================== apres merge :" + user_.getTrajets().size());
+            System.out.println("==================== apres merge :" + trajet_);
             return true;
         }
         return false;

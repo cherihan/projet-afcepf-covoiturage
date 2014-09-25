@@ -3,6 +3,7 @@ package fr.afcepf.atod21.coVoiturage.managedBean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class TrajetMBean {
     private List<Ville> listVilles = new ArrayList<Ville>();
     private List<String> listNomVilles = new ArrayList<String>();
     private Map<String, Ville> mapVilles = new HashMap<String, Ville>();
+    private boolean inscrit;
 
     @ManagedProperty(value = "#{businessTrajetImpl}")
     private IBusinessTrajet businessTrajet;
@@ -58,6 +60,32 @@ public class TrajetMBean {
         return "detailTrajet.xhtml?faces-redirect=true";
     }
     
+	public String sInscrireTrajet(Trajet trajet, Utilisateur user) {
+		try {
+			List<Trajet> listTrajets = user.getTrajets();
+			inscrit = false;
+			
+			for (Trajet t : listTrajets) {
+				if(t.getIdTrajet() == trajet.getIdTrajet())
+					inscrit = true;
+			}
+//			System.out.println("ksjqdhqslkjdhqksljhdqs ===================================" + trajet.getIdTrajet());
+			if(inscrit){
+				FacesMessage message = new FacesMessage("Vous etes déja inscrit");
+				FacesContext.getCurrentInstance().addMessage(null, message);
+				return "";
+			} else {
+				FacesMessage message = new FacesMessage("Votre demande d'inscription à  ce trajet a bien été enregistrée !");
+				FacesContext.getCurrentInstance().addMessage(null, message);
+			    businessTrajet.sInscrireTrajet(trajet, user);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		this.trajet = trajet;
+		return "detailTrajet.xhtml?faces-redirect=false";
+	}
+    
     public String creerTrajet(Utilisateur userEnSession) {
         String redirection = "success";
         this.villeDepart = this.mapVilles.get(this.villeDepart.getNom());
@@ -73,7 +101,9 @@ public class TrajetMBean {
             redirection = "error";
         }
         clearFormUtilisateur();
-        return redirection;
+        this.trajet = trajetToInsert;
+        //return redirection;
+        return "detailTrajet.xhtml?faces-redirect=false";
     }
 
     public String annuler() {
@@ -178,5 +208,15 @@ public class TrajetMBean {
     public void setBusinessUtilisateur(IBusinessUtilisateur businessUtilisateur) {
         this.businessUtilisateur = businessUtilisateur;
     }
+
+	public boolean isInscrit() {
+		return inscrit;
+	}
+
+	public void setInscrit(boolean inscrit) {
+		this.inscrit = inscrit;
+	}
+
+	
 
 }
