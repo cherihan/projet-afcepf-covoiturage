@@ -4,33 +4,47 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="/template/commonLayout.xhtml">
-	<ui:define name="title">Mes avis</ui:define>
+<ui:composition template="../template/commonLayout.xhtml">
+	<ui:define name="title">Co-Voiturage AFCEPF</ui:define>
 
 	<ui:define name="css">
-				<link rel="stylesheet" href="../resources/css/common-style.css" />
-				<link rel="stylesheet" href="../resources/css/jquery-ui-1.10.4.custom.css" />
-				<link rel="stylesheet" href="../resources/css/avis.css" />
 	</ui:define>
 
 	<ui:define name="javascript">
-		<script type="text/javascript" src="../resources/js/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.custom.js"></script>
-		<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.custom.min.js"></script>
-		<script type="text/javascript" src="../resources/js/index.js"></script>
 	</ui:define>
 
-	<ui:define name="content">
+	<ui:define name="top">
+		<ui:include src="../template/top.xhtml" />
+	</ui:define>
+	
+	<ui:define name="top-center">
+		<ui:include src="../template/top-center.xhtml" />
+	</ui:define>
+	
+	<ui:define name="left">
+		<ui:include src="../template/left.xhtml" />
+	</ui:define>
+	
+	<ui:define name="right">
+		<ui:include src="../template/right.xhtml" />
+	</ui:define>
+	
+	<ui:define name="bottom">
+	</ui:define>
+	
+		<ui:define name="center-breadcrumbs">
+		<div>
+			<ol class="breadcrumb">
+			  <li><a href="index.xhtml">Accueil</a></li>
+			  <li class="active">Mes avis</li>
+			</ol>
+		</div>
+	</ui:define>
+	
+	<ui:define name="center">
 		<div class="formAvis">
 			<h:form>
-				<fieldset>
-					<legend>Mes avis</legend>
-					
-					
-					<h:graphicImage value="../resources/image/under_construction.png" />
-					
-					
-				</fieldset>
+				<div class="alert alert-danger" role="alert">En construction ...</div>
 			</h:form>
 		</div>
 	</ui:define>

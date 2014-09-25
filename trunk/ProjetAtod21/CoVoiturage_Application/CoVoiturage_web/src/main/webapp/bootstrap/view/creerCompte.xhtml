@@ -42,178 +42,214 @@
 	</ui:define>
 	
 	<ui:define name="center">
-		<div class="formCreerCompte">
-			<h:messages globalOnly="true" styleClass="messageSuccess" />
-			<h:form>
-					<legend>Inscription au site de covoiturage !</legend>
-
-					<br />
-					<h:outputLabel value="Prenom " />
-					<h:inputText value="#{inscriptionMBean.user.prenom}"
-						required="true" styleClass="champs" id="prenom" label="Prénom">
-						<f:ajax event="blur" render="messagePrenom" />
-					</h:inputText>
-					<h:message for="prenom" styleClass="messsages" id="messagePrenom" />
-					<br /> <br />
-
-					<h:outputLabel value="Nom " />
-					<h:inputText value="#{inscriptionMBean.user.nom}" required="true"
-						styleClass="champs" id="nom" label="Nom">
-						<f:ajax event="blur" render="messageNom" />
-					</h:inputText>
-					<h:message for="nom" styleClass="messsages" id="messageNom" />
-					<br /> <br />
-
-					<h:outputLabel value="Téléphone " />
-					<h:inputText value="#{inscriptionMBean.user.telephone}"
-						required="true" styleClass="champs" id="telephone"
-						label="Téléphone">
-						<f:ajax event="blur" render="messageTelephone" />
-					</h:inputText>
-					<h:message for="telephone" styleClass="messsages"
-						id="messageTelephone" />
-					<br /> <br />
-
-					<h:outputLabel value="Email " />
-					<h:inputText value="#{inscriptionMBean.user.email}" required="true"
-						styleClass="champs" id="mail" label="Email">
-						<f:ajax event="blur" render="messageEmail" />
-					</h:inputText>
-					<h:message for="mail" styleClass="messsages" id="messageEmail" />
-					<br /> <br />
-
-					<h:outputLabel value="Choisissez un mot de passe " />
-					<h:inputSecret value="#{inscriptionMBean.user.password}"
-						required="true" styleClass="champs" id="password" label="Password">
-						<f:ajax event="blur" render="messagePassword" />
-					</h:inputSecret>
-					<h:message for="password" styleClass="messsages"
-						id="messagePassword" />
-					<br /> <br />
-
-					<h:outputLabel value="Confirmez votre mot de passe " />
-					<h:inputSecret value="#{inscriptionMBean.confirmationPassword}"
-						required="true" styleClass="champs" id="passwordConfirmation"
-						label="Confirmation du password">
-						<f:ajax event="blur" render="messageConfirmationPassword" />
-					</h:inputSecret>
-					<h:message for="passwordConfirmation" styleClass="messsages"
-						id="messageConfirmationPassword" />
-					<h:outputText value="#{inscriptionMBean.messageErrorPassword}"
-						styleClass="messsages" />
-					<br /> <br />
-
-
-					<h:outputLabel value="Date de Naissance " />
-					<h:inputText value="#{inscriptionMBean.dateNaissanceSaisie}"
-						styleClass="birthDate" id="naissance"
-						label="Date de naissance">
-						
-					</h:inputText>
-					
-					<br /> <br />
-
-					<h:outputLabel value="Votre adresse " />
-					<h:outputLabel
-						value="#{inscriptionMBean.userAdress.numero}, 
-														#{inscriptionMBean.userAdress.typeVoie} 
-														#{inscriptionMBean.userAdress.nomVoie} 
-														#{inscriptionMBean.userCity.codePostal} 
-														#{inscriptionMBean.userCity.nom} 
-														#{inscriptionMBean.userCity.pays}"
-						id="ajaxAdress" styleClass="adresse">
-					</h:outputLabel>
-					<br /> <br /> <br />
-
-					<h:outputLabel value="Numéro " />
-					<h:inputText value="#{inscriptionMBean.userAdress.numero}"
-						required="true" styleClass="champs" id="adressNumber"
-						label="Numéro de l'adresse">
-						<f:convertNumber integerOnly="true" />
-						<f:ajax event="blur" render="messageNumeroAdresse ajaxAdress" />
-					</h:inputText>
-					<h:message for="adressNumber" styleClass="messsages"
-						id="messageNumeroAdresse" />
-					<br /> <br />
-
-					<h:outputLabel value="Type de la voie " />
-					<h:inputText value="#{inscriptionMBean.userAdress.typeVoie}"
-						required="true" styleClass="champs" id="adressWay"
-						label="Type de voie">
-						<f:ajax event="blur" render="messageWayAdresse ajaxAdress" />
-					</h:inputText>
-					<h:message for="adressWay" styleClass="messsages"
-						id="messageWayAdresse" />
-					<br /> <br />
-
-					<h:outputLabel value="Nom de la voie " />
-					<h:inputText value="#{inscriptionMBean.userAdress.nomVoie}"
-						required="true" styleClass="champs" id="adressName"
-						label="Nom de la voie">
-						<f:ajax event="blur" render="messageNomAdresse ajaxAdress" />
-					</h:inputText>
-					<h:message for="adressName" styleClass="messsages"
-						id="messageNomAdresse" />
-					<br /> <br />
-
-					<h:outputLabel value="Code Postal " />
-					<h:inputText value="#{inscriptionMBean.userCity.codePostal}"
-						required="true" styleClass="champs" id="cityCP"
-						label="Code postal">
-						<f:ajax event="blur" render="messageCodePostal ajaxAdress" />
-					</h:inputText>
-					<h:message for="cityCP" styleClass="messsages"
-						id="messageCodePostal" />
-					<br /> <br />
-
-					<h:outputLabel value="Ville " />
-					<h:inputText value="#{inscriptionMBean.userCity.nom}"
-						required="true" styleClass="champs" id="cityName" label="Ville">
-						<f:ajax event="blur" render="messageNomVille ajaxAdress" />
-					</h:inputText>
-					<h:message for="cityName" styleClass="messsages"
-						id="messageNomVille" />
-					<br /> <br />
-
-					<h:outputLabel value="Pays " />
-					<h:inputText value="#{inscriptionMBean.userCity.pays}"
-						required="true" styleClass="champs" id="countryName" label="Pays">
-						<f:ajax event="blur" render="messageNomPays ajaxAdress" />
-					</h:inputText>
-					<h:message for="countryName" styleClass="messsages"
-						id="messageNomPays" />
-					<br /> <br />
-
-
-					<h:outputLabel value="Avez-vous votre permis de conduire : " />
-
-					<h:selectOneMenu value="#{inscriptionMBean.user.permisConduire}"
-						required="#{not empty param[submit.permis]}" styleClass="champs"
-						id="permis" label="Possédez-vous votre permis de conduire ?">
-						<f:selectItem id="item0" itemLabel="Non" itemValue="0" />
-						<f:selectItem id="item1" itemLabel="Oui" itemValue="1" />
-						<f:ajax event="blur" render="messagePermis" />
-					</h:selectOneMenu>
-					<h:message for="permis" styleClass="messsages" id="messagePermis" />
-					<br /> <br />
-
-					<h:outputLabel value="Quel est votre véhicule " />
-					<h:inputText value="#{inscriptionMBean.user.typeVehicule}"
-						required="true" styleClass="champs" id="vehicule" label="Véhicule">
-						<f:ajax event="blur" render="messageVehicule" />
-					</h:inputText>
-					<h:message for="vehicule" styleClass="messsages"
-						id="messageVehicule" />
-					<br /> <br />
-
-
-					<h:commandButton value="Valider" styleClass="classBtnSubmit"
-						action="#{inscriptionMBean.creerCompte()}" />
-
-					<h:commandButton immediate="true" value="Annuler"
-						styleClass="classBtnSubmit"
-						action="index.xhtml?faces-redirect=true" />
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<h:form styleClass="form-horizontal">
+						<div class="panel panel-covoiturage">
+							<div class="panel-heading"><strong>Inscription au site de covoiturage</strong></div>
+							<div class="panel-body">
+								<div class="classError">
+									<h:messages globalOnly="true" styleClass="messageSuccess" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Prenom " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+										<h:inputText value="#{inscriptionMBean.user.prenom}"
+											required="true" styleClass="form-control" id="prenom" label="Prénom">
+											<f:ajax event="blur" render="messagePrenom" />
+										</h:inputText>
+									</div>
+									<h:message for="prenom" styleClass="messsages" id="messagePrenom" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Nom " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.user.nom}" required="true"
+										styleClass="form-control" id="nom" label="Nom">
+										<f:ajax event="blur" render="messageNom" />
+									</h:inputText>
+									</div>
+									<h:message for="nom" styleClass="messsages" id="messageNom" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Téléphone " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.user.telephone}"
+										required="true" styleClass="form-control" id="telephone"
+										label="Téléphone">
+										<f:ajax event="blur" render="messageTelephone" />
+									</h:inputText>
+									</div>
+									<h:message for="telephone" styleClass="messsages"
+										id="messageTelephone" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Email " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.user.email}" required="true"
+										styleClass="form-control" id="mail" label="Email">
+										<f:ajax event="blur" render="messageEmail" />
+									</h:inputText>
+									</div>
+									<h:message for="mail" styleClass="messsages" id="messageEmail" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Choisissez un mot de passe " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputSecret value="#{inscriptionMBean.user.password}"
+										required="true" styleClass="form-control" id="password" label="Password">
+										<f:ajax event="blur" render="messagePassword" />
+									</h:inputSecret>
+									</div>
+									<h:message for="password" styleClass="messsages"
+										id="messagePassword" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Confirmez votre mot de passe " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputSecret value="#{inscriptionMBean.confirmationPassword}"
+										required="true" styleClass="form-control" id="passwordConfirmation"
+										label="Confirmation du password">
+										<f:ajax event="blur" render="messageConfirmationPassword" />
+									</h:inputSecret>
+									</div>
+									<h:message for="passwordConfirmation" styleClass="messsages"
+										id="messageConfirmationPassword" />
+									<h:outputText value="#{inscriptionMBean.messageErrorPassword}"
+										styleClass="messsages" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Date de Naissance " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.dateNaissanceSaisie}"
+										styleClass="form-control" id="naissance"
+										label="Date de naissance">
+									</h:inputText>
+									</div>
+								</div>					
+								<div class="form-group">
+									<h:outputLabel value="Votre adresse " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:outputLabel
+										value="#{inscriptionMBean.userAdress.numero}, 
+																		#{inscriptionMBean.userAdress.typeVoie} 
+																		#{inscriptionMBean.userAdress.nomVoie} 
+																		#{inscriptionMBean.userCity.codePostal} 
+																		#{inscriptionMBean.userCity.nom} 
+																		#{inscriptionMBean.userCity.pays}"
+										id="ajaxAdress" styleClass="adresse">
+									</h:outputLabel>
+									</div>
+								</div>					
+								<div class="form-group">
+									<h:outputLabel value="Numéro " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.userAdress.numero}"
+										required="true" styleClass="form-control" id="adressNumber"
+										label="Numéro de l'adresse">
+										<f:convertNumber integerOnly="true" />
+										<f:ajax event="blur" render="messageNumeroAdresse ajaxAdress" />
+									</h:inputText>
+									</div>
+									<h:message for="adressNumber" styleClass="messsages"
+										id="messageNumeroAdresse" />
+								</div>						
+								<div class="form-group">
+									<h:outputLabel value="Type de la voie " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.userAdress.typeVoie}"
+										required="true" styleClass="form-control" id="adressWay"
+										label="Type de voie">
+										<f:ajax event="blur" render="messageWayAdresse ajaxAdress" />
+									</h:inputText>
+									</div>
+									<h:message for="adressWay" styleClass="messsages"
+										id="messageWayAdresse" />
+								</div>						
+								<div class="form-group">
+									<h:outputLabel value="Nom de la voie " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.userAdress.nomVoie}"
+										required="true" styleClass="form-control" id="adressName"
+										label="Nom de la voie">
+										<f:ajax event="blur" render="messageNomAdresse ajaxAdress" />
+									</h:inputText>
+									</div>
+									<h:message for="adressName" styleClass="messsages"
+										id="messageNomAdresse" />
+								</div>						
+								<div class="form-group">
+									<h:outputLabel value="Code Postal " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.userCity.codePostal}"
+										required="true" styleClass="form-control" id="cityCP"
+										label="Code postal">
+										<f:ajax event="blur" render="messageCodePostal ajaxAdress" />
+									</h:inputText>
+									</div>
+									<h:message for="cityCP" styleClass="messsages"
+										id="messageCodePostal" />
+								</div>						
+								<div class="form-group">
+									<h:outputLabel value="Ville " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.userCity.nom}"
+										required="true" styleClass="form-control" id="cityName" label="Ville">
+										<f:ajax event="blur" render="messageNomVille ajaxAdress" />
+									</h:inputText>
+									</div>
+									<h:message for="cityName" styleClass="messsages"
+										id="messageNomVille" />
+								</div>						
+								<div class="form-group">
+									<h:outputLabel value="Pays " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.userCity.pays}"
+										required="true" styleClass="form-control" id="countryName" label="Pays">
+										<f:ajax event="blur" render="messageNomPays ajaxAdress" />
+									</h:inputText>
+									</div>
+									<h:message for="countryName" styleClass="messsages"
+										id="messageNomPays" />
+								</div>						
+								<div class="form-group">
+									<h:outputLabel value="Avez-vous le permis de conduire : " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:selectOneMenu value="#{inscriptionMBean.user.permisConduire}"
+										required="#{not empty param[submit.permis]}" styleClass="form-control"
+										id="permis" label="Possédez-vous votre permis de conduire ?">
+										<f:selectItem id="item0" itemLabel="Non" itemValue="0" />
+										<f:selectItem id="item1" itemLabel="Oui" itemValue="1" />
+										<f:ajax event="blur" render="messagePermis" />
+									</h:selectOneMenu>
+									</div>
+									<h:message for="permis" styleClass="messsages" id="messagePermis" />
+								</div>					
+								<div class="form-group">
+									<h:outputLabel value="Quel est votre véhicule " styleClass="col-md-4 control-label"/>
+									<div class="col-sm-4">
+									<h:inputText value="#{inscriptionMBean.user.typeVehicule}"
+										required="true" styleClass="form-control" id="vehicule" label="Véhicule">
+										<f:ajax event="blur" render="messageVehicule" />
+									</h:inputText>
+									</div>
+									<h:message for="vehicule" styleClass="messsages"
+										id="messageVehicule" />
+								</div>
+							</div>						
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-sm-2 col-sm-offset-4 ">
+										<h:commandButton value="Valider" styleClass="classBtnSubmit btn btn-primary" action="#{inscriptionMBean.creerCompte()}" />
+									</div>
+									<div class="col-sm-2">
+										<h:commandButton immediate="true" value="Annuler" styleClass="classBtnSubmit btn btn-primary" action="index.xhtml?faces-redirect=true" />
+									</div>
+								</div>
+							</div>
+						</div>
 			</h:form>
+		</div>
 		</div>
 	</ui:define>
 </ui:composition>

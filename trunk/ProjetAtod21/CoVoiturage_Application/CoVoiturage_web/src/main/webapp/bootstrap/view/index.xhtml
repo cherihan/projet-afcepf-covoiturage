@@ -32,11 +32,22 @@
 	<ui:define name="bottom">
 	</ui:define>
 	
+	<ui:define name="center-breadcrumbs">
+		<div>
+			<ol class="breadcrumb">
+			  <li class="active"><a href="index.xhtml">Accueil</a></li>
+			</ol>
+		</div>
+	</ui:define>
+	
 	<ui:define name="center">
+		<br/>
+		<br/>
+		<br/>
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
 				<h:form styleClass="form-horizontal">
-					<div class="panel panel-primary">
+					<div class="panel panel-covoiturage">
 						<div class="panel-heading"><strong>Rechercher un trajet</strong></div>
 						<div class="panel-body">
 							<div class="classError">
@@ -77,11 +88,9 @@
 						</div>
 						<div class="panel-footer">
 							<div class="row">
-								<div class="form-group">
-									<div class="col-sm-offset-5 col-sm-2">
-										<h:commandButton value="Rechercher" styleClass="classBtnSubmit btn btn-primary"
-														 action="#{utilisateurMBean.rechercherTrajet()}" onclick=""/>
-									 </div>
+								<div class="col-sm-offset-5 col-sm-2">
+									<h:commandButton value="Rechercher" styleClass="classBtnSubmit btn btn-info"
+													 action="#{utilisateurMBean.rechercherTrajet()}" onclick=""/>
 								 </div>
 							</div>
 						</div>
