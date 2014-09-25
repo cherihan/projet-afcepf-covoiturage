@@ -21,41 +21,69 @@
 	</ui:define>
 	
 	<ui:define name="left">
+		<ui:include src="../template/left.xhtml" />
 	</ui:define>
 	
 	<ui:define name="right">
+		<ui:include src="../template/right.xhtml" />
 	</ui:define>
 	
 	<ui:define name="bottom">
+	</ui:define>
+	
+	<ui:define name="center-breadcrumbs">
+		<div>
+			<ol class="breadcrumb">
+			  <li><a href="index.xhtml">Accueil</a></li>
+			  <li class="active">Mes infos</li>
+			</ol>
+		</div>
 	</ui:define>
 
 	<ui:define name="center">
 		<div class="formInfos">
 			<h:form>
-				<fieldset>
-					<legend>Mes infos personnelles</legend>
-					
-					<br />
-					<h:outputLabel value="Nom : #{connectionMBean.user.nom}" />
-					<br /><br />
-					<h:outputLabel value="Prénom : #{connectionMBean.user.prenom}" />
-					<br /><br />
-					<h:outputLabel value="Téléphone : #{connectionMBean.user.telephone}" />
-					<br /><br />
-					<h:outputLabel value="Email : #{connectionMBean.user.email}" />
-					<br /><br />
-					<h:outputLabel value="Date de naissance : #{connectionMBean.user.dateNaissance.day}"/>
-					<h:outputLabel value="/#{connectionMBean.user.dateNaissance.month}"/>
-					<h:outputLabel value="/#{connectionMBean.user.dateNaissance.year}"/>
-					<br /><br />
-					<h:outputLabel value="Adresse : #{connectionMBean.user.adresse.numero}, #{connectionMBean.user.adresse.typeVoie} #{connectionMBean.user.adresse.nomVoie} - #{connectionMBean.user.adresse.ville.codePostal} #{connectionMBean.user.adresse.ville.nom}, #{connectionMBean.user.adresse.ville.pays}"/>
-					<br /><br />
-					<h:outputLabel value="Permis de conduire : #{connectionMBean.user.permisConduire==1?'Oui':'Non'}" />
-					<br /><br />
-					<h:outputLabel value="Type de véhicule : #{connectionMBean.user.typeVehicule}" />
-					<br /><br />
-
-				</fieldset>
+				<blockquote>
+					<p>Mes infos personnelles</p>
+				</blockquote>
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3">
+						<table class="table table-striped">
+							<tr>
+								<td>Nom : </td>
+								<td><h:outputLabel value="#{connectionMBean.user.nom}" /></td>
+							</tr>
+							<tr>
+								<td>Prénom : </td>
+								<td><h:outputLabel value="#{connectionMBean.user.prenom}" /></td>
+							</tr>
+							<tr>
+								<td>Téléphone : </td>
+								<td><h:outputLabel value="#{connectionMBean.user.telephone}" /></td>
+							</tr>
+							<tr>
+								<td>Email : </td>
+								<td><h:outputLabel value="#{connectionMBean.user.email}" /></td>
+							</tr>
+							<tr>
+								<td>Date de naissance : </td>
+								<td><h:outputLabel value="#{connectionMBean.user.dateNaissance.day}/#{connectionMBean.user.dateNaissance.month}/#{connectionMBean.user.dateNaissance.year}"/></td>
+							</tr>
+							<tr>
+								<td>Adresse : </td>
+								<td><h:outputLabel value="#{connectionMBean.user.adresse.numero}, #{connectionMBean.user.adresse.typeVoie} #{connectionMBean.user.adresse.nomVoie} - #{connectionMBean.user.adresse.ville.codePostal} #{connectionMBean.user.adresse.ville.nom}, #{connectionMBean.user.adresse.ville.pays}"/></td>
+							</tr>
+							<tr>
+								<td>Permis de conduire : </td>
+								<td><h:outputLabel value="#{connectionMBean.user.permisConduire==1?'Oui':'Non'}" /></td>
+							</tr>
+							<tr>
+								<td>Type de véhicule : </td>
+								<td><h:outputLabel value="#{connectionMBean.user.typeVehicule}" /></td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</h:form>
 		</div>
 	</ui:define>

@@ -5,66 +5,90 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<ui:composition template="/template/commonLayout.xhtml">
-	<ui:define name="title">
-		Détails du trajet sélectionné
+<ui:composition template="../template/commonLayout.xhtml">
+	<ui:define name="title">Co-Voiturage AFCEPF</ui:define>
+
+	<ui:define name="css">
 	</ui:define>
 
-<ui:define name="css">
-		<link rel="stylesheet" href="../resources/css/common-style.css" />
-		<link rel="stylesheet"
-			href="../resources/css/jquery-ui-1.10.4.custom.css" />
-		<link rel="stylesheet" href="../resources/css/detailTrajet.css" />
+	<ui:define name="javascript">
 	</ui:define>
 
-	<ui:define name="content">
+	<ui:define name="top">
+		<ui:include src="../template/top.xhtml" />
+	</ui:define>
+	
+	<ui:define name="top-center">
+		<ui:include src="../template/top-center.xhtml" />
+	</ui:define>
+	
+	<ui:define name="left">
+		<ui:include src="../template/left.xhtml" />
+	</ui:define>
+	
+	<ui:define name="right">
+		<ui:include src="../template/right.xhtml" />
+	</ui:define>
+	
+	<ui:define name="bottom">
+	</ui:define>
+	
+	<ui:define name="center-breadcrumbs">
 		<div>
-			<h4 align="center" style="">Détail du trajet que vous avez sélectionné :</h4>
-			
-			<br /><br /><br /><br /><br /><br />
-
-			<table align="center" class="tableResultsTrajets">
+			<ol class="breadcrumb">
+			  <li><a href="index.xhtml">Accueil</a></li>
+			  <li class="active">Détail trajet</li>
+			</ol>
+		</div>
+	</ui:define>
+	
+	<ui:define name="center">
+		<blockquote><p>Détail du trajet que vous avez sélectionné :</p></blockquote>
+		<div class="row">
+			<div class="col-lg-6 col-lg-offset-3">
+			<table class="table table-striped">
 				<tr>
-					<th>Référence interne du trajet (Id) :</th>
-					<th><h:outputText value="#{trajetMBean.trajet.idTrajet}" /></th>
+					<td>Référence interne du trajet (Id) :</td>
+					<td><h:outputText value="#{trajetMBean.trajet.idTrajet}" /></td>
 				</tr>
 				<tr>
-					<th>Nom du conducteur :</th>
-					<th><h:outputText value="#{utilisateurMBean.getUserById(trajetMBean.trajet.conducteurIdUser).nom}" /></th>
+					<td>Nom du conducteur :</td>
+					<td><h:outputText value="#{utilisateurMBean.getUserById(trajetMBean.trajet.conducteurIdUser).nom}" /></td>
 				</tr>
 				<tr>
-					<th>Prénom du conducteur :</th>
-					<th><h:outputText value="#{utilisateurMBean.getUserById(trajetMBean.trajet.conducteurIdUser).prenom}" /></th>
+					<td>Prénom du conducteur :</td>
+					<td><h:outputText value="#{utilisateurMBean.getUserById(trajetMBean.trajet.conducteurIdUser).prenom}" /></td>
 				</tr>
 				<tr>
-					<th>Email du conducteur :</th>
-					<th><h:outputText value="#{utilisateurMBean.getUserById(trajetMBean.trajet.conducteurIdUser).email}" /></th>
+					<td>Email du conducteur :</td>
+					<td><h:outputText value="#{utilisateurMBean.getUserById(trajetMBean.trajet.conducteurIdUser).email}" /></td>
 				</tr>
 				<tr>
-					<th>Ville de départ du voyage :</th>
-					<th><h:outputText value="#{trajetMBean.trajet.villeDepart.nom}" /></th>
+					<td>Ville de départ du voyage :</td>
+					<td><h:outputText value="#{trajetMBean.trajet.villeDepart.nom}" /></td>
 				</tr>
 				<tr>
-					<th>Ville d'arrivée du voyage :</th>
-					<th><h:outputText value="#{trajetMBean.trajet.villeArrivee.nom}" /></th>
+					<td>Ville d'arrivée du voyage :</td>
+					<td><h:outputText value="#{trajetMBean.trajet.villeArrivee.nom}" /></td>
 				</tr>
 				<tr>
-					<th>Date et heure de départ du voyage :</th>
-					<th><h:outputText value="#{trajetMBean.trajet.dateDepart}" /></th>
+					<td>Date et heure de départ du voyage :</td>
+					<td><h:outputText value="#{trajetMBean.trajet.dateDepart}" /></td>
 				</tr>
 				<tr>
-					<th>Tarif du voyage :</th>
-					<th><h:outputText value="#{trajetMBean.trajet.tarif}" /> euros</th>
+					<td>Tarif du voyage :</td>
+					<td><h:outputText value="#{trajetMBean.trajet.tarif}" /> euros</td>
 				</tr>
 				<tr>
-					<th>Nombre de places actuellement resantes :</th>
-					<th><h:outputText value="#{trajetMBean.trajet.nbPassagersRestant}" /> places</th>
+					<td>Nombre de places actuellement resantes :</td>
+					<td><h:outputText value="#{trajetMBean.trajet.nbPassagersRestant}" /> places</td>
 				</tr>
 				<tr>
-					<th>Nomre de passagers maximum dans le véhicule :</th>
-					<th><h:outputText value="#{trajetMBean.trajet.nbPassagersMax}" /> places</th>
+					<td>Nomre de passagers maximum dans le véhicule :</td>
+					<td><h:outputText value="#{trajetMBean.trajet.nbPassagersMax}" /> places</td>
 				</tr>
 			</table>
+			</div>
 		</div>
 	</ui:define>
 </ui:composition>

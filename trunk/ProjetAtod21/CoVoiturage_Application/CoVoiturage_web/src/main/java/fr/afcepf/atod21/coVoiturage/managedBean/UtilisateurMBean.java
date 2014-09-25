@@ -34,7 +34,7 @@ public class UtilisateurMBean {
     private IBusinessTrajet businessTrajet;
    
 	private Utilisateur user;
-	private Trajet trajet;
+	private Trajet trajet = new Trajet();
 
 	private String email;
 	private String password;
@@ -45,6 +45,8 @@ public class UtilisateurMBean {
 	private HtmlDataTable dataTableTrajets = new HtmlDataTable();
 
 	private List<Trajet> listResults = new ArrayList<Trajet>();
+	
+	
 
 	@PostConstruct
 	public void init() {
@@ -52,15 +54,17 @@ public class UtilisateurMBean {
 	}
 
 	public String sInscrireTrajet(Trajet trajet, Utilisateur user) {
-		try {
-		    businessTrajet.sInscrireTrajet(trajet, user);
-			FacesMessage message = new FacesMessage(
-					"Votre demande d'inscription à  ce trajet a bien été enregistrée !");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "";
+//		try {
+//			System.out.println("ksjqdhqslkjdhqksljhdqs ===================================" + trajet.getIdTrajet());
+////			FacesMessage message = new FacesMessage(
+////					"Votre demande d'inscription à  ce trajet a bien été enregistrée !");
+////			FacesContext.getCurrentInstance().addMessage(null, message);
+////		    businessTrajet.sInscrireTrajet(trajet, user);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+			this.trajet = trajet;
+		return "detailTrajet.xhtml?faces-redirect=false";
 	}
 
 	public String seDesincrireTrajet() {
