@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
-	<display-name>CoVoiturage_web</display-name>
-
-	<welcome-file-list>
-		<welcome-file>../bootstrap/view/index.xhtml</welcome-file>
-	</welcome-file-list>
-
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/application-config.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.xhtml</url-pattern>
-		<url-pattern>*.jsf</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>CXFServlet</servlet-name>
-		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CXFServlet</servlet-name>
-		<url-pattern>/ws/*</url-pattern>
-	</servlet-mapping>
-
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>CoVoiturage_web</display-name>
+  <welcome-file-list>
+    <welcome-file>../bootstrap/view/index.xhtml</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/application-config.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CXFServlet</servlet-name>
+    <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CXFServlet</servlet-name>
+    <url-pattern>/ws/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>pub</display-name>
+    <servlet-name>pub</servlet-name>
+    <servlet-class>fr.afcepf.atod21.coVoiturage.bigData.pub</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pub</servlet-name>
+    <url-pattern>/pub</url-pattern>
+  </servlet-mapping>
 </web-app>

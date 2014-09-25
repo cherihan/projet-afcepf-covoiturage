@@ -75,4 +75,69 @@ $(function() {
 			    }
 		}
 	 });
+	 
+	 
+//	 if($('#destinationForBanner')){
+//		 updateBanners($('#destinationForBanner').val());
+//     }
+	 
+     updateBanners = function(destination)
+     {
+         $.ajax
+         (
+             {
+                 url:'/CoVoiturage_web/pub',
+                 data:{"destination":destination},
+                 type:'post',
+                 cache:false,
+                 success: function(data) { rebuildCarousels(data);},
+                 error:function(){console.error('error');}
+             }
+         );
+     };
+	 
+     rebuildCarousels = function(data){
+    	 
+//    	var banners = [
+//    	               {"elem" : $("#owl-demo-left"), "owl" : $("#owl-demo-left").data('owlCarousel'), "newitems" : data[0].hotel},
+//    	               {"elem" : $("#owl-demo-right"), "owl" : $("#owl-demo-right").data('owlCarousel'), "newitems" : data[0].restaurant},
+//    	               {"elem" : $("#owl-demo"), "owl" : $("#owl-demo").data('owlCarousel'), "newitems" : data[0].terroir}
+//       ];
+    	
+    	var banners = [
+    	               {"elem" : $("#owl-demo-left"), "owl" : $("#owl-demo-left").data('owlCarousel'), "newitems" : data[0].hotel},
+    	               {"elem" : $("#owl-demo-right"), "owl" : $("#owl-demo-right").data('owlCarousel'), "newitems" : data[0].restaurant}
+       ];
+    	
+    	// Appliquer la function annonyme sur chaque entrée du tableau
+    	banners.map(function(entry){
+    		updateCarousel(entry.elem, entry.owl, entry.newitems);
+    	});
+    	
+     };
+     
+     updateCarousel = function(elem, objOwl, newItems){
+    	// la partie fixe d'URL vers le dossier bannières
+    	var adPrefix = "http://localhost:8080/CoVoiturage_web/bootstrap/resources/images/bannieres/";
+    	
+    	/* Sauvgarder le nombre d'éléments existant dans la caroussel pour pouvoir les supprimer après l'ajout des nouvel éléments dans la caroussel 
+    	 * [premiers $lengthBeforeUpdate element dans la caroussel après MAJ]
+    	 */ 
+    	var lengthBeforeUpdate = elem.find('.owl-wrapper').children().length;
+    	
+    	// l'ajout des bannières reçus par la requete AJAX vers la servlet
+    	for(var i = 0; i< newItems.length; i++){
+    		objOwl.addItem('<div class="item"><img src="'+ adPrefix + newItems[i] + '.jpg"/></div>');
+    	}
+    	
+    	// afficher la première bannières dans la liste récuperée
+    	objOwl.jumpTo(lengthBeforeUpdate);
+    	
+    	// suppression des ancienne bannières
+    	for(var i = 0 ; i< lengthBeforeUpdate; i++){
+    		objOwl.removeItem(0);
+    	}
+     };
+     
+     
 });
