@@ -45,6 +45,14 @@
 
 	<ui:define name="center">
 		<div>
+			<script>
+			$(function() {
+					var destination = '<h:outputText value="#{utilisateurMBean.villeArrivee}" />';
+					console.log(destination);
+					console.log(destination.toString());
+					updateBanners(destination.toString());
+			});
+			</script>
 			<h:messages globalOnly="true" styleClass="messageSuccess" />
 			<h:form class="formListerTrajets">
 				<h:dataTable 
@@ -79,7 +87,7 @@
 
 					<h:column>
 						<f:facet name="header">Ville d'arrivee </f:facet>
-						<h:outputText value="#{trajet.villeArrivee.nom   }" />
+						<h:outputText value="#{trajet.villeArrivee.nom}" />
 					</h:column>
 
 					<h:column >
@@ -116,7 +124,6 @@
 						</h:commandLink>
 					</h:column>
 				</h:dataTable>
-
 			</h:form>
 		</div>
 	</ui:define>
