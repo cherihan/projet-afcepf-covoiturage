@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.services.IInscriptionTrajetServiceRest;
 
-@Path("/inscriptionTrajet")
+@Path("/sInscrire")
 public class InscriptionTrajetServiceRest implements
         IInscriptionTrajetServiceRest {
 
@@ -26,7 +26,8 @@ public class InscriptionTrajetServiceRest implements
     @Produces(MediaType.TEXT_PLAIN)
     public boolean sInscrireTrajetDto(@PathParam("IdTrajet") Integer IdTrajet,
             @PathParam("IdUser") Integer IdUser) {
-        return businessTrajet.sInscrireTrajetSoap(IdTrajet, IdUser);
+        //return businessTrajet.sInscrireTrajetSoap(IdTrajet, IdUser);
+    	return true;
     }
 
 }

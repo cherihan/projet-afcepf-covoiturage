@@ -11,7 +11,7 @@ import fr.afcepf.atod21.coVoiturage.business.dto.ListTrajetsDto;
 import fr.afcepf.atod21.coVoiturage.common.Common;
 import fr.afcepf.atod21.coVoiturage.services.IRechercheTrajetJsonRest;
 
-@Path("/rechercheTrajet")
+@Path("/rechercherTrajetParVilleDepartEtVilleArrivee")
 public class RechercheTrajetRestJson implements IRechercheTrajetJsonRest {
 
     IBusinessRecherche businessRecherche;
@@ -22,7 +22,7 @@ public class RechercheTrajetRestJson implements IRechercheTrajetJsonRest {
     
     //CALL => http://localhost:8080/CoVoiturage_web/ws/REST3/rechercheTrajet/json/2015-01-01 10:00:00/Paris/Lyon
     @Override
-    @Path("/json/{date}/{depart}/{arrivee}")
+    @Path("{date}/{depart}/{arrivee}")
     @GET
     //@Produces(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_XML)
