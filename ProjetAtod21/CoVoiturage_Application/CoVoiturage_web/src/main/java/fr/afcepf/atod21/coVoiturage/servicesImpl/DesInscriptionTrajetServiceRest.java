@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import fr.afcepf.atod21.coVoiturage.business.IBusinessTrajet;
 import fr.afcepf.atod21.coVoiturage.services.IDesInscriptionTrajetServiceRest;
 
-@Path("/desInscriptionTrajet")
+@Path("/DesInscrire")
 public class DesInscriptionTrajetServiceRest implements
         IDesInscriptionTrajetServiceRest {
 

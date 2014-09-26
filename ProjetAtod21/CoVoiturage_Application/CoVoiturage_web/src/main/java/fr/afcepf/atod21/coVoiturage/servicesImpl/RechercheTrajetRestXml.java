@@ -13,7 +13,7 @@ import fr.afcepf.atod21.coVoiturage.business.dto.TrajetDto;
 import fr.afcepf.atod21.coVoiturage.common.Common;
 import fr.afcepf.atod21.coVoiturage.services.IRechercheTrajetXmlRest;
 
-@Path("/rechercheTrajet")
+@Path("/rechercherTrajetParVilleDepartEtVilleArrivee")
 public class RechercheTrajetRestXml implements IRechercheTrajetXmlRest {
 
     IBusinessRecherche businessRecherche;
@@ -24,7 +24,7 @@ public class RechercheTrajetRestXml implements IRechercheTrajetXmlRest {
 
     //CALL => http://localhost:8080/CoVoiturage_web/ws/REST1/rechercheTrajet/xml/2015-01-01 10:00:00/Paris/Lyon
     @Override
-    @Path("/xml/{date}/{depart}/{arrivee}")
+    @Path("{date}/{depart}/{arrivee}")
     @GET
     @Produces(MediaType.APPLICATION_XML)
     public List<TrajetDto> rechercherTrajetRestXml(@PathParam("date") String paramDateDepart,

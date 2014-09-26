@@ -14,7 +14,7 @@ import fr.afcepf.atod21.coVoiturage.dao.IDaoConnexion;
 import fr.afcepf.atod21.coVoiturage.entity.Utilisateur;
 import fr.afcepf.atod21.coVoiturage.services.IConnexionServiceRest;
 
-@Path("/connexion") 
+@Path("/seConnecter") 
 public class ConnexionServiceRest implements IConnexionServiceRest {
 
     //@Autowired

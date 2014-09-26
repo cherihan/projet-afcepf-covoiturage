@@ -19,8 +19,9 @@
 	<bean id="businessTrajetId" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessTrajetImpl" />
 	<bean id="businessRechercheId" class="fr.afcepf.atod21.coVoiturage.businessImpl.BusinessRechercheImpl" />
 		
+		
 	<!-- WS-SOAP -->	
-	<jaxws:endpoint id="orchestrateurService" implementor="#orchestrateurSoapImpl" address="/SOAP/OrchestrateurService" />
+	<jaxws:endpoint id="orchestrateurService" implementor="#orchestrateurSoapImpl" address="	" />
 	<bean id="orchestrateurSoapImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.OrchestrateurSoap">
 	</bean>
 
@@ -49,8 +50,9 @@
 		<property name="businessRecherche" ref="businessRechercheId" />
 	</bean>
 	
+	
 	<!-- WS-REST -->
-	<jaxrs:server id="connexionRestService" address="/REST/seConnecter">
+	<jaxrs:server id="connexionRestService" address="/REST/XML/authent">
 		<jaxrs:serviceBeans>
 			<ref bean="connexionRestImpl" />
 		</jaxrs:serviceBeans>
@@ -62,7 +64,7 @@
 		<property name="businessConnexion" ref="businessConnexionId" />
 	</bean>
 
-	<jaxrs:server id="inscriptionRestService" address="/REST/sInscrire">
+	<jaxrs:server id="inscriptionRestService" address="/REST/XML/subscribe">
 		<jaxrs:serviceBeans>
 			<ref bean="inscriptionRestImpl" />
 		</jaxrs:serviceBeans>
@@ -74,18 +76,19 @@
 		<property name="businessTrajet" ref="businessTrajetId" />
 	</bean>
 	
-	<jaxrs:server id="desInscriptionRestService" address="/REST/DesInscrire">
+	<jaxrs:server id="desInscriptionRestService" address="/REST/XML/unsubscribe">
 		<jaxrs:serviceBeans>
 			<ref bean="desInscriptionRestImpl" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="xml" value="application/xml" />
 		</jaxrs:extensionMappings>
-	</jaxrs:server>	<bean id="desInscriptionRestImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.DesInscriptionTrajetServiceRest">
+	</jaxrs:server>
+	<bean id="desInscriptionRestImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.DesInscriptionTrajetServiceRest">
 		<property name="businessTrajet" ref="businessTrajetId" />
 	</bean>
 	
-		<jaxrs:server id="rechercheRestXmlService" address="/REST1">
+	<jaxrs:server id="rechercheRestXmlService" address="/REST/XML/search">
 		<jaxrs:serviceBeans>
 			<ref bean="rechercheRestXmlImpl" />
 		</jaxrs:serviceBeans>
@@ -93,11 +96,11 @@
 			<entry key="xml" value="application/xml" />
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
-	<bean id="rechercheRestXmlImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetRestXml">
+	<bean id="rechercheRestXmlImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetBisXmlRest">
 		<property name="businessRecherche" ref="businessRechercheId" />
 	</bean>
 	
-	<jaxrs:server id="rechercheRest2XmlService" address="/REST2">
+	<jaxrs:server id="rechercheRest2XmlService" address="/REST/XML/search2">
 		<jaxrs:serviceBeans>
 			<ref bean="rechercheRest2XmlImpl" />
 		</jaxrs:serviceBeans>
@@ -105,24 +108,11 @@
 			<entry key="xml" value="application/xml" />
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
-	<bean id="rechercheRest2XmlImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetBisXmlRest">
+	<bean id="rechercheRest2XmlImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetRestXml">
 		<property name="businessRecherche" ref="businessRechercheId" />
 	</bean>
 
-	<jaxrs:server id="rechercheRestJsonService" address="/REST3">
-		<jaxrs:serviceBeans>
-			<ref bean="rechercheRestJsonImpl" />
-		</jaxrs:serviceBeans>
-		<jaxrs:extensionMappings>
-			<entry key="xml" value="application/xml" />
-			<entry key="json" value="application/json" />
-		</jaxrs:extensionMappings>
-	</jaxrs:server>
-	<bean id="rechercheRestJsonImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetRestJson">
-		<property name="businessRecherche" ref="businessRechercheId" />
-	</bean>
-
-	<jaxrs:server id="rechercheRest2JsonService" address="/REST4">
+	<jaxrs:server id="rechercheRest2JsonService" address="/REST/JSON/search">
 		<jaxrs:serviceBeans>
 			<ref bean="rechercheRest2JsonImpl" />
 		</jaxrs:serviceBeans>
@@ -132,6 +122,19 @@
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
 	<bean id="rechercheRest2JsonImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetBisJsonRest">
+		<property name="businessRecherche" ref="businessRechercheId" />
+	</bean>
+
+	<jaxrs:server id="rechercheRestJsonService" address="/REST/JSON/search2">
+		<jaxrs:serviceBeans>
+			<ref bean="rechercheRestJsonImpl" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="xml" value="application/xml" />
+			<entry key="json" value="application/json" />
+		</jaxrs:extensionMappings>
+	</jaxrs:server>
+	<bean id="rechercheRestJsonImpl" class="fr.afcepf.atod21.coVoiturage.servicesImpl.RechercheTrajetRestJson">
 		<property name="businessRecherche" ref="businessRechercheId" />
 	</bean>
 	
