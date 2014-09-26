@@ -44,7 +44,7 @@ public class ConnectionMBean {
 		this.userExists = true;
 		if (!userRemembered)
 			this.email="";
-		return "bootstrap/view/index.xhtml";
+		return "index.xhtml";
 	}
 
 	public String changerPassword() {
