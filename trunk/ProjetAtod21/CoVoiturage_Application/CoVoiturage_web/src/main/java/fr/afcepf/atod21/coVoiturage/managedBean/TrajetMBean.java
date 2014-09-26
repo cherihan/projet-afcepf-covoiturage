@@ -78,11 +78,12 @@ public class TrajetMBean {
 				FacesMessage message = new FacesMessage("Votre demande d'inscription à  ce trajet a bien été enregistrée !");
 				FacesContext.getCurrentInstance().addMessage(null, message);
 			    businessTrajet.sInscrireTrajet(trajet, user);
+			    user.getTrajets().add(trajet);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		this.trajet = trajet;
+		this.trajet = trajet;
 		return "detailTrajet.xhtml?faces-redirect=false";
 	}
     
