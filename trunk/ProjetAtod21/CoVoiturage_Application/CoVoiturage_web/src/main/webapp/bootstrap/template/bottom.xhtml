@@ -1,14 +1,30 @@
-<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-		<div class="">
-			<div id="owl-demo" class="owl-carousel owl-theme">
-				<div class="item"><h1>1</h1></div>
-				<div class="item"><h1>2</h1></div>
-				<div class="item"><h1>3</h1></div>
-				<div class="item"><h1>4</h1></div>
-				<div class="item"><h1>5</h1></div>
-			</div>
-		</div>
+	<div class="col-md-10 col-md-offset-1">
+		<ul class="nav nav-pills">
+			<li><h:outputLink>
+					<h:outputText value="Nous contacter" />
+				</h:outputLink></li>
+
+			<li><h:outputLink>
+					<h:outputText value="Donner votre avis" />
+				</h:outputLink></li>
+
+
+			<li><h:outputLink>
+					<h:outputText value="Conditions générales" />
+				</h:outputLink></li>
+			<li><h:outputLink>
+					<h:outputText value="Ecole AFCEPF / ATOD 21" />
+				</h:outputLink></li>
+			<li><h:outputLink>
+					<h:outputText value="Aide" />
+				</h:outputLink></li>
+			<li><h:outputLink>
+					<h:outputText value="Support" />
+				</h:outputLink></li>
+		</ul>
+	</div>
 </ui:composition>
